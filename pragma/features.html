@@ -1,0 +1,673 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/styles/vendor/swiper-bundle.css" />
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### featureBox ### */
+      .featureBox {
+        padding-top: 45px;
+        padding-bottom: 133px;
+        position: relative;
+        background: linear-gradient(90deg, #d7e5ff 51.99%, #fafafa 52.32%);
+      }
+      .featureBox h2 {
+        margin-bottom: 49px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .featureBox h2 span {
+        padding-bottom: 2px;
+        display: inline-block;
+        position: relative;
+      }
+      .featureBox h2 span::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: var(--w-100);
+        height: 3px;
+        background-color: var(--black);
+        content: "";
+      }
+      .featureBox .slider {
+        position: relative;
+        z-index: 1;
+        height: 500px;
+      }
+      .featureBox .swiper {
+        height: 100%;
+      }
+      .featureBox .swiper-slide {
+        height: 100%;
+      }
+      .featureBox .item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 100%;
+        align-items: center;
+      }
+      .featureBox .image {
+        padding: 44px 44px 0;
+        width: 46%;
+        height: 100%;
+        background-color: var(--white);
+        border-radius: 20px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .featureBox .image img {
+        margin: 0 auto;
+        display: block;
+        max-height: 100%;
+        object-fit: contain;
+      }
+      .featureBox .text {
+        padding: 20px 0 0 20px;
+        width: 44%;
+      }
+      .featureBox .text h3 {
+        margin-bottom: 32px;
+      }
+      .featureBox .text p {
+        margin-bottom: 22px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      .featureBox .quote {
+        margin-bottom: 32px;
+        padding: 18px 15px 18px 82px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 100px;
+        background-color: rgb(0, 0, 0, 0.1);
+        max-width: 370px;
+      }
+      .featureBox .sticker {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+      }
+      .featureBox .quote p {
+        margin-bottom: 0;
+        padding: 0 40px;
+        position: relative;
+        font-size: 16px;
+      }
+      .featureBox .quote p::after,
+      .featureBox .quote p::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1;
+        content: "“";
+      }
+      .featureBox .quote p::after {
+        right: 6px;
+        left: auto;
+        content: "”";
+      }
+      .featureBox .learn-more {
+        display: inline-flex;
+        align-items: center;
+        color: var(--primary);
+        font-weight: 700;
+        transition: var(--base-duration);
+      }
+      .featureBox .learn-more i {
+        margin-left: 10px;
+      }
+      .featureBox .learn-more:focus,
+      .featureBox .learn-more:hover {
+        color: var(--blue);
+      }
+      .featureBox .swiper-pagination {
+        margin-left: 22px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        transform: translateY(-50%);
+        width: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      .featureBox .swiper-pagination-bullet {
+        margin: 4px 0 !important;
+      }
+      .featureBox .swiper-pagination-lock {
+        display: block;
+      }
+      .featureBox .bg {
+        margin-left: -480px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 300px;
+        height: 100%;
+      }
+      .featureBox .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .featureBox.d-phone {
+        display: none;
+      }
+
+      /* ### feature-heading ### */
+      .feature-heading {
+        display: none;
+      }
+      .feature-heading h2 {
+        margin-bottom: 21px;
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .feature-heading h2 span {
+        padding-bottom: 2px;
+        display: inline-block;
+        position: relative;
+      }
+      .feature-heading h2 span::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: var(--w-100);
+        height: 2px;
+        background-color: var(--black);
+        content: "";
+      }
+
+      @media only screen and (max-width: 1199px) {
+        .featureBox .image {
+          padding: 20px 20px 0;
+          width: 48%;
+        }
+        .featureBox .text {
+          width: 47%;
+        }
+        .featureBox .text p {
+          font-size: 16px;
+        }
+        .featureBox .quote {
+          padding: 20px 15px 20px 80px;
+        }
+        .featureBox .quote p {
+          padding: 0 30px;
+          font-size: 14px;
+        }
+        .featureBox .quote p::after {
+          right: 0;
+        }
+        .featureBox .swiper-pagination {
+          margin-left: 17px;
+        }
+      }
+
+      @media only screen and (max-width: 1025px) {
+        .featureBox .swiper-pagination {
+          margin-left: 12px;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        .feature-heading {
+          display: block;
+        }
+        .featureBox {
+          margin-bottom: 0;
+          padding-top: 24px;
+          padding-bottom: 21px;
+          background: linear-gradient(180deg, #d7e5ff 0%, #fafafa 100%);
+        }
+        .featureBox.d-desktop {
+          display: none;
+        }
+        .featureBox.d-phone {
+          display: block;
+        }
+        .featureBox .image {
+          padding: 25px 25px 0;
+          width: 100%;
+          border-radius: 16px 16px 16px 4px;
+        }
+        .featureBox .text {
+          padding-top: 16px;
+          padding-left: 0;
+          width: 100%;
+        }
+        .featureBox h3 {
+          margin-bottom: 16px;
+          font-size: 20px;
+          text-align: left;
+        }
+        .featureBox .text p {
+          font-size: 14px;
+        }
+        .featureBox .sticker {
+          top: 6px;
+          left: 6px;
+          width: 51px;
+          height: 51px;
+        }
+        .featureBox .quote {
+          margin-bottom: 13px;
+          max-width: 275px;
+          padding: 13px 15px 13px 61px;
+        }
+        .featureBox .quote p {
+          padding: 0 25px;
+          font-size: 12px;
+        }
+        .featureBox .quote p::after,
+        .featureBox .quote p::before {
+          font-size: 34px;
+        }
+        .featureBox .learn-more {
+          font-size: 14px;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!--  / start featureBox \ -->
+          <div class="featureBox d-desktop centered">
+            <h2 class="h1"><span>Features</span></h2>
+
+            <div class="slider">
+              <div class="js-feature-slide swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <div class="image">
+                        <img src="assets/images/feature-img.png" alt="" />
+                      </div>
+
+                      <div class="text">
+                        <h3 class="h2">Personalised Chatbots</h3>
+
+                        <p>
+                          Create unlimited chatbots across WhatsApp, Messenger
+                          and Instagram for all possible scenarios like Order
+                          status, Payment issues, Returns etc.
+                        </p>
+
+                        <p>
+                          Offer multi-lingual support in 16+ languages and
+                          follow up smartly with our powerful NLP
+                        </p>
+
+                        <div class="quote">
+                          <div class="sticker">
+                            <img src="assets/images/sticker.png" alt="" />
+                          </div>
+                          <p>Support ticket automation like never before</p>
+                        </div>
+                        <br />
+
+                        <a href="#" class="learn-more"
+                          >Learn More <i class="icon-arrow-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <div class="image">
+                        <img src="assets/images/feature-img.png" alt="" />
+                      </div>
+
+                      <div class="text">
+                        <h3 class="h2">Personalised Chatbots</h3>
+
+                        <p>
+                          Create unlimited chatbots across WhatsApp, Messenger
+                          and Instagram for all possible scenarios like Order
+                          status, Payment issues, Returns etc.
+                        </p>
+
+                        <p>
+                          Offer multi-lingual support in 16+ languages and
+                          follow up smartly with our powerful NLP
+                        </p>
+
+                        <div class="quote">
+                          <div class="sticker">
+                            <img src="assets/images/sticker.png" alt="" />
+                          </div>
+                          <p>Support ticket automation like never before</p>
+                        </div>
+                        <br />
+
+                        <a href="#" class="learn-more"
+                          >Learn More <i class="icon-arrow-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <div class="image">
+                        <img src="assets/images/feature-img.png" alt="" />
+                      </div>
+
+                      <div class="text">
+                        <h3 class="h2">Personalised Chatbots</h3>
+
+                        <p>
+                          Create unlimited chatbots across WhatsApp, Messenger
+                          and Instagram for all possible scenarios like Order
+                          status, Payment issues, Returns etc.
+                        </p>
+
+                        <p>
+                          Offer multi-lingual support in 16+ languages and
+                          follow up smartly with our powerful NLP
+                        </p>
+
+                        <div class="quote">
+                          <div class="sticker">
+                            <img src="assets/images/sticker.png" alt="" />
+                          </div>
+                          <p>Support ticket automation like never before</p>
+                        </div>
+                        <br />
+
+                        <a href="#" class="learn-more"
+                          >Learn More <i class="icon-arrow-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <div class="image">
+                        <img src="assets/images/feature-img.png" alt="" />
+                      </div>
+
+                      <div class="text">
+                        <h3 class="h2">Personalised Chatbots</h3>
+
+                        <p>
+                          Create unlimited chatbots across WhatsApp, Messenger
+                          and Instagram for all possible scenarios like Order
+                          status, Payment issues, Returns etc.
+                        </p>
+
+                        <p>
+                          Offer multi-lingual support in 16+ languages and
+                          follow up smartly with our powerful NLP
+                        </p>
+
+                        <div class="quote">
+                          <div class="sticker">
+                            <img src="assets/images/sticker.png" alt="" />
+                          </div>
+                          <p>Support ticket automation like never before</p>
+                        </div>
+                        <br />
+
+                        <a href="#" class="learn-more"
+                          >Learn More <i class="icon-arrow-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="item">
+                      <div class="image">
+                        <img src="assets/images/feature-img.png" alt="" />
+                      </div>
+
+                      <div class="text">
+                        <h3 class="h2">Personalised Chatbots</h3>
+
+                        <p>
+                          Create unlimited chatbots across WhatsApp, Messenger
+                          and Instagram for all possible scenarios like Order
+                          status, Payment issues, Returns etc.
+                        </p>
+
+                        <p>
+                          Offer multi-lingual support in 16+ languages and
+                          follow up smartly with our powerful NLP
+                        </p>
+
+                        <div class="quote">
+                          <div class="sticker">
+                            <img src="assets/images/sticker.png" alt="" />
+                          </div>
+                          <p>Support ticket automation like never before</p>
+                        </div>
+                        <br />
+
+                        <a href="#" class="learn-more"
+                          >Learn More <i class="icon-arrow-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="bg">
+              <img src="assets/images/feature-bg.png" alt="" />
+            </div>
+          </div>
+          <!--  \ end featureBox / -->
+
+          <!--  / start feature-heading \ -->
+          <div class="feature-heading centered">
+            <h2 class="h1"><span>Features</span></h2>
+          </div>
+          <!--  \ end feature-heading / -->
+
+          <!--  / start featureBox \ -->
+          <div class="featureBox d-phone centered">
+            <h3>Personalised Chatbots</h3>
+
+            <div class="item">
+              <div class="image">
+                <img src="assets/images/feature-img.png" alt="" />
+              </div>
+
+              <div class="text">
+                <p>
+                  Create unlimited chatbots across WhatsApp, Messenger and
+                  Instagram for all possible scenarios like Order status,
+                  Payment issues, Returns etc.
+                </p>
+
+                <p>
+                  Offer multi-lingual support in 16+ languages and follow up
+                  smartly with our powerful NLP
+                </p>
+
+                <div class="quote">
+                  <div class="sticker">
+                    <img src="assets/images/sticker.png" alt="" />
+                  </div>
+                  <p>Support ticket automation like never before</p>
+                </div>
+                <br />
+
+                <a href="#" class="learn-more"
+                  >Learn More <i class="icon-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <!--  \ end featureBox / -->
+
+          <!--  / start featureBox \ -->
+          <div class="featureBox d-phone centered">
+            <h3>Personalised Chatbots</h3>
+
+            <div class="item">
+              <div class="image">
+                <img src="assets/images/feature-img.png" alt="" />
+              </div>
+
+              <div class="text">
+                <p>
+                  Create unlimited chatbots across WhatsApp, Messenger and
+                  Instagram for all possible scenarios like Order status,
+                  Payment issues, Returns etc.
+                </p>
+
+                <p>
+                  Offer multi-lingual support in 16+ languages and follow up
+                  smartly with our powerful NLP
+                </p>
+
+                <div class="quote">
+                  <div class="sticker">
+                    <img src="assets/images/sticker.png" alt="" />
+                  </div>
+                  <p>Support ticket automation like never before</p>
+                </div>
+                <br />
+
+                <a href="#" class="learn-more"
+                  >Learn More <i class="icon-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <!--  \ end featureBox / -->
+
+          <!--  / start featureBox \ -->
+          <div class="featureBox d-phone centered">
+            <h3>Personalised Chatbots</h3>
+
+            <div class="item">
+              <div class="image">
+                <img src="assets/images/feature-img.png" alt="" />
+              </div>
+
+              <div class="text">
+                <p>
+                  Create unlimited chatbots across WhatsApp, Messenger and
+                  Instagram for all possible scenarios like Order status,
+                  Payment issues, Returns etc.
+                </p>
+
+                <p>
+                  Offer multi-lingual support in 16+ languages and follow up
+                  smartly with our powerful NLP
+                </p>
+
+                <div class="quote">
+                  <div class="sticker">
+                    <img src="assets/images/sticker.png" alt="" />
+                  </div>
+                  <p>Support ticket automation like never before</p>
+                </div>
+                <br />
+
+                <a href="#" class="learn-more"
+                  >Learn More <i class="icon-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <!--  \ end featureBox / -->
+
+          <!--  / start featureBox \ -->
+          <div class="featureBox d-phone centered">
+            <h3>Personalised Chatbots</h3>
+
+            <div class="item">
+              <div class="image">
+                <img src="assets/images/feature-img.png" alt="" />
+              </div>
+
+              <div class="text">
+                <p>
+                  Create unlimited chatbots across WhatsApp, Messenger and
+                  Instagram for all possible scenarios like Order status,
+                  Payment issues, Returns etc.
+                </p>
+
+                <p>
+                  Offer multi-lingual support in 16+ languages and follow up
+                  smartly with our powerful NLP
+                </p>
+
+                <div class="quote">
+                  <div class="sticker">
+                    <img src="assets/images/sticker.png" alt="" />
+                  </div>
+                  <p>Support ticket automation like never before</p>
+                </div>
+                <br />
+
+                <a href="#" class="learn-more"
+                  >Learn More <i class="icon-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <!--  \ end featureBox / -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        //Feature Slider
+        var swiper = new Swiper(".js-feature-slide", {
+          direction: "vertical",
+          slidesPerView: 1,
+          mousewheel: {
+            releaseOnEdges: true,
+          },
+          pagination: {
+            el: ".featureBox .swiper-pagination",
+            clickable: true,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

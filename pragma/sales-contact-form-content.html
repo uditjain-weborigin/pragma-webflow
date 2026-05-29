@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Pragma</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="description" content="Website description" />
+	<meta name="robots" content="noindex, nofollow" /><!-- change into index, follow -->
+	<link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+</head>
+
+<body>
+
+	<style>
+	/* ==========================================================================
+   SALES CONTACT FORM PAGE STYLES
+   Extracted from: sales-contact-form.html <style> block
+   Page: Two-column split layout — left marketing panel + right demo request form
+   Sidebar: Animated icon strip with cycling blue-highlight animation (see main.js)
+   ========================================================================== */
+
+/* Page wrapper: full-viewport two-column split */
+.contact-split-page {
+  display: flex;
+  min-height: calc(100vh - 64px); /* Match global header height */
+  background-color: #ffffff;
+}
+
+/* ── Left Marketing Panel ────────────────────────────────── */
+.contact-left {
+  display: flex;
+  flex: 0 0 50%;
+  background-color: #ffffff;
+  position: relative;
+  align-items: flex-start; /* Ensure sidebar doesn't stretch past top */
+}
+
+/* Thin icon sidebar strip - Sticky and Viewport-Contained */
+.contact-icon-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Group icons in center */
+  padding: 24px 0;
+  gap: 12px; /* Tight, consistent gap to ensure all 13 fit */
+  width: 64px;
+  min-width: 64px;
+  background-color: #13151d;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 64px); /* Pinned to viewport below header */
+  box-sizing: border-box;
+}
+
+.sidebar-logo img {
+  width: 40px; /* Larger logo icon */
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  opacity: 1; /* Brighter static logo */
+  margin-bottom: 8px; /* Slight separation from icons */
+  transform: translateX(8px);
+}
+
+.sidebar-icon img {
+  width: 20px; /* Slightly smaller feature icons to save space */
+  height: 20px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.95; /* Increased opacity to make them even lighter */
+  filter: brightness(10);
+  transition:
+    opacity 0.3s,
+    filter 0.3s;
+}
+
+.sidebar-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Active blue state for sidebar icons — toggled by JS animation loop */
+[data-sidebar-icon].is-active img {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(34%) sepia(90%) saturate(1800%)
+    hue-rotate(205deg) brightness(70%); /* Darker Pragma Blue */
+}
+
+.contact-left-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 60px;
+  background-color: #ffffff;
+}
+
+/* Marketing Content Layout (Display T1, Body Text 3) */
+.marketing-hug-box {
+  width: 100%;
+  max-width: 535px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.marketing-hug-box h1 {
+  font-family: "Satoshi", sans-serif;
+  font-size: 44px; /* Display T1 */
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.1;
+  margin: 0 0 32px;
+  letter-spacing: -0.02em;
+}
+
+.marketing-hug-box p {
+  font-family: "Satoshi", sans-serif;
+  font-size: 15px; /* Body Text 3 */
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.6;
+  margin: 0 0 40px;
+  max-width: 440px;
+  background-color: rgba(0, 0, 0, 0.08); /* Adjusted to match design feel */
+  padding: 16px 24px;
+  border-radius: 4px;
+}
+
+.contact-explore-link {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px; /* Body Text 1B */
+  font-weight: 700;
+  color: #000000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 240px; /* Shifted significantly down per design */
+}
+
+@media (max-width: 1100px) { 
+    .contact-explore-link {
+  margin-top: 40px; /* Shifted significantly down per design */
+}
+}
+
+/* ── Right Form Panel ─────────────────────────────────────── */
+.contact-right {
+  flex: 1;
+  background-color: #1a1a1a; /* Darker background to match new design */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 60px; /* Minimized vertical padding */
+}
+
+.contact-form-wrap {
+  width: 562px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.contact-form-wrap h2 {
+  font-family: "Satoshi", sans-serif;
+  font-size: 28px; /* Reduced from 34px */
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px; /* Reduced from 12px */
+  padding-bottom: 8px; /* Reduced from 12px */
+}
+
+/* Form layout rows and groups */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 8px; /* Reduced from 12px */
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 8px; /* Reduced from 12px */
+}
+
+.form-group.full {
+  width: 100%;
+}
+
+/* Input & Select Base Styling */
+.cf-input,
+.cf-select {
+  width: 100%;
+  height: 42px; /* Reduced from 48px */
+  background-color: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 14px; /* Reduced from 15px */
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: "Satoshi", sans-serif;
+  box-sizing: border-box;
+}
+
+.cf-select {
+  padding-right: 48px; /* Extra space for arrow */
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: rgba(255, 255, 255, 0.4); /* Placeholder color by default */
+}
+
+/* Non-placeholder state when a valid option is selected */
+.cf-select:not(:invalid) {
+  color: #ffffff;
+}
+
+.cf-select option {
+  background-color: #212121;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.cf-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cf-input:focus,
+.cf-select:focus {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Custom Select wrapper with SVG chevron-down arrow */
+.cf-select-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.cf-select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='rgba(255,255,255,0.5)' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.cf-select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ── Services Selection Area ──────────────────────────────── */
+.services-selection-area {
+  width: 500px; /* Slightly wider to fit rows */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.services-label {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 10px;
+  display: block;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px; /* Reduced from 8px */
+  margin-bottom: 12px; /* Reduced from 18px */
+}
+
+/* Service chip: hidden native checkbox, styled label */
+.service-chip {
+  cursor: pointer;
+}
+
+.service-chip input {
+  display: none;
+}
+
+.chip-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px; /* Reduced from 10px 14px */
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px; /* Reduced from 14px */
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip-check-icon {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Chip Active State — checkbox checked */
+.service-chip input:checked + .chip-box {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+}
+
+.service-chip input:checked + .chip-box .chip-check-icon {
+  background-color: #2871f0;
+  border-color: #2871f0;
+}
+
+.chip-check-icon::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid rgba(255, 255, 255, 0.2);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  transition: all 0.2s;
+}
+
+.service-chip input:checked + .chip-box .chip-check-icon::after {
+  border-color: #ffffff;
+}
+
+/* ── Submit Button ─────────────────────────────────────────── */
+.btn-get-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #2871f0;
+  color: #ffffff;
+  padding: 10px 32px; /* Reduced padding */
+  border: none;
+  border-radius: 8px; /* Not rounded/pill, but 8px radius */
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  font-family: "Satoshi", sans-serif;
+  margin: 0 auto;
+  min-width: 173px;
+  height: 42px; /* Reduced from 48px */
+  box-sizing: border-box;
+}
+
+.btn-get-demo:hover {
+  background-color: #1a5fd8;
+  transform: translateY(-2px);
+}
+
+/* Mobile-only footer link (hidden on desktop) */
+.mobile-footer-link {
+  display: none;
+}
+
+/* ── Responsive / Mobile Design ───────────────────────────── */
+@media (max-width: 768px) {
+  .contact-split-page {
+    flex-direction: column;
+    min-height: auto;
+    background-color: #ffffff;
+  }
+
+  .contact-left {
+    flex: none;
+    width: 100%;
+    padding: 0 20px 0; /* Minimized top padding for mobile view */
+    margin-top: -25px; /* Pull up to reduce gap from shared wrapper padding */
+    background-color: #ffffff;
+  }
+
+  .contact-left-content {
+    padding: 0; /* Remove internal padding to eliminate double-padding effect */
+    display: block;
+  }
+
+  .contact-right {
+    flex: none;
+    width: 100%;
+    padding: 10px 16px 40px;
+    background-color: #ffffff;
+  }
+
+  /* Hide icon sidebar on mobile */
+  .contact-icon-sidebar {
+    display: none;
+  }
+
+  .contact-form-wrap {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background-color: #000000;
+    border-radius: 16px;
+    padding: 32px 20px;
+    box-sizing: border-box;
+  }
+
+  .contact-form-wrap h2 {
+    font-size: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+
+  /* Left-align marketing text on mobile */
+  .marketing-hug-box {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .marketing-hug-box h1 {
+    font-size: 32px;
+    margin-bottom: 12px; /* Tightened from 16px */
+    color: #000000;
+    line-height: 1.1;
+  }
+
+  .marketing-hug-box p {
+    font-size: 14px;
+    margin-bottom: 24px;
+    background: rgba(0, 0, 0, 0.1); /* Exact 10% black fill as requested */
+    color: #000000;
+    padding: 16px 20px; /* Reduced from 24px 20px to match Figma feel */
+    border-radius: 0;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  .cf-label.m-only {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  /* Form Element Stacking */
+  .form-row:not(.mobile-2-col) {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .cf-input,
+  .cf-select {
+    height: 48px;
+    background-color: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Hide Brand Name field on mobile */
+  #cf-brand-group {
+    display: none;
+  }
+
+  .services-selection-area {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .services-label {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  /* Services chips switch to 2-column grid on mobile */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* Full-width chips span both columns */
+  .services-grid > label.full-width {
+    grid-column: span 2;
+  }
+
+  .btn-get-demo {
+    width: 100%;
+    height: 48px;
+    margin-top: 24px;
+  }
+
+  /* Hide desktop explore link; mobile version shown via .mobile-footer-link */
+  .contact-explore-link {
+    display: none;
+  }
+
+  /* Mobile footer link shown below the form */
+  .mobile-footer-link {
+    display: flex;
+    font-family: "Satoshi", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px 0;
+    background: #ffffff;
+  }
+
+  .m-block {
+    display: block;
+  }
+}
+
+/* Tablet / Medium breakpoint — stack panels, hide sidebar */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .contact-split-page {
+    flex-direction: column;
+  }
+
+  .contact-left,
+  .contact-right {
+    flex: none;
+    width: 100%;
+  }
+
+  .contact-icon-sidebar {
+    display: none;
+  }
+}
+
+
+.m-only {
+  display: none;
+}
+
+@media (max-width: 768px) { 
+    .cf-label.m-only {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+}
+
+/* ── END: Sales Contact Form Page Styles ──────────────────── */
+	</style>
+
+	 <!-- Contact-form-Start -->
+    <div id="wrapper">
+      <main id="mainCntr">
+        <div class="contact-split-page">
+          <!-- ── Left Marketing Panel ───────────────────────────── -->
+          <div class="contact-left">
+            <!-- Animated Icon Sidebar -->
+            <div class="contact-icon-sidebar">
+              <div class="sidebar-logo">
+                <img
+                  src="assets/images/sales-contact-form/pragmaicon.png"
+                  alt="Pragma"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/graph.png"
+                  alt="Analytics"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/box.png"
+                  alt="Orders"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/returns.png"
+                  alt="Returns"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/cart.png"
+                  alt="Cart"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/dollar.png"
+                  alt="Revenue"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/braodcast.png"
+                  alt="Broadcast"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/inbox.png"
+                  alt="Inbox"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/bot.png"
+                  alt="AI Bot"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img src="assets/images/sales-contact-form/pad.png" alt="Pad" />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/shirt.png"
+                  alt="Products"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/star.png"
+                  alt="Reviews"
+                />
+              </div>
+              <div class="sidebar-icon" data-sidebar-icon>
+                <img
+                  src="assets/images/sales-contact-form/settings.png"
+                  alt="Settings"
+                />
+              </div>
+            </div>
+
+            <!-- Marketing Content -->
+            <div class="contact-left-content">
+              <div class="marketing-hug-box">
+                <h1>Talk to the <span class="m-block">Pragma Team</span></h1>
+                <p>
+                  Tell us what you're solving for — checkout, RTO, shipping,
+                  returns, support, journeys, or AI ops, and we'll pitch you the
+                  right setup.
+                </p>
+                <a href="#" class="contact-explore-link">
+                  Explore Pragma's D2C Operating System
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="#000000"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Right Form Panel ─────────────────────────────────── -->
+          <div class="contact-right">
+            <div class="contact-form-wrap">
+              <h2>Request a Demo</h2>
+
+              <form id="contactDemoForm" novalidate>
+                <!-- Row 1: Name + Brand -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="cf-input"
+                      placeholder="Your Name"
+                      id="cf-name"
+                    />
+                  </div>
+                  <div class="form-group" id="cf-brand-group">
+                    <input
+                      type="text"
+                      class="cf-input"
+                      placeholder="Brand Name"
+                      id="cf-brand"
+                    />
+                  </div>
+                </div>
+
+                <!-- Row 2: Website (Full width) -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <input
+                      type="url"
+                      class="cf-input"
+                      placeholder="Company Website link"
+                      id="cf-website"
+                    />
+                  </div>
+                </div>
+
+                <!-- Row 3: Email (Full width) -->
+                <div class="form-row">
+                  <div class="form-group email-group">
+                    <label for="cf-email" class="cf-label m-only">Company Email</label>
+                    <input
+                      type="email"
+                      class="cf-input"
+                      placeholder="Company Email Address"
+                      id="cf-email"
+                    />
+                  </div>
+                </div>
+
+                <!-- Row 4: Phone + Orders dropdown (Keep 2-col on mobile) -->
+                <div class="form-row mobile-2-col">
+                  <div class="form-group">
+                    <input
+                      type="tel"
+                      class="cf-input"
+                      placeholder="Contact Number"
+                      id="cf-phone"
+                    />
+                  </div>
+                  <div class="cf-select-wrap">
+                    <select class="cf-select" id="cf-orders" required>
+                      <option value="" disabled selected>
+                        Orders per month
+                      </option>
+                      <option value="lt-500">&lt; 500</option>
+                      <option value="500-2000">500 – 2,000</option>
+                      <option value="2000-10000">2,000 – 10,000</option>
+                      <option value="10000-50000">10,000 – 50,000</option>
+                      <option value="gt-50000">50,000+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Services Selection Area -->
+                <div class="services-selection-area" style="margin-top: 12px;">
+                  <span class="services-label"
+                    >Select Services you are interested to know about</span
+                  >
+                  <div class="services-grid">
+                    <label class="service-chip">
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value="full-pragma"
+                        checked
+                      />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        Full Pragma Package
+                      </span>
+                    </label>
+
+                    <label class="service-chip">
+                      <input type="checkbox" name="service" value="rto-suite" />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        RTO Suite
+                      </span>
+                    </label>
+
+                    <label class="service-chip">
+                      <input type="checkbox" name="service" value="1checkout" />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        1Checkout
+                      </span>
+                    </label>
+
+                    <label class="service-chip">
+                      <input type="checkbox" name="service" value="genie-ai" />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        Genie (AI Copilot)
+                      </span>
+                    </label>
+
+                    <label class="service-chip full-width">
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value="whatsapp-business"
+                      />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        WhatsApp Business Suite
+                      </span>
+                    </label>
+
+                    <label class="service-chip full-width">
+                      <input type="checkbox" name="service" value="return-mgmt" />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        Return Management System
+                      </span>
+                    </label>
+
+                    <label class="service-chip full-width">
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value="journey-mgmt"
+                      />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        Journey Management System
+                      </span>
+                    </label>
+
+                    <label class="service-chip">
+                      <input type="checkbox" name="service" value="shipaxis" />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        ShipAxis
+                      </span>
+                    </label>
+
+                    <label class="service-chip">
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value="omnichannel-crm"
+                      />
+                      <span class="chip-box">
+                        <span class="chip-check-icon"></span>
+                        Omnichannel CRM
+                      </span>
+                    </label>
+                </div>
+                <!-- /services-grid -->
+
+                <button type="submit" class="btn-get-demo">
+                  Get a Demo
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path
+                      d="M3.75 9h10.5M10.5 5.25L14.25 9l-3.75 3.75"
+                      stroke="#fff"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- /contact-split-page -->
+
+    <!-- Mobile-only Footer Link -->
+    <a href="#" class="mobile-footer-link">
+      Explore Pragma's D2C Operating System
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path
+          d="M3 8h10M9 4l4 4-4 4"
+          stroke="#000000"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+    <!-- Contact-form-End -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        /* ==========================================================================
+   SALES CONTACT FORM — Sidebar Icon Loop Animation
+   Extracted from: sales-contact-form.html <script> block
+   ---------------------------------------------------------------------
+   Cycles through all [data-sidebar-icon] elements, lighting each one up
+   in Pragma blue (via the CSS class .is-active) one at a time.
+   - Interval: 1200ms per icon
+   - Runs automatically on page load if any sidebar icons exist in the DOM.
+   - The active blue styling is defined in assets/styles/main.css under
+     the "[data-sidebar-icon].is-active img" rule.
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+  const sidebarIcons = document.querySelectorAll("[data-sidebar-icon]");
+
+  // Guard: only run on pages that have the contact-form sidebar
+  if (!sidebarIcons.length) return;
+
+  let currentIconIndex = 0;
+
+  // Activate the first icon immediately on load
+  sidebarIcons[currentIconIndex].classList.add("is-active");
+
+  // Cycle through icons every 1200ms in a continuous loop
+  setInterval(function () {
+    // Remove active state from the current icon
+    sidebarIcons[currentIconIndex].classList.remove("is-active");
+
+    // Advance to the next icon (wraps back to 0 after the last)
+    currentIconIndex = (currentIconIndex + 1) % sidebarIcons.length;
+
+    // Apply active state to the new current icon
+    sidebarIcons[currentIconIndex].classList.add("is-active");
+  }, 1200);
+});
+/* ── END: Sales Contact Form Sidebar Animation ──────────────── */
+   
+});
+    </script>
+</body>
+
+</html>

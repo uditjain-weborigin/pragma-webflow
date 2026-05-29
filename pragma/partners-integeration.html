@@ -1,0 +1,1225 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ==========================================================================
+   Partners & Integrations Page Styles
+   ========================================================================== */
+
+      .integrations-page {
+        padding-top: 30px;
+        padding-bottom: 120px;
+        background-color: #fff;
+      }
+      .integrations-page .holder {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Typography Overrides for Integrations Page */
+      .integrations-page .display-t1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #000;
+      }
+      .integrations-page .heading-3 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: #000;
+      }
+      .integrations-page .body-text-1b {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: #000;
+      }
+      .integrations-page .body-text-3 {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #000;
+        margin-bottom: 0;
+      }
+      .integrations-page .btn-text-1 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .integrations-page .text-center {
+        text-align: center;
+      }
+      .integrations-page .text-white {
+        color: #fff;
+      }
+      .integrations-page .mb-16 {
+        margin-bottom: 16px;
+      }
+      .integrations-page .mb-24 {
+        margin-bottom: 24px;
+      }
+      .integrations-page .mb-32 {
+        margin-bottom: 32px;
+      }
+      .integrations-page .mb-40 {
+        margin-bottom: 40px;
+      }
+      .integrations-page .mb-60 {
+        margin-bottom: 30px;
+      }
+      .integrations-page .mt-40 {
+        margin-top: 40px;
+      }
+
+      /* Layout Blocks */
+      .integrations-page .gray-block {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+      }
+      .integrations-page .grid-2-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      /* Logo Grids */
+      .integrations-page .logo-grid {
+        display: grid;
+        gap: 20px 16px;
+      }
+      .integrations-page .cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .integrations-page .cols-5 {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      .integrations-page .cols-6 {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .integrations-page .cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .integrations-page .cols-8 {
+        grid-template-columns: repeat(8, 1fr);
+      }
+
+      /* Integration Item Card */
+      .integrations-page .integration-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+      .integrations-page .integration-card {
+        background-color: #fff;
+        border-radius: 13.2px;
+        padding: 16px;
+        width: 118.8px;
+        height: 118.8px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.03);
+        border: 0.33px solid rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+      .integrations-page .integration-item:hover .integration-card {
+        transform: translateY(-2px);
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+        border-color: #2871f0;
+      }
+      .integrations-page .integration-item:hover .body-text-3 {
+        color: #2871f0;
+      }
+      .integrations-page .body-text-3 {
+        transition: color 0.2s;
+      }
+      .integrations-page .integration-card img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      /* Blue CTA Banner */
+      .integrations-page .blue-cta {
+        background-color: var(--primary, #2871f0);
+        border-radius: 20px;
+        padding: 56px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 48px;
+      }
+      .integrations-page .blue-cta .cta-headline {
+        flex: 1.2;
+        margin: 0;
+      }
+      .integrations-page .blue-cta .cta-desc {
+        flex: 1;
+        margin: 0;
+        max-width: 440px;
+      }
+      .integrations-page .btn-white {
+        background-color: #fff;
+        color: var(--primary, #2871f0);
+        padding: 16px 32px;
+        border-radius: 8px;
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.2s;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+      .integrations-page .btn-white:hover {
+        background-color: #f0f0f0;
+      }
+
+      .integrations-page .btn-outline-blue {
+        background-color: #fff;
+        color: var(--primary, #2871f0);
+        padding: 24px 32px;
+        border: 1.4px solid var(--primary, #2871f0);
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9.32px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .integrations-page .btn-outline-blue:hover {
+        background-color: #f8fbff;
+      }
+
+      .integrations-page .divider {
+        height: 1px;
+        background-color: #e5e5e5;
+        margin: 40px 0;
+      }
+
+      /* Responsive Rules */
+      @media (max-width: 1024px) {
+        .integrations-page .grid-2-col {
+          grid-template-columns: 1fr;
+        }
+        .integrations-page .blue-cta {
+          flex-direction: column;
+          text-align: center;
+          padding: 40px 32px;
+          gap: 24px;
+        }
+        .integrations-page .blue-cta .cta-desc {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .integrations-page .logo-grid {
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: 12px 8px;
+        }
+        .integrations-page .grid-2-col {
+          gap: 16px;
+        }
+        .integrations-page .integration-item {
+          gap: 8px;
+        }
+        .integrations-page .integration-card {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1;
+          padding: 10px;
+        }
+        .integrations-page .body-text-3 {
+          font-size: 11px;
+          line-height: 1.2;
+        }
+        .integrations-page {
+          padding-top: 24px;
+          padding-bottom: 60px;
+        }
+        .integrations-page .holder {
+          padding: 0 !important;
+          width: 100% !important;
+          max-width: none !important;
+        }
+        .integrations-page .gray-block {
+          padding: 24px 16px;
+          border-radius: 0;
+        }
+        .integrations-page .white-sub-block {
+          padding: 24px 16px;
+          margin-bottom: 16px !important;
+          border-radius: 0 !important;
+          background-color: #f9f9f9;
+          margin-left: -16px;
+          margin-right: -16px;
+        }
+        .integrations-page .display-t1 {
+          font-size: 34px;
+          margin-bottom: 0;
+          margin-top: 0;
+          padding: 0 18px;
+          text-align: left !important;
+        }
+        .integrations-page .heading-3 {
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+        .integrations-page .blue-cta {
+          flex-direction: row;
+          padding: 20px 16px;
+          gap: 12px;
+          justify-content: space-between;
+          text-align: left;
+          border-radius: 10px;
+          margin-bottom: 16px !important;
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+        .integrations-page .blue-cta .cta-headline {
+          font-size: 14px;
+          line-height: 1.35;
+          flex: 1;
+        }
+        .integrations-page .blue-cta .cta-desc {
+          display: none;
+        }
+        .integrations-page .btn-white {
+          padding: 10px 16px;
+          font-size: 13px;
+        }
+        .integrations-page .btn-outline-blue {
+          width: 100%;
+          padding: 16px 24px;
+          border: 1px solid #2871f0;
+          justify-content: center;
+          gap: 10px;
+          display: flex;
+          background-color: transparent;
+        }
+      }
+
+      .integrations-page .hidden {
+        display: none;
+      }
+      .integrations-page .arrow-icon {
+        transition: transform 0.3s;
+      }
+      .integrations-page .js-toggle-expand.is-expanded .arrow-icon {
+        transform: rotate(180deg);
+      }
+      .integrations-page .white-sub-block {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    </style>
+
+    <section class="integrations-page">
+      <div class="holder">
+        <h1 class="display-t1 text-center mb-60">Partners & Integrations</h1>
+
+        <!-- Section 1 & 2 -->
+        <div class="grid-2-col mb-16">
+          <div class="gray-block">
+            <h3 class="heading-3 mb-24">1. Store & Commerce Platforms</h3>
+            <div class="logo-grid cols-4">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/shopify.png"
+                    alt="Shopify"
+                  />
+                </div>
+                <span class="body-text-3">Shopify</span>
+              </a>
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/woo.png"
+                    alt="WooCommerce"
+                  />
+                </div>
+                <span class="body-text-3">WooCommerce</span>
+              </a>
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/magneto.png"
+                    alt="Magento"
+                  />
+                </div>
+                <span class="body-text-3">Magento</span>
+              </a>
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/restapi.png"
+                    alt="REST API"
+                  />
+                </div>
+                <span class="body-text-3">REST API</span>
+              </a>
+            </div>
+          </div>
+          <div class="gray-block">
+            <h3 class="heading-3 mb-24">
+              2. Payments & Checkout Infrastructure
+            </h3>
+            <div class="logo-grid cols-4">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/cashfreepayments.png"
+                    alt="Cashfree"
+                  />
+                </div>
+                <span class="body-text-3">Cashfree</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/razorpay.png"
+                    alt="Razorpay"
+                  />
+                </div>
+                <span class="body-text-3">Razorpay</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/phonepe.png"
+                    alt="PhonePe"
+                  />
+                </div>
+                <span class="body-text-3">PhonePe</span></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Blue CTA 1 -->
+        <div class="blue-cta mb-16">
+          <h1 class="display-t1 text-white cta-headline">
+            Let’s build powerful commerce, together.
+          </h1>
+          <p class="body-text-1b text-white cta-desc">
+            Integrate with Pragma’s D2C operating ecosystem. Unlock scale across
+            1,700+ Indian brands.
+          </p>
+          <a href="#" class="btn-white btn-text-1">Become a Partner</a>
+        </div>
+
+        <!-- Section 3 Logistics -->
+        <div class="gray-block mb-16">
+          <h3 class="heading-3 mb-32">3. Logistics, Shipping & Fulfilment</h3>
+
+          <div class="white-sub-block mb-16">
+            <h4 class="body-text-1b mb-24">Warehouse Management Systems</h4>
+            <div class="logo-grid cols-8">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/unicommerce.png"
+                    alt="Unicommerce"
+                  />
+                </div>
+                <span class="body-text-3">Unicommerce</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/increff.png"
+                    alt="Increff"
+                  />
+                </div>
+                <span class="body-text-3">Increff</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/viniculun.png"
+                    alt="Vinculum"
+                  />
+                </div>
+                <span class="body-text-3">Vinculum</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/easyecom.png"
+                    alt="EasyEcom"
+                  />
+                </div>
+                <span class="body-text-3">EasyEcom</span></a
+              >
+            </div>
+          </div>
+
+          <div class="white-sub-block mb-16">
+            <h4 class="body-text-1b mb-24">Courier & Shipping Partners</h4>
+            <div class="logo-grid cols-8">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Delhivery"
+                  />
+                </div>
+                <span class="body-text-3">Delhivery</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/blowhorn.png"
+                    alt="Blowhorn"
+                  />
+                </div>
+                <span class="body-text-3">Blowhorn</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/dash101.png"
+                    alt="Dash 101"
+                  />
+                </div>
+                <span class="body-text-3">Dash 101</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/bigship.png"
+                    alt="Big Ship"
+                  />
+                </div>
+                <span class="body-text-3">Big Ship</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/eshopbox.png"
+                    alt="Eshop Box"
+                  />
+                </div>
+                <span class="body-text-3">Eshop Box</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/intargos.png"
+                    alt="Intargos"
+                  />
+                </div>
+                <span class="body-text-3">Intargos</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/bluedart.png"
+                    alt="BluDart"
+                  />
+                </div>
+                <span class="body-text-3">BluDart</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/shiprocket.png"
+                    alt="Shiprocket"
+                  />
+                </div>
+                <span class="body-text-3">Shiprocket</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/pickrr.png"
+                    alt="Pickrr"
+                  />
+                </div>
+                <span class="body-text-3">Pickrr</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/pidge.png"
+                    alt="Pidge"
+                  />
+                </div>
+                <span class="body-text-3">Pidge</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/urbanebolt.png"
+                    alt="Urbanebolt"
+                  />
+                </div>
+                <span class="body-text-3">Urbanebolt</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/zopoxo.png"
+                    alt="Zopoxo"
+                  />
+                </div>
+                <span class="body-text-3">Zopoxo</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/smartr.png"
+                    alt="Smartr Logistics"
+                  />
+                </div>
+                <span class="body-text-3">Smartr Logistics</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/prozo.png"
+                    alt="Prozo"
+                  />
+                </div>
+                <span class="body-text-3">Prozo</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/shipclues.png"
+                    alt="Shipclues"
+                  />
+                </div>
+                <span class="body-text-3">Shipclues</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/shadowfax.png"
+                    alt="Shadowfax"
+                  />
+                </div>
+                <span class="body-text-3">Shadowfax</span></a
+              >
+
+              <!-- Extra Items for Expand Feature -->
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Rapidshyp"
+                  />
+                </div>
+                <span class="body-text-3">Rapidshyp</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Purplenote"
+                  />
+                </div>
+                <span class="body-text-3">Purplenote</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Selloship"
+                  />
+                </div>
+                <span class="body-text-3">Selloship</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shyperfecto"
+                  />
+                </div>
+                <span class="body-text-3">Shyperfecto</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shippesso"
+                  />
+                </div>
+                <span class="body-text-3">Shippesso</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Ship Delight"
+                  />
+                </div>
+                <span class="body-text-3">Ship Delight</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shipway"
+                  />
+                </div>
+                <span class="body-text-3">Shipway</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shipyari"
+                  />
+                </div>
+                <span class="body-text-3">Shipyari</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Ship Buddy"
+                  />
+                </div>
+                <span class="body-text-3">Ship Buddy</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shypfy"
+                  />
+                </div>
+                <span class="body-text-3">Shypfy</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Smartship"
+                  />
+                </div>
+                <span class="body-text-3">Smartship</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shyplite"
+                  />
+                </div>
+                <span class="body-text-3">Shyplite</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Shippigo by Emiza"
+                  />
+                </div>
+                <span class="body-text-3">Shippigo by Emiza</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="DHL"
+                  />
+                </div>
+                <span class="body-text-3">DHL</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="DTDC"
+                  />
+                </div>
+                <span class="body-text-3">DTDC</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Ecom Express"
+                  />
+                </div>
+                <span class="body-text-3">Ecom Express</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Vamaship"
+                  />
+                </div>
+                <span class="body-text-3">Vamaship</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Ware IQ"
+                  />
+                </div>
+                <span class="body-text-3">Ware IQ</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="NimbusPost"
+                  />
+                </div>
+                <span class="body-text-3">NimbusPost</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Increff"
+                  />
+                </div>
+                <span class="body-text-3">Increff</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="ClickPost"
+                  />
+                </div>
+                <span class="body-text-3">ClickPost</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Ekart"
+                  />
+                </div>
+                <span class="body-text-3">Ekart</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Swift"
+                  />
+                </div>
+                <span class="body-text-3">Swift</span></a
+              >
+              <a href="#" class="integration-item extra-item hidden">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Grow Simple"
+                  />
+                </div>
+                <span class="body-text-3">Grow Simple</span></a
+              >
+            </div>
+
+            <div class="text-center mt-40">
+              <button class="btn-outline-blue btn-text-1 js-toggle-expand">
+                <span class="btn-label">Show More</span>
+                <svg
+                  class="arrow-icon"
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.5 1.5L6 6.5L10.5 1.5"
+                    stroke="#2871f0"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4 Customer Comm -->
+        <div class="gray-block mb-16">
+          <h3 class="heading-3 mb-32">
+            4. Customer Communication & Engagement
+          </h3>
+
+          <div class="white-sub-block mb-16">
+            <h4 class="body-text-1b mb-24">Communication Channels</h4>
+            <div class="logo-grid cols-8">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/meta.png"
+                    alt="Meta"
+                  />
+                </div>
+                <span class="body-text-3">Meta</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/whatsapp.png"
+                    alt="WhatsApp"
+                  />
+                </div>
+                <span class="body-text-3">WhatsApp</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/instagram.png"
+                    alt="Instagram"
+                  />
+                </div>
+                <span class="body-text-3">Instagram</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/email.png"
+                    alt="Email"
+                  />
+                </div>
+                <span class="body-text-3">Email</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/sms.png"
+                    alt="SMS"
+                  />
+                </div>
+                <span class="body-text-3">SMS</span></a
+              >
+            </div>
+          </div>
+
+          <div class="white-sub-block mb-16">
+            <h4 class="body-text-1b mb-24">BSP / Telecom Infrastructure</h4>
+            <div class="logo-grid cols-8">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Infobip"
+                  />
+                </div>
+                <span class="body-text-3">Infobip</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/blowhorn.png"
+                    alt="Superbots"
+                  />
+                </div>
+                <span class="body-text-3">Superbots</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/dash101.png"
+                    alt="Exotel"
+                  />
+                </div>
+                <span class="body-text-3">Exotel</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/bigship.png"
+                    alt="Knowlarity"
+                  />
+                </div>
+                <span class="body-text-3">Knowlarity</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/eshopbox.png"
+                    alt="Mailgun"
+                  />
+                </div>
+                <span class="body-text-3">Mailgun</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/intargos.png"
+                    alt="Sinch"
+                  />
+                </div>
+                <span class="body-text-3">Sinch</span></a
+              >
+            </div>
+          </div>
+
+          <div class="white-sub-block">
+            <h4 class="body-text-1b mb-24">Loyalty Platforms</h4>
+            <div class="logo-grid cols-8">
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/delhivery.png"
+                    alt="Nector.io"
+                  />
+                </div>
+                <span class="body-text-3">Nector.io</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/blowhorn.png"
+                    alt="CreditsYard"
+                  />
+                </div>
+                <span class="body-text-3">CreditsYard</span></a
+              >
+              <a href="#" class="integration-item">
+                <div class="integration-card">
+                  <img
+                    src="assets/images/partners-integerations/dash101.png"
+                    alt="POP Coins"
+                  />
+                </div>
+                <span class="body-text-3">POP Coins</span></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5 Growth -->
+        <div class="gray-block mb-16">
+          <h3 class="heading-3 mb-32">5. Growth & Performance Ecosystem</h3>
+          <div class="grid-2-col">
+            <div class="white-sub-block">
+              <h4 class="body-text-1b mb-24">Ad Platforms</h4>
+              <div class="logo-grid cols-3">
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/meta.png"
+                      alt="Facebook Ads"
+                    />
+                  </div>
+                  <span class="body-text-3">Facebook Ads</span></a
+                >
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/whatsapp.png"
+                      alt="Google Ads"
+                    />
+                  </div>
+                  <span class="body-text-3">Google Ads</span></a
+                >
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/instagram.png"
+                      alt="Click-to-WhatsApp Ads"
+                    />
+                  </div>
+                  <span class="body-text-3">Click-to-WhatsApp Ads</span></a
+                >
+              </div>
+            </div>
+            <div class="white-sub-block">
+              <h4 class="body-text-1b mb-24">
+                Performance Marketing / Agencies
+              </h4>
+              <div class="logo-grid cols-4">
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/delhivery.png"
+                      alt="Iglobe Solutions"
+                    />
+                  </div>
+                  <span class="body-text-3">Iglobe Solutions</span></a
+                >
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/blowhorn.png"
+                      alt="Digisidekick"
+                    />
+                  </div>
+                  <span class="body-text-3">Digisidekick</span></a
+                >
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/dash101.png"
+                      alt="EcomEthos"
+                    />
+                  </div>
+                  <span class="body-text-3">EcomEthos</span></a
+                >
+                <a href="#" class="integration-item">
+                  <div class="integration-card">
+                    <img
+                      src="assets/images/partners-integerations/bigship.png"
+                      alt="Digimaze"
+                    />
+                  </div>
+                  <span class="body-text-3">Digimaze</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 6 Intelligence -->
+        <div class="gray-block mb-32">
+          <h3 class="heading-3 mb-32">
+            6. Intelligence, Verification & Analytics
+          </h3>
+          <div class="logo-grid cols-8">
+            <a href="#" class="integration-item">
+              <div class="integration-card">
+                <img
+                  src="assets/images/partners-integerations/shopify.png"
+                  alt="Magic Pixel"
+                />
+              </div>
+              <span class="body-text-3">Magic Pixel</span></a
+            >
+            <a href="#" class="integration-item">
+              <div class="integration-card">
+                <img
+                  src="assets/images/partners-integerations/woo.png"
+                  alt="Triple Whale"
+                />
+              </div>
+              <span class="body-text-3">Triple Whale</span></a
+            >
+            <a href="#" class="integration-item">
+              <div class="integration-card">
+                <img
+                  src="assets/images/partners-integerations/magneto.png"
+                  alt="Nitro"
+                />
+              </div>
+              <span class="body-text-3">Nitro</span></a
+            >
+            <a href="#" class="integration-item">
+              <div class="integration-card">
+                <img
+                  src="assets/images/partners-integerations/restapi.png"
+                  alt="Truecaller"
+                />
+              </div>
+              <span class="body-text-3">Truecaller</span></a
+            >
+            <a href="#" class="integration-item">
+              <div class="integration-card">
+                <img
+                  src="assets/images/partners-integerations/magneto.png"
+                  alt="Judge.me"
+                />
+              </div>
+              <span class="body-text-3">Judge.me</span></a
+            >
+          </div>
+        </div>
+
+        <!-- Blue CTA 2 -->
+        <div class="blue-cta mb-32">
+          <h1 class="display-t1 text-white cta-headline">
+            Let’s build powerful commerce, together.
+          </h1>
+          <p class="body-text-1b text-white cta-desc">
+            Integrate with Pragma’s D2C operating ecosystem. Unlock scale across
+            1,700+ Indian brands.
+          </p>
+          <a href="#" class="btn-white btn-text-1">Become a Partner</a>
+        </div>
+      </div>
+    </section>
+    <!-- Partners-integerations End  -->
+
+    <script>
+      /* ==========================================================================
+   Partners & Integrations Page Logic
+   ========================================================================== */
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.querySelector(".js-toggle-expand");
+        if (toggleBtn) {
+          const btnLabel = toggleBtn.querySelector(".btn-label");
+          const extraItems = document.querySelectorAll(".extra-item");
+          const parentSection = toggleBtn.closest(".gray-block");
+
+          toggleBtn.addEventListener("click", () => {
+            const isExpanded = toggleBtn.classList.toggle("is-expanded");
+
+            extraItems.forEach((item) => {
+              item.classList.toggle("hidden");
+            });
+
+            if (btnLabel) {
+              btnLabel.textContent = isExpanded ? "Show Less" : "Show More";
+            }
+
+            // If collapsing, scroll back to the start of the section to keep context
+            if (!isExpanded && parentSection) {
+              const headerOffset = 100;
+              const elementPosition = parentSection.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 24px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      /* ### Featured Blogs Section ### */
+      .featured-blogs-section {
+        padding-top: 100px;
+        padding-bottom: 80px;
+      }
+
+      .featured-blogs-section .breadcrumb-nav a,
+      .featured-blogs-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .featured-blogs-section .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .featured-blogs-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      @media (max-width: 768px) {
+        .featured-blogs-section {
+          padding-top: 70px;
+          padding-bottom: 24px; /* Reduced further to 24px */
+        }
+        .featured-blogs-section .breadcrumb-nav {
+          margin-bottom: 12px !important;
+        }
+        .centered {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .section-header-row {
+          margin-bottom: 24px;
+        }
+        .section-header-row h1 {
+          font-size: 42px !important;
+          line-height: 1.1 !important;
+          font-weight: 700 !important;
+          color: #000 !important;
+        }
+      }
+
+      .featured-layout-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .featured-left-column {
+        width: 72%;
+      }
+
+      .featured-right-column {
+        width: 24%;
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .section-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .section-header-row h1 {
+        margin-bottom: 0;
+        font-size: 32px;
+      }
+
+      .view-all-btn {
+        padding: 8px 16px;
+        border: 1px solid var(--blue-200);
+        border-radius: 6px;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .view-all-btn:hover {
+        background-color: var(--blue-300);
+        color: var(--text-blue);
+      }
+
+      .blogs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .featured-blog-card {
+        display: flex;
+        background: var(--white);
+        /* shadow for card? Design doesn't clearly show, but usually nice. */
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.05); /* Adding subtle border to make card shape visible */
+      }
+
+      .featured-blog-card .card-content {
+        flex: 1;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .featured-blog-card .category-tag {
+        display: inline-block;
+        background-color: var(--blue-100);
+        color: var(--black);
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        width: fit-content;
+      }
+
+      .featured-blog-card h3 {
+        font-size: 18px;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        font-weight: 700;
+        color: var(--black);
+      }
+
+      .featured-blog-card .card-metas {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: var(--gray-100);
+        padding-top: 12px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: auto;
+        padding-bottom: 6px;
+      }
+
+      .featured-blog-card .card-image {
+        width: 40%; /* Allocated space for image */
+        flex-shrink: 0;
+        position: relative; /* Ensure containment */
+      }
+
+      .featured-blog-card .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures full image is visible without cropping */
+        object-position: center;
+        display: block;
+      }
+
+      /* Sidebar Styles */
+      .newsletter-box {
+        padding: 20px 40px 32px;
+        border: 1px solid #2871f0;
+        border-radius: 10px;
+        text-align: center;
+        background-color: rgba(40, 113, 240, 0.05);
+        position: relative;
+      }
+
+      .newsletter-box .subscriber-tag {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 159px;
+        background-color: #000000;
+        border: 1px solid #ffffff;
+        border-left: none;
+        border-radius: 0 10px 10px 0;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+      }
+
+      .newsletter-box .subscriber-tag span {
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+      }
+
+      .newsletter-header {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #000;
+      }
+
+      .newsletter-box h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .newsletter-box p {
+        font-size: 12px;
+        color: #4b5563;
+        margin-bottom: 24px;
+        line-height: 1.5;
+        white-space: nowrap;
+      }
+
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #2871f0;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+      }
+
+      .newsletter-form input {
+        border: none;
+        padding: 12px 16px;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+      }
+
+      .newsletter-form .button {
+        width: 100%;
+        cursor: pointer;
+        border: none;
+        border-radius: 0;
+        background-color: #2871f0;
+        color: #fff;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+
+      .newsletter-form .button:hover {
+        background-color: #1a56c0;
+      }
+
+      .social-follow {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .icon-box img {
+        width: 24px;
+        height: auto;
+        display: block;
+      }
+
+      /* Responsive */
+      @media (max-width: 991px) {
+        .featured-layout-container {
+          flex-direction: column;
+        }
+        .featured-left-column,
+        .featured-right-column {
+          width: 100%;
+        }
+        .featured-right-column {
+          margin-top: 16px;
+        }
+        .newsletter-box .subscriber-tag {
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%);
+          width: 125px;
+          height: 29px;
+          border-left: 1px solid #ffffff;
+          border-top: none;
+          border-radius: 0 0 10px 10px;
+        }
+        .newsletter-box .subscriber-tag span {
+          transform: none;
+          writing-mode: horizontal-tb;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .blogs-grid {
+          grid-template-columns: 1fr;
+        }
+        .centered {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .section-header-row h1 {
+          font-size: 42px !important;
+        }
+        .featured-blog-card h3 {
+          font-size: 16px;
+        }
+        .featured-blog-card .card-image {
+          width: 120px;
+        }
+
+        /* Newsletter Box Mobile Match */
+        .newsletter-box {
+          border: 1px solid #2871f0 !important;
+          background-color: rgba(40, 113, 240, 0.05);
+          border-radius: 10px;
+          padding: 20px 40px 32px;
+          margin: 0;
+          margin-top: 16px;
+        }
+
+        .newsletter-header {
+          font-size: 14px;
+          color: #000;
+          margin-bottom: 16px;
+        }
+
+        .newsletter-box h3 {
+          font-size: 24px !important;
+          margin-bottom: 12px;
+          font-weight: 700;
+        }
+
+        .newsletter-box p {
+          font-size: 14px;
+          margin-bottom: 24px;
+          white-space: nowrap;
+        }
+
+        .newsletter-form {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #2871f0;
+          border-radius: 8px;
+          overflow: hidden;
+          background-color: #fff;
+        }
+
+        .newsletter-form input {
+          height: 44px;
+          border: none;
+          border-radius: 0;
+          margin-bottom: 0;
+          padding: 0 16px;
+        }
+
+        .newsletter-form .button {
+          height: 44px;
+          border: none;
+          border-radius: 0;
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .social-follow {
+          padding: 0 16px;
+          margin-top: 16px;
+        }
+      }
+
+      /* ### nl-card (Newsletter Card variant) ### */
+      .nl-card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .nl-card-image {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .nl-card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+      .nl-card-text {
+        padding: 24px 28px;
+      }
+      .nl-card-text p {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .hide-on-mobile {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <!-- Featured blogs-start -->
+    <section class="featured-blogs-section centered">
+      <div class="featured-layout-container">
+        <!-- Left Column -->
+        <div class="featured-left-column">
+          <nav class="breadcrumb-nav">
+            <a href="#">Resource Centre</a>
+            <span class="breadcrumb-sep">&gt;</span>
+            <span class="breadcrumb-current">Newsletter</span>
+          </nav>
+
+          <div class="section-header-row">
+            <h1>Featured Newsletters</h1>
+            <a href="#" class="view-all-btn hide-on-mobile"
+              >View All Newsletters</a
+            >
+          </div>
+
+          <div class="blogs-grid">
+            <!-- Newsletter Card 1 -->
+            <article class="featured-blog-card nl-card">
+              <div class="nl-card-image">
+                <img
+                  src="assets/images/newsletters/featured newsletters.png"
+                  alt="D2C Caffeine Newsletter"
+                />
+              </div>
+              <div class="nl-card-text">
+                <p>
+                  The Rapid Checkout Influence on D2C Brands: Drop-offs from 65%
+                  to 20%
+                </p>
+              </div>
+            </article>
+
+            <!-- Newsletter Card 2 -->
+            <article class="featured-blog-card nl-card">
+              <div class="nl-card-image">
+                <img
+                  src="assets/images/newsletters/featured newsletters.png"
+                  alt="D2C Caffeine Newsletter"
+                />
+              </div>
+              <div class="nl-card-text">
+                <p>
+                  The Rapid Checkout Influence on D2C Brands: Drop-offs from 65%
+                  to 20%
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <aside class="featured-right-column">
+          <div class="newsletter-box">
+            <div class="subscriber-tag"><span>6K+ Subscribers</span></div>
+            <div class="newsletter-header">
+              <span>✦ Our Biweekly Newsletter ✦</span>
+            </div>
+            <h3>'D2C Caffiene'</h3>
+            <p>From the people of D2C, to the people of D2C</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter email address" />
+              <button type="submit" class="button">Subscribe</button>
+            </form>
+          </div>
+
+          <div class="social-follow hide-on-mobile">
+            <span>Follow us on</span>
+            <div class="social-icons">
+              <a href="#" class="icon-box"
+                ><img
+                  src="assets/images/blogs assets/email_brand.png"
+                  alt="Email"
+              /></a>
+              <a href="#" class="icon-box"
+                ><img
+                  src="assets/images/blogs assets/linkedin_branding.png"
+                  alt="LinkedIn"
+              /></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <!-- Featured blogs-end -->
+  </body>
+</html>

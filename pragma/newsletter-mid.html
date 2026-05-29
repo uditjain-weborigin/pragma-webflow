@@ -1,0 +1,1226 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* Filter Bar Strip — two separate boxes */
+      .filter-bar-strip {
+        border: none;
+        padding: 0;
+        margin-bottom: 32px;
+        display: block;
+        width: 100%;
+      }
+      .filter-bar-strip .filter-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: auto;
+        width: 100%;
+      }
+      /* Search box — takes ~60% width, bordered */
+      .filter-bar-strip .search-box {
+        flex: 0 0 500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 8px;
+        height: 48px;
+        background: #fff;
+      }
+      .filter-bar-strip .search-box input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        color: var(--black);
+        padding: 0 44px 0 16px;
+        box-shadow: none;
+        border-radius: 8px;
+      }
+      .filter-bar-strip .search-box input::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .filter-bar-strip .search-box .search-icon {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      /* Filter box — takes remaining width, bordered */
+      .filter-bar-strip .filter-box {
+        flex: 0 0 250px;
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 8px;
+        height: 48px;
+        background: #fff;
+        overflow: hidden;
+      }
+      .filter-bar-strip .filter-box .custom-select {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+        padding: 0 40px 0 16px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+      }
+
+      .filter-section {
+        padding-top: 40px;
+        padding-bottom: 20px;
+      }
+
+      /* Chips Display row */
+      .filter-chips-row {
+        margin-top: 24px;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: #fff;
+        padding: 12px 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .filter-chips-row.active {
+        display: flex;
+      }
+
+      /* Search Box Clear Icon */
+      .filter-bar-strip .search-box .clear-search {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        background: #f1f1f1;
+        color: #000;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+
+      .filter-bar-strip .search-box.has-text .clear-search {
+        display: flex;
+      }
+
+      .filter-bar-strip .search-box .clear-search:hover {
+        background: #e0e0e0;
+      }
+
+      .chips-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        background: #ececec;
+        padding: 6px 14px;
+        border-radius: 100px;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .chip span {
+        font-size: 14px;
+        color: #000;
+        font-weight: 400;
+      }
+
+      .chip-close {
+        width: 18px;
+        height: 18px;
+        background: #000;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .chip-close:hover {
+        opacity: 0.8;
+      }
+
+      .chips-toggle {
+        margin-left: auto;
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+        transition: transform 0.3s;
+      }
+
+      .filter-chips-row.collapsed .chips-list {
+        display: none;
+      }
+
+      .filter-chips-row.collapsed .chips-toggle {
+        transform: rotate(180deg);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Custom Multiselect & Filter Chips */
+      .custom-multiselect {
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        overflow: visible !important;
+      }
+
+      .multiselect-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        padding: 0 16px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      .multiselect-header i {
+        font-size: 10px;
+        transition: transform 0.3s;
+      }
+
+      .custom-multiselect.active .multiselect-header i {
+        transform: rotate(180deg);
+      }
+
+      .multiselect-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        display: none;
+        z-index: 100;
+        padding: 8px 0;
+      }
+
+      .custom-multiselect.active .multiselect-options {
+        display: block;
+      }
+
+      .option-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        transition: background 0.2s;
+      }
+
+      .option-item:hover {
+        background: #f8faff;
+      }
+
+      .option-item span {
+        font-size: 14px;
+        color: #333;
+        font-weight: 400;
+      }
+
+      .option-item input {
+        display: none;
+      }
+
+      .checkbox-custom {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #c5daff;
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.2s;
+      }
+
+      .option-item input:checked + .checkbox-custom {
+        background: #2871f0;
+        border-color: #2871f0;
+      }
+
+      .option-item input:checked + .checkbox-custom::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 9px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      @media (max-width: 768px) {
+        .filter-bar-strip .filter-row {
+          flex-direction: row;
+          gap: 8px;
+          height: auto;
+        }
+        .filter-bar-strip .search-box {
+          height: 44px;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          flex: 1.5;
+          width: auto;
+          border-radius: 8px;
+        }
+        .filter-bar-strip .search-box input {
+          font-size: 13px;
+          padding: 0 36px 0 12px;
+        }
+        .filter-bar-strip .search-box .search-icon {
+          right: 10px;
+          width: 16px;
+          height: 16px;
+        }
+        .filter-bar-strip .search-box .clear-search {
+          right: 34px;
+          width: 18px;
+          height: 18px;
+          font-size: 10px;
+        }
+        .filter-bar-strip .filter-box {
+          flex: 1;
+          width: auto;
+          height: 44px;
+        }
+        .filter-bar-strip .filter-box .multiselect-header {
+          font-size: 13px;
+          padding: 0 8px 0 12px;
+        }
+      }
+
+      /* ### Product Navigation Bar ### */
+      .product-nav-bar {
+        background-color: #f8f9fa; /* Lighter, cleaner background */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        margin-bottom: 0px;
+      }
+
+      .product-nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Allows scrolling on smaller desktop/tablet screens */
+        gap: 48px;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        width: 100%;
+      }
+
+      @media (min-width: 1100px) {
+        .product-nav-container {
+          justify-content: center; /* Center items when there is plenty of space */
+        }
+      }
+      .product-nav-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .product-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #444; /* Slightly softer black for inactive */
+        padding: 20px 0; /* More vertical breathing room */
+        border-bottom: 8px solid transparent; /* More prominent border base */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        opacity: 0.8;
+        margin-bottom: -1px;
+      }
+
+      /* Responsive Navigation for Mobile */
+      @media (max-width: 767px) {
+        .product-nav-bar {
+          padding: 0;
+          overflow-x: hidden; /* Disable horizontal scroll */
+        }
+
+        .product-nav-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); /* 4 columns as per Figma */
+          gap: 0;
+          padding: 0 10px !important; /* Reduced padding for smaller screens */
+          justify-items: stretch;
+          overflow-x: visible;
+          background-color: #fcfcfc; /* Match Figma background */
+        }
+
+        .product-nav-item {
+          flex-direction: row; /* Side-by-side layout from Figma */
+          gap: 4px; /* Tighter gap */
+          padding: 8px 2px; /* Symmetrical padding for consistency */
+          margin-bottom: 0;
+          width: 100%;
+          justify-content: center;
+          align-items: center; /* Ensure icons and text are vertically centered */
+          border-bottom: 1px solid rgba(0, 0, 0, 0.06); /* Row separator */
+          transition: none;
+        }
+
+        .product-nav-item .nav-icon {
+          width: 14px; /* Slightly smaller for better fit */
+          height: 14px;
+        }
+
+        .product-nav-item .nav-text {
+          font-size: 10px; /* Compact font for mobile grid */
+          font-weight: 500;
+          color: #000;
+        }
+
+        .product-nav-item.active {
+          border-bottom: 2px solid #2871f0; /* Blue indicator from Figma */
+          opacity: 1;
+          color: #000;
+        }
+
+        .product-nav-item.active .nav-text {
+          font-weight: 600;
+        }
+      }
+
+      .product-nav-item:hover {
+        opacity: 1;
+        color: var(--primary);
+      }
+
+      .product-nav-item.active {
+        border-bottom-color: var(--primary);
+        opacity: 1;
+        color: var(--black);
+      }
+
+      .product-nav-item.active .nav-text {
+        font-weight: 700;
+      }
+
+      .product-nav-item .nav-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .product-nav-item .nav-text {
+        font-size: 16px; /* Body Text 2 approximation */
+        font-weight: 500;
+      }
+
+      /* Response for small screens */
+      @media (max-width: 991px) {
+        .product-nav-container {
+          gap: 32px;
+        }
+      }
+
+      /* ### newsletter-matrix-section ### */
+      .newsletter-matrix-section {
+        padding: 60px 0;
+        background-color: #f3f3f3;
+      }
+      .newsletter-search-wrapper {
+        max-width: 1410px;
+        width: 100%;
+        margin: 0 auto 32px auto;
+        padding: 0 40px;
+      }
+      .newsletter-search-wrapper .filter-bar-strip {
+        max-width: 808px;
+        margin: 0;
+      }
+      .newsletter-search-wrapper .search-box {
+        max-width: 396px;
+      }
+      .newsletter-search-wrapper .filter-box {
+        max-width: 297px;
+      }
+
+      /* Mobile responsive for matrix grid */
+      @media (max-width: 767px) {
+        .newsletter-search-wrapper {
+          padding: 0 20px;
+        }
+      }
+
+      .blog-heading-section .centered,
+      .product-nav-bar .centered,
+      .cs-featured-section .centered,
+      .cs-cards-section .centered,
+      .newsletter-matrix-section.centered,
+      .newsletter-search-section.centered {
+        width: 100%;
+        max-width: 1410px;
+        margin: 0 auto;
+        padding-left: 40px;
+        padding-right: 40px;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 767px) {
+        .blog-heading-section .centered,
+        .product-nav-bar .centered,
+        .cs-featured-section .centered,
+        .cs-cards-section .centered,
+        .newsletter-matrix-section.centered,
+        .newsletter-search-section.centered {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .newsletter-matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        gap: 24px;
+        padding: 0 40px;
+        max-width: 1410px;
+        margin: 0 auto;
+      }
+      .nl-matrix-card {
+        position: relative;
+        width: 100%;
+        height: 230px;
+        background-color: #ffde8a;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 32px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      }
+      /* The curved background effect behind the text pointing to the cup */
+      .nl-matrix-bg-curve {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 154px; /* Height adjusted so the tip touches the brim of the 80px cup */
+        z-index: 1;
+      }
+
+      .nl-matrix-bg-curve img {
+        width: 100%;
+        height: 100%; /* Height adjusted so the tip touches the brim of the 80px cup */
+      }
+
+      .nl-matrix-content {
+        position: relative;
+        z-index: 2;
+        height: 80px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .nl-matrix-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1.3;
+        margin: 0 0 8px 0;
+      }
+      .nl-matrix-desc {
+        font-size: 12px;
+        color: #555;
+        margin: 0;
+      }
+      .nl-matrix-icon {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: auto;
+        z-index: 2;
+      }
+
+      /* Mobile responsive for matrix grid */
+      @media (max-width: 767px) {
+        .newsletter-matrix-grid {
+          grid-template-columns: 1fr; /* 1 column for clean vertical scroll */
+          max-height: 580px; /* Fixed height to show approx 2.5 cards */
+          overflow-y: auto;
+          padding: 10px 20px;
+          scrollbar-width: thin;
+          gap: 20px;
+        }
+
+        .newsletter-matrix-grid::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .newsletter-matrix-grid::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
+
+        .nl-matrix-card {
+          height: 210px; /* Slightly smaller on mobile */
+        }
+      }
+
+      @media (max-width: 1240px) and (min-width: 768px) {
+        .newsletter-matrix-grid {
+          grid-template-columns: repeat(2, 1fr);
+          justify-items: center;
+          gap: 20px;
+          padding: 0 20px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        /* This is now handled by the 767px media query for consistency */
+      }
+
+      /* New Buttons Styles */
+      .nl-matrix-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin-top: 40px;
+        padding-bottom: 20px;
+      }
+
+      .btn-load-more {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 14px 48px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 200px;
+      }
+
+      .btn-load-more:hover {
+        background: #333;
+        transform: translateY(-2px);
+      }
+
+      .btn-view-all {
+        background: transparent;
+        color: #000;
+        border: 1.5px solid #000;
+        padding: 14px 48px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 200px;
+      }
+
+      .btn-view-all:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+    </style>
+
+    <!-- Naviagtion bar start -->
+    <div class="product-nav-bar">
+      <div class="product-nav-container centered">
+        <a href="#" class="product-nav-item active">
+          <img
+            src="assets/images/blogs assets/rms.png"
+            alt="RMS"
+            class="nav-icon"
+          />
+          <span class="nav-text">RMS</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/checkout.png"
+            alt="1Checkout"
+            class="nav-icon"
+          />
+          <span class="nav-text">1Checkout</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/rto.png"
+            alt="RTO Suite"
+            class="nav-icon"
+          />
+          <span class="nav-text">RTO Suite</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/shipaxis.png"
+            alt="ShipAxis"
+            class="nav-icon"
+          />
+          <span class="nav-text">ShipAxis</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/whatsapp.png"
+            alt="WhatsApp"
+            class="nav-icon"
+          />
+          <span class="nav-text">WhatsApp</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/jms.png"
+            alt="JMS"
+            class="nav-icon"
+          />
+          <span class="nav-text">JMS</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/crm.png"
+            alt="CRM"
+            class="nav-icon"
+          />
+          <span class="nav-text">CRM</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/genie.png"
+            alt="Genie"
+            class="nav-icon"
+          />
+          <span class="nav-text">Genie</span>
+        </a>
+      </div>
+    </div>
+    <!-- Naviagtion bar end -->
+
+    <!-- Cards of news letters-start -->
+    <section class="newsletter-matrix-section centered">
+      <div class="newsletter-matrix-grid">
+        <!-- Card 1 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 2 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 3 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 4 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 5 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 6 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+      </div>
+
+      <div class="nl-matrix-buttons">
+        <button class="btn-load-more">Load more</button>
+        <button class="btn-view-all">View all RMS newsletters</button>
+      </div>
+    </section>
+    <!-- Cards of news letters-end -->
+
+    <!-- Cards with search feature-start -->
+    <section
+      class="newsletter-search-section centered"
+      style="background-color: #ffffff; padding: 60px 0"
+    >
+      <!-- Filter bar: two separate bordered boxes -->
+      <div class="newsletter-search-wrapper">
+        <div class="filter-bar-strip" style="margin-bottom: 0">
+          <div class="filter-row">
+            <div class="search-box">
+              <input
+                type="text"
+                id="blog-search-input"
+                placeholder="Search Newsletters..."
+              />
+              <img
+                class="search-icon"
+                src="assets/images/blogslist assets/search.png"
+                alt="search icon"
+              />
+            </div>
+            <div class="filter-box custom-multiselect" id="tag-multiselect">
+              <div class="multiselect-header">
+                <span class="selected-text">Select max 3 tags</span>
+                <i class="icon-chevron-down"></i>
+              </div>
+              <div class="multiselect-options">
+                <label class="option-item">
+                  <span>WhatsApp Automation</span>
+                  <input type="checkbox" value="WhatsApp Automation" />
+                  <span class="checkbox-custom"></span>
+                </label>
+                <label class="option-item">
+                  <span>Return Process</span>
+                  <input type="checkbox" value="Return Process" />
+                  <span class="checkbox-custom"></span>
+                </label>
+                <label class="option-item">
+                  <span>ShipAxis Integrations</span>
+                  <input type="checkbox" value="ShipAxis Integrations" />
+                  <span class="checkbox-custom"></span>
+                </label>
+                <label class="option-item">
+                  <span>Journey Management System</span>
+                  <input type="checkbox" value="Journey Management System" />
+                  <span class="checkbox-custom"></span>
+                </label>
+                <label class="option-item">
+                  <span>Genie (AI Copilot)</span>
+                  <input type="checkbox" value="Genie (AI Copilot)" />
+                  <span class="checkbox-custom"></span>
+                </label>
+                <label class="option-item">
+                  <span>Omnichannel CRM</span>
+                  <input type="checkbox" value="Omnichannel CRM" />
+                  <span class="checkbox-custom"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Chips Display Row -->
+          <div class="filter-chips-row" id="filter-chips-row">
+            <div class="chips-list" id="chips-list">
+              <!-- Chips will be injected here -->
+            </div>
+            <div class="chips-toggle" id="chips-toggle">
+              <i class="icon-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="newsletter-matrix-grid">
+        <!-- Card 1 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 2 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 3 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 4 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 5 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+        <!-- Card 6 -->
+        <article class="nl-matrix-card">
+          <div class="nl-matrix-bg-curve">
+            <img src="assets/images/newsletters/coffee-bg.png" />
+          </div>
+          <div class="nl-matrix-content">
+            <h3 class="nl-matrix-title">
+              The Rapid Checkout Influence<br />
+              on D2C Brands:
+            </h3>
+            <p class="nl-matrix-desc">Drop-offs from 65% to 20%</p>
+          </div>
+          <img
+            src="assets/images/newsletters/coffee cup.png"
+            alt="Coffee Cup"
+            class="nl-matrix-icon"
+          />
+        </article>
+      </div>
+
+      <div class="nl-matrix-buttons">
+        <button class="btn-load-more">Load more</button>
+        <button class="btn-view-all">View all RMS newsletters</button>
+      </div>
+    </section>
+    <!-- Cards with search feature-end -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Blog Filter and Multiselect Logic
+        const multiselect = document.querySelector(".custom-multiselect");
+        const searchInput = document.getElementById("blog-search-input");
+        const chipsRow = document.getElementById("filter-chips-row");
+        const chipsList = document.getElementById("chips-list");
+        const chipsToggle = document.getElementById("chips-toggle");
+
+        if (multiselect && searchInput && chipsRow && chipsList) {
+          const header = multiselect.querySelector(".multiselect-header");
+          const options = multiselect.querySelectorAll(".option-item input");
+          let selectedTags = [];
+
+          // Add clear icon to search box
+          const searchBox = searchInput.parentElement;
+          const clearSearchBtn = document.createElement("div");
+          clearSearchBtn.className = "clear-search";
+          clearSearchBtn.innerHTML = "x";
+          searchBox.appendChild(clearSearchBtn);
+
+          // Toggle dropdown
+          header.addEventListener("click", (e) => {
+            e.stopPropagation();
+            multiselect.classList.toggle("active");
+          });
+
+          // Close dropdown on outside click
+          document.addEventListener("click", (e) => {
+            if (!multiselect.contains(e.target)) {
+              multiselect.classList.remove("active");
+            }
+          });
+
+          // Toggle chips row collapse/expand
+          if (chipsToggle) {
+            chipsToggle.addEventListener("click", () => {
+              chipsRow.classList.toggle("collapsed");
+            });
+          }
+
+          // Search input clear logic
+          searchInput.addEventListener("input", () => {
+            if (searchInput.value.trim() !== "") {
+              searchBox.classList.add("has-text");
+            } else {
+              searchBox.classList.remove("has-text");
+            }
+          });
+
+          clearSearchBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            searchBox.classList.remove("has-text");
+            searchInput.focus();
+          });
+
+          function updateChips() {
+            chipsList.innerHTML = "";
+
+            // Tag chips only
+            selectedTags.forEach((tag) => {
+              const chip = createChip(tag, "tag");
+              chipsList.appendChild(chip);
+            });
+
+            // Update header text
+            const selectedText = multiselect.querySelector(".selected-text");
+            if (selectedTags.length > 0) {
+              selectedText.textContent = `${selectedTags.length} tags selected`;
+              selectedText.style.color = "#000";
+            } else {
+              selectedText.textContent = "Select max 3 tags";
+              selectedText.style.color = "rgba(0, 0, 0, 0.5)";
+            }
+
+            // Show/Hide row based on tags
+            if (selectedTags.length > 0) {
+              chipsRow.classList.add("active");
+            } else {
+              chipsRow.classList.remove("active");
+            }
+          }
+
+          function createChip(text, type) {
+            const div = document.createElement("div");
+            div.className = "chip";
+            div.innerHTML = `<span>${text}</span><div class="chip-close">x</div>`;
+            div.querySelector(".chip-close").addEventListener("click", (e) => {
+              e.stopPropagation();
+              selectedTags = selectedTags.filter((t) => t !== text);
+              const input = multiselect.querySelector(`input[value="${text}"]`);
+              if (input) input.checked = false;
+              updateChips();
+            });
+            return div;
+          }
+
+          options.forEach((input) => {
+            input.addEventListener("change", () => {
+              if (input.checked) {
+                if (selectedTags.length >= 3) {
+                  input.checked = false;
+                  return;
+                }
+                selectedTags.push(input.value);
+              } else {
+                selectedTags = selectedTags.filter((t) => t !== input.value);
+              }
+              updateChips();
+            });
+          });
+          // Load More Logic - Compatible with multiple grids
+          const loadMoreBtns = document.querySelectorAll(".btn-load-more");
+
+          loadMoreBtns.forEach((btn) => {
+            btn.addEventListener("click", function () {
+              // Find the grid relative to the clicked button's section
+              const section = btn.closest("section");
+              const grid = section
+                ? section.querySelector(".newsletter-matrix-grid")
+                : null;
+
+              if (grid) {
+                // Simulate loading more by cloning existing cards
+                const cards = grid.querySelectorAll(".nl-matrix-card");
+                if (cards.length > 0) {
+                  // We'll copy up to 3 cards at a time
+                  const count = Math.min(cards.length, 3);
+                  for (let i = 0; i < count; i++) {
+                    const clone = cards[i].cloneNode(true);
+                    grid.appendChild(clone);
+                  }
+
+                  // Smoothly scroll to the bottom of the grid to show newly added items
+                  grid.scrollTo({
+                    top: grid.scrollHeight,
+                    behavior: "smooth",
+                  });
+                }
+              }
+            });
+          });
+          // Product Nav Tab Switcher
+          const navItems = document.querySelectorAll(".product-nav-item");
+          navItems.forEach((item) => {
+            item.addEventListener("click", function (e) {
+              e.preventDefault();
+              // Remove active class from all items
+              navItems.forEach((nav) => nav.classList.remove("active"));
+              // Add active class to the clicked item
+              this.classList.add("active");
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

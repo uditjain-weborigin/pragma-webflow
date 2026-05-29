@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### resourcesBox ### */
+      .resourcesBox {
+        padding-top: 80px;
+        padding-bottom: 60px;
+        text-align: center;
+      }
+      .resourcesBox h2 {
+        margin-bottom: 10px;
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .resourcesBox > p {
+        margin: 0 auto 40px;
+        max-width: 530px; /* Matched to Figma selection width */
+        color: #000000;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+      .resourcesBox .holder {
+        display: grid;
+        grid-template-columns: 453.6px auto 178px; /* Fixed widths as requested */
+        gap: 25px; /* Calculated to fit ~1130px total */
+        justify-content: center;
+        align-items: stretch;
+      }
+
+      /* Card Common */
+      .resourcesBox a {
+        display: block;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: var(--base-duration);
+        position: relative;
+        text-decoration: none;
+      }
+      .resourcesBox a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Left: Case Studies */
+      .card-case-study {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: radial-gradient(
+          circle at 0% 100%,
+          rgba(40, 113, 240, 0.3) 0%,
+          rgba(40, 113, 240, 1) 100%
+        );
+        background-color: #2871f0; /* Fallback */
+        color: var(--white);
+        padding: 30px; /* Increased padding */
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        height: 454px; /* Fixed height match */
+        width: 100%;
+      }
+
+      /* Global (Desktop) */
+      .case-study-content {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center horizontally */
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+      }
+
+      /* Display T1 Style for Desktop */
+      .card-case-study .heading-2 {
+        font-size: 32px; /* Increased from 24px */
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.2;
+      }
+
+      .card-case-study .circle-decoration {
+        display: inline-block;
+        width: 28px; /* Slightly larger */
+        height: 28px;
+        border: 2px solid var(--white); /* Bolder border */
+        opacity: 1;
+        border-radius: 50%;
+        margin-left: 12px;
+      }
+
+      .card-case-study .trophy-icon {
+        width: 180px; /* Larger icon for desktop */
+        height: auto;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 72%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+      }
+
+      /* Remove old img style target if it conflicts, but new HTML uses class .trophy-icon */
+      .card-case-study img:not(.trophy-icon) {
+        display: none;
+      }
+
+      /* Middle: Grid */
+      .grid-middle {
+        display: grid;
+        grid-template-columns: 221px 221px; /* Figma: 221px width */
+        grid-template-rows: 220px 220px; /* Figma: 220px height */
+        gap: 14px; /* 220*2 + 14 = 454 height (Matches Case Studies) */
+      }
+      /* ↓ Higher specificity than .resourcesBox a — ensures display:flex wins */
+      .resourcesBox .card-resource {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 24px 20px 24px;
+        background-color: #bfd5fb;
+        border-radius: 20px;
+        height: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .card-resource .label {
+        font-weight: 600;
+        font-size: 16px;
+        color: #2871f0;
+        width: 100%;
+        text-align: center;
+        line-height: 1.4;
+        margin: 0;
+        flex-shrink: 0;
+        display: block;
+      }
+
+      /* Icon wrapper grows to fill ALL remaining space below the label */
+      .card-resource .icon-wrap {
+        flex: 1; /* ← takes up ALL space between label and bottom */
+        display: flex;
+        align-items: center; /* ← vertically centres the icon inside that space */
+        justify-content: center;
+        width: 100%;
+      }
+
+      .card-resource .icon-wrap img {
+        width: auto;
+        height: 72px;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+        display: block;
+      }
+
+      .card-resource .icon-wrap .icon-hover {
+        display: none;
+      }
+
+      .card-resource:hover .icon-wrap .icon-default {
+        display: none;
+      }
+
+      .card-resource:hover .icon-wrap .icon-hover {
+        display: block;
+      }
+
+      /* Right: Newsletter */
+      .card-newsletter {
+        background-color: #fadea6; /* Figma: #FADEA6 */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0; /* Remove padding for precise layout */
+        border-radius: 20px;
+        text-align: center;
+        width: 178px; /* Fixed width per Figma */
+        height: 454px; /* Fixed height per Figma */
+        position: relative; /* Context for absolute positioning */
+        box-sizing: border-box;
+      }
+      .card-newsletter.yellow-light {
+        background: #fff4d9
+          radial-gradient(
+            circle at bottom,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0) 50%
+          );
+      }
+      /* Center Title Block Absolutely */
+      .card-newsletter .content {
+        position: absolute;
+        top: 40%; /* Moved slightly up to match mockup */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 0 15px;
+        z-index: 2;
+      }
+      .newsletter-logo {
+        width: 140px; /* Kept as is, looks correct */
+        height: auto;
+        margin-bottom: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.15));
+      }
+      .card-newsletter .content p {
+        font-size: 14px;
+        color: #333; /* Darker text to match mockup */
+        margin-bottom: 0;
+        font-weight: 500;
+        opacity: 1; /* More visible */
+      }
+      /* Decoration: Coffee Cup */
+      .card-newsletter .cup-decoration {
+        width: 150px; /* Larger to match mockup */
+        max-width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1;
+      }
+
+      /* Subscriber Tag */
+      .card-newsletter .subscriber-tag {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 125px;
+        height: 29px;
+        background-color: #000000;
+        border: 1px solid #ffffff;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      /* Custom Typography */
+      .display-t1b {
+        font-size: 40px; /* Increased for desktop */
+        font-weight: 700;
+        line-height: normal;
+        color: var(--black-bg);
+        margin-bottom: 8px;
+      }
+      .body-text-3 {
+        font-size: 16px;
+        font-weight: 500; /* Satoshi Medium */
+        line-height: normal;
+        color: #000000;
+        margin-bottom: 40px;
+      }
+
+      .heading-2 {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .circle-decoration {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .resourcesBox .holder {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        /* Reset Card Case Study */
+        .card-case-study img {
+          height: auto;
+          aspect-ratio: 16/9;
+        }
+
+        /* Reset Grid Middle */
+        .grid-middle {
+          gap: 15px;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          width: 100%;
+        }
+        /* Reset Newsletter */
+        .card-newsletter {
+          height: auto;
+          padding-bottom: 30px;
+          flex-direction: row; /* Horizontal on tablet */
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .resourcesBox {
+          padding-top: 24px;
+          padding-left: 18px;
+          padding-right: 18px;
+          padding-bottom: 60px;
+          text-align: left;
+        }
+        .resourcesBox > p {
+          margin-left: 0;
+          margin-right: 0;
+          max-width: 100%;
+          margin-bottom: 20px;
+        }
+        .display-t1b {
+          font-size: 28px;
+        }
+        .resourcesBox .holder {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        /* Case Studies */
+        .card-case-study {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          background: radial-gradient(
+            circle at 0% 100%,
+            rgba(40, 113, 240, 0.3) 0%,
+            rgba(40, 113, 240, 1) 100%
+          );
+          background-color: #2871f0; /* Fallback */
+          color: var(--white);
+          padding: 20px;
+          border-radius: 10px;
+          height: auto;
+          aspect-ratio: 1 / 1;
+          position: relative;
+          overflow: hidden;
+        }
+        .case-study-content {
+          display: flex;
+          align-items: center;
+          justify-content: center; /* Center horizontally */
+          position: absolute;
+          top: 24px;
+          left: 0;
+          width: 100%;
+          z-index: 2;
+        }
+        .card-case-study .heading-2 {
+          color: var(--white);
+        }
+        .card-case-study .circle-decoration {
+          border-color: var(--white);
+          opacity: 0.8;
+        }
+        .card-case-study .trophy-icon {
+          width: 180px; /* Adjusted for square card */
+          height: auto;
+          margin: auto;
+          display: block;
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        /* Grid Middle */
+        .grid-middle {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .card-resource {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          text-align: center !important;
+          aspect-ratio: 1 / 1 !important;
+          height: auto !important;
+          padding: 16px 12px !important;
+          border-radius: 10px !important;
+          background-color: #bfd5fb !important;
+          box-sizing: border-box !important;
+        }
+        .card-resource .label {
+          font-size: 15px !important;
+          font-weight: 700 !important;
+          color: #2871f0 !important;
+          margin: 0 !important;
+          flex-shrink: 0 !important;
+        }
+        .card-resource .icon-wrap {
+          flex: 1 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 100% !important;
+        }
+        .card-resource .icon-wrap img {
+          height: 60px !important;
+          width: auto !important;
+          display: block !important;
+          transition: all 0.3s ease !important;
+        }
+        .card-resource .icon-wrap .icon-hover {
+          display: none !important;
+        }
+        .card-resource:hover .icon-wrap .icon-hover {
+          display: block !important;
+        }
+        .card-resource:hover .icon-wrap .icon-default {
+          display: none !important;
+        }
+
+        /* Newsletter */
+        .card-newsletter {
+          background-color: #fadea6; /* Figma: #FADEA6 */
+          border-radius: 20px;
+          padding: 0;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          min-height: 320px; /* Increased height for mobile layout */
+          position: relative; /* Ensure context */
+          width: auto; /* Reset fixed desktop width */
+          height: auto; /* Reset fixed desktop height */
+          border: none; /* Remove inside stroke if present */
+        }
+        .card-newsletter .content {
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          z-index: 2;
+        }
+        .card-newsletter .content h3 {
+          font-family: serif;
+          font-size: 24px;
+          margin-bottom: 8px;
+          color: var(--black);
+        }
+        .card-newsletter .content p {
+          font-size: 12px;
+          color: var(--gray-100);
+          margin-bottom: 20px;
+        }
+        .card-newsletter img {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 120px;
+          margin: 0;
+        }
+      }
+    </style>
+
+    <!-- Start-Main-section -->
+    <section class="resourcesBox centered">
+      <h2 class="display-t1b">Resources</h2>
+      <p class="body-text-3">One line for subtext in case required.</p>
+
+      <div class="holder">
+        <!-- Left: Case Studies -->
+        <a href="#" class="card-case-study">
+          <div class="case-study-content">
+            <span class="heading-2">Case Studies</span>
+            <span class="circle-decoration"></span>
+          </div>
+          <img
+            src="assets/images/blogs assets/trophy.png"
+            alt="Case Studies"
+            class="trophy-icon"
+          />
+        </a>
+
+        <!-- Middle: 2x2 Grid -->
+        <div class="grid-middle">
+          <a href="#" class="card-resource blue-light">
+            <span class="label">Blogs</span>
+            <div class="icon-wrap">
+              <img
+                src="assets/images/blogs assets/blogs.png"
+                alt="Blogs"
+                class="icon-default"
+              />
+              <img
+                src="assets/images/blogs assets/blogs-animation.png"
+                alt="Blogs"
+                class="icon-hover"
+              />
+            </div>
+          </a>
+          <a href="#" class="card-resource blue-light">
+            <span class="label">Knowledge Base</span>
+            <div class="icon-wrap">
+              <img
+                src="assets/images/blogs assets/kb.png"
+                alt="Knowledge Base"
+                class="icon-default"
+              />
+              <img
+                src="assets/images/blogs assets/kb-animation.png"
+                alt="Knowledge Base"
+                class="icon-hover"
+              />
+            </div>
+          </a>
+          <a href="#" class="card-resource blue-light">
+            <span class="label">Product Decks</span>
+            <div class="icon-wrap">
+              <img
+                src="assets/images/blogs assets/product-desk.png"
+                alt="Product Decks"
+                class="icon-default"
+              />
+              <img
+                src="assets/images/blogs assets/product-desk-animation.png"
+                alt="Product Decks"
+                class="icon-hover"
+              />
+            </div>
+          </a>
+          <a href="#" class="card-resource blue-light">
+            <span class="label">E-Books</span>
+            <div class="icon-wrap">
+              <img
+                src="assets/images/blogs assets/e-book.png"
+                alt="E-Books"
+                class="icon-default"
+              />
+              <img
+                src="assets/images/blogs assets/e-book-animation.png"
+                alt="E-Books"
+                class="icon-hover"
+              />
+            </div>
+          </a>
+        </div>
+
+        <!-- Right: Newsletter -->
+        <a href="#" class="card-newsletter yellow-light">
+          <div class="subscriber-tag">6K+ Subscribers</div>
+          <div class="content">
+            <img
+              src="assets/images/resources/d2c-caffeine.png"
+              alt="D2C Caffeine"
+              class="newsletter-logo"
+            />
+            <p>A Pragma Original Newsletter</p>
+          </div>
+          <img
+            src="assets/images/blogs assets/coffee-cup.png"
+            alt="Newsletter"
+            class="cup-decoration"
+          />
+        </a>
+      </div>
+    </section>
+    <!-- End-Main-section -->
+  </body>
+</html>

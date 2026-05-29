@@ -1,0 +1,502 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### contactBox ### */
+      .contactBox {
+        margin-bottom: 50px;
+        padding-top: 123px;
+        padding-bottom: 121px;
+        position: relative;
+      }
+      .contactBox .holder {
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+        border-radius: 20px;
+        background-color: var(--white);
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      .contactBox .left {
+        padding: 40px 47px;
+        width: 50%;
+        background-color: #f1f1f1;
+      }
+      .contactBox h2 {
+        margin-bottom: 24px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+      }
+      .contactBox p {
+        margin-bottom: 18px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000;
+      }
+      .contactBox label {
+        cursor: pointer;
+      }
+      .contactBox .chip-box {
+        padding: 10px 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        background-color: rgba(51, 51, 51, 0.1);
+        transition: all 0.2s ease;
+        color: #333;
+      }
+      .contactBox .chip-box i {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        flex: 0 0 auto;
+        background-color: transparent;
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .contactBox .chip-box i::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .contactBox ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        gap: 10px;
+      }
+      .contactBox ul > li {
+        flex: 0 0 auto;
+      }
+      .contactBox input[type="checkbox"] {
+        display: none;
+      }
+      .contactBox input[type="checkbox"]:checked + .chip-box {
+        border-color: transparent;
+        background-color: rgba(40, 113, 240, 0.6);
+        color: var(--white);
+      }
+      .contactBox input[type="checkbox"]:checked + .chip-box i {
+        border-color: transparent;
+        background-color: #000;
+      }
+      .contactBox input[type="checkbox"]:checked + .chip-box i::after {
+        display: block;
+      }
+
+      .contactBox .left .button {
+        display: none;
+      }
+      .contactBox .right {
+        padding: 95px 47px 40px;
+        width: 50%;
+      }
+      .contactBox .right h2 {
+        display: none;
+      }
+      .contactBox .form {
+        margin: 0 -15px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .contactBox .form input {
+        padding: 0 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        height: 48px;
+        font-size: 15px;
+        width: 100%;
+      }
+      .contactBox .form input:focus {
+        border-color: #2871f0;
+        outline: none;
+      }
+      .contactBox .form-field {
+        margin-bottom: 20px;
+        padding: 0 15px;
+        width: 100%;
+      }
+      .contactBox .form-field:last-child {
+        margin-bottom: 0;
+      }
+      .contactBox .form-field.w-50 {
+        width: 50%;
+      }
+      .contactBox .custom-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2L6 7L11 2' stroke='%23AAAAAA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+          no-repeat right 15px center;
+        background-color: var(--white);
+        color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        width: 100%;
+        height: 48px;
+        padding: 0 20px;
+      }
+      .contactBox .custom-select:focus {
+        color: var(--black);
+        border-color: #2871f0;
+        outline: none;
+      }
+      .contactBox .form-field .button {
+        padding: 14px 15px;
+        width: 100%;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        background-color: #2871f0;
+        color: var(--white);
+        border: none;
+      }
+      .contactBox .form-field .button:hover {
+        background-color: #1a5ac7;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 113, 240, 0.3);
+      }
+      .contactBox .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .contactBox .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media only screen and (max-width: 1199px) {
+        .contactBox {
+          padding-top: 80px;
+          padding-bottom: 80px;
+        }
+        .contactBox .holder {
+          max-width: 960px;
+        }
+        .contactBox .left {
+          padding: 30px 35px;
+        }
+        .contactBox .right {
+          padding: 80px 35px 30px;
+        }
+        .contactBox h2 {
+          font-size: 28px;
+        }
+      }
+
+      @media only screen and (max-width: 991px) {
+        .contactBox {
+          padding: 60px 20px;
+        }
+        .contactBox .holder {
+          max-width: 720px;
+          flex-direction: column;
+        }
+        .contactBox .left {
+          width: 100%;
+          order: 2;
+          background-color: transparent;
+          padding: 30px 25px;
+        }
+        .contactBox .right {
+          width: 100%;
+          order: 1;
+          padding: 30px 25px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .contactBox .right h2 {
+          display: block;
+        }
+        .contactBox h2 {
+          display: none;
+          margin-bottom: 15px;
+          font-size: 26px;
+        }
+        .contactBox .form-field .button {
+          display: none;
+        }
+        .contactBox .left .button {
+          display: block;
+          width: 100%;
+          padding: 14px;
+          border-radius: 10px;
+          font-size: 16px;
+          font-weight: 600;
+          background-color: #2871f0;
+          color: var(--white);
+          border: none;
+          text-align: center;
+          margin-top: 10px;
+        }
+        .contactBox .chip-box {
+          border: 1px solid #d1d1d1;
+          background-color: var(--white);
+        }
+        .contactBox .chip-box i {
+          border: 1px solid #d1d1d1;
+          background-color: var(--white);
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box {
+          border-color: #2871f0;
+          background-color: var(--white);
+          color: #2871f0;
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box i {
+          border-color: #2871f0;
+          background-color: #2871f0;
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box i::after {
+          display: block;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        .contactBox {
+          padding: 40px 15px;
+        }
+        .contactBox .holder {
+          padding: 20px 15px;
+          border-radius: 15px;
+        }
+        .contactBox .left,
+        .contactBox .right {
+          padding: 15px 5px;
+        }
+        .contactBox .right {
+          margin-bottom: 15px;
+          padding-bottom: 20px;
+        }
+        .contactBox .form {
+          margin: 0 -5px;
+        }
+        .contactBox .form-field {
+          padding: 0 5px;
+          margin-bottom: 15px;
+        }
+        .contactBox h2 {
+          font-size: 24px;
+        }
+        .contactBox p {
+          font-size: 15px;
+          margin-bottom: 15px;
+        }
+        .contactBox ul {
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+        .contactBox .chip-box {
+          padding: 8px 14px;
+          font-size: 13px;
+          border: 1px solid #d1d1d1;
+          background-color: var(--white);
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box {
+          border-color: #2871f0;
+          background-color: var(--white);
+          color: #2871f0;
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box i {
+          border-color: #2871f0;
+          background-color: #2871f0;
+        }
+        .contactBox input[type="checkbox"]:checked + .chip-box i::after {
+          display: block;
+        }
+      }
+
+      @media only screen and (max-width: 480px) {
+        .contactBox .form-field.w-50 {
+          width: 100%;
+        }
+        .contactBox h2 {
+          font-size: 22px;
+        }
+      }
+    </style>
+    <!--  / main container \ -->
+    <div id="mainCntr">
+      <!--  / content container \ -->
+      <main id="contentCntr">
+        <!--  / start contactBox \ -->
+        <div class="contactBox centered">
+          <form action="#">
+            <div class="holder">
+              <div class="left">
+                <h2>Sample Text</h2>
+                <p>What would you like to know more about?</p>
+                <ul>
+                  <li>
+                    <label>
+                      <input type="checkbox" checked />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>Omnichannel CRM</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>RTO Suite</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>1Checkout</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>Genie (AI Copilot)</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>WhatsApp Business Suite</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>Return Management System</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>Journey Management System</span>
+                      </span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span class="chip-box">
+                        <i></i>
+                        <span>ShipAxis</span>
+                      </span>
+                    </label>
+                  </li>
+                </ul>
+
+                <button type="submit" class="button">Get in Touch</button>
+              </div>
+
+              <div class="right">
+                <h2>Sample Text</h2>
+
+                <div class="form">
+                  <div class="form-field">
+                    <input type="text" placeholder="Business Website link" />
+                  </div>
+
+                  <div class="form-field">
+                    <input type="email" placeholder="vaishu@logisy.tech" />
+                  </div>
+
+                  <div class="form-field w-50">
+                    <input type="tel" placeholder="Contact Number" />
+                  </div>
+
+                  <div class="form-field w-50">
+                    <select
+                      class="custom-select"
+                      onchange="
+                        this.style.color =
+                          this.value === '' ? 'rgba(0,0,0,0.4)' : 'var(--black)'
+                      "
+                    >
+                      <option value="" selected>Orders per month</option>
+                      <option value="10K">10K per month</option>
+                      <option value="20K">20K per month</option>
+                      <option value="50K">50K per month</option>
+                      <option value="100K">100K+ per month</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <button type="submit" class="button">Get in Touch</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="bg">
+            <img
+              src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/696763a18e8b93cd7332c2a6_contact-bg.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+        <!--  \ end contactBox / -->
+      </main>
+      <!--  \ content container / -->
+    </div>
+    <!--  \ main container / -->
+  </body>
+</html>

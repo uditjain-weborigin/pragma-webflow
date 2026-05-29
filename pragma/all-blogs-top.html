@@ -1,0 +1,1567 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      .product-nav-bar .centered,
+      .cs-featured-section .centered,
+      .cs-cards-section .centered,
+      .newsletter-matrix-section.centered,
+      .newsletter-search-section.centered {
+        padding-right: calc((100% - 1410px) / 2);
+        padding-left: calc((100% - 1410px) / 2);
+      }
+
+      @media (min-width: 769px) and (max-width: 1260px) {
+        /* Wide-container overrides for pages that use 1410px max-width */
+        .blog-heading-section .centered,
+        .product-nav-bar .centered,
+        .cs-featured-section .centered,
+        .cs-cards-section .centered,
+        .newsletter-matrix-section.centered,
+        .newsletter-search-section.centered,
+        .section-wise-blogs .centered {
+          padding-left: 40px !important;
+          padding-right: 40px !important;
+        }
+      }
+
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 12px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      /* ### Blog Heading Section ### */
+      .blog-heading-section {
+        padding-top: 0px; /* Synchronized with whatsapp-top.html */
+        padding-bottom: 0;
+      }
+
+      .blog-heading-section .breadcrumb-nav a,
+      .blog-heading-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* Title Row */
+      .blog-heading-section .title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+      .blog-heading-section .title-row h1 {
+        margin-bottom: 0;
+        font-size: 48px;
+      }
+      .blog-heading-section .social-follow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .blog-heading-section .social-follow span {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--black);
+      }
+      .blog-heading-section .social-follow .social-icons {
+        display: flex;
+        gap: 4px;
+      }
+      .blog-heading-section .social-follow a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: var(--base-duration);
+      }
+      .blog-heading-section .social-follow a img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+      }
+      .blog-heading-section .social-follow a:hover {
+        background-color: transparent;
+      }
+
+      /* Filter Bar Strip — two separate boxes */
+      .filter-bar-strip {
+        border: none;
+        padding: 0;
+        margin-bottom: 16px;
+        display: block;
+        width: 100%;
+      }
+      .filter-bar-strip .filter-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        height: auto;
+        width: 100%;
+      }
+      /* Search box — takes ~60% width, bordered */
+      .filter-bar-strip .search-box {
+        flex: 0 0 500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 8px;
+        height: 48px;
+        background: #fff;
+      }
+      .filter-bar-strip .search-box input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        color: var(--black);
+        padding: 0 44px 0 16px;
+        box-shadow: none;
+        border-radius: 8px;
+      }
+      .filter-bar-strip .search-box input::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .filter-bar-strip .search-box .search-icon {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      /* Filter box — takes remaining width, bordered */
+      .filter-bar-strip .filter-box {
+        flex: 0 0 250px;
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 8px;
+        height: 48px;
+        background: #fff;
+        overflow: hidden;
+      }
+      .filter-bar-strip .filter-box .custom-select {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+        padding: 0 40px 0 16px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+      }
+
+      .filter-section {
+        padding-top: 40px;
+        padding-bottom: 20px;
+      }
+
+      /* Chips Display row */
+      .filter-chips-row {
+        margin-top: 24px;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: #fff;
+        padding: 12px 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .filter-chips-row.active {
+        display: flex;
+      }
+
+      /* Search Box Clear Icon */
+      .filter-bar-strip .search-box .clear-search {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 22px;
+        background: #f1f1f1;
+        color: #000;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+
+      .filter-bar-strip .search-box.has-text .clear-search {
+        display: flex;
+      }
+
+      .filter-bar-strip .search-box .clear-search:hover {
+        background: #e0e0e0;
+      }
+
+      .chips-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        background: #ececec;
+        padding: 6px 14px;
+        border-radius: 100px;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .chip span {
+        font-size: 14px;
+        color: #000;
+        font-weight: 400;
+      }
+
+      .chip-close {
+        width: 18px;
+        height: 18px;
+        background: #000;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        padding-bottom: 2px;
+      }
+
+      .chip-close:hover {
+        opacity: 0.8;
+      }
+
+      .chips-toggle {
+        margin-left: auto;
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+        transition: transform 0.3s;
+      }
+
+      .filter-chips-row.collapsed .chips-list {
+        display: none;
+      }
+
+      .filter-chips-row.collapsed .chips-toggle {
+        transform: rotate(180deg);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Custom Multiselect & Filter Chips */
+      .custom-multiselect {
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        overflow: visible !important;
+      }
+
+      .multiselect-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        padding: 0 16px;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      .multiselect-header i {
+        font-size: 10px;
+        transition: transform 0.3s;
+      }
+
+      .custom-multiselect.active .multiselect-header i {
+        transform: rotate(180deg);
+      }
+
+      .multiselect-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        display: none;
+        z-index: 100;
+        padding: 8px 0;
+      }
+
+      .custom-multiselect.active .multiselect-options {
+        display: block;
+      }
+
+      .option-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        transition: background 0.2s;
+      }
+
+      .option-item:hover {
+        background: #f8faff;
+      }
+
+      .option-item span {
+        font-size: 14px;
+        color: #333;
+        font-weight: 400;
+      }
+
+      .option-item input {
+        display: none;
+      }
+
+      .checkbox-custom {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #c5daff;
+        border-radius: 4px;
+        position: relative;
+        transition: all 0.2s;
+      }
+
+      .option-item input:checked + .checkbox-custom {
+        background: #2871f0;
+        border-color: #2871f0;
+      }
+
+      .option-item input:checked + .checkbox-custom::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 9px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      @media (max-width: 768px) {
+        .blog-heading-section {
+          padding-top: 0px;
+        }
+        .blog-heading-section .title-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .blog-heading-section .breadcrumb-nav {
+          font-size: 14px;
+          padding-left: 4px; /* Indent breadcrumb to make heading appear wider */
+          margin-bottom: 8px;
+        }
+        .blog-heading-section .title-row h1 {
+          font-size: 36px;
+          margin-left: -2px; /* Outdent slightly to appear wider than breadcrumb */
+          width: calc(100% + 4px); /* Increase width relative to container */
+        }
+        .blog-heading-section .social-follow {
+          display: none;
+        }
+
+        .filter-bar-strip {
+          margin-bottom: 0px;
+        }
+
+        .filter-chips-row {
+          margin-top: 8px;
+          margin-bottom: 0px;
+        }
+
+        .filter-bar-strip .filter-row {
+          flex-direction: row;
+          gap: 8px;
+          height: auto;
+          position: relative;
+        }
+        .filter-bar-strip .search-box {
+          height: 44px;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          flex: 1.5;
+          width: auto;
+          border-radius: 8px;
+        }
+        .filter-bar-strip .search-box input {
+          font-size: 13px;
+          padding: 0 36px 0 12px;
+        }
+        .filter-bar-strip .search-box .search-icon {
+          right: 10px;
+          width: 16px;
+          height: 16px;
+        }
+        .filter-bar-strip .search-box .clear-search {
+          right: 34px;
+          width: 18px;
+          height: 18px;
+          font-size: 10px;
+        }
+        .filter-bar-strip .filter-box {
+          flex: 1;
+          width: auto;
+          height: 44px;
+          position: static;
+        }
+        .filter-bar-strip .filter-box .multiselect-header {
+          font-size: 13px;
+          padding: 0 8px 0 12px;
+        }
+
+        .multiselect-header .selected-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: calc(100% - 15px);
+        }
+
+        .filter-bar-strip .filter-box .multiselect-options {
+          width: 100%;
+          left: 0;
+          top: calc(100% + 6px);
+          border-radius: 8px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+      }
+
+      /* ### New Blog Card Variants ### */
+
+      /* WhatsApp Card - Green */
+      .whatsapp-card .circle-bg {
+        background-color: #e6f9ee;
+      }
+      .whatsapp-card:hover .highlight-black {
+        background-color: #e6f9ee;
+        color: var(--black);
+      }
+
+      /* RTO Card - Yellow/Orange */
+      .rto-card .circle-bg {
+        background-color: #fff6e0;
+      }
+      .rto-card:hover .highlight-black {
+        background-color: #fff6e0;
+        color: var(--black);
+      }
+
+      /* ShipAxis Card - Pink */
+      .shipaxis-card .circle-bg {
+        background-color: #ffeef6;
+      }
+      .shipaxis-card:hover .highlight-black {
+        background-color: #ffeef6;
+        color: var(--black);
+      }
+
+      /* JMS Card - Teal/Cyan */
+      .jms-card .circle-bg {
+        background-color: #e0f9f8;
+      }
+      .jms-card:hover .highlight-black {
+        background-color: #e0f9f8;
+        color: var(--black);
+      }
+
+      /* Genie Card - Purple */
+      .genie-card .circle-bg {
+        background-color: #f6e8ff;
+      }
+      .genie-card:hover .highlight-black {
+        background-color: #f6e8ff;
+        color: var(--black);
+      }
+
+      /* CRM Card - Blue */
+      .crm-card .circle-bg {
+        background-color: #e3f2fd;
+      }
+      .crm-card:hover .highlight-black {
+        background-color: #e3f2fd;
+        color: var(--black);
+      }
+
+      /* 1Checkout Card - Indigo */
+      .checkout-card .circle-bg {
+        background-color: #e8eaf6;
+      }
+      .checkout-card:hover .highlight-black {
+        background-color: #e8eaf6;
+        color: var(--black);
+      }
+
+      /* General Hover Logic for New Cards */
+      .section-blog-card:hover .default-img {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .section-blog-card:hover .hover-img {
+        display: block;
+      }
+
+      /* Ensure hover image is hidden by default for all cards */
+      .section-blog-card .hover-img {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        max-width: 55%;
+        max-height: 95%;
+        object-fit: contain;
+        z-index: 3;
+      }
+
+      /* Hide circle and tag on hover for all cards */
+      .section-blog-card:hover .circle-bg,
+      .section-blog-card:hover .category-tag {
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
+
+      /* Mobile Adjustments for New Cards */
+      @media (max-width: 767px) {
+        .section-blog-card .hover-img {
+          display: none !important;
+        }
+        .section-blog-card:hover .default-img {
+          opacity: 1;
+          visibility: visible;
+        }
+        .section-blog-card:hover .circle-bg,
+        .section-blog-card:hover .category-tag {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      /* Utility to disable hover effects on blog cards */
+      /* Utility to disable hover effects on blog cards (Content only) */
+      /* Lift effect remains, but content changes are suppressed below */
+
+      .no-hover-effects .section-blog-card:hover .default-img {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .no-hover-effects .section-blog-card:hover .hover-img {
+        display: none !important;
+      }
+
+      .no-hover-effects .section-blog-card:hover .circle-bg,
+      .no-hover-effects .section-blog-card:hover .category-tag {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .no-hover-effects .section-blog-card:hover .highlight-black {
+        background-color: var(--black);
+        color: var(--white);
+      }
+
+      /* ### Section-wise Blogs ### */
+      .section-wise-blogs {
+        padding-top: 60px;
+        padding-bottom: 120px;
+        background-color: #f8f9fa; /* Matches navigation bar */
+      }
+
+      .section-blogs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        width: 100%;
+      }
+
+      .section-wise-blogs {
+        background-color: #ffffff;
+        padding: 40px 0 60px;
+      }
+
+      .section-blog-card {
+        background-color: var(--white);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 28px 20px 28px 32px;
+        position: relative;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        min-height: 230px;
+        transform: translateZ(
+          0
+        ); /* Fix for overflow clipping with border-radius */
+        backface-visibility: hidden;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .section-blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .section-blog-card .card-content {
+        flex: 1;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .section-blog-card .category-tag {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--black);
+        display: block;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: auto;
+        z-index: 10;
+        background-color: var(--white);
+        padding: 8px 16px;
+        border-radius: 0 0 0 16px;
+
+        white-space: nowrap;
+      }
+
+      .section-blog-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: var(--black);
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+
+      .section-blog-card h3 .highlight,
+      .section-blog-card h3 .highlight-black {
+        display: inline;
+        background-color: var(--black);
+        color: var(--white);
+        padding: 2px 6px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        line-height: 1.8; /* Ensures spacing between highlighted lines */
+      }
+
+      /* Ensure line breaks create vertical space */
+      .section-blog-card h3 br {
+        content: "";
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .section-blog-card p {
+        font-size: 14px;
+        color: var(--black);
+        font-weight: 500;
+        line-height: 1.4;
+        margin-bottom: 0;
+        max-width: 80%;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .section-blog-card p:empty {
+        display: none;
+      }
+
+      .section-blog-card .card-image {
+        width: 140px; /* Restored original desktop proportion */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .section-blog-card .card-image img {
+        width: 100%;
+        max-width: 80px;
+        height: auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Green Circle Background */
+      .section-blog-card .circle-bg {
+        position: absolute;
+        top: 50%;
+        right: -190px;
+        transform: translateY(-50%);
+        width: 350px;
+        height: 350px;
+        background-color: #e6f9ee;
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .section-blogs-grid {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 0 20px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .section-wise-blogs {
+          padding-bottom: 60px;
+          padding-top: 40px;
+        }
+        .section-blogs-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 0 16px;
+        }
+
+        /* Cards maintain exact desktop styling for consistency */
+        .section-blog-card {
+          min-height: 230px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        /* Hover Action for Automated Refund Card */
+        .automated-refund-card > .hover-img {
+          display: none;
+          position: absolute;
+          top: 50%;
+          right: 10px; /* Safe distance from edge */
+          transform: translateY(-50%);
+          width: auto;
+          height: auto;
+          min-width: unset;
+          max-width: 55%;
+          max-height: 95%;
+          object-fit: contain;
+          z-index: 3;
+        }
+
+        .automated-refund-card:hover .default-img {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .automated-refund-card:hover .hover-img {
+          display: block;
+        }
+
+        .automated-refund-card:hover .circle-bg {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .automated-refund-card:hover .category-tag {
+          opacity: 0;
+          visibility: hidden;
+          transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        }
+
+        .automated-refund-card:hover .highlight-black {
+          background-color: #ffecc2;
+          color: var(--black);
+        }
+
+        /* Hover Action for Return Pickup Card */
+        /* Image moved to root of card, so no need to change card-image position */
+
+        .return-pickup-card > .hover-img {
+          display: none;
+          position: absolute;
+          top: 50%;
+          right: 10px; /* Safe distance from edge to prevent cropping */
+          transform: translateY(-50%);
+          width: auto;
+          height: auto;
+          max-width: 55%; /* Allow it to take up more than half */
+          max-height: 95%; /* Almost full height */
+          object-fit: contain;
+          z-index: 3;
+        }
+
+        .return-pickup-card:hover .default-img {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .return-pickup-card:hover .hover-img {
+          display: block;
+        }
+
+        .return-pickup-card:hover .circle-bg {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .return-pickup-card:hover .category-tag {
+          opacity: 0;
+          visibility: hidden;
+          transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!-- Heading-Start -->
+          <section class="blog-heading-section">
+            <div class="centered">
+              <!-- Breadcrumb: inline with > separators -->
+              <nav class="breadcrumb-nav">
+                <a href="#">Resources</a>
+                <span class="breadcrumb-sep">&gt;</span>
+                <a href="#">Blogs</a>
+                <span class="breadcrumb-sep">&gt;</span>
+                <span class="breadcrumb-current">All Blogs</span>
+              </nav>
+
+              <div class="title-row">
+                <h1>All Blogs</h1>
+                <div class="social-follow">
+                  <span>Follow us on</span>
+                  <div class="social-icons">
+                    <a href="#"
+                      ><img
+                        src="assets/images/blogs assets/email_brand.png"
+                        alt="Email"
+                    /></a>
+                    <a href="#"
+                      ><img
+                        src="assets/images/blogs assets/linkedin_branding.png"
+                        alt="LinkedIn"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Filter bar: two separate bordered boxes -->
+              <div class="filter-bar-strip">
+                <div class="filter-row">
+                  <div class="search-box">
+                    <input
+                      type="text"
+                      id="blog-search-input"
+                      placeholder="Search Blogs..."
+                    />
+                    <img
+                      class="search-icon"
+                      src="assets/images/blogslist assets/search.png"
+                      alt="search icon"
+                    />
+                  </div>
+                  <div
+                    class="filter-box custom-multiselect"
+                    id="tag-multiselect"
+                  >
+                    <div class="multiselect-header">
+                      <span class="selected-text">Select max 3 tags</span>
+                      <i class="icon-chevron-down"></i>
+                    </div>
+                    <div class="multiselect-options">
+                      <label class="option-item">
+                        <span>WhatsApp Automation</span>
+                        <input type="checkbox" value="WhatsApp Automation" />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                      <label class="option-item">
+                        <span>Return Process</span>
+                        <input type="checkbox" value="Return Process" />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                      <label class="option-item">
+                        <span>ShipAxis Integrations</span>
+                        <input type="checkbox" value="ShipAxis Integrations" />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                      <label class="option-item">
+                        <span>Journey Management System</span>
+                        <input
+                          type="checkbox"
+                          value="Journey Management System"
+                        />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                      <label class="option-item">
+                        <span>Genie (AI Copilot)</span>
+                        <input type="checkbox" value="Genie (AI Copilot)" />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                      <label class="option-item">
+                        <span>Omnichannel CRM</span>
+                        <input type="checkbox" value="Omnichannel CRM" />
+                        <span class="checkbox-custom"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Chips Display Row -->
+                <div class="filter-chips-row" id="filter-chips-row">
+                  <div class="chips-list" id="chips-list">
+                    <!-- Chips will be injected here -->
+                  </div>
+                  <div class="chips-toggle" id="chips-toggle">
+                    <i class="icon-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Heading-end -->
+
+          <!-- Section-wise blogs-start -->
+          <section class="section-wise-blogs no-hover-effects">
+            <div class="centered">
+              <div class="section-blogs-grid">
+                <!-- Card 1: WhatsApp -->
+                <article class="section-blog-card whatsapp-card">
+                  <div class="card-content">
+                    <span class="category-tag">WhatsApp Blog</span>
+                    <h3>
+                      <span class="highlight-black">WhatsApp some</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/whatsapp.png"
+                      alt="WhatsApp Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 2: RTO -->
+                <article class="section-blog-card rto-card">
+                  <div class="card-content">
+                    <span class="category-tag">RTO Blog</span>
+                    <h3>
+                      <span class="highlight-black">RTO some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/rto.png"
+                      alt="RTO Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 3: ShipAxis -->
+                <article class="section-blog-card shipaxis-card">
+                  <div class="card-content">
+                    <span class="category-tag">ShipAxis Blog</span>
+                    <h3>
+                      <span class="highlight-black">ShipAxis blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/shipaxis.png"
+                      alt="ShipAxis Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 4: JMS -->
+                <article class="section-blog-card jms-card">
+                  <div class="card-content">
+                    <span class="category-tag"
+                      >Journey Management System Blog</span
+                    >
+                    <h3>
+                      <span class="highlight-black">JMS some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/jms.png"
+                      alt="JMS Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 5: Genie -->
+                <article class="section-blog-card genie-card">
+                  <div class="card-content">
+                    <span class="category-tag">Genie (AI Copilot)</span>
+                    <h3>
+                      <span class="highlight-black">Genie (AI Copilot)</span>
+                      <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/genie.png"
+                      alt="Genie Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 6: Return Pickup (Existing Style) -->
+                <article class="section-blog-card return-pickup-card">
+                  <div class="card-content">
+                    <span class="category-tag"
+                      >Return Management System Blog</span
+                    >
+                    <h3>
+                      <span class="highlight">Return pickup</span> <br />
+                      <span class="highlight">Orchestration</span>
+                    </h3>
+                    <p>
+                      Optimising routes, windows and costs for same city returns
+                    </p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogs assets/packing-box-package.png"
+                      alt="Return pickup Orchestration"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/heading_plus_texthover.png"
+                    alt="Return pickup Orchestration Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 7: CRM -->
+                <article class="section-blog-card crm-card">
+                  <div class="card-content">
+                    <span class="category-tag">Omnichannel CRM Blog</span>
+                    <h3>
+                      <span class="highlight-black">CRM some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/crm.png"
+                      alt="CRM Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 8: RTO (Repeated as per design) -->
+                <article class="section-blog-card rto-card">
+                  <div class="card-content">
+                    <span class="category-tag">RTO Blog</span>
+                    <h3>
+                      <span class="highlight-black">RTO some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/rto.png"
+                      alt="RTO Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 9: 1Checkout -->
+                <article class="section-blog-card checkout-card">
+                  <div class="card-content">
+                    <span class="category-tag">1Checkout Blog</span>
+                    <h3>
+                      <span class="highlight-black">!Checkout blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/checkout.png"
+                      alt="1Checkout Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 10: JMS (Repeated) -->
+                <article class="section-blog-card jms-card">
+                  <div class="card-content">
+                    <span class="category-tag"
+                      >Journey Management System Blog</span
+                    >
+                    <h3>
+                      <span class="highlight-black">JMS some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/jms.png"
+                      alt="JMS Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 11: WhatsApp (Repeated) -->
+                <article class="section-blog-card whatsapp-card">
+                  <div class="card-content">
+                    <span class="category-tag">WhatsApp Blog</span>
+                    <h3>
+                      <span class="highlight-black">WhatsApp some</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/whatsapp.png"
+                      alt="WhatsApp Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 12: CRM (Repeated) -->
+                <article class="section-blog-card crm-card">
+                  <div class="card-content">
+                    <span class="category-tag">Omnichannel CRM Blog</span>
+                    <h3>
+                      <span class="highlight-black">CRM some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/crm.png"
+                      alt="CRM Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 13: CRM (Repeated as per screenshot logic of row filling) -->
+                <!-- Adding more to match the general flow if needed -->
+                <article class="section-blog-card crm-card">
+                  <div class="card-content">
+                    <span class="category-tag">Omnichannel CRM Blog</span>
+                    <h3>
+                      <span class="highlight-black">CRM some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/crm.png"
+                      alt="CRM Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 14: Genie (Repeated) -->
+                <article class="section-blog-card genie-card">
+                  <div class="card-content">
+                    <span class="category-tag">Genie (AI Copilot)</span>
+                    <h3>
+                      <span class="highlight-black">Genie (AI Copilot)</span>
+                      <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/genie.png"
+                      alt="Genie Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+
+                <!-- Card 15: RTO (Repeated) -->
+                <article class="section-blog-card rto-card">
+                  <div class="card-content">
+                    <span class="category-tag">RTO Blog</span>
+                    <h3>
+                      <span class="highlight-black">RTO some blog</span> <br />
+                      Blog
+                    </h3>
+                    <p>What Data Indian D2C Brands Should Actually Use</p>
+                  </div>
+                  <div class="card-image">
+                    <div class="circle-bg"></div>
+                    <img
+                      src="assets/images/blogslist assets/rto.png"
+                      alt="RTO Blog"
+                      class="default-img"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/blogs assets/only-heading-hover-action.png"
+                    alt="Hover"
+                    class="hover-img"
+                  />
+                </article>
+              </div>
+            </div>
+          </section>
+          <!-- Section-wise blogs-end -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Blog Filter and Multiselect Logic
+        const multiselect = document.querySelector(".custom-multiselect");
+        const searchInput = document.getElementById("blog-search-input");
+        const chipsRow = document.getElementById("filter-chips-row");
+        const chipsList = document.getElementById("chips-list");
+        const chipsToggle = document.getElementById("chips-toggle");
+
+        if (multiselect && searchInput && chipsRow && chipsList) {
+          const header = multiselect.querySelector(".multiselect-header");
+          const options = multiselect.querySelectorAll(".option-item input");
+          let selectedTags = [];
+
+          // Add clear icon to search box
+          const searchBox = searchInput.parentElement;
+          const clearSearchBtn = document.createElement("div");
+          clearSearchBtn.className = "clear-search";
+          clearSearchBtn.innerHTML = "&times;";
+          searchBox.appendChild(clearSearchBtn);
+
+          // Toggle dropdown
+          header.addEventListener("click", (e) => {
+            e.stopPropagation();
+            multiselect.classList.toggle("active");
+          });
+
+          // Close dropdown on outside click
+          document.addEventListener("click", (e) => {
+            if (!multiselect.contains(e.target)) {
+              multiselect.classList.remove("active");
+            }
+          });
+
+          // Toggle chips row collapse/expand
+          if (chipsToggle) {
+            chipsToggle.addEventListener("click", () => {
+              chipsRow.classList.toggle("collapsed");
+            });
+          }
+
+          // Search input clear logic
+          searchInput.addEventListener("input", () => {
+            if (searchInput.value.trim() !== "") {
+              searchBox.classList.add("has-text");
+            } else {
+              searchBox.classList.remove("has-text");
+            }
+          });
+
+          clearSearchBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            searchBox.classList.remove("has-text");
+            searchInput.focus();
+          });
+
+          function updateChips() {
+            chipsList.innerHTML = "";
+
+            // Tag chips only
+            selectedTags.forEach((tag) => {
+              const chip = createChip(tag, "tag");
+              chipsList.appendChild(chip);
+            });
+
+            // Update header text
+            const selectedText = multiselect.querySelector(".selected-text");
+            if (selectedTags.length > 0) {
+              selectedText.textContent = `${selectedTags.length} tags selected`;
+              selectedText.style.color = "#000";
+            } else {
+              selectedText.textContent = "Select max 3 tags";
+              selectedText.style.color = "rgba(0, 0, 0, 0.5)";
+            }
+
+            // Show/Hide row based on tags
+            if (selectedTags.length > 0) {
+              chipsRow.classList.add("active");
+            } else {
+              chipsRow.classList.remove("active");
+            }
+          }
+
+          function createChip(text, type) {
+            const div = document.createElement("div");
+            div.className = "chip";
+            div.innerHTML = `<span>${text}</span><div class="chip-close">&times;</div>`;
+            div.querySelector(".chip-close").addEventListener("click", (e) => {
+              e.stopPropagation();
+              selectedTags = selectedTags.filter((t) => t !== text);
+              const input = multiselect.querySelector(`input[value="${text}"]`);
+              if (input) input.checked = false;
+              updateChips();
+            });
+            return div;
+          }
+
+          options.forEach((input) => {
+            input.addEventListener("change", () => {
+              if (input.checked) {
+                if (selectedTags.length >= 3) {
+                  input.checked = false;
+                  return;
+                }
+                selectedTags.push(input.value);
+              } else {
+                selectedTags = selectedTags.filter((t) => t !== input.value);
+              }
+              updateChips();
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,603 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 8px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      /* ### Featured Blogs Section ### */
+      .featured-blogs-section {
+        padding-top: 32px;
+        padding-bottom: 80px;
+      }
+
+      .featured-blogs-section .breadcrumb-nav a,
+      .featured-blogs-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .featured-blogs-section .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .featured-blogs-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      @media (max-width: 768px) {
+        .featured-blogs-section {
+          padding-top: 24px;
+          padding-bottom: 24px;
+        }
+        .featured-blogs-section .breadcrumb-nav {
+          margin-bottom: 4px !important;
+        }
+        .centered {
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+        .section-header-row {
+          margin-bottom: 16px !important;
+        }
+        .section-header-row h1 {
+          font-size: 32px !important;
+          line-height: 1.1 !important;
+          font-weight: 700 !important;
+          color: #000 !important;
+        }
+      }
+
+      .featured-layout-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .featured-left-column {
+        width: 72%;
+      }
+
+      .featured-right-column {
+        width: 24%;
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .section-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .section-header-row h1 {
+        margin-bottom: 0;
+        font-size: 32px;
+      }
+
+      .view-all-btn {
+        padding: 8px 16px;
+        border: 1px solid var(--blue-200);
+        border-radius: 6px;
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .view-all-btn:hover {
+        background-color: var(--blue-300);
+        color: var(--text-blue);
+      }
+
+      .blogs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .featured-blog-card {
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+        overflow: hidden;
+        border: none;
+      }
+
+      .featured-blog-card .card-main {
+        display: flex;
+        background: var(--white);
+        border-radius: 4px; /* Subtle radius */
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .featured-blog-card .card-content {
+        flex: 1.2;
+        padding: 40px 32px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .featured-blog-card .category-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+      }
+
+      .featured-blog-card .category-tag {
+        display: inline-block;
+        background-color: #8ab4f8; /* Highlight blue */
+        color: var(--black);
+        padding: 4px 8px;
+        font-size: 24px;
+        font-weight: 700;
+        width: fit-content;
+        line-height: 1;
+      }
+
+      .featured-blog-card .category-subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--black);
+        margin-top: 4px;
+        line-height: 1;
+      }
+
+      .featured-blog-card .card-divider {
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        margin: 16px 0;
+        width: 80%;
+      }
+
+      .featured-blog-card h3 {
+        font-size: 18px;
+        line-height: 1.4;
+        margin-bottom: 0;
+        font-weight: 500;
+        color: #4b5563;
+      }
+
+      .featured-blog-card .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 12px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #374151;
+        background-color: #f3f4f6;
+        width: 45%; /* Matches the card-image width */
+        margin-left: auto;
+        margin-top: auto;
+        white-space: nowrap;
+      }
+
+      .featured-blog-card .card-image {
+        width: 45%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .featured-blog-card .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Sidebar Styles */
+      .newsletter-box {
+        margin-top: 40px;
+        padding: 32px 24px;
+        border: 1px solid #2871f0;
+        border-radius: 10px;
+        text-align: center;
+        background-color: rgba(40, 113, 240, 0.05);
+      }
+
+      .newsletter-header {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #000;
+      }
+
+      .newsletter-box h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .newsletter-box p {
+        font-size: 12px;
+        color: #4b5563;
+        margin-bottom: 24px;
+        line-height: 1.5;
+      }
+
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #2871f0;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+      }
+
+      .newsletter-form input {
+        border: none;
+        padding: 12px 16px;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+      }
+
+      .newsletter-form .button {
+        width: 100%;
+        cursor: pointer;
+        border: none;
+        border-radius: 0;
+        background-color: #2871f0;
+        color: #fff;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+
+      .newsletter-form .button:hover {
+        background-color: #1a56c0;
+      }
+
+      .social-follow {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .icon-box {
+        width: 32px;
+        height: 32px;
+        background-color: #e9f1fe;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .icon-box:hover {
+        background-color: #d1e3fd;
+      }
+
+      .icon-box img {
+        width: 18px;
+        height: auto;
+        display: block;
+      }
+
+      /* Responsive */
+      @media (max-width: 991px) {
+        .featured-layout-container {
+          flex-direction: column;
+        }
+        .featured-left-column,
+        .featured-right-column {
+          width: 100%;
+        }
+        .featured-right-column {
+          margin-top: 16px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .blogs-grid {
+          grid-template-columns: 1fr;
+          gap: 16px !important;
+        }
+        .featured-blog-card .category-tag,
+        .featured-blog-card .category-subtitle {
+          font-size: 16px;
+        }
+        .featured-blog-card .card-content {
+          padding: 20px 16px;
+        }
+        .featured-blog-card h3 {
+          font-size: 14px;
+        }
+        .featured-blog-card .card-image {
+          width: 45%; /* Match proportions in mockup */
+        }
+        .featured-blog-card .card-footer {
+          font-size: 11px;
+          padding: 6px 10px;
+          width: 45%;
+        }
+
+        /* Newsletter Box Mobile Match */
+        .newsletter-box {
+          border: 1px solid #2871f0 !important;
+          background-color: rgba(40, 113, 240, 0.05);
+          border-radius: 10px;
+          padding: 32px 24px;
+          margin: 0;
+          margin-top: 16px;
+        }
+
+        .newsletter-header {
+          font-size: 14px;
+          color: #000;
+          margin-bottom: 16px;
+        }
+
+        .newsletter-box h3 {
+          font-size: 24px !important;
+          margin-bottom: 12px;
+          font-weight: 700;
+        }
+
+        .newsletter-box p {
+          font-size: 14px;
+          margin-bottom: 24px;
+        }
+
+        .newsletter-form {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #2871f0;
+          border-radius: 8px;
+          overflow: hidden;
+          background-color: #fff;
+        }
+
+        .newsletter-form input {
+          height: 44px;
+          border: none;
+          border-radius: 0;
+          margin-bottom: 0;
+          padding: 0 16px;
+        }
+
+        .newsletter-form .button {
+          height: 44px;
+          border: none;
+          border-radius: 0;
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .social-follow {
+          padding: 0 16px;
+          margin-top: 24px;
+        }
+      }
+
+      /* ### nl-card (Newsletter Card variant) ### */
+      .nl-card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .nl-card-image {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .nl-card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+      .nl-card-text {
+        padding: 24px 28px;
+      }
+      .nl-card-text p {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .hide-on-mobile {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <!-- Featured blogs-start -->
+    <section class="featured-blogs-section centered">
+      <div class="featured-layout-container">
+        <!-- Left Column -->
+        <div class="featured-left-column">
+          <nav class="breadcrumb-nav">
+            <a href="#">Resources</a>
+            <span class="breadcrumb-sep">&gt;</span>
+            <span class="breadcrumb-current">Blogs</span>
+          </nav>
+
+          <div class="section-header-row">
+            <h1>Featured Blogs</h1>
+            <a href="#" class="view-all-btn hide-on-mobile">View All Blogs</a>
+          </div>
+
+          <div class="blogs-grid">
+            <!-- Blog Card 1 -->
+            <article class="featured-blog-card">
+              <div class="card-main">
+                <div class="card-content">
+                  <div class="category-wrapper">
+                    <span class="category-tag">RTO Prediction</span>
+                    <span class="category-subtitle">Models</span>
+                  </div>
+                  <hr class="card-divider" />
+                  <h3>What Data Indian D2C Brands Should Actually Use</h3>
+                </div>
+                <div class="card-image">
+                  <img
+                    src="assets/images/blogs assets/dummy.svg"
+                    alt="RTO Prediction Models"
+                  />
+                </div>
+              </div>
+              <div class="card-footer">
+                <span class="meta-item">BLOG | 4 min read</span>
+                <span class="meta-date">27th Dec 25</span>
+              </div>
+            </article>
+
+            <!-- Blog Card 2 -->
+            <article class="featured-blog-card">
+              <div class="card-main">
+                <div class="card-content">
+                  <div class="category-wrapper">
+                    <span class="category-tag">RTO Prediction</span>
+                    <span class="category-subtitle">Models</span>
+                  </div>
+                  <hr class="card-divider" />
+                  <h3>What Data Indian D2C Brands Should Actually Use</h3>
+                </div>
+                <div class="card-image">
+                  <img
+                    src="assets/images/blogs assets/dummy.svg"
+                    alt="RTO Prediction Models"
+                  />
+                </div>
+              </div>
+              <div class="card-footer">
+                <span class="meta-item">BLOG | 4 min read</span>
+                <span class="meta-date">27th Dec 25</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <aside class="featured-right-column">
+          <div class="newsletter-box">
+            <div class="newsletter-header">
+              <span>✦ Our Biweekly Newsletter ✦</span>
+            </div>
+            <h3>'D2C Caffiene'</h3>
+            <p>From the people of D2C, to the people of D2C</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter email address" />
+              <button type="submit" class="button">Subscribe</button>
+            </form>
+          </div>
+
+          <div class="social-follow hide-on-mobile">
+            <span>Follow us on</span>
+            <div class="social-icons">
+              <a href="#" class="icon-box"
+                ><img
+                  src="assets/images/blogs assets/email_brand.png"
+                  alt="Email"
+              /></a>
+              <a href="#" class="icon-box"
+                ><img
+                  src="assets/images/blogs assets/linkedin_branding.png"
+                  alt="LinkedIn"
+              /></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <!-- Featured blogs-end -->
+  </body>
+</html>

@@ -1,0 +1,628 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### Product Navigation Bar ### */
+      .product-nav-bar {
+        background-color: #f8f9fa; /* Lighter, cleaner background */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        margin-bottom: 0px;
+      }
+
+      .product-nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Allows scrolling on smaller desktop/tablet screens */
+        gap: 48px;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        width: 100%;
+      }
+
+      @media (min-width: 1100px) {
+        .product-nav-container {
+          justify-content: center; /* Center items when there is plenty of space */
+        }
+      }
+      .product-nav-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .product-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #444; /* Slightly softer black for inactive */
+        padding: 20px 0; /* More vertical breathing room */
+        border-bottom: 8px solid transparent; /* More prominent border base */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        opacity: 0.8;
+        margin-bottom: -1px;
+      }
+
+      /* Responsive Navigation for Mobile */
+      @media (max-width: 767px) {
+        .product-nav-bar {
+          padding: 0;
+          overflow-x: hidden; /* Disable horizontal scroll */
+        }
+
+        .product-nav-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); /* 4 columns as per Figma */
+          gap: 0;
+          padding: 0 10px !important; /* Reduced padding for smaller screens */
+          justify-items: stretch;
+          overflow-x: visible;
+          background-color: #fcfcfc; /* Match Figma background */
+        }
+
+        .product-nav-item {
+          flex-direction: row; /* Side-by-side layout from Figma */
+          gap: 4px; /* Tighter gap */
+          padding: 8px 2px; /* Symmetrical padding for consistency */
+          margin-bottom: 0;
+          width: 100%;
+          justify-content: center;
+          align-items: center; /* Ensure icons and text are vertically centered */
+          border-bottom: 1px solid rgba(0, 0, 0, 0.06); /* Row separator */
+          transition: none;
+        }
+
+        .product-nav-item .nav-icon {
+          width: 14px; /* Slightly smaller for better fit */
+          height: 14px;
+        }
+
+        .product-nav-item .nav-text {
+          font-size: 10px; /* Compact font for mobile grid */
+          font-weight: 500;
+          color: #000;
+        }
+
+        .product-nav-item.active {
+          border-bottom: 2px solid #2871f0; /* Blue indicator from Figma */
+          opacity: 1;
+          color: #000;
+        }
+
+        .product-nav-item.active .nav-text {
+          font-weight: 600;
+        }
+      }
+
+      .product-nav-item:hover {
+        opacity: 1;
+        color: var(--primary);
+      }
+
+      .product-nav-item.active {
+        border-bottom-color: var(--primary);
+        opacity: 1;
+        color: var(--black);
+      }
+
+      .product-nav-item.active .nav-text {
+        font-weight: 700;
+      }
+
+      .product-nav-item .nav-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .product-nav-item .nav-text {
+        font-size: 16px; /* Body Text 2 approximation */
+        font-weight: 500;
+      }
+
+      /* Response for small screens */
+      @media (max-width: 991px) {
+        .product-nav-container {
+          gap: 32px;
+        }
+      }
+
+      /* ### cs-cards-section (Case Studies Cards Grid) ### */
+      .cs-cards-section {
+        background-color: #f3f3f3;
+        padding: 40px 0 60px;
+      }
+
+      /* -- case studies cards 2-col grid -- */
+      .cs-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      /* -- individual case study card -- */
+      .cs-card {
+        display: block;
+        width: 100%;
+        height: 310px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+        text-decoration: none;
+        color: inherit;
+        transition: box-shadow 0.2s ease;
+      }
+      .cs-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      /* -- card blue banner top area (folder tab shape) -- */
+      .cs-card-banner {
+        background: #fff;
+        height: 90px;
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 12px 16px;
+      }
+      /* top full-width blue strip */
+      .cs-card-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 45px;
+        background: linear-gradient(135deg, #c7d5f5 0%, #d8e2f9 100%);
+        border-radius: 16px 16px 0 0;
+      }
+      /* bottom-right blue block with rounded bottom-left corner */
+      .cs-card-banner::after {
+        content: "";
+        position: absolute;
+        top: 45px;
+        right: 0;
+        width: calc(100% - 140px);
+        height: 45px;
+        background: linear-gradient(135deg, #c7d5f5 0%, #d8e2f9 100%);
+        border-radius: 0 0 0 24px;
+      }
+
+      /* -- RMS tag pill on banner -- */
+      .cs-card-tag {
+        position: relative;
+        z-index: 1;
+        background: #fff;
+        color: #333;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 14px;
+        border-radius: 20px;
+      }
+
+      /* -- card body: logo + text -- */
+      .cs-card-body {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 28px;
+      }
+
+      /* -- card logo circle -- */
+      .cs-card-logo {
+        flex-shrink: 0;
+        width: 163px;
+        height: 163px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cs-card-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      /* -- card info text -- */
+      .cs-card-title {
+        margin: 0 0 12px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #222;
+      }
+
+      /* -- card divider line -- */
+      .cs-card-divider {
+        width: 100%;
+        height: 1px;
+        background: #000000;
+        margin-bottom: 10px;
+      }
+
+      /* -- card branding text -- */
+      .cs-card-branding {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 500;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .cs-nitro-logo {
+        height: 9px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      /* -- case studies cards mobile -- */
+      @media (max-width: 768px) {
+        .cs-cards-section {
+          padding: 24px 0 40px;
+        }
+        .cs-cards-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .cs-card {
+          width: 100%;
+          height: auto;
+        }
+        .cs-card-body {
+          padding: 20px;
+          gap: 16px;
+        }
+        .cs-card-logo {
+          width: 80px;
+          height: 80px;
+        }
+        .cs-card-banner {
+          height: 70px;
+        }
+        .cs-card-banner::before {
+          height: 35px;
+        }
+        .cs-card-banner::after {
+          top: 35px;
+          height: 35px;
+          width: calc(100% - 100px);
+        }
+
+        .cs-cards-grid {
+          grid-template-columns: 1fr; /* 1 column for clean vertical scroll */
+          max-height: 750px; /* Adjusted to show approx 2.5 cards based on card height */
+          overflow-y: auto;
+          padding: 10px 2px;
+          scrollbar-width: thin;
+          gap: 20px;
+        }
+
+        .cs-cards-grid::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .cs-cards-grid::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
+
+        .cs-card {
+          height: 280px; /* Fixed height to control grid scroll better */
+        }
+      }
+
+      /* New Buttons Styles - Reused from newsletter-mid.html */
+      .nl-matrix-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin-top: 40px;
+        padding-bottom: 20px;
+      }
+
+      .btn-load-more {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 14px 48px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 200px;
+      }
+
+      .btn-load-more:hover {
+        background: #333;
+        transform: translateY(-2px);
+      }
+
+      .btn-view-all {
+        background: transparent;
+        color: #000;
+        border: 1.5px solid #000;
+        padding: 14px 48px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: auto;
+        min-width: 200px;
+      }
+
+      .btn-view-all:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+
+      /* Centering override for 1410px width */
+      .product-nav-bar .centered {
+        width: 100%;
+        max-width: 1410px;
+        margin: 0 auto;
+        padding-left: 40px;
+        padding-right: 40px;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 767px) {
+        .product-nav-bar .centered {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    </style>
+
+    <!-- Naviagtion bar start -->
+    <div class="product-nav-bar">
+      <div class="product-nav-container centered">
+        <a href="#" class="product-nav-item active">
+          <img
+            src="assets/images/blogs assets/rms.png"
+            alt="RMS"
+            class="nav-icon"
+          />
+          <span class="nav-text">RMS</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/checkout.png"
+            alt="1Checkout"
+            class="nav-icon"
+          />
+          <span class="nav-text">1Checkout</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/rto.png"
+            alt="RTO Suite"
+            class="nav-icon"
+          />
+          <span class="nav-text">RTO Suite</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/shipaxis.png"
+            alt="ShipAxis"
+            class="nav-icon"
+          />
+          <span class="nav-text">ShipAxis</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/whatsapp.png"
+            alt="WhatsApp"
+            class="nav-icon"
+          />
+          <span class="nav-text">WhatsApp</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/jms.png"
+            alt="JMS"
+            class="nav-icon"
+          />
+          <span class="nav-text">JMS</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/crm.png"
+            alt="CRM"
+            class="nav-icon"
+          />
+          <span class="nav-text">CRM</span>
+        </a>
+        <a href="#" class="product-nav-item">
+          <img
+            src="assets/images/blogs assets/genie.png"
+            alt="Genie"
+            class="nav-icon"
+          />
+          <span class="nav-text">Genie</span>
+        </a>
+      </div>
+    </div>
+    <!-- Naviagtion bar end -->
+
+    <!-- Case studies cards start -->
+    <section class="cs-cards-section">
+      <div class="centered">
+        <div class="cs-cards-grid">
+          <!-- Card 1 -->
+          <a href="#" class="cs-card">
+            <div class="cs-card-banner">
+              <span class="cs-card-tag">RMS</span>
+            </div>
+            <div class="cs-card-body">
+              <div class="cs-card-logo">
+                <img src="assets/images/case studies/logo.png" alt="Logo" />
+              </div>
+              <div class="cs-card-info">
+                <h3 class="cs-card-title">
+                  Case Study Title of almost 2-3 lines can fit in this space
+                  right here
+                </h3>
+                <div class="cs-card-divider"></div>
+                <p class="cs-card-branding">
+                  With PRAGMA. x
+                  <img
+                    src="assets/images/case studies/nitro.png"
+                    alt="NITRO"
+                    class="cs-nitro-logo"
+                  />
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="#" class="cs-card">
+            <div class="cs-card-banner">
+              <span class="cs-card-tag">RMS</span>
+            </div>
+            <div class="cs-card-body">
+              <div class="cs-card-logo">
+                <img src="assets/images/case studies/logo.png" alt="Logo" />
+              </div>
+              <div class="cs-card-info">
+                <h3 class="cs-card-title">
+                  Case Study Title of almost 2-3 lines can fit in this space
+                  right here
+                </h3>
+                <div class="cs-card-divider"></div>
+                <p class="cs-card-branding">
+                  With PRAGMA. x
+                  <img
+                    src="assets/images/case studies/nitro.png"
+                    alt="NITRO"
+                    class="cs-nitro-logo"
+                  />
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="#" class="cs-card">
+            <div class="cs-card-banner">
+              <span class="cs-card-tag">RMS</span>
+            </div>
+            <div class="cs-card-body">
+              <div class="cs-card-logo">
+                <img src="assets/images/case studies/logo.png" alt="Logo" />
+              </div>
+              <div class="cs-card-info">
+                <h3 class="cs-card-title">
+                  Case Study Title of almost 2-3 lines can fit in this space
+                  right here
+                </h3>
+                <div class="cs-card-divider"></div>
+                <p class="cs-card-branding">
+                  With PRAGMA. x
+                  <img
+                    src="assets/images/case studies/nitro.png"
+                    alt="NITRO"
+                    class="cs-nitro-logo"
+                  />
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="#" class="cs-card">
+            <div class="cs-card-banner">
+              <span class="cs-card-tag">RMS</span>
+            </div>
+            <div class="cs-card-body">
+              <div class="cs-card-logo">
+                <img src="assets/images/case studies/logo.png" alt="Logo" />
+              </div>
+              <div class="cs-card-info">
+                <h3 class="cs-card-title">
+                  Case Study Title of almost 2-3 lines can fit in this space
+                  right here
+                </h3>
+                <div class="cs-card-divider"></div>
+                <p class="cs-card-branding">
+                  With PRAGMA. x
+                  <img
+                    src="assets/images/case studies/nitro.png"
+                    alt="NITRO"
+                    class="cs-nitro-logo"
+                  />
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="nl-matrix-buttons">
+          <button class="btn-load-more">Load more</button>
+          <button class="btn-view-all">View all RMS case studies</button>
+        </div>
+      </div>
+    </section>
+    <!-- Case studies cards end -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Product Nav Tab Switcher
+        const navItems = document.querySelectorAll(".product-nav-item");
+        navItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            // Remove active class from all items
+            navItems.forEach((nav) => nav.classList.remove("active"));
+            // Add active class to the clicked item
+            this.classList.add("active");
+          });
+        });
+
+        // Load More Logic
+        const loadMoreBtn = document.querySelector(".btn-load-more");
+        const grid = document.querySelector(".cs-cards-grid");
+
+        if (loadMoreBtn && grid) {
+          loadMoreBtn.addEventListener("click", function () {
+            // Simulate loading more by cloning existing cards
+            const cards = grid.querySelectorAll(".cs-card");
+            if (cards.length > 0) {
+              // We'll copy up to 2 cards at a time (since it's a 2-col grid normally, 1-col on mobile)
+              const count = Math.min(cards.length, 2);
+              for (let i = 0; i < count; i++) {
+                const clone = cards[i].cloneNode(true);
+                grid.appendChild(clone);
+              }
+
+              // Smoothly scroll to the bottom of the grid to show newly added items
+              grid.scrollTo({
+                top: grid.scrollHeight,
+                behavior: "smooth",
+              });
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

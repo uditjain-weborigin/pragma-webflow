@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* =========================================
+   Related Blogs Section
+   ========================================= */
+      .related-blogs-section {
+        padding: 60px 0;
+        background-color: var(--white);
+      }
+
+      .related-blogs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+
+      .related-blogs-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--black);
+        margin: 0;
+      }
+
+      .related-blogs-header .view-more-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #0072ff;
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+
+      .related-blogs-header .view-more-link:hover {
+        opacity: 0.8;
+      }
+
+      .related-blogs-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .related-card {
+        height: 195px;
+        flex: 0 0 auto; /* Prevent flexing so width stays strict */
+        border-radius: 12px;
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        background: var(--white);
+        /* Match screenshot subtle shadow */
+      }
+
+      .related-card a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .related-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .related-card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .related-blogs-grid {
+          gap: 16px;
+        }
+      }
+
+      .view-more-mobile {
+        display: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .related-blogs-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .related-blogs-header .view-more-link {
+          display: none !important;
+        }
+
+        .view-more-mobile {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          margin: 32px auto 0;
+          padding: 10px 24px;
+          border: 1px solid #2871f0;
+          border-radius: 6px;
+          color: #2871f0 !important;
+          font-size: 14px;
+          font-weight: 500;
+          background-color: var(--white);
+          transition: all 0.3s;
+        }
+
+        .view-more-mobile:hover {
+          background-color: #2871f0;
+          color: var(--white) !important;
+        }
+
+        .related-blogs-grid {
+          flex-direction: column;
+          gap: 24px;
+        }
+      }
+    </style>
+
+    <!-- Related blogs-start -->
+    <section class="related-blogs-section">
+      <div class="centered">
+        <div class="related-blogs-header">
+          <h2>More Case Studies</h2>
+          <a href="#" class="view-more-link"
+            >View More
+            <img
+              src="assets/images/related-blogs/arrow-right.png"
+              alt="View More"
+            />
+          </a>
+        </div>
+
+        <div class="related-blogs-grid">
+          <div class="related-card">
+            <a href="#">
+              <img
+                src="assets/images/related-blogs/ndr 1.png"
+                alt="NDR Management in E-commerce"
+              />
+            </a>
+          </div>
+          <div class="related-card">
+            <a href="#">
+              <img
+                src="assets/images/related-blogs/drip 1.png"
+                alt="WhatsApp Drip Marketing"
+              />
+            </a>
+          </div>
+          <div class="related-card">
+            <a href="#">
+              <img
+                src="assets/images/related-blogs/Email 1.png"
+                alt="Purchase Order Email Format"
+              />
+            </a>
+          </div>
+        </div>
+
+        <a href="#" class="view-more-link view-more-mobile"> View More </a>
+      </div>
+    </section>
+    <!-- Related blogs-end -->
+  </body>
+</html>

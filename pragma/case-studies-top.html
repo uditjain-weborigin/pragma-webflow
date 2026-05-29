@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### Blog Heading Section ### */
+      .blog-heading-section {
+        padding-top: 32px;
+        padding-bottom: 0;
+      }
+
+      .blog-heading-section .breadcrumb-nav a,
+      .blog-heading-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* Title Row */
+      .blog-heading-section .title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+      .blog-heading-section .title-row h1 {
+        margin-bottom: 0;
+        font-size: 48px;
+      }
+      .blog-heading-section .social-follow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .blog-heading-section .social-follow span {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--black);
+      }
+      .blog-heading-section .social-follow a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: var(--base-duration);
+      }
+      .blog-heading-section .social-follow a img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+      }
+      .blog-heading-section .social-follow a:hover {
+        background-color: transparent;
+      }
+
+      @media (max-width: 768px) {
+        .blog-heading-section .title-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .blog-heading-section .breadcrumb-nav {
+          font-size: 14px;
+          padding-left: 4px; /* Indent breadcrumb to make heading appear wider */
+          margin-bottom: 8px;
+        }
+        .blog-heading-section .title-row h1 {
+          font-size: 36px;
+          margin-left: -2px; /* Outdent slightly to appear wider than breadcrumb */
+          width: calc(100% + 4px); /* Increase width relative to container */
+        }
+        .blog-heading-section .social-follow {
+          display: none;
+        }
+      }
+
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 12px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav a,
+      .blog-heading-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important;
+        transition: color 0.2s;
+      }
+
+      .blog-heading-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">";
+      }
+
+      .cs-view-all-btn {
+        display: inline-block;
+        padding: 10px 24px;
+        border: 1px solid #3b82f6;
+        border-radius: 8px;
+        color: #3b82f6;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        background: transparent;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .cs-view-all-btn:hover {
+        background: #3b82f6;
+        color: #fff;
+      }
+
+      .cs-featured-section {
+        background-color: #ffffff;
+        padding: 0 0 60px;
+      }
+
+      .cs-featured-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .cs-featured-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      @media (min-width: 769px) and (max-width: 900px) {
+        .cs-featured-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .cs-featured-header {
+          display: none;
+        }
+        .cs-featured-section {
+          padding: 0 0 40px;
+        }
+        .cs-featured-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+    </style>
+
+    <!-- Heading-Start -->
+    <section class="blog-heading-section">
+      <div class="centered">
+        <!-- Breadcrumb: inline with > separators -->
+        <nav class="breadcrumb-nav">
+          <a href="#">Resources</a>
+          <span class="breadcrumb-sep">&gt;</span>
+
+          <span class="breadcrumb-current">Case Studies</span>
+        </nav>
+
+        <div class="title-row">
+          <h1>Case Studies</h1>
+          <div class="cs-featured-header">
+            <a href="#" class="cs-view-all-btn">View All Case Studies</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Heading-end -->
+
+    <!-- Featured Case Studies Start -->
+    <section class="cs-featured-section">
+      <div class="centered">
+        <div class="cs-featured-grid">
+          <a href="#" class="cs-featured-card">
+            <img
+              src="assets/images/case studies/case studies thumbnail.jpg"
+              alt="Emami x Return Management System by Pragma"
+            />
+          </a>
+          <a href="#" class="cs-featured-card">
+            <img
+              src="assets/images/case studies/case studies thumbnail.jpg"
+              alt="Emami x Return Management System by Pragma"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Featured Case Studies End -->
+  </body>
+</html>

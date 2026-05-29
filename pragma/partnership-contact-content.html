@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ========================================================================== */
+      /* PARTNERSHIP CONTACT PAGE STYLES */
+      /* Mobile responsive breakpoints and Grid/Flex layouts for partnership form */
+      /* ========================================================================== */
+
+      /* Partnership Box */
+      .partnershipBox {
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow-x: hidden;
+      }
+      .partnershipBox .holder {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: 60px;
+        justify-content: space-between;
+      }
+      .partnershipBox .left {
+        width: 532px;
+        max-width: 100%;
+        padding-top: 109px;
+        padding-bottom: 100px;
+        flex-shrink: 0;
+      }
+      .partnershipBox .right.formBox {
+        width: 562px;
+        height: 802px;
+        max-width: 100%;
+        background-color: #171c21;
+        background-image: url("../images/partnership-contact/line.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        background-size: auto 100%;
+        border-radius: 0;
+        position: relative;
+        overflow: visible;
+        padding: 109px 48px 100px 109px;
+        margin-right: 0;
+        color: var(--white);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      @media (min-width: 1221px) {
+        .partnershipBox .right.formBox {
+          margin-right: calc((1220px - 100vw) / 2);
+          padding-right: calc((100vw - 1220px) / 2 + 48px);
+          width: calc(562px + (100vw - 1220px) / 2);
+        }
+      }
+
+      .partnershipBox .doodle-icon {
+        position: absolute;
+        top: 105px;
+        left: -65px;
+        width: 130px;
+        height: auto;
+        pointer-events: none;
+        z-index: 10;
+        opacity: 1;
+        transform: rotate(-10deg);
+      }
+
+      .partnershipBox .left .display-t1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 8px;
+        color: var(--black-bg);
+      }
+
+      .partnershipBox .left .subheading {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.35;
+        margin-bottom: 16px;
+        color: var(--black-bg);
+      }
+
+      .partnershipBox .left .description {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #333;
+        margin-bottom: 16px;
+        max-width: 90%;
+      }
+
+      .partnershipBox .brands-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .partnershipBox .brands-grid:last-of-type {
+        margin-bottom: 20px;
+      }
+      .partnershipBox .brand-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        border: 1px solid #ebedf0;
+        border-radius: 10px;
+        background-color: #fff;
+        transition: box-shadow 0.3s ease;
+      }
+      .partnershipBox .brand-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      .partnershipBox .brands-grid img {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+      }
+
+      .partnershipBox .divider {
+        display: none;
+      }
+
+      .partnershipBox .we-partner-with {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.35;
+        margin-bottom: 16px;
+        color: var(--black-bg);
+      }
+
+      .partnershipBox .partner-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 6px;
+        margin-bottom: 24px;
+      }
+
+      .partnershipBox .partner-list li {
+        position: relative;
+        padding-left: 20px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #000;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .partnershipBox .partner-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #8bb0f5; /* Light blue matching the image */
+      }
+
+      .partnershipBox .highlight-label {
+        display: inline-block;
+        background-color: #0e161c;
+        color: #fff;
+        padding: 10px 16px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        white-space: nowrap;
+      }
+
+      .partnershipBox .right .form-heading {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-top: 40px;
+        margin-bottom: 29px;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+      }
+
+      .partnership-form {
+        position: relative;
+        z-index: 1;
+      }
+
+      .partnership-form .form-field {
+        margin-bottom: 16px;
+      }
+
+      .partnership-form .form-row {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .partnership-form .form-row .half {
+        width: 50%;
+        margin-bottom: 0;
+      }
+
+      .partnership-form input,
+      .partnership-form select,
+      .partnership-form textarea {
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        height: 48px;
+        line-height: normal;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+      .partnership-form textarea {
+        height: auto;
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .partnership-form input::placeholder,
+      .partnership-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .partnership-form input:focus,
+      .partnership-form select:focus,
+      .partnership-form textarea:focus {
+        border-color: var(--primary);
+        outline: none;
+      }
+
+      .partnership-form select {
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: none;
+        padding: 10px 48px 10px 20px;
+        font-size: 14px;
+        color: #fff;
+      }
+      .partnership-form select:invalid {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .partnership-form select option {
+        background-color: #171c21;
+        color: #fff;
+      }
+
+      .partnershipBox .join-btn {
+        background-color: var(--primary);
+        color: var(--white);
+        margin-top: 13px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 14px 32px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        transition: background-color 0.3s;
+        height: auto;
+      }
+
+      @media only screen and (max-width: 1199px) {
+        .partnershipBox .right.formBox,
+        .partnershipBox .left {
+          width: 100%;
+        }
+      }
+
+      .partnershipBox .join-btn:hover {
+        background-color: var(--blue);
+      }
+
+      @media only screen and (max-width: 991px) {
+        .partnershipBox {
+          padding-top: 40px;
+          padding-bottom: 60px;
+        }
+        .partnershipBox .holder {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+        .partnershipBox .left {
+          display: contents;
+        }
+        .partnershipBox .left > * {
+          order: 1;
+        }
+        .partnershipBox .left .we-partner-with,
+        .partnershipBox .left .partner-list,
+        .partnershipBox .left .highlight-label {
+          order: 3;
+        }
+        .partnershipBox .left .we-partner-with {
+          margin-top: 32px;
+          margin-bottom: -4px;
+        }
+        .partnershipBox .left .partner-list {
+          margin-bottom: 16px;
+        }
+        .partnershipBox .left .display-t1 {
+          margin: 0 0 12px 0;
+          padding: 0;
+          line-height: 1.1;
+        }
+        .partnershipBox .left .subheading {
+          margin: 0 0 12px 0;
+          padding: 0;
+          line-height: 1.2;
+          font-size: 16px;
+          color: #000;
+        }
+        .partnershipBox .left .description {
+          margin: 0 0 0 0;
+          padding: 0;
+          line-height: 1.35;
+          color: #666;
+        }
+        .partnershipBox .right.formBox {
+          order: 2;
+          width: 100%;
+          height: auto;
+          margin-right: 0;
+          padding: 32px 24px;
+          border-radius: 16px;
+          background-image: none;
+        }
+        .partnershipBox .right .form-heading {
+          margin-top: 0;
+        }
+        .partnershipBox .highlight-label {
+          margin-top: 0;
+          white-space: normal;
+          max-width: 100%;
+        }
+        .partnershipBox .doodle-icon,
+        .partnershipBox .bg {
+          display: none;
+        }
+        .partnershipBox .brands-grid {
+          margin-bottom: -8px;
+        }
+        .partnershipBox .partner-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px 0;
+          margin-bottom: 24px;
+          padding-left: 20px;
+        }
+        .partnershipBox .partner-list li {
+          width: 50%;
+          padding-left: 0;
+          padding-right: 10px;
+        }
+        .partnershipBox .partner-list li:nth-child(n + 5) {
+          width: 100%;
+          padding-right: 0;
+        }
+        .partnershipBox .partner-list li::before {
+          left: -20px;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        .partnership-form .form-row {
+          flex-direction: row;
+          gap: 16px;
+        }
+        .partnership-form .form-row .half {
+          width: calc(50% - 8px);
+        }
+        .partnershipBox .left .display-t1,
+        .partnershipBox .right .form-heading {
+          font-size: 28px;
+        }
+        .partnership-form select {
+          font-size: 14px;
+          padding-right: 30px;
+          padding-left: 12px;
+        }
+      }
+
+      .bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+      }
+
+      .bg img {
+        height: 100%;
+      }
+    </style>
+
+    <!-- PartnershipContactForm-Start -->
+    <section class="partnershipBox centered">
+      <div class="holder">
+        <div class="left">
+          <div class="top-text">
+            <h1 class="display-t1">Partner With Pragma</h1>
+            <h3 class="heading-3 subheading">
+              Build with us. Integrate with us. Scale with us.
+            </h3>
+            <p class="body-text-2 description">
+              If your product or service touches commerce infrastructure,
+              there's likely a collaboration opportunity.
+            </p>
+          </div>
+
+          <div class="brands-grid">
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/unicommerce.png"
+                alt="Unicommerce"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/delhivery.png"
+                alt="Delhivery"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/bluedart.png"
+                alt="Blue Dart"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/shopify.png"
+                alt="Shopify"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/cashfreepayments.png"
+                alt="Cashfree Payments"
+              />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="brands-grid">
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/razorpay.png"
+                alt="Razorpay"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/nitro.png"
+                alt="Nitro"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/truecaller.png"
+                alt="Truecaller"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/nector.png"
+                alt="Nector"
+              />
+            </div>
+            <div class="brand-item">
+              <img
+                src="assets/images/partnership-contact/meta.png"
+                alt="Meta"
+              />
+            </div>
+          </div>
+
+          <h3 class="heading-3 we-partner-with">We Partner With</h3>
+
+          <ul class="partner-list body-text-2">
+            <li>Payment providers</li>
+            <li>Courier networks</li>
+            <li>Technology integrators</li>
+            <li>OMS / WMS platforms</li>
+            <li>Martech & Ad platforms</li>
+            <li>Agencies and growth consultants</li>
+          </ul>
+
+          <div class="highlight-label body-text-2">
+            We prioritise partnerships that improve outcomes for shared
+            customers
+          </div>
+        </div>
+
+        <div class="right formBox">
+          <img
+            src="assets/images/partnership-contact/doodle.png"
+            class="doodle-icon"
+            alt="Emoji"
+          />
+          <h2 class="display-t1 form-heading">Start a Partnership</h2>
+          <form class="partnership-form">
+            <div class="form-field">
+              <input
+                type="text"
+                class="cf-input"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+            <div class="form-field">
+              <input
+                type="url"
+                class="cf-input"
+                placeholder="Company Website link"
+                required
+              />
+            </div>
+            <div class="form-field">
+              <input
+                type="email"
+                class="cf-input"
+                placeholder="Company Email Address"
+                required
+              />
+            </div>
+            <div class="form-row mobile-2-col">
+              <div class="form-field half">
+                <input
+                  type="tel"
+                  class="cf-input"
+                  placeholder="Contact Number"
+                  required
+                />
+              </div>
+              <div class="form-field half cf-select-wrap">
+                <select
+                  class="cf-select"
+                  id="cf-orders"
+                  required
+                  style="background-image: none"
+                >
+                  <option value="" disabled selected>Orders per month</option>
+                  <option value="lt-500">&lt; 500</option>
+                  <option value="500-2000">500 – 2,000</option>
+                  <option value="2000-10000">2,000 – 10,000</option>
+                  <option value="10000-50000">10,000 – 50,000</option>
+                  <option value="gt-50000">50,000+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <textarea
+                placeholder="Brief Description (Optional)"
+                rows="4"
+              ></textarea>
+            </div>
+            <button type="submit" class="button join-btn">
+              Join Us &rarr;
+            </button>
+          </form>
+
+          <div class="bg">
+            <img src="assets/images/partnership-contact/line.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PartnershipContactForm-end -->
+  </body>
+</html>

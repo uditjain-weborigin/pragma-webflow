@@ -1,0 +1,1507 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* =========================================
+   Separator
+   ========================================= */
+      .kb-separator {
+        border: 0;
+        border-top: 1px solid #e5e7eb; /* Light grey */
+        margin: 0;
+        width: 100%;
+      }
+
+      /* =========================================
+   KB Article Layout
+   ========================================= */
+      .kb-article-container {
+        padding: 100px 0 80px; /* Reduced top padding slightly */
+        background-color: var(--white);
+      }
+
+      .kb-article-top {
+        margin-bottom: 24px;
+      }
+
+      .kb-article-top .breadcrumb-nav {
+        justify-content: center;
+      }
+
+      .kb-article-top .breadcrumb-nav a,
+      .kb-article-top .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 24px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      .kb-article-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr 240px; /* Slightly wider sidebars */
+        gap: 64px; /* Increased gap for better spacing */
+        max-width: 1320px; /* More standard max-width */
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      /* Left Sidebar */
+      .kb-sidebar-left {
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 120px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kb-contents-title {
+        font-size: 18px; /* More professional size */
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 20px;
+      }
+
+      .kb-contents-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        padding-right: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+      }
+
+      /* Custom Scrollbar for TOC List */
+      .kb-contents-list::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb:hover {
+        background: #d1d5db;
+      }
+
+      .kb-contents-list > li {
+        margin-bottom: 4px; /* Tighter spacing */
+      }
+
+      .kb-contents-list > li > a {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #111827;
+        padding: 10px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition:
+          background-color 0.1s ease,
+          color 0.1s ease;
+        border: none !important;
+      }
+
+      .kb-contents-list > li > a:hover {
+        background-color: #f3f4f6;
+      }
+
+      /* Active indicator */
+      .kb-contents-list .kb-active-item > a,
+      .kb-contents-list li a.active {
+        color: #000 !important;
+        background-color: #bfd6ff !important;
+        border-radius: 6px;
+        border: none !important;
+      }
+
+      .kb-sub-list {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-top: 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .kb-sub-list li {
+        position: relative !important;
+        padding-left: 20px !important;
+        margin-bottom: 2px !important;
+        display: block !important;
+      }
+
+      .kb-sub-list li::before {
+        content: "•" !important;
+        position: absolute !important;
+        left: 8px !important;
+        top: 8px !important;
+        color: #111827 !important;
+        font-weight: bold !important;
+        z-index: 1; /* Stay above the link background */
+      }
+
+      .kb-sub-list li a {
+        display: block !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        color: #111827 !important;
+        text-decoration: none !important;
+        padding: 6px 10px !important;
+        border-radius: 4px !important;
+        transition: all 0.2s !important;
+      }
+
+      .kb-sub-list li a:hover {
+        background-color: #f9fafb !important;
+      }
+
+      .kb-sub-list li a.active {
+        background-color: #bfd6ff !important;
+        font-weight: 700 !important;
+      }
+
+      /* Main Content */
+      .kb-main-content {
+        max-width: 100%;
+      }
+
+      .kb-main-image-wrapper {
+        margin-bottom: 32px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .kb-article-body h2 {
+        scroll-margin-top: 100px;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        font-size: 32px; /* Larger headings */
+        font-weight: 700;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body h3 {
+        scroll-margin-top: 100px;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body p {
+        margin-bottom: 28px; /* More space between paragraphs */
+        color: #000000;
+        line-height: 1.7; /* Improved readability */
+        font-size: 16px;
+      }
+
+      .kb-case-study-tag {
+        display: none;
+      }
+
+      @media (min-width: 769px) {
+        .kb-text-highlight {
+          background-color: #d9d9d9;
+          padding: 2px 4px;
+          border-radius: 2px;
+        }
+
+        .kb-case-study-tag {
+          display: inline-flex;
+          align-items: center;
+          border: 1px solid #2871f0;
+          color: #2871f0;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+          margin-left: 10px;
+          margin-right: 5px;
+          position: relative;
+          background: #fff;
+          line-height: 1;
+          vertical-align: middle;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover {
+          background-color: #2871f0;
+          color: #fff;
+        }
+
+        .kb-case-study-tag::before {
+          content: "";
+          position: absolute;
+          left: -5px;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-left: 1px solid #2871f0;
+          border-bottom: 1px solid #2871f0;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover::before {
+          background: #2871f0;
+        }
+      }
+
+      .kb-main-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      .kb-instruction-steps {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--black);
+      }
+
+      .kb-instruction-steps p {
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .kb-instruction-steps ol {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .kb-instruction-steps ol li {
+        margin-bottom: 8px;
+      }
+
+      /* Right Sidebar */
+      .kb-sidebar-right {
+        position: sticky;
+        top: 100px;
+      }
+
+      .kb-person-cta {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Added shadow */
+        cursor: pointer;
+      }
+
+      .kb-person-image-wrapper {
+        width: 100%;
+        position: relative;
+      }
+
+      .kb-person-image-wrapper:hover {
+        opacity: 0.9;
+      }
+
+      .kb-person-image-wrapper > img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Tags */
+      .kb-tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .kb-tag {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #fff7ed; /* Light orange/beige background */
+        border: 1px solid #ffedd5;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #9a3412; /* Dark orange/brown text */
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .kb-tag:hover {
+        background: #ffedd5;
+        transform: translateY(-1px);
+      }
+
+      .kb-tag.tag-green {
+        background: #f0fdf4; /* Light green */
+        color: #166534; /* Dark green */
+        border-color: #dcfce7;
+      }
+
+      .kb-tag.tag-green:hover {
+        background: #dcfce7;
+      }
+
+      /* Media Queries */
+      @media only screen and (max-width: 1024px) {
+        .kb-article-layout {
+          grid-template-columns: 220px 1fr 220px;
+          gap: 32px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-article-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .kb-sidebar-left,
+        .kb-sidebar-right {
+          position: static;
+        }
+
+        .kb-sidebar-left {
+          order: 2; /* Move contents below main image on mobile */
+        }
+
+        .kb-main-content {
+          order: 1;
+        }
+
+        .kb-sidebar-right {
+          order: 3;
+        }
+      }
+      /* Case Study Specific Styles */
+      .kb-highlight-box {
+        background-color: #bfd6ff;
+        border-radius: 12px;
+        padding: 48px;
+        margin: 48px 0;
+        position: relative;
+      }
+
+      .kb-highlight-box::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary);
+        border-radius: 50%;
+      }
+
+      .kb-highlight-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 32px;
+        line-height: 1.25;
+      }
+
+      .kb-highlight-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #000;
+        margin-bottom: 40px;
+      }
+
+      .kb-highlight-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn-light-blue {
+        background-color: #c5daff;
+        color: var(--primary);
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-outline-blue {
+        background: #ffffff;
+        color: var(--primary);
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .diag-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--black-bg);
+      }
+
+      /* Mobile KB Article Styles */
+      @media only screen and (max-width: 1024px) {
+        .kb-mobile-toc {
+          display: block !important;
+          margin-bottom: 24px;
+          background: var(--white);
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .kb-mobile-toc-header {
+          width: 100%;
+          padding: 16px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: none;
+          border: none;
+          font-size: 16px;
+          font-weight: 600;
+          color: #4b5563;
+          cursor: pointer;
+        }
+
+        .kb-mobile-toc-header i {
+          font-size: 12px;
+          transition: transform 0.3s;
+          color: #9ca3af;
+        }
+
+        .kb-mobile-toc-header.active i {
+          transform: rotate(180deg);
+        }
+
+        .kb-mobile-toc-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          padding: 0 20px;
+        }
+
+        .kb-mobile-toc-header.active + .kb-mobile-toc-content {
+          max-height: 500px;
+          padding-bottom: 20px;
+        }
+
+        .kb-mobile-toc .kb-contents-list {
+          margin-top: 10px;
+        }
+
+        .kb-mobile-toc .kb-contents-list > li > a {
+          padding: 6px 0;
+          background: none !important;
+          font-size: 14px;
+        }
+      }
+
+      @media only screen and (min-width: 1025px) {
+        .kb-mobile-toc {
+          display: none;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-sidebar-left,
+        .kb-sidebar-right,
+        .kb-article-top .breadcrumb-nav {
+          display: none !important;
+        }
+
+        .kb-article-container {
+          padding: 60px 20px 40px !important; /* Increase horizontal padding */
+        }
+
+        .kb-article-body h2 {
+          font-size: 20px !important;
+          margin-top: 32px !important;
+          margin-bottom: 16px !important;
+          line-height: 1.3 !important;
+        }
+
+        .kb-article-body h3 {
+          font-size: 18px !important;
+          margin-top: 28px !important;
+          margin-bottom: 12px !important;
+        }
+
+        .kb-article-body p {
+          margin-bottom: 20px !important;
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+          color: #000000 !important;
+        }
+
+        .kb-main-image-wrapper {
+          margin-bottom: 24px !important;
+        }
+      }
+
+      .kb-person-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.4);
+        color: var(--white);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .kb-person-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: var(--primary);
+        color: var(--white);
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 12px;
+        margin-bottom: 20px;
+      }
+      /* Sidebar Similar Articles */
+      .kb-sidebar-similar-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--black);
+        margin-top: 32px;
+        margin-bottom: 12px;
+      }
+
+      .kb-sidebar-sep {
+        height: 1px;
+        background-color: #e5e7eb;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .kb-sidebar-article-list {
+        margin-bottom: 16px;
+      }
+
+      .kb-sidebar-article-item {
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+
+      .kb-sidebar-article-link {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .kb-sidebar-article-link:hover {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      /* Article Metadata Bar */
+      .kb-article-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-top: 1px solid #e5e7eb;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+
+      .kb-meta-author {
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .kb-meta-author strong {
+        color: var(--black);
+        font-weight: 700;
+      }
+
+      .kb-meta-info {
+        color: #000000;
+      }
+
+      /* AI Summary Section */
+      .kb-summary-box {
+        background-color: #000;
+        border-radius: 12px;
+        padding: 24px 32px;
+        margin-top: 24px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .kb-summary-text {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .kb-summary-text span {
+        color: #c5daff; /* Light blue color for "Summarise" */
+      }
+
+      .kb-ai-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .kb-ai-btn {
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        text-decoration: none;
+      }
+
+      .kb-ai-btn:hover {
+        opacity: 0.9;
+      }
+
+      .kb-ai-btn img {
+        height: 20px;
+        width: auto;
+      }
+
+      /* TLDR Section */
+      .kb-tldr-box {
+        border: 2px dashed #fbbf24; /* Yellow-orange dashed border */
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-tldr-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .kb-tldr-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .kb-tldr-icon img {
+        width: 32px;
+        height: auto;
+      }
+
+      .kb-tldr-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #000;
+      }
+
+      .kb-tldr-summary {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #000000;
+        margin-bottom: 24px;
+      }
+
+      .kb-takeaways-block {
+        background-color: #fffbeb; /* Light yellow background */
+        padding: 20px;
+        margin: 0 -24px -24px -24px; /* Expand to edges of parent padding */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .kb-takeaways-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 16px;
+      }
+
+      .kb-takeaways-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .kb-takeaways-list li {
+        position: relative;
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #1f2937;
+        margin-bottom: 10px;
+      }
+
+      .kb-takeaways-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* FAQ Section */
+      .kb-faq-section {
+        border: 2px dashed #3b82f6; /* Blue dashed border */
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 60px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-faq-header {
+        background-color: #c5daff; /* Light blue-ish background from mockup */
+        padding: 32px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .kb-faq-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #000;
+        margin-bottom: 12px;
+      }
+
+      .kb-faq-subtitle {
+        font-size: 13px;
+        font-style: italic;
+        color: #000000;
+        line-height: 1.4;
+      }
+
+      .kb-faq-body {
+        padding: 0;
+      }
+
+      .kb-faq-item {
+        padding: 32px;
+        margin-bottom: 0;
+        background-color: var(--white);
+      }
+
+      .kb-faq-item:nth-child(even) {
+        background-color: #f3f4f6; /* Light gray background for alternating items */
+      }
+
+      .kb-faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .kb-faq-question {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .kb-faq-answer {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #4b5563;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      /* Floating Mobile Summary Sidebar */
+      .mobile-float-summary {
+        position: fixed;
+        left: 0;
+        top: 30%; /* Fixed top position to prevent vertical shift on height change */
+        z-index: 1000;
+        display: none !important;
+      }
+
+      .float-summary-trigger {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 6px;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .float-summary-expanded {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: transparent;
+      }
+
+      .mobile-float-summary.is-open .float-summary-expanded {
+        display: block;
+      }
+
+      .mobile-float-summary.is-open .float-summary-trigger {
+        display: none !important;
+      }
+
+      .float-summary-close {
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -30px;
+        left: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .float-summary-close img {
+        width: 10px;
+      }
+
+      .float-summary-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .float-summary-label {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 10px;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .float-summary-options {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .float-ai-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .float-ai-btn img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      .float-ai-btn:hover {
+        background-color: #f3f4f6;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      .view-more-mobile {
+        display: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .related-blogs-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .related-blogs-header .view-more-link {
+          display: none !important;
+        }
+
+        .view-more-mobile {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          margin: 32px auto 0;
+          padding: 10px 24px;
+          border: 1px solid #2871f0;
+          border-radius: 6px;
+          color: #2871f0 !important;
+          font-size: 14px;
+          font-weight: 500;
+          background-color: var(--white);
+          transition: all 0.3s;
+        }
+
+        .view-more-mobile:hover {
+          background-color: #2871f0;
+          color: var(--white) !important;
+        }
+
+        .related-blogs-grid {
+          flex-direction: column;
+          gap: 24px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .mobile-float-summary.is-visible {
+          display: block !important;
+        }
+
+        .mobile-only-section {
+          display: block !important;
+          margin-top: 40px;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+
+    <!-- Content-start -->
+    <div class="kb-article-container centered">
+      <!-- Breadcrumb & Header part moved above the 3 columns -->
+      <div class="kb-article-top">
+        <nav class="breadcrumb-nav">
+          <a href="#">Resources</a>
+          <span class="breadcrumb-sep">&gt;</span>
+          <a href="#">Knowledge Base</a>
+          <span class="breadcrumb-sep">&gt;</span>
+          <span class="breadcrumb-current">Whatsapp</span>
+        </nav>
+      </div>
+
+      <!-- 3-Column Layout -->
+      <div class="kb-article-layout">
+        <!-- Left Sidebar: Contents -->
+        <aside class="kb-sidebar-left">
+          <h3 class="kb-contents-title">Contents</h3>
+          <ul class="kb-contents-list">
+            <li class="kb-active-item">
+              <a href="#trust-weaken" class="active"
+                >Why does customer trust weaken despite good products?</a
+              >
+            </li>
+            <li class="kb-has-submenu">
+              <a href="#trust-collapses" class="kb-submenu-title"
+                >The micro-breakpoints where trust collapses</a
+              >
+              <ul class="kb-sub-list">
+                <li>
+                  <a href="#breakpoint-1"
+                    >Breakpoint 1: PDP friction that feels "unreliable"</a
+                  >
+                </li>
+                <li>
+                  <a href="#breakpoint-2"
+                    >Breakpoint 2: Lack of clarity around returns, refunds, and
+                    replacements</a
+                  >
+                </li>
+                <li>
+                  <a href="#breakpoint-3"
+                    >Breakpoint 3: Delivery timeline distrust</a
+                  >
+                </li>
+                <li>
+                  <a href="#breakpoint-4"
+                    >Breakpoint 4: Payment moment uncertainty</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#behaviour" class="kb-submenu-title"
+                >Behaviour from Pragma</a
+              >
+            </li>
+            <li>
+              <a href="#strategy" class="kb-submenu-title"
+                >Strategic Implementation</a
+              >
+            </li>
+            <li>
+              <a href="#optimisation" class="kb-submenu-title"
+                >Post-Purchase Optimisation</a
+              >
+            </li>
+            <li>
+              <a href="#retention" class="kb-submenu-title"
+                >Customer Retention Metrics</a
+              >
+            </li>
+            <li>
+              <a href="#scaling" class="kb-submenu-title"
+                >Scaling Your D2C Brand</a
+              >
+            </li>
+            <li>
+              <a href="#future" class="kb-submenu-title"
+                >Future of Indian E-commerce</a
+              >
+            </li>
+            <li>
+              <a href="#conclusion" class="kb-submenu-title"
+                >Final Thoughts & Conclusion</a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="kb-main-content">
+          <div class="kb-main-image-wrapper">
+            <img
+              src="assets/images/related-blogs/facebook.png"
+              alt="Facebook Meta Integration"
+            />
+          </div>
+
+          <!-- Mobile Table of Contents Accordion -->
+          <div class="kb-mobile-toc">
+            <button class="kb-mobile-toc-header js-kb-toc-toggle">
+              <span>Table of Contents</span>
+              <i class="icon-chevron-down"></i>
+            </button>
+            <div class="kb-mobile-toc-content">
+              <ul class="kb-contents-list">
+                <li class="kb-active-item">
+                  <a href="#trust-weaken" class="active"
+                    >Why does customer trust weaken despite good products?</a
+                  >
+                </li>
+                <li class="kb-has-submenu">
+                  <a href="#trust-collapses" class="kb-submenu-title"
+                    >The micro-breakpoints where trust collapses</a
+                  >
+                  <ul class="kb-sub-list">
+                    <li>
+                      <a href="#breakpoint-1"
+                        >Breakpoint 1: PDP friction that feels "unreliable"</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#breakpoint-2"
+                        >Breakpoint 2: Lack of clarity around returns, refunds,
+                        and replacements</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#breakpoint-3"
+                        >Breakpoint 3: Delivery timeline distrust</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#breakpoint-4"
+                        >Breakpoint 4: Payment moment uncertainty</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#conclusion" class="kb-submenu-title"
+                    >The micro-breakpoints where...</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kb-article-body">
+            <h2 id="trust-weaken">
+              Why does customer trust weaken despite good products?
+            </h2>
+            <p>
+              Trust is the foundation of any D2C brand's relationship with its
+              customers. Even with high-quality products, fragmented
+              communication or unclear policies can lead to a decline in
+              consumer confidence.
+            </p>
+
+            <h2 id="trust-collapses">
+              The micro-breakpoints where trust collapses
+            </h2>
+            <p>
+              Every interaction point is an opportunity to build or break trust.
+              These "micro-breakpoints" often occur during critical
+              decision-making stages of the customer journey.
+            </p>
+
+            <h3 id="breakpoint-1">
+              Breakpoint 1: PDP friction that feels "unreliable"
+            </h3>
+            <p>
+              When product detail pages (PDPs) lack essential information or use
+              confusing layouts, users may feel the brand is unprofessional or
+              hiding details.
+            </p>
+
+            <div class="kb-instruction-steps">
+              <h3 id="breakpoint-2">
+                Breakpoint 2: Lack of clarity around returns, refunds, and
+                replacements
+              </h3>
+              <p>Primary page not connected in Facebook business manager:</p>
+              <ol>
+                <li>Login to FB business manager</li>
+                <li>Go to Accounts</li>
+                <li>Go to Pages</li>
+                <li>Click on Add page</li>
+                <li>Paste your brand's Facebook page URL</li>
+              </ol>
+
+              <h3 id="breakpoint-3">
+                Breakpoint 3: Delivery timeline distrust
+              </h3>
+
+              <div class="kb-highlight-box">
+                <h2 class="kb-highlight-title">
+                  Real-time tracking is the #1 trust builder in modern D2C
+                </h2>
+                <p class="kb-highlight-text">
+                  Providing real-time tracking is essential to maintaining
+                  trust. When customers know exactly where their package is,
+                  anxiety drops by 70%.
+                </p>
+                <div class="kb-highlight-footer">
+                  <button class="btn-light-blue">98% Accuracy</button>
+                  <button class="btn-outline-blue">
+                    View Case Study <i class="icon-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <p>
+                Delayed or vague shipping information creates anxiety. Providing
+                real-time tracking is essential to maintaining trust.
+              </p>
+
+              <h3 id="breakpoint-4">
+                Breakpoint 4: Payment moment uncertainty
+              </h3>
+              <p>
+                The final checkout step is where most drop-offs happen if the
+                payment gateway feels unsecure or lacks popular local payment
+                methods.
+              </p>
+
+              <h2 id="conclusion">The micro-breakpoints where...</h2>
+              <p>
+                In conclusion, addressing these specific friction points with
+                clear communication and robust tools like Pragma is key to
+                scaling long-term loyalty.
+              </p>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="kb-sidebar-right">
+          <!-- Person Card CTA -->
+          <div class="kb-person-cta">
+            <a href="#" class="kb-person-image-wrapper">
+              <img
+                src="assets/images/related-blogs/person image.png"
+                alt="Custom CTA Video"
+              />
+            </a>
+          </div>
+
+          <!-- Tags -->
+          <div class="kb-tags-container">
+            <a href="#" class="kb-tag">COD to Prepaid</a>
+            <a href="#" class="kb-tag tag-green">WhatsApp</a>
+            <a href="#" class="kb-tag">something else</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- Content-end  -->
+    <!-- Separator -->
+    <hr class="kb-separator" />
+
+    <script>
+      /**
+       * Single Blog Article Page Scripts
+       * Handles TOC toggles, Floating Summary, and Scroll Interactions
+       */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. KB Mobile TOC Toggle
+        // Toggles the visibility of the Table of Contents on mobile devices
+        const tocToggles = document.querySelectorAll(".js-kb-toc-toggle");
+        tocToggles.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (
+              content &&
+              content.classList.contains("kb-mobile-toc-content")
+            ) {
+              content.classList.toggle("is-visible");
+            }
+          });
+        });
+
+        // 2. Mobile Floating Summary Sidebar
+        // Shows/hides the floating summary button based on scroll position
+        // and handles the expansion/collapse of the summary panel
+        const floatSummary = document.querySelector(".js-mobile-float-summary");
+        const summaryBox = document.querySelector(".kb-summary-box");
+
+        if (floatSummary && summaryBox) {
+          const handleScroll = () => {
+            const summaryBoxRect = summaryBox.getBoundingClientRect();
+            // Show floating sidebar only when user scrolls past the top summarize section
+            if (summaryBoxRect.bottom < 0) {
+              floatSummary.classList.add("is-visible");
+            } else {
+              floatSummary.classList.remove("is-visible");
+              floatSummary.classList.remove("is-open"); // Close if user scrolls back up
+            }
+          };
+
+          window.addEventListener("scroll", handleScroll);
+
+          // Toggle Expansion
+          const toggleBtns = document.querySelectorAll(
+            ".js-toggle-float-summary",
+          );
+          toggleBtns.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              floatSummary.classList.toggle("is-open");
+            });
+          });
+        }
+
+        // 3. Scroll Spy for Table of Contents
+        // Highlights the active section in the sidebar as the user scrolls
+        const sections = document.querySelectorAll(
+          "main h2[id], main h3[id], main div[id], main p[id]",
+        );
+        const navLinks = document.querySelectorAll(
+          ".kb-sidebar-left .kb-contents-list a",
+        );
+
+        if (sections.length > 0 && navLinks.length > 0) {
+          const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -70% 0px",
+            threshold: 0,
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                updateActiveLink(id);
+              }
+            });
+          }, observerOptions);
+
+          sections.forEach((section) => observer.observe(section));
+
+          function updateActiveLink(id) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              link.parentElement.classList.remove("kb-active-item");
+
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
+                link.parentElement.classList.add("kb-active-item");
+
+                // Scroll the active link into view within the sidebar
+                const sidebar = document.querySelector(".kb-contents-list");
+                if (sidebar) {
+                  const linkRect = link.getBoundingClientRect();
+                  const sidebarRect = sidebar.getBoundingClientRect();
+
+                  if (
+                    linkRect.top < sidebarRect.top ||
+                    linkRect.bottom > sidebarRect.bottom
+                  ) {
+                    link.scrollIntoView({
+                      behavior: "smooth",
+                      block: "nearest",
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+
+        // 4. Smooth Scroll for TOC Links
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href.startsWith("#")) {
+              e.preventDefault();
+              const targetId = href.substring(1);
+              const targetElement = document.getElementById(targetId);
+
+              if (targetElement) {
+                // Immediate visual feedback
+                updateActiveLink(targetId);
+
+                window.scrollTo({
+                  top: targetElement.offsetTop - 100, // Offset for sticky header
+                  behavior: "smooth",
+                });
+
+                // Close mobile TOC if open
+                const mobileToc = document.querySelector(
+                  ".kb-mobile-toc-header.active",
+                );
+                if (mobileToc) mobileToc.click();
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

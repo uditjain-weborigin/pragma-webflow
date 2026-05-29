@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### partnerBox ### */
+      .partnerBox {
+        transform: translateY(-200px);
+        position: relative;
+        z-index: 1;
+      }
+      .partnerBox .holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .partnerBox .logo {
+        margin-right: 10px;
+      }
+      .partnerBox .logo:last-child {
+        margin-right: 0;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .partnerBox {
+          margin-top: -90px;
+        }
+        .partnerBox .holder {
+          margin: 0 auto;
+          max-width: 185px;
+        }
+      }
+    </style>
+
+    <!--  / main container \ -->
+    <div id="mainCntr">
+      <!--  / content container \ -->
+      <main id="contentCntr">
+        <!--  / start partnerBox \ -->
+        <div class="partnerBox centered">
+          <div class="holder">
+            <div class="logo">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/696763a2f4ca6c33fed793f8_partner-logo1.png"
+                alt=""
+              />
+            </div>
+
+            <div class="logo">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/696763a22303b6d58a37ecce_partner-logo2.png"
+                alt=""
+              />
+            </div>
+
+            <div class="logo">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/696763a22620ce14caf58310_partner-logo3.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <!--  \ end partnerBox / -->
+      </main>
+      <!--  \ content container / -->
+    </div>
+    <!--  \ main container / -->
+  </body>
+</html>

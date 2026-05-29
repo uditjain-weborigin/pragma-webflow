@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### productBox ### */
+      .productBox {
+        margin-bottom: 64px;
+        padding-top: 65px;
+        text-align: center;
+      }
+      .productBox h2 {
+        margin-bottom: 31px;
+      }
+      .productBox .holder {
+        display: grid;
+        grid-template-columns: repeat(4, 4fr);
+        gap: 15px;
+      }
+
+      /* ### card-product ### */
+      .card-product {
+        padding: 15px 15px 25px;
+        position: relative;
+        display: block;
+        width: 100%;
+        border-radius: 20px;
+        color: var(--black);
+        background-color: rgba(40, 113, 240, 0.3);
+        overflow: hidden;
+        box-shadow: 0.833312px 0.833312px 7.49981px rgba(0, 0, 0, 0.25);
+        text-align: center;
+      }
+      .card-product .link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 42px;
+        height: 42px;
+        border-bottom-left-radius: 16px;
+        background-color: var(--primary);
+      }
+      .card-product .image {
+        margin-bottom: 24px;
+        border-radius: 6px;
+        box-shadow: 0.291659px 0.291659px 2.62493px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+      }
+      .card-product .image img {
+        width: 100%;
+      }
+      .card-product .text {
+        margin: 0 auto;
+        max-width: 170px;
+      }
+      .card-product .text h4 {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.35;
+      }
+      .card-product .text *:last-child {
+        margin-bottom: 0;
+      }
+      .card-product:nth-child(even) {
+        background-color: var(--blue-300);
+      }
+      .card-product .d-phone {
+        margin: 0 auto;
+        padding: 4px 5px;
+        max-width: 84px;
+        font-size: 10px;
+        font-weight: 500;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+        display: none;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .productBox {
+          margin-bottom: 48px;
+          padding-top: 48px;
+        }
+        .productBox h2 {
+          margin-bottom: 24px;
+          font-size: 20px;
+        }
+        .productBox .holder {
+          gap: 8px;
+          grid-template-columns: repeat(2, 2fr);
+        }
+
+        .card-product {
+          padding: 9px 8px 21px;
+          border-radius: 10px;
+        }
+        .card-product .text {
+          margin-bottom: 15px;
+        }
+        .card-product .text h4 {
+          font-size: 12px;
+        }
+        .card-product .image {
+          margin-bottom: 15px;
+          border-radius: 3px;
+        }
+        .card-product .d-phone {
+          display: block;
+        }
+        .card-product .link {
+          width: 32px;
+          height: 32px;
+          border-bottom-left-radius: 12px;
+        }
+        .card-product .link img {
+          width: 16px;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!--  / start productBox \ -->
+          <div class="productBox centered">
+            <h2>Try pairing our other products with Omnichannel CRM</h2>
+
+            <div class="holder">
+              <a href="#" class="card-product">
+                <div class="link">
+                  <img src="assets/images/external-link.svg" alt="" />
+                </div>
+
+                <div class="image">
+                  <img src="assets/images/product-img.png" alt="" />
+                </div>
+
+                <div class="text">
+                  <h4>Return management system</h4>
+                </div>
+
+                <div class="d-phone">
+                  Provide Smooth Returns, Keep their trust
+                </div>
+              </a>
+
+              <a href="#" class="card-product">
+                <div class="link">
+                  <img src="assets/images/external-link.svg" alt="" />
+                </div>
+
+                <div class="image">
+                  <img src="assets/images/product-img.png" alt="" />
+                </div>
+
+                <div class="text">
+                  <h4>WhatsApp Business Suite</h4>
+                </div>
+
+                <div class="d-phone">
+                  Reach over 400M users in India seamlessly
+                </div>
+              </a>
+
+              <a href="#" class="card-product">
+                <div class="link">
+                  <img src="assets/images/external-link.svg" alt="" />
+                </div>
+
+                <div class="image">
+                  <img src="assets/images/product-img.png" alt="" />
+                </div>
+
+                <div class="text">
+                  <h4>RTO Suite</h4>
+                </div>
+
+                <div class="d-phone">
+                  Provide Smooth Returns, Keep their trust
+                </div>
+              </a>
+
+              <a href="#" class="card-product">
+                <div class="link">
+                  <img src="assets/images/external-link.svg" alt="" />
+                </div>
+
+                <div class="image">
+                  <img src="assets/images/product-img.png" alt="" />
+                </div>
+
+                <div class="text">
+                  <h4>1Checkout</h4>
+                </div>
+
+                <div class="d-phone">
+                  Provide Smooth Returns, Keep their trust
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--  \ end productBox / -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+  </body>
+</html>

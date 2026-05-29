@@ -1,0 +1,2927 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* =========================================
+   Separator
+   ========================================= */
+      .kb-separator {
+        border: 0;
+        border-top: 1px solid #e5e7eb; /* Light grey */
+        margin: 0;
+        width: 100%;
+      }
+
+      /* =========================================
+   KB Article Layout
+   ========================================= */
+      .kb-article-container {
+        padding: 100px 0 80px; /* Reduced top padding slightly */
+        background-color: var(--white);
+      }
+
+      .kb-article-top {
+        margin-bottom: 24px;
+      }
+
+      .kb-article-top .breadcrumb-nav {
+        justify-content: center;
+      }
+
+      .kb-article-top .breadcrumb-nav a,
+      .kb-article-top .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 24px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      .kb-article-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr 240px; /* Slightly wider sidebars */
+        gap: 64px; /* Increased gap for better spacing */
+        max-width: 1320px; /* More standard max-width */
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      /* Left Sidebar */
+      .kb-sidebar-left {
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 120px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kb-contents-title {
+        font-size: 18px; /* More professional size */
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 20px;
+      }
+
+      .kb-contents-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        padding-right: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+      }
+
+      /* Custom Scrollbar for TOC List */
+      .kb-contents-list::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb:hover {
+        background: #d1d5db;
+      }
+
+      .kb-contents-list > li {
+        margin-bottom: 4px; /* Tighter spacing */
+      }
+
+      .kb-contents-list > li > a {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #111827;
+        padding: 10px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition:
+          background-color 0.1s ease,
+          color 0.1s ease;
+        border: none !important;
+      }
+
+      .kb-contents-list > li > a:hover {
+        background-color: #f3f4f6;
+      }
+
+      /* Active indicator */
+      .kb-contents-list .kb-active-item > a,
+      .kb-contents-list li a.active {
+        color: #000 !important;
+        background-color: #bfd6ff !important;
+        border-radius: 6px;
+        border: none !important;
+      }
+
+      .kb-sub-list {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-top: 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .kb-sub-list li {
+        position: relative !important;
+        padding-left: 20px !important;
+        margin-bottom: 2px !important;
+        display: block !important;
+      }
+
+      .kb-sub-list li::before {
+        content: "•" !important;
+        position: absolute !important;
+        left: 8px !important;
+        top: 8px !important;
+        color: #111827 !important;
+        font-weight: bold !important;
+        z-index: 1; /* Stay above the link background */
+      }
+
+      .kb-sub-list li a {
+        display: block !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        color: #111827 !important;
+        text-decoration: none !important;
+        padding: 6px 10px !important;
+        border-radius: 4px !important;
+        transition: all 0.2s !important;
+      }
+
+      .kb-sub-list li a:hover {
+        background-color: #f9fafb !important;
+      }
+
+      .kb-sub-list li a.active {
+        background-color: #bfd6ff !important;
+        font-weight: 700 !important;
+      }
+
+      /* Main Content */
+      .kb-main-content {
+        max-width: 100%;
+      }
+
+      .kb-main-image-wrapper {
+        margin-bottom: 32px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .kb-article-body h2 {
+        scroll-margin-top: 100px;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        font-size: 32px; /* Larger headings */
+        font-weight: 700;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body h3 {
+        scroll-margin-top: 100px;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body p {
+        margin-bottom: 28px; /* More space between paragraphs */
+        color: #000000;
+        line-height: 1.7; /* Improved readability */
+        font-size: 16px;
+      }
+
+      .kb-case-study-tag {
+        display: none;
+      }
+
+      @media (min-width: 769px) {
+        .kb-text-highlight {
+          background-color: #d9d9d9;
+          padding: 2px 4px;
+          border-radius: 2px;
+        }
+
+        .kb-case-study-tag {
+          display: inline-flex;
+          align-items: center;
+          border: 1px solid #2871f0;
+          color: #2871f0;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+          margin-left: 10px;
+          margin-right: 5px;
+          position: relative;
+          background: #fff;
+          line-height: 1;
+          vertical-align: middle;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover {
+          background-color: #2871f0;
+          color: #fff;
+        }
+
+        .kb-case-study-tag::before {
+          content: "";
+          position: absolute;
+          left: -5px;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-left: 1px solid #2871f0;
+          border-bottom: 1px solid #2871f0;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover::before {
+          background: #2871f0;
+        }
+      }
+
+      .kb-main-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      .kb-instruction-steps {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--black);
+      }
+
+      .kb-instruction-steps p {
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .kb-instruction-steps ol {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .kb-instruction-steps ol li {
+        margin-bottom: 8px;
+      }
+
+      /* Right Sidebar */
+      .kb-sidebar-right {
+        position: sticky;
+        top: 100px;
+      }
+
+      .kb-person-cta {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Added shadow */
+        cursor: pointer;
+      }
+
+      .kb-person-image-wrapper {
+        width: 100%;
+        position: relative;
+      }
+
+      .kb-person-image-wrapper:hover {
+        opacity: 0.9;
+      }
+
+      .kb-person-image-wrapper > img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Tags */
+      .kb-tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .kb-tag {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #fff7ed; /* Light orange/beige background */
+        border: 1px solid #ffedd5;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #9a3412; /* Dark orange/brown text */
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .kb-tag:hover {
+        background: #ffedd5;
+        transform: translateY(-1px);
+      }
+
+      .kb-tag.tag-green {
+        background: #f0fdf4; /* Light green */
+        color: #166534; /* Dark green */
+        border-color: #dcfce7;
+      }
+
+      .kb-tag.tag-green:hover {
+        background: #dcfce7;
+      }
+
+      /* Media Queries */
+      @media only screen and (max-width: 1024px) {
+        .kb-article-layout {
+          grid-template-columns: 220px 1fr 220px;
+          gap: 32px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-article-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .kb-sidebar-left,
+        .kb-sidebar-right {
+          position: static;
+        }
+
+        .kb-sidebar-left {
+          order: 2; /* Move contents below main image on mobile */
+        }
+
+        .kb-main-content {
+          order: 1;
+        }
+
+        .kb-sidebar-right {
+          order: 3;
+        }
+      }
+      /* Case Study Specific Styles */
+      .kb-highlight-box {
+        background-color: #bfd6ff;
+        border-radius: 12px;
+        padding: 48px;
+        margin: 48px 0;
+        position: relative;
+      }
+
+      .kb-highlight-box::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary);
+        border-radius: 50%;
+      }
+
+      .kb-highlight-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 32px;
+        line-height: 1.25;
+      }
+
+      .kb-highlight-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #000;
+        margin-bottom: 40px;
+      }
+
+      .kb-highlight-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn-light-blue {
+        background-color: #c5daff;
+        color: var(--primary);
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-outline-blue {
+        background: #ffffff;
+        color: var(--primary);
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .diag-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--black-bg);
+      }
+
+      /* Mobile KB Article Styles */
+      @media only screen and (max-width: 1024px) {
+        .kb-mobile-toc {
+          display: block !important;
+          margin-bottom: 24px;
+          background: var(--white);
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+        }
+
+        .kb-mobile-toc.is-sticky {
+          position: fixed;
+          top: 70px;
+          left: 20px;
+          right: 20px;
+          z-index: 1001;
+          margin-bottom: 0;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          animation: kbSlideDown 0.3s ease-out;
+        }
+
+        @keyframes kbSlideDown {
+          from {
+            transform: translateY(-10px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .kb-mobile-toc-header {
+          width: 100%;
+          padding: 16px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: none;
+          border: none;
+          font-size: 16px;
+          font-weight: 600;
+          color: #4b5563;
+          cursor: pointer;
+        }
+
+        .kb-mobile-toc-header i {
+          font-size: 12px;
+          transition: transform 0.3s;
+          color: #9ca3af;
+        }
+
+        .kb-mobile-toc-header.active i {
+          transform: rotate(180deg);
+        }
+
+        .kb-mobile-toc-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          padding: 0 20px;
+        }
+
+        .kb-mobile-toc-header.active + .kb-mobile-toc-content {
+          max-height: 500px;
+          padding-bottom: 20px;
+        }
+
+        .kb-mobile-toc .kb-contents-list {
+          margin-top: 10px;
+        }
+
+        .kb-mobile-toc .kb-contents-list > li > a {
+          padding: 6px 0;
+          background: none !important;
+          font-size: 14px;
+        }
+      }
+
+      @media only screen and (min-width: 1025px) {
+        .kb-mobile-toc {
+          display: none;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-sidebar-left,
+        .kb-sidebar-right,
+        .kb-article-top .breadcrumb-nav {
+          display: none !important;
+        }
+
+        .kb-article-container {
+          padding: 60px 20px 40px !important; /* Increase horizontal padding */
+        }
+
+        .kb-article-body h2 {
+          font-size: 20px !important;
+          margin-top: 32px !important;
+          margin-bottom: 16px !important;
+          line-height: 1.3 !important;
+        }
+
+        .kb-article-body h3 {
+          font-size: 18px !important;
+          margin-top: 28px !important;
+          margin-bottom: 12px !important;
+        }
+
+        .kb-article-body p {
+          margin-bottom: 20px !important;
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+          color: #000000 !important;
+        }
+
+        .kb-main-image-wrapper {
+          margin-bottom: 24px !important;
+        }
+      }
+
+      .kb-person-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.4);
+        color: var(--white);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .kb-person-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: var(--primary);
+        color: var(--white);
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 12px;
+        margin-bottom: 20px;
+      }
+      /* Sidebar Similar Articles */
+      .kb-sidebar-similar-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--black);
+        margin-top: 32px;
+        margin-bottom: 12px;
+      }
+
+      .kb-sidebar-sep {
+        height: 1px;
+        background-color: #e5e7eb;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .kb-sidebar-article-list {
+        margin-bottom: 16px;
+      }
+
+      .kb-sidebar-article-item {
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+
+      .kb-sidebar-article-link {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .kb-sidebar-article-link:hover {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      /* Article Metadata Bar */
+      .kb-article-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-top: 1px solid #e5e7eb;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+
+      .kb-meta-author {
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .kb-meta-author strong {
+        color: var(--black);
+        font-weight: 700;
+      }
+
+      .kb-meta-info {
+        color: #000000;
+      }
+
+      /* AI Summary Section */
+      .kb-summary-box {
+        background-color: #000;
+        border-radius: 12px;
+        padding: 24px 32px;
+        margin-top: 24px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .kb-summary-text {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .kb-summary-text span {
+        color: #c5daff; /* Light blue color for "Summarise" */
+      }
+
+      .kb-ai-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .kb-ai-btn {
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        text-decoration: none;
+      }
+
+      .kb-ai-btn:hover {
+        opacity: 0.9;
+      }
+
+      .kb-ai-btn img {
+        height: 20px;
+        width: auto;
+      }
+
+      /* TLDR Section */
+      .kb-tldr-box {
+        border: 2px dashed #fbbf24; /* Yellow-orange dashed border */
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-tldr-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .kb-tldr-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .kb-tldr-icon img {
+        width: 32px;
+        height: auto;
+      }
+
+      .kb-tldr-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #000;
+      }
+
+      .kb-tldr-summary {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #000000;
+        margin-bottom: 24px;
+      }
+
+      .kb-takeaways-block {
+        background-color: #fffbeb; /* Light yellow background */
+        padding: 20px;
+        margin: 0 -24px -24px -24px; /* Expand to edges of parent padding */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .kb-takeaways-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 16px;
+      }
+
+      .kb-takeaways-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .kb-takeaways-list li {
+        position: relative;
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #1f2937;
+        margin-bottom: 10px;
+      }
+
+      .kb-takeaways-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* =========================================
+         Blog Author Section
+         ========================================= */
+      .kb-author-box {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 24px;
+        border-radius: 20px;
+        border: 0.5px solid #000000;
+        background: #ffffff;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 754.57px;
+      }
+
+      .kb-author-label {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #000000;
+        font-family: Satoshi, sans-serif;
+        width: 81px;
+        height: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .kb-author-image-wrapper {
+        width: 110.56px;
+        height: 140.4px;
+        border-radius: 7.02px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .kb-author-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .kb-author-info {
+        width: 467px;
+        height: 128px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .kb-author-header {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .kb-author-name {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #2871f0;
+        text-decoration: underline;
+        font-family: Satoshi, sans-serif;
+        width: fit-content;
+      }
+
+      .kb-author-name:hover {
+        text-decoration: none;
+      }
+
+      .kb-author-link-icon {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .kb-author-role {
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .kb-author-bio {
+        font-size: 13px;
+        line-height: 1.4;
+        color: #000000;
+        margin: 0 !important;
+      }
+
+      .kb-author-note {
+        font-size: 11px;
+        color: #000000;
+        opacity: 0.8;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-author-box {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 16px;
+          padding: 20px;
+          margin-top: 32px;
+          margin-bottom: 32px;
+          max-width: 100%;
+          height: auto;
+        }
+
+        .kb-author-label {
+          white-space: normal;
+          width: auto;
+          height: auto;
+          text-align: center;
+          display: block;
+        }
+
+        .kb-author-info {
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .kb-author-header {
+          align-items: center;
+        }
+
+        .kb-author-name {
+          justify-content: center;
+        }
+      }
+
+      /* FAQ Section */
+      .kb-faq-section {
+        border: 2px dashed #3b82f6; /* Blue dashed border */
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 60px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-faq-header {
+        background-color: #c5daff; /* Light blue-ish background from mockup */
+        padding: 32px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .kb-faq-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #000;
+        margin-bottom: 12px;
+      }
+
+      .kb-faq-subtitle {
+        font-size: 13px;
+        font-weight: 500;
+        color: #000000;
+        line-height: 1.4;
+      }
+
+      .kb-faq-body {
+        padding: 0;
+      }
+
+      .kb-faq-item {
+        padding: 32px;
+        margin-bottom: 0;
+        background-color: var(--white);
+      }
+
+      .kb-faq-item:nth-child(even) {
+        background-color: #f3f4f6; /* Light gray background for alternating items */
+      }
+
+      .kb-faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .kb-faq-question {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .kb-faq-answer {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #4b5563;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      /* Floating Mobile Summary Sidebar */
+      .mobile-float-summary {
+        position: fixed;
+        left: 0;
+        top: 30%; /* Fixed top position to prevent vertical shift on height change */
+        z-index: 1000;
+        display: none !important;
+      }
+
+      .float-summary-trigger {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 6px;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .float-summary-expanded {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: transparent;
+      }
+
+      .mobile-float-summary.is-open .float-summary-expanded {
+        display: block;
+      }
+
+      .mobile-float-summary.is-open .float-summary-trigger {
+        display: none !important;
+      }
+
+      .float-summary-close {
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -30px;
+        left: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .float-summary-close img {
+        width: 10px;
+      }
+
+      .float-summary-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .float-summary-label {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 10px;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .float-summary-options {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .float-ai-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .float-ai-btn img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      .float-ai-btn:hover {
+        background-color: #f3f4f6;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      .view-more-mobile {
+        display: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .related-blogs-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .related-blogs-header .view-more-link {
+          display: none !important;
+        }
+
+        .view-more-mobile {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          margin: 32px auto 0;
+          padding: 10px 24px;
+          border: 1px solid #2871f0;
+          border-radius: 6px;
+          color: #2871f0 !important;
+          font-size: 14px;
+          font-weight: 500;
+          background-color: var(--white);
+          transition: all 0.3s;
+        }
+
+        .view-more-mobile:hover {
+          background-color: #2871f0;
+          color: var(--white) !important;
+        }
+
+        .related-blogs-grid {
+          flex-direction: column;
+          gap: 24px;
+        }
+      }
+
+      .kb-top-fade {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(
+          to bottom,
+          #fff 30%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .kb-top-fade.is-visible {
+        opacity: 1;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .mobile-float-summary.is-visible {
+          display: block !important;
+        }
+
+        .mobile-only-section {
+          display: block !important;
+          margin-top: 40px;
+          margin-bottom: 20px;
+        }
+
+        /* Client fixes for mobile summary */
+        .float-summary-close {
+          width: 48px !important;
+          height: 48px !important;
+          top: -60px !important;
+        }
+
+        .float-summary-close img {
+          width: 26px !important;
+        }
+
+        .float-summary-options {
+          padding-right: 24px !important;
+        }
+
+        /* Author meta bar one-line fix for smaller mobiles */
+        @media only screen and (max-width: 500px) {
+          .kb-article-meta {
+            font-size: 13px !important;
+            justify-content: space-between !important;
+            gap: 10px !important;
+            padding: 12px 0 !important;
+            flex-wrap: nowrap !important;
+          }
+          .kb-meta-author,
+          .kb-meta-info {
+            white-space: nowrap !important;
+          }
+        }
+
+        /* AI Summary Section Mobile Fixes */
+        .kb-summary-box {
+          padding: 16px 12px !important;
+          align-items: flex-start !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+        }
+        .kb-summary-text {
+          font-size: 13px !important;
+          margin-bottom: 8px !important;
+          width: 100% !important;
+        }
+        .kb-ai-buttons {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          overflow-x: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          justify-content: flex-start !important;
+          width: 100% !important;
+          padding-bottom: 10px !important;
+          gap: 8px !important;
+        }
+        .kb-ai-buttons::-webkit-scrollbar {
+          height: 4px;
+        }
+        .kb-ai-buttons::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+        }
+        @media only screen and (max-width: 480px) {
+          .kb-summary-box {
+            padding: 16px 8px !important;
+          }
+          .kb-ai-buttons {
+            gap: 6px !important;
+          }
+          .kb-ai-btn {
+            padding: 5px 6px !important;
+            font-size: 11px !important;
+            gap: 4px !important;
+          }
+          .kb-ai-btn img {
+            height: 12px !important;
+          }
+        }
+        .kb-ai-btn {
+          flex-shrink: 0 !important;
+          background-color: transparent !important;
+          border: 1px solid rgba(255, 255, 255, 0.4) !important;
+          color: #fff !important;
+          padding: 6px 10px !important;
+          font-size: 12px !important;
+          border-radius: 6px !important;
+        }
+        .kb-ai-btn img {
+          height: 14px !important;
+          filter: brightness(0) invert(1) !important; /* Make logos white for visibility on black bg */
+        }
+        .kb-ai-btn img[alt="Google AI"] {
+          filter: none !important; /* Keep Google AI logo colorful */
+        }
+      }
+      /* =========================================
+   25% Scroll Subscriber Popup
+   ========================================= */
+      /* Backdrop overlay */
+      .scroll-popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease;
+      }
+
+      .scroll-popup-overlay.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Modal card */
+      .scroll-popup-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        z-index: 9999;
+        width: 100%;
+        max-width: 420px;
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+          visibility 0.35s ease;
+      }
+
+      .scroll-popup-modal.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Illustration header */
+      .scroll-popup-hero {
+        position: relative;
+        width: 100%;
+        background-color: #a8d4f5;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .scroll-popup-hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      /* Close button */
+      .scroll-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 2;
+      }
+
+      .scroll-popup-close:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .scroll-popup-close svg {
+        width: 14px;
+        height: 14px;
+        stroke: #374151;
+        stroke-width: 2.5;
+      }
+
+      /* Body */
+      .scroll-popup-body {
+        padding: 24px 24px 28px;
+        text-align: center;
+      }
+
+      .scroll-popup-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.45;
+        margin-bottom: 20px;
+      }
+
+      /* Email input */
+      .scroll-popup-input-wrap {
+        position: relative;
+        margin-bottom: 12px;
+      }
+
+      .scroll-popup-input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1.5px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #111827;
+        background: #f9fafb;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+
+      .scroll-popup-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .scroll-popup-input:focus {
+        border-color: #2871f0;
+        box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+        background: #fff;
+      }
+
+      /* CTA button */
+      .scroll-popup-btn {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        background: #2871f0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+        font-family: inherit;
+        letter-spacing: 0.01em;
+      }
+
+      .scroll-popup-btn:hover {
+        background: #1a5fd4;
+        transform: translateY(-1px);
+      }
+
+      .scroll-popup-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Mobile adjustments */
+      @media only screen and (max-width: 480px) {
+        .scroll-popup-modal {
+          max-width: calc(100% - 32px);
+          border-radius: 12px;
+        }
+
+        .scroll-popup-body {
+          padding: 20px 20px 24px;
+        }
+
+        .scroll-popup-title {
+          font-size: 15px;
+        }
+      }
+
+      /* =========================================
+   50% Scroll — Get a Demo Popup
+   ========================================= */
+      /* Uses the same .scroll-popup-overlay backdrop */
+
+      /* Modal card */
+      .demo-popup-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        z-index: 9999;
+        width: 400px;
+        height: 388px;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: visible; /* so close btn can overflow */
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+          visibility 0.35s ease;
+        box-sizing: border-box;
+      }
+
+      .demo-popup-modal.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Inner clipping wrapper */
+      .demo-popup-inner {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Hero section — light-blue wave background */
+      .demo-popup-hero {
+        background: #b6d3e8;
+        height: 88px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        flex-shrink: 0;
+      }
+
+      .demo-popup-hero-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #000000;
+        margin: 0;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+        white-space: nowrap;
+      }
+
+      /* Close button — top-right corner of modal */
+      .demo-popup-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, background 0.2s ease;
+        z-index: 10;
+      }
+
+      .demo-popup-close:hover {
+        transform: scale(1.1);
+        background: #ffffff;
+      }
+
+      .demo-popup-close svg {
+        width: 14px;
+        height: 14px;
+        stroke: #111827;
+        stroke-width: 2.5;
+      }
+
+      /* Body */
+      .demo-popup-body {
+        padding: 24px 58px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 300px;
+        box-sizing: border-box;
+      }
+
+      /* Input fields */
+      .demo-popup-input {
+        width: 100%;
+        height: 50px;
+        padding: 0 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #111827;
+        background: #ffffff;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+
+      .demo-popup-input::placeholder {
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 14px;
+      }
+
+      .demo-popup-input:focus {
+        border-color: #2871f0;
+        box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+        background: #fff;
+      }
+
+      /* CTA button */
+      .demo-popup-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 135px;
+        height: 54px;
+        margin: 12px auto 0;
+        padding: 0;
+        background: #2871f0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        font-family: inherit;
+        letter-spacing: 0.01em;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+        box-sizing: border-box;
+      }
+
+      .demo-popup-btn:hover {
+        background: #1a5fd4;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(40, 113, 240, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .demo-popup-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Mobile */
+      @media only screen and (max-width: 480px) {
+        .demo-popup-modal {
+          width: calc(100% - 32px);
+          max-width: calc(100% - 32px);
+          height: auto;
+          border-radius: 16px;
+        }
+
+        .demo-popup-inner {
+          border-radius: 16px;
+        }
+
+        .demo-popup-hero {
+          height: 72px;
+        }
+
+        .demo-popup-hero-title {
+          font-size: 16px;
+          white-space: normal;
+        }
+
+        .demo-popup-body {
+          padding: 20px 20px 24px;
+          height: auto;
+        }
+      }
+    </style>
+
+    <!-- Top Fade Overlay -->
+    <div class="kb-top-fade js-kb-top-fade"></div>
+
+    <!-- Content-start -->
+    <div class="kb-article-container centered">
+      <!-- Breadcrumb & Header part moved above the 3 columns -->
+      <div class="kb-article-top">
+        <nav class="breadcrumb-nav">
+          <a href="#">Resources</a>
+          <span class="breadcrumb-sep">&gt;</span>
+          <a href="#">Blogs</a>
+          <span class="breadcrumb-sep">&gt;</span>
+          <span class="breadcrumb-current">Whatsapp</span>
+        </nav>
+      </div>
+
+      <!-- 3-Column Layout -->
+      <div class="kb-article-layout">
+        <!-- Left Sidebar: Contents -->
+        <aside class="kb-sidebar-left">
+          <h3 class="kb-contents-title">Contents</h3>
+          <ul class="kb-contents-list">
+            <li class="kb-active-item">
+              <a href="#item-1" class="active"
+                >Why does customer trust weaken despite good products?</a
+              >
+            </li>
+            <li class="kb-has-submenu">
+              <a href="#item-2" class="kb-submenu-title"
+                >The micro-breakpoints where trust collapses</a
+              >
+              <ul class="kb-sub-list">
+                <li>
+                  <a href="#item-3"
+                    >Breakpoint 1: PDP friction that feels "unreliable"</a
+                  >
+                </li>
+                <li>
+                  <a href="#item-4"
+                    >Breakpoint 2: Lack of clarity around returns, refunds, and
+                    replacements</a
+                  >
+                </li>
+                <li>
+                  <a href="#item-5">Breakpoint 3: Delivery timeline distrust</a>
+                </li>
+                <li>
+                  <a href="#item-6">Breakpoint 4: Payment moment uncertainty</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#item-7" class="kb-submenu-title"
+                >Behaviour from Pragma</a
+              >
+            </li>
+            <li>
+              <a href="#item-8" class="kb-submenu-title"
+                >Strategic Implementation</a
+              >
+            </li>
+            <li>
+              <a href="#item-9" class="kb-submenu-title"
+                >Post-Purchase Optimisation</a
+              >
+            </li>
+            <li>
+              <a href="#item-10" class="kb-submenu-title"
+                >Customer Retention Metrics</a
+              >
+            </li>
+            <li>
+              <a href="#item-11" class="kb-submenu-title"
+                >Scaling Your D2C Brand</a
+              >
+            </li>
+            <li>
+              <a href="#item-12" class="kb-submenu-title"
+                >Future of Indian E-commerce</a
+              >
+            </li>
+            <li>
+              <a href="#item-13" class="kb-submenu-title"
+                >Final Thoughts & Conclusion</a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="kb-main-content">
+          <div class="kb-main-image-wrapper">
+            <img
+              src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f65adb69631fc4ea5b_hero%20image.jpg"
+              alt="House of Gulab's Success with Pragma x Nitro"
+            />
+          </div>
+
+          <div class="kb-article-meta">
+            <div class="kb-meta-author">
+              <strong>Kishore.K</strong> Sr. Content Associate
+            </div>
+            <div class="kb-meta-info">December 20, 2025 | 8min read</div>
+          </div>
+
+          <div class="kb-summary-box">
+            <div class="kb-summary-text">
+              <span>Summarise</span> this article with
+            </div>
+            <div class="kb-ai-buttons">
+              <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="chatgpt" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"
+                  alt="ChatGPT"
+                />
+                ChatGpt
+              </a>
+              <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="perplexity" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"
+                  alt="Perplexity"
+                />
+                Perplexity
+              </a>
+              <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="gemini" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"
+                  alt="Google AI"
+                />
+                Google AI
+              </a>
+              <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="grok" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"
+                  alt="Grok"
+                />
+                Grok
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile TOC (Accordion) -->
+          <div class="kb-mobile-toc">
+            <button class="kb-mobile-toc-header js-kb-toc-toggle">
+              <span>Table of Contents</span>
+              <i class="icon-chevron-down"></i>
+            </button>
+            <div class="kb-mobile-toc-content">
+              <ul class="kb-contents-list">
+                <li class="kb-active-item">
+                  <a href="#item-1" class="active"
+                    >Why does customer trust weaken despite good products?</a
+                  >
+                </li>
+                <li class="kb-has-submenu">
+                  <a href="#item-2" class="kb-submenu-title"
+                    >The micro-breakpoints where trust collapses</a
+                  >
+                  <ul class="kb-sub-list">
+                    <li>
+                      <a href="#item-3"
+                        >Breakpoint 1: PDP friction that feels "unreliable"</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#item-4"
+                        >Breakpoint 2: Lack of clarity around returns, refunds,
+                        and replacements</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#item-5"
+                        >Breakpoint 3: Delivery timeline distrust</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#item-6"
+                        >Breakpoint 4: Payment moment uncertainty</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#item-7" class="kb-submenu-title"
+                    >Behaviour from Pragma</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kb-tldr-box">
+            <div class="kb-tldr-header">
+              <div class="kb-tldr-icon">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6f9478d1fc3ca3853_ai.png"
+                  alt="Sparkle"
+                />
+              </div>
+              <span class="kb-tldr-title">TLDR</span>
+            </div>
+            <p class="kb-tldr-summary">
+              A young D2C skincare brand in Mumbai notices something odd. Repeat
+              customers browse frequently, add items worth ₹1,200—₹1,800, even
+              revisit the PDP three or four times—yet nearly 42% of these warm
+              shoppers abandon the purchas t nearly 42% of these warm shoppers
+              abandon the purchas
+            </p>
+            <div class="kb-takeaways-block">
+              <h4 class="kb-takeaways-title">Key Takeaway Points</h4>
+              <ul class="kb-takeaways-list">
+                <li>Breakpoint 1: PDP friction that feels "unreliable"</li>
+                <li>
+                  Breakpoint 2: Lack of clarity around returns, refunds, and
+                  replacements
+                </li>
+                <li>Breakpoint 3: Delivery timeline distrust</li>
+                <li>Breakpoint 4: Payment moment uncertainty</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kb-article-body">
+            <h2 id="item-1">
+              Why does customer trust weaken despite good products?
+            </h2>
+            <p>
+              A young D2C skincare brand based in Mumbai notices something odd.
+              Repeat customers browse frequently, add items worth ₹1,200—₹1,800,
+              even revisit the PDP three or four times—yet
+              <span class="kb-text-highlight"
+                >nearly 42% of these warm shoppers abandon the purchase at the
+                very last moment.</span
+              ><a href="#" class="kb-case-study-tag">Read Case Study</a>
+              Meanwhile, a fashion label in Jaipur sees a similar pattern:
+              customers love the designs, keep the items in cart for days, but
+              don't convert until a heavy discount appears. And when the
+              discount doesn't appear, neither does the order.
+            </p>
+            <p>
+              Across Indian D2C categories, this friction is becoming familiar.
+              A 2024 Cachefree report showed that 62% of shoppers drop off not
+              due to price, but due to trust gaps—ranging from order quality
+              doubts to unclear delivery expectations. Another study by
+              LocalCircles found that 48% of online shoppers hesitate with new
+              or niche D2C brands due to uncertainty around returns,
+              authenticity, and issue resolution. Discounts and speed help, but
+              they no longer anchor confidence the way they once did.
+            </p>
+
+            <div class="kb-highlight-box" id="item-2">
+              <h2 class="kb-highlight-title">
+                Some major text that needs to be highlighted will be shown big
+                like this
+              </h2>
+              <p class="kb-highlight-text">
+                Another study by LocalCircles found that 48% of online shoppers
+                hesitate with new or niche D2C brands due to uncertainty around
+                returns, authenticity, and issue resolution. Discounts and speed
+                help, but they no longer anchor confidence the way they once
+                did. Another study by LocalCircles found that 48% of online
+                shoppers hesitate with new or niche D2C brands due to
+                uncertainty around returns, authenticity, and issue resolution.
+                Discounts and speed help, but they no longer anchor confidence
+                the way they once did. Another study by LocalCircles found that
+                48% of online shoppers hesitate with new or niche D2C brands due
+                to uncertainty around returns, authenticity, and issue
+                resolution. Discounts and speed help, but they no longer anchor
+                confidence the way they once did.
+              </p>
+
+              <div class="kb-highlight-footer">
+                <button class="btn-light-blue">98% Automation</button>
+                <button class="btn-outline-blue">
+                  Explore Product <i class="icon-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+            <h2 id="item-3">The micro-breakpoints where trust collapses</h2>
+
+            <div class="diag-container">
+              <div class="kb-main-image-wrapper">
+                <img
+                  src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f603733aea82102c7d2b6e_tree.png"
+                  alt="Trust Deficit Diagram"
+                />
+              </div>
+            </div>
+
+            <p id="item-4">
+              <strong>Breakpoint 1:</strong> A young D2C skincare brand based in
+              Mumbai notices something odd. Repeat customers browse frequently,
+              add items worth ₹1,200—₹1,800, even revisit the PDP three or four
+              times—yet nearly 42% of these warm shoppers abandon the purchase
+              at the very last moment. Meanwhile, a fashion label in Jaipur sees
+              a similar pattern: customers love the designs, keep the items in
+              cart for days, but don't convert until a heavy discount appears.
+              And when the discount doesn't appear, neither does the order.
+            </p>
+            <p id="item-5">
+              <strong>Breakpoint 2:</strong> Across Indian D2C categories, this
+              friction is becoming familiar. A 2024 Cachefree report showed that
+              62% of shoppers drop off not due to price, but due to trust
+              gaps—ranging from order quality doubts to unclear delivery
+              expectations. Another study by LocalCircles found that 48% of
+              online shoppers hesitate with new or niche D2C brands due to
+              uncertainty around returns, authenticity, and issue resolution.
+              Discounts and speed help, but they no longer anchor confidence the
+              way they once did.
+            </p>
+
+            <h3 id="item-6">Payment moment uncertainty</h3>
+            <p>
+              The final checkout step is where most drop-offs happen if the
+              payment gateway feels unsecure or lacks popular local payment
+              methods.
+            </p>
+
+            <h2 id="item-7">Behaviour from Pragma</h2>
+            <p>
+              Pragma helps brands bridge these trust gaps by providing real-time
+              communication and transparent order tracking.
+            </p>
+
+            <h2 id="item-8">Strategic Implementation</h2>
+            <p>
+              Implementing a trust-first strategy requires coordination across
+              marketing, operations, and customer support.
+            </p>
+
+            <h2 id="item-9">Post-Purchase Optimisation</h2>
+            <p>
+              The journey doesn't end at checkout. Optimising the post-purchase
+              experience is crucial for long-term loyalty.
+            </p>
+
+            <h2 id="item-10">Customer Retention Metrics</h2>
+            <p>
+              Track Repeat Purchase Rate (RPR) and Customer Lifetime Value (CLV)
+              to measure the success of your trust initiatives.
+            </p>
+
+            <h2 id="item-11">Scaling Your D2C Brand</h2>
+            <p>
+              As you scale, maintaining the same level of trust becomes a
+              logistical challenge that requires automation.
+            </p>
+
+            <h2 id="item-12">Future of Indian E-commerce</h2>
+            <p>
+              The next wave of e-commerce growth in India will be driven by
+              trust and community-led brands.
+            </p>
+
+            <h2 id="item-13">Final Thoughts & Conclusion</h2>
+            <p>
+              In conclusion, trust is not a one-time setup but a continuous
+              effort to provide value and transparency to your customers.
+            </p>
+            <!-- Mobile Only Section: Related Case Studies -->
+            <div class="mobile-only-section">
+              <h3 class="kb-sidebar-similar-title">Related Case Studies</h3>
+              <div class="kb-sidebar-sep"></div>
+              <div class="kb-sidebar-article-list">
+                <div class="kb-sidebar-article-item">
+                  <a href="#" class="kb-sidebar-article-link"
+                    >Personalisation in Post-Order Communication: What Actually
+                    bhadvwdjhbjwbdwbwjkndjkaw</a
+                  >
+                </div>
+                <div class="kb-sidebar-sep"></div>
+                <div class="kb-sidebar-article-item">
+                  <a href="#" class="kb-sidebar-article-link"
+                    >Personalisation in Post-Order Communication: What Actually
+                    bhadvwdjhbjwbdwbwjkndjkaw</a
+                  >
+                </div>
+                <div class="kb-sidebar-sep"></div>
+                <div class="kb-sidebar-article-item">
+                  <a href="#" class="kb-sidebar-article-link"
+                    >Personalisation in Post-Order Communication: What Actually
+                    bhadvwdjhbjwbdwbwjkndjkaw</a
+                  >
+                </div>
+                <div class="kb-sidebar-sep"></div>
+              </div>
+            </div>
+
+            <!-- Blog Author Section -->
+            <div class="kb-author-box">
+              <div class="kb-author-label">
+                Blog<br>Author:
+              </div>
+              <div class="kb-author-image-wrapper">
+                <img
+                  src="assets/images/single-blog-article/author.png"
+                  alt="Monodeep Bhattacharjee"
+                  loading="lazy"
+                />
+              </div>
+              <div class="kb-author-info">
+                <div class="kb-author-header">
+                  <a href="https://pragma.co" target="_blank" rel="noopener noreferrer" class="kb-author-name">
+                    Monodeep Bhattacharjee
+                    <svg class="kb-author-link-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                  <span class="kb-author-role">Founder & CEO, Pragma</span>
+                </div>
+                <p class="kb-author-bio">
+                  Building systems that help 1700+ Indian D2C brands reduce RTO, improve delivery outcomes, and bring predictability to checkout and fulfilment.
+                </p>
+                <span class="kb-author-note">
+                  (This article is based on insights from his work with Indian D2C brands)
+                </span>
+              </div>
+            </div>
+
+            <div class="kb-faq-section">
+              <div class="kb-faq-header">
+                <h3 class="kb-faq-title">FAQs</h3>
+                <p class="kb-faq-subtitle">
+                  (Frequently Asked Questions On RTO Prediction Models: What
+                  Data Indian D2C Brands Should Actually Use)
+                </p>
+              </div>
+              <div class="kb-faq-body">
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    1. How long should I wait before escalating a delayed
+                    shipment?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    Escalate immediately when the carrier breaches their
+                    promised SLA, not when the customer complains. If the SLA is
+                    4 days and the package hasn't moved in 5 days, that's your
+                    trigger. Waiting for customer complaints means you're always
+                    reacting, never preventing. For high-value orders, set
+                    tighter internal thresholds—escalate at 72 hours even if the
+                    SLA is 96 hours.
+                  </div>
+                </div>
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    2. Should I escalate via email, phone, or carrier portal?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    Use the carrier's preferred channel first, but escalate
+                    through multiple channels for urgent cases. Most carriers
+                    respond fastest to portal submissions because they integrate
+                    with internal ticketing. Phone escalations work for
+                    immediate crises but rarely create paper trails. Email works
+                    if you have a dedicated account manager. For critical
+                    issues, submit via portal and follow up via email within 6
+                    hours.
+                  </div>
+                </div>
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    3. What if the carrier closes my escalation without
+                    resolving the issue?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    Reopen immediately with additional evidence and a clear
+                    statement that the issue remains unresolved. Reference the
+                    original ticket ID. Specify what resolution you expect and
+                    by when. If they close a second time without resolution,
+                    escalate to your account manager or commercial contact.
+                    Document every closure and reopening—this data becomes
+                    leverage in quarterly reviews.
+                  </div>
+                </div>
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    4. Can I claim compensation even if the package eventually
+                    delivered late?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    Yes, if your contract includes SLA breach penalties. Most
+                    carrier agreements entitle you to delivery fee waivers when
+                    they miss the committed timeline. The package arriving
+                    eventually doesn't erase the SLA violation. Submit your
+                    claim with tracking evidence showing the delay. Carriers
+                    often don't volunteer this compensation—you must request it
+                    explicitly.
+                  </div>
+                </div>
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    5. How do I prove a delivery attempt was fake?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    Call the customer immediately when you see a "consignee
+                    unavailable" exception. Ask if they received a delivery call
+                    and when. Check if the delivery attempt timestamp aligns
+                    with their availability. If they were home all day and
+                    received no call, that's proof. Screenshot the tracking. Get
+                    the customer's written confirmation via email or WhatsApp.
+                    Submit both to the carrier as evidence of fraudulent
+                    exception marking.
+                  </div>
+                </div>
+                <div class="kb-faq-item">
+                  <h4 class="kb-faq-question">
+                    6. Should smaller brands expect the same escalation response
+                    as large shippers?
+                  </h4>
+                  <div class="kb-faq-answer">
+                    No, but smaller brands can compensate with better
+                    documentation and clearer communication. Carriers prioritize
+                    volume, but they also prioritize well-structured escalations
+                    that require minimal internal investigation. A
+                    2,000-order-per-month brand with precise, evidence-based
+                    escalations will get faster responses than a
+                    10,000-order-per-month brand sending vague complaints. Focus
+                    on what you control—data quality and escalation format.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="kb-sidebar-right">
+          <!-- Person Card CTA -->
+          <div class="kb-person-cta">
+            <div class="kb-person-image-wrapper">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f602f81976e2f759822d31_person%20image.png"
+                alt="Custom CTA Video"
+              />
+            </div>
+          </div>
+
+          <h3 class="kb-sidebar-similar-title">Similar Articles</h3>
+          <div class="kb-sidebar-sep"></div>
+
+          <div class="kb-sidebar-article-list">
+            <div class="kb-sidebar-article-item">
+              <a href="#" class="kb-sidebar-article-link"
+                >Personalisation in Post-Order Communication: What Actually
+                ..</a
+              >
+            </div>
+            <div class="kb-sidebar-sep"></div>
+          </div>
+
+          <!-- Tags -->
+          <div class="kb-tags-container">
+            <span class="kb-tag">COD to Prepaid</span>
+            <span class="kb-tag tag-green">WhatsApp</span>
+            <span class="kb-tag">something else</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- Content-end  -->
+
+    <!-- Separator -->
+    <hr class="kb-separator" />
+    <!-- Separator -->
+
+    <!-- =============================================
+         25% Scroll Subscriber Popup
+         ============================================= -->
+    <!-- Backdrop -->
+    <div class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation" aria-hidden="true"></div>
+
+    <!-- Modal -->
+    <div
+      class="scroll-popup-modal js-scroll-popup-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="scroll-popup-heading"
+    >
+      <!-- Illustration Hero -->
+      <div class="scroll-popup-hero">
+        <img
+          src="assets/images/single-blog-article/25%25scroll.png"
+          alt="Subscribe to continue reading"
+          loading="lazy"
+        />
+        <!-- Close button -->
+        <button
+          class="scroll-popup-close js-scroll-popup-close"
+          aria-label="Close subscribe popup"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="scroll-popup-body">
+        <p class="scroll-popup-title" id="scroll-popup-heading">
+          This section is reserved for subscribers.<br />
+          Join with your email to continue reading.
+        </p>
+
+        <form class="js-scroll-popup-form" novalidate>
+          <div class="scroll-popup-input-wrap">
+            <input
+              id="scroll-popup-email"
+              class="scroll-popup-input"
+              type="email"
+              placeholder="Email address"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <button type="submit" class="scroll-popup-btn">
+            Become a Subscriber
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- /25% Scroll Subscriber Popup -->
+
+    <!-- =============================================
+         50% Scroll — Get a Demo Popup
+         ============================================= -->
+    <!-- Uses the same .scroll-popup-overlay backdrop -->
+    <div
+      class="demo-popup-modal js-demo-popup-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="demo-popup-heading"
+    >
+      <!-- Inner clip wrapper -->
+      <div class="demo-popup-inner">
+        <!-- Hero -->
+        <div class="demo-popup-hero">
+          <!-- Close button inside hero for correct absolute positioning -->
+          <button
+            class="demo-popup-close js-demo-popup-close"
+            aria-label="Close demo popup"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <h2 class="demo-popup-hero-title" id="demo-popup-heading">See Pragma in Action</h2>
+        </div>
+
+        <!-- Body -->
+        <div class="demo-popup-body">
+          <form class="js-demo-popup-form" novalidate style="display:flex;flex-direction:column;gap:16px;width:100%;">
+            <input
+              id="demo-popup-phone"
+              class="demo-popup-input"
+              type="tel"
+              placeholder="Phone Number"
+              autocomplete="tel"
+            />
+            <input
+              id="demo-popup-email"
+              class="demo-popup-input"
+              type="email"
+              placeholder="Email address"
+              autocomplete="email"
+              required
+            />
+            <input
+              id="demo-popup-website"
+              class="demo-popup-input"
+              type="url"
+              placeholder="Business Website Link"
+              autocomplete="url"
+            />
+            <button type="submit" class="demo-popup-btn">Get a demo</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /50% Scroll Get a Demo Popup -->
+
+    <!-- Floating Mobile Summary Sidebar -->
+    <div class="mobile-float-summary js-mobile-float-summary">
+      <div class="float-summary-trigger js-toggle-float-summary">
+        <span class="vertical-text">Summarise this article with</span>
+      </div>
+      <div class="float-summary-expanded">
+        <button class="float-summary-close js-toggle-float-summary">
+          <img
+            src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f65b4da835b1306246_x-circle.png"
+            alt="Close"
+          />
+        </button>
+        <div class="float-summary-content">
+          <div class="float-summary-label">
+            <span class="vertical-text">Summarise this article with</span>
+          </div>
+          <div class="float-summary-options">
+            <a href="#" class="float-ai-btn js-ai-summarise" data-ai="chatgpt" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"
+                alt="ChatGPT"
+              />
+              <span>ChatGpt</span>
+            </a>
+            <a href="#" class="float-ai-btn js-ai-summarise" data-ai="perplexity" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"
+                alt="Perplexity"
+              />
+              <span>Perplexity</span>
+            </a>
+            <a href="#" class="float-ai-btn js-ai-summarise" data-ai="gemini" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"
+                alt="Google AI"
+              />
+              <span>Google AI</span>
+            </a>
+            <a href="#" class="float-ai-btn js-ai-summarise" data-ai="grok" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"
+                alt="Grok"
+              />
+              <span>Grok</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Floating Mobile Summary Sidebar -->
+
+    <!-- =============================================
+         25% Scroll Popup Script
+         ============================================= -->
+    <script>
+      (function () {
+        var STORAGE_KEY = "pragma_subscriber_popup_dismissed";
+        var SCROLL_THRESHOLD = 0.25; // 25%
+        var hasTriggered = false;
+
+        function getArticleScrollPercent() {
+          var scrollTop = window.scrollY || document.documentElement.scrollTop;
+          var docHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          if (docHeight <= 0) return 0;
+          return scrollTop / docHeight;
+        }
+
+        function openPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-scroll-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.add("is-active");
+          modal.classList.add("is-active");
+          document.body.style.overflow = "hidden";
+          var emailInput = modal.querySelector(".scroll-popup-input");
+          if (emailInput) {
+            setTimeout(function () { emailInput.focus(); }, 350);
+          }
+        }
+
+        function closePopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-scroll-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.remove("is-active");
+          modal.classList.remove("is-active");
+          document.body.style.overflow = "";
+          try { sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+        }
+
+        function onScroll() {
+          if (hasTriggered) return;
+          try {
+            if (sessionStorage.getItem(STORAGE_KEY)) return;
+          } catch (e) {}
+          var percent = getArticleScrollPercent();
+          if (percent >= SCROLL_THRESHOLD) {
+            hasTriggered = true;
+            window.removeEventListener("scroll", onScroll);
+            openPopup();
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Close button
+          var closeBtns = document.querySelectorAll(".js-scroll-popup-close");
+          closeBtns.forEach(function (btn) {
+            btn.addEventListener("click", closePopup);
+          });
+
+          // Backdrop click
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          if (overlay) {
+            overlay.addEventListener("click", closePopup);
+          }
+
+          // Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closePopup();
+          });
+
+          // Form submit — wire to your email service
+          var form = document.querySelector(".js-scroll-popup-form");
+          if (form) {
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+              var emailInput = form.querySelector(".scroll-popup-input");
+              var email = emailInput ? emailInput.value.trim() : "";
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                if (emailInput) {
+                  emailInput.style.borderColor = "#ef4444";
+                  emailInput.focus();
+                  setTimeout(function () {
+                    emailInput.style.borderColor = "";
+                  }, 2000);
+                }
+                return;
+              }
+              // TODO: Replace with your email service API call
+              console.log("Subscriber email:", email);
+              closePopup();
+            });
+          }
+
+          // Attach scroll listener
+          window.addEventListener("scroll", onScroll, { passive: true });
+        });
+      })();
+    </script>
+
+    <!-- =============================================
+         50% Scroll — Get a Demo Popup Script
+         ============================================= -->
+    <script>
+      (function () {
+        var DEMO_STORAGE_KEY = "pragma_demo_popup_dismissed";
+        var DEMO_THRESHOLD = 0.50; // 50%
+        var demoTriggered = false;
+
+        function getScrollPercent() {
+          var scrollTop = window.scrollY || document.documentElement.scrollTop;
+          var docHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          if (docHeight <= 0) return 0;
+          return scrollTop / docHeight;
+        }
+
+        function openDemoPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-demo-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.add("is-active");
+          modal.classList.add("is-active");
+          document.body.style.overflow = "hidden";
+          var firstInput = modal.querySelector(".demo-popup-input");
+          if (firstInput) {
+            setTimeout(function () { firstInput.focus(); }, 350);
+          }
+        }
+
+        function closeDemoPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-demo-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.remove("is-active");
+          modal.classList.remove("is-active");
+          document.body.style.overflow = "";
+          try { sessionStorage.setItem(DEMO_STORAGE_KEY, "1"); } catch (e) {}
+        }
+
+        function onDemoScroll() {
+          if (demoTriggered) return;
+          try {
+            if (sessionStorage.getItem(DEMO_STORAGE_KEY)) return;
+          } catch (e) {}
+          if (getScrollPercent() >= DEMO_THRESHOLD) {
+            demoTriggered = true;
+            window.removeEventListener("scroll", onDemoScroll);
+            openDemoPopup();
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Close button
+          var closeBtns = document.querySelectorAll(".js-demo-popup-close");
+          closeBtns.forEach(function (btn) {
+            btn.addEventListener("click", closeDemoPopup);
+          });
+
+          // Shared backdrop — also closes demo popup
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          if (overlay) {
+            overlay.addEventListener("click", function () {
+              var demoModal = document.querySelector(".js-demo-popup-modal");
+              if (demoModal && demoModal.classList.contains("is-active")) {
+                closeDemoPopup();
+              }
+            });
+          }
+
+          // Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeDemoPopup();
+          });
+
+          // Form submit — wire to your CRM / demo booking service
+          var form = document.querySelector(".js-demo-popup-form");
+          if (form) {
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+              var emailInput = document.getElementById("demo-popup-email");
+              var email = emailInput ? emailInput.value.trim() : "";
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                if (emailInput) {
+                  emailInput.style.borderColor = "#ef4444";
+                  emailInput.focus();
+                  setTimeout(function () {
+                    emailInput.style.borderColor = "";
+                  }, 2000);
+                }
+                return;
+              }
+              // TODO: Replace with your demo booking / CRM API call
+              console.log("Demo request:", {
+                phone: document.getElementById("demo-popup-phone") ? document.getElementById("demo-popup-phone").value : "",
+                email: email,
+                website: document.getElementById("demo-popup-website") ? document.getElementById("demo-popup-website").value : ""
+              });
+              closeDemoPopup();
+            });
+          }
+
+          // Attach scroll listener
+          window.addEventListener("scroll", onDemoScroll, { passive: true });
+        });
+      })();
+    </script>
+
+    <!-- AI Summarise Script -->
+    <script>
+      /**
+       * AI Summarise with Prompt
+       * Builds a pre-filled prompt with the current page URL and opens the
+       * selected AI tool in a new tab with the prompt pre-loaded.
+       */
+      (function () {
+        // ── Prompt Template ────────────────────────────────────────────────
+        function buildPrompt(pageUrl) {
+          return (
+            "Summarise this blog for Indian D2C eCommerce teams.\n" +
+            "URL: " + pageUrl + "\n\n" +
+            "Requirements:\n" +
+            "• Prioritise the most important insights first.\n" +
+            "• Clearly mention the Pragma product(s), workflow(s), or capability layer(s) covered in a technical/niche manner.\n" +
+            "• Collate all key numbers, benchmarks, percentages, and operational stats from the blog.\n" +
+            "• Keep the output concise, technical, and insight-dense.\n" +
+            "• Avoid fluff, generic explanations, and marketing language.\n" +
+            "• Use short paragraphs or bullets for readability.\n" +
+            "• End with: Author: [Name] — [brief expertise]"
+          );
+        }
+
+        // ── AI deep-link builders ──────────────────────────────────────────
+        function getAiUrl(ai, prompt) {
+          var encoded = encodeURIComponent(prompt);
+          switch (ai) {
+            case "chatgpt":
+              return "https://chatgpt.com/?q=" + encoded;
+            case "perplexity":
+              return "https://www.perplexity.ai/?q=" + encoded;
+            case "gemini":
+              return "https://www.google.com/search?udm=50&q=" + encoded;
+            case "grok":
+              return "https://grok.com/?q=" + encoded;
+            default:
+              return "#";
+          }
+        }
+
+        // ── Wire up all .js-ai-summarise buttons ──────────────────────────
+        document.addEventListener("DOMContentLoaded", function () {
+          var pageUrl = window.location.href;
+          var prompt  = buildPrompt(pageUrl);
+
+          var buttons = document.querySelectorAll(".js-ai-summarise");
+          buttons.forEach(function (btn) {
+            var ai = btn.getAttribute("data-ai");
+            var url = getAiUrl(ai, prompt);
+            btn.setAttribute("href", url);
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      /**
+       * Single Blog Article Page Scripts
+       * Handles TOC toggles, Floating Summary, and Scroll Interactions
+       */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. KB Mobile TOC Toggle
+        // Toggles the visibility of the Table of Contents on mobile devices
+        const tocToggles = document.querySelectorAll(".js-kb-toc-toggle");
+        tocToggles.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (
+              content &&
+              content.classList.contains("kb-mobile-toc-content")
+            ) {
+              content.classList.toggle("is-visible");
+            }
+          });
+        });
+
+        // 2. Mobile Floating Summary Sidebar
+        // Shows/hides the floating summary button based on scroll position
+        // and handles the expansion/collapse of the summary panel
+        const floatSummary = document.querySelector(".js-mobile-float-summary");
+        const summaryBox = document.querySelector(".kb-summary-box");
+
+        if (floatSummary && summaryBox) {
+          const handleScroll = () => {
+            const summaryBoxRect = summaryBox.getBoundingClientRect();
+            // Show floating sidebar only when user scrolls past the top summarize section
+            if (summaryBoxRect.bottom < 0) {
+              floatSummary.classList.add("is-visible");
+            } else {
+              floatSummary.classList.remove("is-visible");
+              floatSummary.classList.remove("is-open"); // Close if user scrolls back up
+            }
+
+            // Top Fade Effect & Mobile TOC Sticky Logic
+            const topFade = document.querySelector(".js-kb-top-fade");
+            const tldrBox = document.querySelector(".kb-tldr-box");
+            const mobileToc = document.querySelector(".kb-mobile-toc");
+
+            if (tldrBox) {
+              const tldrRect = tldrBox.getBoundingClientRect();
+              const isScrolledPastTLDR = tldrRect.bottom < 50;
+
+              // Toggle Top Fade
+              if (topFade) {
+                if (isScrolledPastTLDR) {
+                  topFade.classList.add("is-visible");
+                } else {
+                  topFade.classList.remove("is-visible");
+                }
+              }
+
+              // Toggle Mobile TOC Sticky
+              if (mobileToc) {
+                if (isScrolledPastTLDR) {
+                  mobileToc.classList.add("is-sticky");
+                } else {
+                  mobileToc.classList.remove("is-sticky");
+                }
+              }
+            }
+          };
+
+          window.addEventListener("scroll", handleScroll);
+
+          // Toggle Expansion
+          const toggleBtns = document.querySelectorAll(
+            ".js-toggle-float-summary",
+          );
+          toggleBtns.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              floatSummary.classList.toggle("is-open");
+            });
+          });
+        }
+
+        // 3. Scroll Spy for Table of Contents
+        // Highlights the active section in the sidebar as the user scrolls
+        const sections = document.querySelectorAll(
+          "main h2[id], main h3[id], main div[id], main p[id]",
+        );
+        const navLinks = document.querySelectorAll(
+          ".kb-sidebar-left .kb-contents-list a",
+        );
+
+        if (sections.length > 0 && navLinks.length > 0) {
+          const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -70% 0px",
+            threshold: 0,
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                updateActiveLink(id);
+              }
+            });
+          }, observerOptions);
+
+          sections.forEach((section) => observer.observe(section));
+
+          function updateActiveLink(id) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              link.parentElement.classList.remove("kb-active-item");
+
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
+                link.parentElement.classList.add("kb-active-item");
+
+                // Scroll the active link into view within the sidebar
+                const sidebar = document.querySelector(".kb-contents-list");
+                if (sidebar) {
+                  const linkRect = link.getBoundingClientRect();
+                  const sidebarRect = sidebar.getBoundingClientRect();
+
+                  if (
+                    linkRect.top < sidebarRect.top ||
+                    linkRect.bottom > sidebarRect.bottom
+                  ) {
+                    link.scrollIntoView({
+                      behavior: "smooth",
+                      block: "nearest",
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+
+        // 4. Smooth Scroll for TOC Links
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href.startsWith("#")) {
+              e.preventDefault();
+              const targetId = href.substring(1);
+              const targetElement = document.getElementById(targetId);
+
+              if (targetElement) {
+                // Immediate visual feedback
+                updateActiveLink(targetId);
+
+                window.scrollTo({
+                  top: targetElement.offsetTop - 100, // Offset for sticky header
+                  behavior: "smooth",
+                });
+
+                // Close mobile TOC if open
+                const mobileToc = document.querySelector(
+                  ".kb-mobile-toc-header.active",
+                );
+                if (mobileToc) mobileToc.click();
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

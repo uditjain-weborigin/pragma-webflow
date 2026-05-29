@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### brandBox ### */
+      .brandBox {
+        margin: 113px 0 64px;
+        padding-top: 52px;
+        position: relative;
+        text-align: center;
+      }
+      .brandBox::before {
+        position: absolute;
+        top: 0;
+        left: 24px;
+        width: calc(var(--w-100) - 48px);
+        height: 421px;
+        background: var(--blue-100);
+        border-radius: 20px;
+        pointer-events: none;
+        content: "";
+      }
+      .brandBox h2 {
+        margin-bottom: 56px;
+        position: relative;
+        z-index: 1;
+      }
+      .brandBox .swiper {
+        margin: -11px;
+      }
+      .brandBox .swiper-slide {
+        padding: 11px;
+        height: auto;
+      }
+
+      /* ### card-brand ### */
+      .card-brand {
+        padding: 25px 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        width: var(--w-100);
+        height: var(--h-100);
+        background-color: var(--white);
+        overflow: hidden;
+        border-radius: 36px;
+        text-align: center;
+        box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.25);
+      }
+      .card-brand h4 {
+        margin: 0 auto 17px;
+        font-size: 18px;
+        font-weight: 500;
+        max-width: 240px;
+        line-height: 1.5;
+      }
+      .card-brand.space {
+        padding-bottom: 42px;
+      }
+      .card-brand-image img {
+        margin: 0 auto;
+      }
+
+      @media only screen and (max-width: 1268px) {
+        .brandBox::before {
+          width: var(--w-100);
+          left: 0;
+          border-radius: 0;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        .brandBox {
+          margin-top: 0;
+          margin-bottom: 49px;
+          padding-top: 58px;
+        }
+        .brandBox h2 {
+          display: none;
+        }
+        .brandBox::before {
+          display: none;
+        }
+        .brandBox .swiper {
+          margin: 0;
+          overflow: visible;
+        }
+        .brandBox .swiper-slide {
+          padding: 0;
+        }
+
+        .card-brand {
+          padding: 18px 18px 0;
+          border-radius: 15px;
+          background: var(--blue-100) url("../images/brand-bg.png") no-repeat
+            top center;
+          background-size: 100% 100%;
+          box-shadow: none;
+        }
+        .card-brand h4 {
+          font-size: 16px;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!--  / start brandBox \ -->
+          <div class="brandBox centered">
+            <h2>Cool brands like yours, definitely need these</h2>
+
+            <div class="js-brand-slider swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="card-brand">
+                    <h4>
+                      Navigate through entire ticket history with a customer
+                    </h4>
+
+                    <div class="card-brand-image">
+                      <img src="assets/images/brand-img1.png" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="card-brand space">
+                    <div class="card-brand-image">
+                      <img src="assets/images/brand-img2.png" alt="" />
+                    </div>
+                    <h4>
+                      Create orders while assisting your customers right from
+                      the CRM
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="card-brand">
+                    <h4>Know your customers more than they know themself</h4>
+
+                    <div class="card-brand-image">
+                      <img src="assets/images/brand-img3.png" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  \ end brandBox / -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var swiper = new Swiper(".js-brand-slider", {
+          slidesPerView: 1.05,
+          centeredSlides: true,
+          spaceBetween: 16,
+          breakpoints: {
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+              centeredSlides: false,
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

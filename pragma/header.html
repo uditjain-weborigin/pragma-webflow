@@ -1,0 +1,3192 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      @import url("https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css");
+      @import url("https://drive.google.com/file/d/15GOAwts2SMoxeXD9AVZ3yoyQGcizuSUh/view?usp=drive_link");
+      /* =========================================================================
+         HEADER.HTML STRUCTURE & STYLE INDEX
+         =========================================================================
+         [1] GLOBAL VARIABLES & RESET 
+             - Root Tokens & Custom Font Variables (Lines 23-48)
+             - General HTML/Body Resets & standard definitions (Lines 50-129)
+             - Utility classes (.centered, .button, Swiper bullets) (Lines 130-164)
+         
+         [2] LAYOUT & MEDIA QUERIES
+             - Site wrapper & outer structural boxes (Lines 165-209)
+             - Standard responsive media queries & resets (Lines 210-257)
+         
+         [3] DESKTOP STYLES
+             - Main Navigation Header & logo box container (Lines 258-334)
+             - Desktop navigation menu bar (.menuBox) (Lines 335-370)
+             - Resources Dropdown & carets (Lines 371-462)
+             - Emami Case Study Card slider effects (Lines 463-539)
+             - Comparisons & Newsletter flyout side panels (Lines 540-651)
+             - Products Wide Dropdown & Tab bar design (Lines 652-787)
+             - Products sub-panels & feature chips (Lines 788-887)
+             - Newsletter subscribers badge & popup layout (Lines 888-966)
+             - General list alignment & custom scrollbars (Lines 967-1000)
+         
+         [4] MOBILE RESPONSIVE ACCORDIONS
+             - Hamburger trigger & mobile wrapper transition (Lines 1001-1067)
+             - Responsive header rules for tablets/mobiles (Lines 1068-1180)
+             - Mobile accordion panels, side-panels & scroll states (Lines 1181-1250)
+             - Mobile grid systems & layouts for Products tab bar (Lines 1251-1319)
+         
+         [5] PREMIUM FIGMA INTEGRATION (DESKTOP SPECIFICS)
+             - Right-aligned Tab/Sub-panel concave curvature merging (Lines 1320-1451)
+         ========================================================================= */
+
+      :root {
+        --width-base: 1220px;
+        --white: #fff;
+        --black: #000;
+        --black-bg: #0e161c;
+        --text-blue: #021726;
+        --blue: #2f75b8;
+        --blue-100: #c5daff;
+        --blue-200: #8eb3f2;
+        --blue-300: #e2edff;
+        --gray-100: #333;
+        --gray-200: #f1f1f1;
+        --primary: #2871f0;
+        --base-duration: all 0.3s;
+        --font-family: "Satoshi", sans-serif;
+        --font-family-icon: "icomoon";
+        --font-size-base: 16px;
+        --line-height-base: 150%;
+        --line-height-h1: 1.6;
+        --font-size-h1: 32px;
+        --font-size-h2: 28px;
+        --font-size-h3: 24px;
+        --w-100: 100%;
+        --h-100: 100%;
+        --base-duration: all 0.25s;
+      }
+
+      /* ### general ### */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        background: var(--white);
+        font-family: var(--font-family);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        color: var(--text-blue);
+      }
+      img {
+        display: block;
+        max-width: var(--w-100);
+        border: 0;
+      }
+      ul,
+      li {
+        list-style: none;
+      }
+      :focus {
+        outline: none;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+      input,
+      select,
+      textarea {
+        padding: 10px 11px;
+        height: 48px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--black);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+      }
+      select {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      h1,
+      .h1,
+      h2,
+      .h2,
+      h3,
+      .h3 {
+        line-height: var(--line-height-heading);
+        font-weight: 700;
+        color: var(--black-bg);
+        margin-bottom: 20px;
+      }
+      h1,
+      .h1 {
+        font-size: var(--font-size-h1);
+        line-height: 120%;
+      }
+      h2,
+      .h2 {
+        font-size: var(--font-size-h2);
+        line-height: 135%;
+      }
+      h3,
+      .h3 {
+        font-size: var(--font-size-h3);
+        line-height: 135%;
+      }
+
+      /* ### global classes ### */
+      .centered {
+        padding-right: calc((100% - var(--width-base)) / 2);
+        padding-left: calc((100% - var(--width-base)) / 2);
+      }
+      .button {
+        padding: 8px 24px;
+        font-family: var(--font-family);
+        font-size: var(--font-size-base);
+        font-weight: 700;
+        color: var(--white);
+        background-color: var(--primary);
+        border-radius: 50px;
+        border: 0;
+        transition: var(--base-duration);
+        letter-spacing: 0.5px;
+      }
+      .button:focus,
+      .button:hover {
+        background-color: var(--blue);
+      }
+      .swiper-pagination-bullet {
+        width: 14px;
+        height: 14px;
+        display: flex;
+        flex: 0 0 auto;
+        background: var(--white);
+        opacity: 0.6;
+        filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+      }
+      .swiper-pagination-bullet-active {
+        background: var(--blue-200);
+        opacity: 1;
+      }
+
+      /* ### wrapper ### */
+      #wrapper {
+        padding-top: 64px;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        width: var(--w-100);
+        min-height: var(--h-100);
+      }
+
+      /* ### main container ### */
+      #mainCntr {
+        width: var(--w-100);
+      }
+
+      /* ### breadcrumb ### */
+      .breadcrumb {
+        margin-bottom: 11px;
+      }
+      .breadcrumb ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      .breadcrumb li {
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .breadcrumb li::after {
+        margin: 0 4px;
+        display: inline-block;
+        content: ">";
+      }
+      .breadcrumb li:last-of-type::after {
+        display: none;
+      }
+      .breadcrumb li a {
+        color: var(--primary);
+      }
+      .breadcrumb li a:focus,
+      .breadcrumb li a:hover {
+        color: var(--blue);
+      }
+
+      /* #Media Queries
+================================================== */
+
+      @media only screen and (max-width: 1268px) {
+        .centered {
+          padding-right: 24px;
+          padding-left: 24px;
+        }
+      }
+
+      @media only screen and (max-width: 1025px) {
+        #wrapper {
+          padding-top: 60px;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        :root {
+          --font-size-h1: 18px;
+          --font-size-h2: 16px;
+          --font-size-h3: 14px;
+        }
+        input,
+        select,
+        textarea {
+          padding: 7px;
+          font-size: 12px;
+          height: 32px;
+          border-radius: 4px;
+        }
+        #wrapper {
+          padding-top: 58px;
+        }
+        .button {
+          padding: 7px 15px;
+          font-size: 14px;
+        }
+        .breadcrumb {
+          margin-bottom: 0;
+        }
+        .breadcrumb ul {
+          justify-content: flex-start;
+        }
+        .breadcrumb ul li {
+          font-size: 10px;
+        }
+      }
+
+      /* ### header container ### */
+      #headerCntr {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        width: var(--w-100);
+        transition: var(--base-duration);
+        background-color: var(--white);
+      }
+      #headerCntr::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: var(--w-100);
+        height: var(--h-100);
+        background-color: var(--white);
+        box-shadow: 0 3px 8px 0 rgba(40, 113, 240, 0.2);
+        content: "";
+      }
+      #headerCntr .headerBox {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #headerCntr .holder {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      #headerCntr .logo {
+        position: relative;
+        z-index: 3;
+        width: 105px;
+      }
+      #headerCntr .logo img {
+        max-width: var(--w-100);
+      }
+      #headerCntr .request {
+        padding-left: 33px;
+        position: relative;
+        z-index: 3;
+      }
+      #headerCntr .request::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 1px;
+        height: 30px;
+        transform: translateY(-50%);
+        background-color: rgb(0, 0, 0, 0.2);
+        content: "";
+      }
+      #headerCntr .sign-in {
+        margin-right: 37px;
+        font-weight: 700;
+        color: var(--primary);
+        transition: var(--base-duration);
+        letter-spacing: 0.5px;
+      }
+      #headerCntr .sign-in:focus,
+      #headerCntr .sign-in:hover {
+        color: var(--blue);
+      }
+      #headerCntr.sticky {
+        transform: translateY(-104px);
+      }
+      #headerCntr .header-link {
+        margin-right: 9px;
+      }
+      #headerCntr.active {
+        transform: translateY(0) !important;
+      }
+
+      /* ### menu box ### */
+      .menuBox {
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 3;
+      }
+      .menuBox ul {
+        margin: 0 32px 0 0;
+        padding: 0;
+        display: flex;
+      }
+      .menuBox ul > li {
+        margin-right: 10px;
+        position: relative;
+        list-style: none;
+        transition: 0.3s;
+      }
+      .menuBox ul > li > a {
+        padding: 20px 29px;
+        display: inline-block;
+        position: relative;
+        font-family: var(--font-family);
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--gray-100);
+        transition: var(--base-duration);
+        letter-spacing: 0.5px;
+      }
+      .menuBox ul > li > a.is-active,
+      .menuBox ul > li > a:focus,
+      .menuBox ul > li > a:hover {
+        background-color: var(--black);
+        color: var(--white);
+      }
+      /* ### Custom Resources Dropdown ### */
+      .menuBox ul > li.has-dropdown {
+        position: relative;
+      }
+      
+      .menuBox ul > li.has-dropdown > a {
+        display: flex;
+        align-items: center;
+      }
+
+      .chevron-icon {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      /* Hover states for Desktop only */
+      @media only screen and (min-width: 768px) {
+        .menuBox ul > li.has-dropdown:hover > a {
+          background-color: var(--white) !important;
+          color: var(--gray-100) !important;
+        }
+        
+        .menuBox ul > li.has-dropdown:hover .chevron-icon {
+          transform: rotate(180deg);
+        }
+
+        .menuBox ul > li.has-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 12px); /* Added a beautiful 12px floating gap between header and dropdown */
+        left: -40px;
+        transform: translateY(10px);
+        width: 242px;
+        height: 509.76px;
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid #E8E8E8;
+        padding: 18px 19px 15px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        z-index: 100;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+      }
+
+      /* Caret pointing upwards to the nav item */
+      .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -9px; /* Perfectly positioned to span the 12px floating gap and touch the navbar */
+        left: 80px;
+        transform: rotate(45deg);
+        width: 18px; /* Enlarged to bridge the gap elegantly */
+        height: 18px;
+        background-color: var(--white);
+        border-left: 1.5px solid rgba(0, 0, 0, 0.08); /* Thicker outline for a more prominent, premium look */
+        border-top: 1.5px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .dropdown-section {
+        margin-bottom: 16px;
+        text-align: left;
+      }
+
+      .dropdown-heading {
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--black-bg);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1.5px;
+        margin-bottom: 14px;
+        transition: color 0.25s ease;
+      }
+
+      .dropdown-heading:hover {
+        color: var(--primary);
+      }
+
+      /* Dynamic Case Study Card Styling */
+      .case-study-card {
+        display: flex;
+        align-items: center;
+        background-color: var(--white);
+        border: 1px solid #E8E8E8;
+        border-radius: 10px;
+        padding: 10px 8px; /* Reduced padding to make card tighter and highly cohesive */
+        text-decoration: none;
+        transition: all 0.25s ease;
+        overflow: hidden; /* Hide sliding content during transition */
+        box-sizing: border-box;
+      }
+
+      @media only screen and (min-width: 1026px) {
+        .case-study-card {
+          height: 92px; /* Fixed height for clean, stable rotation layout */
+        }
+      }
+
+      .case-study-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 15px rgba(40, 113, 240, 0.06);
+      }
+
+      .case-study-inner {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      }
+
+      .case-study-inner.slide-out-up {
+        transform: translateY(-25px);
+        opacity: 0;
+      }
+
+      .case-study-inner.slide-in-down {
+        transform: translateY(25px);
+        opacity: 0;
+        transition: none !important;
+      }
+
+      .cs-logo {
+        width: 58px; /* Increased from 52px for a larger brand visual presence */
+        height: 38px; /* Increased from 36px to give logos more scaling room */
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cs-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .cs-divider {
+        width: 1px;
+        height: 36px;
+        background-color: #E8E8E8;
+        margin: 0 6px; /* Tightened divider margins to 6px to optimize spacing */
+        flex-shrink: 0;
+      }
+
+      .cs-text {
+        font-size: 11px;
+        line-height: 1.25; /* Tightened line-height for a cohesive and decluttered text body */
+        color: var(--text-blue);
+        opacity: 0.8;
+        font-weight: 500;
+        flex-grow: 1;
+      }
+
+      /* === Side Panels (Flyouts) Desktop styling === */
+      .has-side-panel {
+        position: relative;
+      }
+
+      .side-panel {
+        position: absolute;
+        left: calc(100% + 24px);
+        top: 50%;
+        transform: translateY(-50%) translateX(10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        z-index: 110;
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid #E8E8E8;
+        box-sizing: border-box;
+      }
+
+      /* Connecting chevron arrow pointing left to main dropdown item */
+      .side-panel::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -8px;
+        transform: translateY(-50%) rotate(45deg);
+        width: 14px;
+        height: 14px;
+        background-color: var(--white);
+        border-left: 1.5px solid rgba(0, 0, 0, 0.08);
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .dropdown-list li.has-side-panel:hover > a {
+        background-color: var(--blue-300) !important;
+        color: var(--primary) !important;
+        padding-left: 14px !important;
+        border-radius: 6px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .dropdown-list li.has-side-panel:hover .side-panel {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(-50%) translateX(0);
+        }
+      }
+
+      /* === Comparisons Flyout Panel === */
+      .comparisons-popup {
+        width: 190px;
+        padding: 6px 0;
+        overflow: visible !important; /* Ensure the pointing caret triangle is NEVER clipped */
+      }
+
+      .comparisons-scroll-container {
+        max-height: 246px; /* Safe fixed height for up to 6 items; scrolls elegantly if 7+ items */
+        overflow-y: auto;
+        width: 100%;
+      }
+
+      /* Custom Sleek Scrollbar (WhatsApp style) on inner container */
+      .comparisons-scroll-container::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .comparisons-scroll-container::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .comparisons-scroll-container::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
+      }
+
+      .comparisons-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .comparisons-list {
+        display: flex !important;
+        flex-direction: column;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .comparisons-list li {
+        border-top: none !important;
+        border-bottom: 1px solid #F1F1F1;
+      }
+
+      .comparisons-list li:last-child {
+        border-bottom: none;
+      }
+
+      .comparisons-list li a {
+        padding: 10px 14px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: var(--gray-100) !important;
+        transition: all 0.2s ease !important;
+        text-align: left;
+      }
+
+      .comparisons-list li a:hover {
+        color: var(--primary) !important;
+        background-color: var(--blue-300) !important;
+        padding-left: 18px !important;
+      }
+
+      /* === Products Wide Dropdown Menu === */
+      .products-dropdown-item {
+        position: static !important;
+      }
+
+      .menuBox ul > li.products-dropdown-item:hover > a {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+      }
+
+      .products-dropdown-menu {
+        position: fixed !important;
+        top: 64px !important; /* Flush against the bottom of the 64px fixed header */
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        height: auto !important; /* Grows to fit tab-bar + optional sub-panel */
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        border: none !important;
+        border-bottom: 1px solid #E2E2E2 !important;
+        border-radius: 0 0 20px 20px !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+        background-color: var(--white) !important;
+        transform: translateY(10px) !important;
+        overflow: visible !important;
+      }
+
+      /* No triangle chevron caret for Products dropdown */
+      .products-dropdown-menu::before {
+        display: none !important;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .menuBox ul > li.products-dropdown-item:hover .products-dropdown-menu {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: translateY(0) !important;
+        }
+      }
+
+      /* === Products Tab Bar (top row of icon+name tabs) === */
+      .products-tab-bar {
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 20px 0 !important;
+        border-bottom: 1px solid transparent; /* Will show when sub-panel is open */
+        transition: border-color 0.25s ease;
+      }
+
+      .products-tab-bar.has-active-sub {
+        border-bottom-color: #E8E8E8 !important;
+      }
+
+      .products-tab-bar-inner {
+        display: grid !important;
+        grid-template-columns: repeat(8, 1fr) !important;
+        justify-items: center !important;
+        max-width: 1220px !important;
+        padding: 0 20px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        gap: 0 !important;
+      }
+
+      /* === Product Tab Item (replaces .product-item for tab-bar context) === */
+      .product-tab-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        text-decoration: none !important;
+        width: 140px !important;
+        padding: 16px 12px !important;
+        gap: 10px !important;
+        box-sizing: border-box !important;
+        border-radius: 14px !important;
+        border: 1.5px solid transparent !important;
+        cursor: pointer !important;
+        transition: border-color 0.2s ease, background-color 0.2s ease !important;
+        position: relative !important;
+      }
+
+      .tab-arrow-btn {
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: #000000;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease, background-color 0.2s ease;
+        z-index: 15;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+      .product-tab-item:hover:not(.active-tab) .tab-arrow-btn {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      .product-tab-item.active-tab .tab-arrow-btn {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
+      .product-tab-item:hover {
+        border-color: #2871f0 !important;
+        background-color: transparent !important;
+      }
+      .product-tab-item:hover .product-icon-box {
+        background-color: #2871f0 !important;
+      }
+      .product-tab-item:hover .product-icon-box img {
+        filter: brightness(0) invert(1) !important;
+      }
+      .product-tab-item:hover .product-name {
+        color: #2871f0 !important;
+        text-decoration: underline !important;
+        text-underline-offset: 4px !important;
+      }
+
+      .product-tab-item.active-tab {
+        border-color: var(--primary) !important;
+        background-color: #ffffff !important;
+      }
+
+      /* Active tab indicator dot/underline at bottom */
+      .product-tab-item.active-tab::after {
+        content: "" !important;
+        position: absolute !important;
+        bottom: -21px !important; /* Sits just below the tab-bar padding, pointing to sub-panel */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 16px !important;
+        height: 16px !important;
+        background-color: var(--white) !important;
+        border-left: 1.5px solid #E8E8E8 !important;
+        border-top: 1.5px solid #E8E8E8 !important;
+        transform: translateX(-50%) rotate(45deg) !important;
+        z-index: 2 !important;
+      }
+
+      /* === Product Sub-Features Panel (below tab bar) === */
+      .products-sub-panel {
+        display: none;
+        width: 100%;
+        padding: 24px 0 28px;
+        background-color: var(--white);
+        border-radius: 0 0 20px 20px;
+        animation: subPanelFadeIn 0.2s ease forwards;
+      }
+
+      .products-sub-panel.is-visible {
+        display: block;
+      }
+
+      @keyframes subPanelFadeIn {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .products-sub-panel-inner {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Sub-feature chip/button */
+      .sub-feature-chip {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 20px !important;
+        background-color: var(--white) !important;
+        border: 1.5px solid #E2E2E2 !important;
+        border-radius: 8px !important;
+        font-family: var(--font-family) !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: var(--text-blue) !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        white-space: nowrap !important;
+      }
+
+      .sub-feature-chip:hover {
+        border-color: var(--primary) !important;
+        color: var(--primary) !important;
+        background-color: rgba(40, 113, 240, 0.04) !important;
+      }
+
+      .sub-feature-chip.chip-active {
+        background-color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        color: var(--white) !important;
+        font-weight: 600 !important;
+      }
+
+      .sub-feature-chip.chip-active:hover {
+        background-color: var(--blue) !important;
+        border-color: var(--blue) !important;
+        color: var(--white) !important;
+      }
+
+      .products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(8, 1fr) !important;
+        justify-items: center !important;
+        max-width: 1220px !important; /* Matches header container width exactly */
+        padding: 0 20px !important; /* Safety padding so it stays strictly bounded between logo and Book A Demo button */
+        margin: 0 auto !important; /* Center the grid inside the 100vw dropdown */
+        width: 100% !important;
+      }
+
+      .product-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important; /* Left-align the icon box and text inside the card */
+        text-align: left !important; /* Left-align the wrapped text lines */
+        text-decoration: none !important;
+        width: 140px !important; /* Adjusted to 140px to fit perfectly within the 1220px header bounds */
+        min-height: 186.64px !important; /* Use min-height so cards can expand naturally if text wraps to 3 lines */
+        padding: 20px 12px !important; /* Balanced vertical padding to leave room for multi-line labels */
+        gap: 10px !important; /* Exact Figma gap */
+        box-sizing: border-box !important;
+      }
+
+      .product-icon-box {
+        width: 80.64px !important;
+        height: 80.64px !important;
+        flex-shrink: 0 !important; /* Crucial: Prevents the parent container from squishing the icon box height on multi-line text */
+        background-color: rgba(0, 0, 0, 0.05) !important; /* Exact Figma Fill spec: #000000 at 5% opacity */
+        border-radius: 14px !important; /* Exact Figma Corner radius */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .product-icon-box img {
+        width: 32px !important;
+        height: 32px !important;
+        object-fit: contain !important;
+      }
+
+      /* Boost size of specific SVGs that have larger internal empty paddings inside their asset drawings */
+      .product-icon-box img[src*="rms.svg"],
+      .product-icon-box img[src*="jms.svg"],
+      .product-icon-box img[src*="shipaxis"],
+      .product-icon-box img[src*="crm-animation"],
+      .product-icon-box img[src*="return-animation"],
+      .product-icon-box img[src*="checkout-animation"],
+      .product-icon-box img[src*="rtosuite-animation"],
+      .product-icon-box img[src*="genie-animation"],
+      .product-icon-box img[src*="whatsapp-animation"],
+      .product-icon-box img[src*="jms-animation"],
+      .product-icon-box img[src*="whatsapp_business_suite.svg"] {
+        width: 44px !important;
+        height: 44px !important;
+      }
+
+      .product-name {
+        font-family: Satoshi, sans-serif !important; /* Exact Figma Satoshi typography */
+        font-size: 18px !important; /* Exact Figma Font Size */
+        font-weight: 700 !important; /* Exact Figma Bold weight */
+        color: #000000 !important; /* Exact Figma Fill color (100% black) */
+        line-height: 1.2 !important; /* Compact line-height */
+        text-decoration: none !important;
+        white-space: normal !important;
+      }
+
+      /* === Newsletter Popup Flyout === */
+      .newsletter-popup {
+        width: 165px !important; /* Exact Figma width */
+        height: 196px !important; /* Slightly shorter height for a much tighter, cohesive fit */
+        padding: 20px 12px 12px !important; /* Tighter vertical padding for a snug fit */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Center-group contents vertically for a balanced premium look */
+        gap: 10px !important; /* Tighter spacing between banner and button */
+        align-items: center !important;
+        text-align: center !important;
+        border-radius: 20px !important; /* Exact Figma border-radius */
+        background-color: #ffffff !important; /* Exact Figma Fill spec: FFFFFF */
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important; /* Modern premium drop shadow */
+        border: 1px solid rgba(0, 0, 0, 0.06) !important; /* Faint high-end definition border */
+        box-sizing: border-box !important;
+      }
+
+      /* Floating subscribers badge exactly on top border */
+      .newsletter-popup .subscribers-badge {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 143px !important;
+        height: 32px !important;
+        background-color: #000000 !important;
+        color: var(--white) !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        padding: 4px 10px !important; /* Figma spec: 4px vertical, 10px horizontal */
+        border-radius: 6px !important; /* Figma spec: 6px corner radius */
+        border: 1px solid #ffffff !important; /* Figma spec: 1px white stroke */
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+        z-index: 10;
+        box-sizing: border-box !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12) !important; /* Soft shadow to lift the badge visually */
+      }
+
+      .newsletter-popup-body {
+        width: 100%;
+        border-radius: 10px; /* Rounded corners as in Figma image */
+        overflow: hidden;
+        border: none !important; /* Removed cheap-looking outline border */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Soft shadow around image instead */
+      }
+
+      .newsletter-popup-body img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .newsletter-popup a.btn-subscribe {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 109px !important;
+        height: 38px !important;
+        background-color: #2871f0 !important; /* Forces the blue background, overriding the global transparent link styles */
+        color: #ffffff !important; /* Force 100% white text and override general list link selectors */
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        padding: 8px 16px !important; /* Figma spec: 8px vertical, 16px horizontal */
+        border-radius: 6px !important; /* Figma spec: 6px corner radius */
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        box-sizing: border-box !important;
+      }
+
+      .newsletter-popup a.btn-subscribe:hover {
+        background-color: var(--blue) !important;
+        color: #ffffff !important;
+      }
+
+      /* Dropdown links styling */
+      .dropdown-list {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .dropdown-list li {
+        display: block !important;
+        width: 100%;
+        margin-right: 0 !important;
+        border-top: 1px solid #E8E8E8;
+      }
+
+      .dropdown-list li a {
+        display: block !important;
+        padding: 11px 4px !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: var(--gray-100) !important;
+        text-decoration: none !important;
+        background-color: transparent !important;
+        transition: all 0.2s ease !important;
+        text-align: left;
+      }
+
+      .dropdown-list li a:hover {
+        color: var(--primary) !important;
+        padding-left: 8px !important;
+      }
+
+      /* ### mobileMenu ### */
+      .mobileMenu {
+        position: absolute;
+        top: 50%;
+        left: 18px;
+        z-index: 15;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      .mobileMenu span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 13px;
+        height: 2px;
+        text-indent: -9999px;
+        border-radius: 0;
+        background: var(--black);
+        transform: translateX(-50%) translateY(-50%);
+        transition: 0.2s;
+      }
+      .mobileMenu span:before,
+      .mobileMenu span:after {
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 0;
+        background-color: var(--black);
+        transition-duration: 0.2s, 0.2s;
+        content: "";
+      }
+      .mobileMenu span:before {
+        top: -5px;
+        left: 0;
+      }
+      .mobileMenu span:after {
+        bottom: -5px;
+      }
+      .mobileMenu.active span {
+        left: 50%;
+        background: none;
+      }
+      .mobileMenu.active span:before,
+      .mobileMenu.active span:after {
+        left: 0;
+        transition-delay: 0s, 0.2s;
+      }
+      .mobileMenu.active span:before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+      .mobileMenu.active span:after {
+        bottom: 0;
+        transform: rotate(-45deg);
+      }
+
+      @media only screen and (max-width: 1199px) {
+        #headerCntr .logo {
+          width: 95px;
+        }
+        .menuBox ul {
+          margin-right: 16px;
+        }
+        .menuBox ul > li {
+          margin-right: 6px;
+        }
+        .menuBox ul > li > a {
+          padding: 16px 14px;
+          font-size: 14px;
+        }
+        #headerCntr .sign-in {
+          margin-right: 20px;
+          font-size: 14px;
+        }
+        #headerCntr .button {
+          padding: 6px 18px;
+          font-size: 14px;
+        }
+      }
+
+      .mobile-drawer-content {
+        display: none !important;
+      }
+
+      /* Mobile styles (< 767px) */
+      @media only screen and (max-width: 767px) {
+        .centered {
+          padding-right: 16px !important;
+          padding-left: 16px !important;
+        }
+        #headerCntr {
+          padding: 10px 0;
+        }
+        #headerCntr .logo {
+          width: 96px;
+          margin-left: 28px !important; /* Safe margin to prevent any hamburger overlap */
+        }
+        #headerCntr .request {
+          padding-left: 0;
+        }
+        #headerCntr .request::before,
+        #headerCntr .sign-in {
+          display: none;
+        }
+        .mobileMenu {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          left: 12px !important; /* Shift hamburger safely next to screen border */
+        }
+        .menuBox {
+          padding: 0 !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          z-index: 100000 !important; /* Make it cover everything, including header */
+          display: block !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          width: 100vw !important;
+          height: 100vh !important;
+          background-color: #ededed !important; /* Matches mockup grey */
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s linear, visibility 0.4s linear !important;
+          transform: translateX(-100%) !important; /* Slide in from left */
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+        }
+        .menuBox.active {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: translateX(0) !important;
+        }
+        .menuBox .nav-items {
+          display: none !important;
+        }
+        
+        /* Mobile Drawer Content Styling */
+        .mobile-drawer-content {
+          display: block !important;
+          padding: 24px 20px 40px 20px !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
+          min-height: 100% !important;
+          font-family: var(--font-family) !important;
+        }
+
+        .drawer-header {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          margin-bottom: 24px !important;
+          width: 100% !important;
+        }
+
+        .drawer-title,
+        .drawer-section-heading {
+          font-size: 28px !important;
+          font-weight: 700 !important; /* Display bold */
+          line-height: 1.1 !important; /* 110% */
+          color: #000000 !important;
+          letter-spacing: -0.02em !important;
+        }
+
+        .drawer-section-heading {
+          margin-top: 32px !important;
+          margin-bottom: 16px !important;
+          width: 100% !important;
+          text-align: left !important;
+        }
+
+        /* Mobile-only Case Study Card Styling */
+        .mobile-case-study-card {
+          display: flex !important;
+          align-items: center !important;
+          background-color: #000000 !important; /* Solid black background */
+          border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Subtle premium highlight border */
+          border-radius: 20px !important; /* Corner radius 20 */
+          padding: 10px 16px !important; /* Balanced left/right padding */
+          text-decoration: none !important;
+          transition: transform 0.2s ease, opacity 0.25s ease !important;
+          overflow: hidden !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          height: 92px !important;
+          margin: 0 auto !important;
+        }
+
+        .mobile-case-study-card:active {
+          transform: scale(0.97) !important;
+        }
+
+        .mobile-case-study-card .case-study-inner {
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          height: 100% !important;
+          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease !important;
+        }
+
+        .mobile-case-study-card .cs-logo {
+          width: 64px !important; /* Logo spacing */
+          height: 48px !important;
+          flex-shrink: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .mobile-case-study-card .cs-logo img {
+          max-width: 100% !important;
+          max-height: 100% !important;
+          width: auto !important;
+          height: auto !important;
+          object-fit: contain !important;
+        }
+
+        /* Specifically invert dark brand logos on mobile case study dark background */
+        .mobile-case-study-card img[src*="xyxx"] {
+          filter: brightness(0) invert(1) !important;
+        }
+
+        .mobile-case-study-card .cs-divider {
+          width: 1px !important;
+          height: 48px !important;
+          border-left: 1.5px dashed rgba(255, 255, 255, 0.2) !important; /* Dotted/dashed vertical line */
+          background-color: transparent !important;
+          margin: 0 12px !important;
+          flex-shrink: 0 !important;
+        }
+
+        .mobile-case-study-card .cs-text {
+          font-family: var(--font-family) !important;
+          font-size: 12px !important; /* Highly readable 12px on mobile */
+          line-height: 1.35 !important;
+          color: #ffffff !important; /* Solid white text on black background */
+          opacity: 0.9 !important;
+          font-weight: 500 !important;
+          flex-grow: 1 !important;
+          text-align: left !important;
+        }
+
+        .drawer-close-btn {
+          background: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+          color: #000000 !important;
+          cursor: pointer !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: transform 0.2s ease !important;
+        }
+
+        .drawer-close-btn:active {
+          transform: scale(0.9) !important;
+        }
+
+        .drawer-close-btn svg {
+          width: 28px !important;
+          height: 28px !important;
+          stroke-width: 1.5px !important;
+        }
+
+        /* 2-Column Premium Grid */
+        .drawer-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 8px !important;
+          width: 100% !important;
+          padding: 4px 8px !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Individual Premium Card */
+        .drawer-card {
+          background-color: #ffffff !important;
+          border-radius: 20px !important;
+          border: 1px solid rgba(0, 0, 0, 0.1) !important; /* Stroke 000000 @ 10% inside, weight 1 */
+          padding: 16px 14px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          justify-content: flex-start !important; /* Top-Left aligned */
+          gap: 8px !important; /* Spacing 8px inside card auto-layout */
+          transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease !important;
+          text-decoration: none !important;
+          box-sizing: border-box !important;
+          min-height: 130px !important; /* 168 Fill x 130 */
+          width: 100% !important;
+        }
+
+        .drawer-card:active {
+          transform: scale(0.97) !important;
+          background-color: #fcfcfc !important;
+        }
+
+        /* Icon container inside card */
+        .drawer-card-icon-box {
+          width: 42px !important;
+          height: 42px !important;
+          background-color: #f4f4f4 !important;
+          border-radius: 10px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          margin-bottom: 0 !important; /* Handled perfectly by flex gap: 8px */
+        }
+
+        .drawer-card-icon-box img {
+          width: 22px !important;
+          height: 22px !important;
+          object-fit: contain !important;
+        }
+
+        /* Special sizing for specific SVGs */
+        .drawer-card-icon-box img[src*="rms.svg"],
+        .drawer-card-icon-box img[src*="jms.svg"],
+        .drawer-card-icon-box img[src*="ship_axis.svg"],
+        .drawer-card-icon-box img[src*="whatsapp_business_suite.svg"] {
+          width: 26px !important;
+          height: 26px !important;
+        }
+
+        /* Title text inside card */
+        .drawer-card-title {
+          font-size: 13.5px !important;
+          font-weight: 700 !important;
+          color: #000000 !important;
+          line-height: 1.25 !important;
+          text-align: left !important;
+          word-wrap: break-word !important;
+          margin-top: auto !important; /* Pushes text to bottom */
+        }
+        .menuBox ul {
+          display: block;
+          width: 100%;
+        }
+        .menuBox ul > li {
+          display: block;
+          width: 100%;
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+        .dropdown-menu {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: none;
+          width: 100%;
+          height: auto !important;
+          opacity: 1;
+          visibility: visible;
+          box-shadow: none;
+          border: none;
+          padding: 0 15px;
+          margin-top: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          background-color: transparent;
+          z-index: 1;
+          display: block;
+        }
+
+        .dropdown-list {
+          display: block !important;
+        }
+
+        .dropdown-menu::before {
+          display: none;
+        }
+
+        /* Mobile accordion state when parent is open */
+        .menuBox ul > li.has-dropdown.open .dropdown-menu {
+          max-height: 1500px !important; /* Raised to fit all accordion items elegantly */
+          overflow-y: visible;
+        }
+
+        .menuBox ul > li.has-dropdown.open .chevron-icon {
+          transform: rotate(180deg);
+        }
+
+        .dropdown-list li a {
+          padding: 8px 10px !important;
+        }
+
+        .case-study-card {
+          background-color: #fafafa;
+        }
+        .menuBox ul > li > a {
+          padding: 10px 15px;
+        }
+
+        /* Mobile accordion styles for nested side-panels */
+        .side-panel {
+          position: relative;
+          left: 0 !important;
+          top: 0 !important;
+          transform: none !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 0 10px !important;
+          margin-top: 5px !important;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          background-color: transparent !important;
+          z-index: 1;
+          display: block;
+        }
+
+        .side-panel::before {
+          display: none !important; /* Hide desktop arrow indicator on mobile */
+        }
+
+        .dropdown-list li.has-side-panel.open-panel .side-panel {
+          max-height: 450px;
+          overflow-y: visible;
+        }
+
+        .comparisons-popup {
+          width: 100% !important;
+          max-height: none !important;
+          overflow-y: visible !important;
+          padding: 0 !important;
+        }
+
+        .comparisons-scroll-container {
+          max-height: none !important;
+          overflow-y: visible !important;
+        }
+
+        .comparisons-list li a {
+          padding: 8px 15px !important;
+        }
+
+        .newsletter-popup {
+          width: 100% !important;
+          height: auto !important;
+          padding: 18px 10px 10px !important; /* Top padding leaves space for absolute badge */
+          background-color: #fafafa !important;
+          border-radius: 12px !important;
+          border: 1px solid #E8E8E8 !important;
+          justify-content: flex-start !important;
+          gap: 12px !important;
+        }
+
+        /* Mobile accordion styles for Products wide menu */
+        .products-dropdown-menu {
+          position: relative !important;
+          top: 0 !important;
+          width: 100% !important;
+          height: auto !important;
+          left: 0 !important;
+          right: auto !important;
+          transform: none !important;
+          padding: 10px 0 !important;
+          box-shadow: none !important;
+          border-radius: 0 !important;
+        }
+
+        .products-tab-bar {
+          padding: 10px 0 !important;
+          border-bottom: 1px solid #E8E8E8 !important;
+        }
+
+        .products-tab-bar-inner {
+          grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on mobile screens */
+          gap: 8px !important;
+          padding: 0 10px !important;
+        }
+
+        .product-tab-item {
+          width: 100% !important;
+          padding: 10px !important;
+          gap: 6px !important;
+          border-radius: 10px !important;
+        }
+
+        .tab-arrow-btn {
+          display: none !important;
+        }
+
+        .product-tab-item.active-tab::after {
+          display: none !important;
+        }
+
+        .product-icon-box {
+          width: 48px !important;
+          height: 48px !important;
+          border-radius: 12px !important;
+        }
+
+        .product-icon-box img {
+          width: 24px !important;
+          height: 24px !important;
+        }
+
+        .product-icon-box img[src*="rms.svg"],
+        .product-icon-box img[src*="jms.svg"],
+        .product-icon-box img[src*="shipaxis"],
+        .product-icon-box img[src*="crm-animation"],
+        .product-icon-box img[src*="return-animation"],
+        .product-icon-box img[src*="checkout-animation"],
+        .product-icon-box img[src*="rtosuite-animation"],
+        .product-icon-box img[src*="genie-animation"],
+        .product-icon-box img[src*="whatsapp-animation"],
+        .product-icon-box img[src*="jms-animation"],
+        .product-icon-box img[src*="whatsapp_business_suite.svg"] {
+          width: 32px !important;
+          height: 32px !important;
+        }
+
+        .product-name {
+          font-size: 11px !important; /* Sized down for optimal mobile text fit */
+          line-height: 1.2 !important;
+        }
+
+        .products-sub-panel {
+          padding: 16px 0 !important;
+        }
+
+        .products-sub-panel-inner {
+          padding: 0 10px !important;
+          gap: 8px !important;
+        }
+
+        .sub-feature-chip {
+          font-size: 13px !important;
+          padding: 8px 14px !important;
+        }
+
+        .menuBox ul > li.has-dropdown.open .products-dropdown-menu {
+          max-height: 900px !important;
+        }
+
+        /* Mobile Resources Drawer Section Styling */
+        .mobile-resources-container {
+          margin-top: 24px !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          font-family: var(--font-family) !important;
+          box-sizing: border-box !important;
+        }
+
+        .mobile-resources-accordion {
+          border-radius: 20px !important;
+          border: 1px solid rgba(0, 0, 0, 0.1) !important;
+          overflow: hidden !important;
+          background-color: #ffffff !important;
+          width: 100% !important;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+        }
+
+        .m-resource-item {
+          width: 100% !important;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+          box-sizing: border-box !important;
+        }
+
+        .m-resource-item:last-child {
+          border-bottom: none !important;
+        }
+
+        .m-resource-header, 
+        .m-resource-header-link {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          padding: 16px 20px !important;
+          font-family: var(--font-family) !important;
+          font-size: 15px !important;
+          font-weight: 700 !important;
+          color: #000000 !important;
+          background-color: #ffffff !important;
+          cursor: pointer !important;
+          transition: all 0.25s ease !important;
+          width: 100% !important;
+          text-decoration: none !important;
+          box-sizing: border-box !important;
+          text-align: left !important;
+        }
+
+        .m-resource-header:active, 
+        .m-resource-header-link:active {
+          background-color: #fafafa !important;
+        }
+
+        .m-resource-header .chevron-arrow {
+          transition: transform 0.3s ease !important;
+          color: #000000 !important;
+        }
+
+        .m-resource-submenu {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          background-color: #ffffff !important;
+          display: flex !important;
+          flex-direction: column !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        .m-resource-sublink {
+          padding: 12px 20px 12px 30px !important;
+          font-family: var(--font-family) !important;
+          font-size: 14px !important;
+          font-weight: 500 !important;
+          color: #4A4A4A !important;
+          text-decoration: none !important;
+          border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+          transition: background-color 0.2s ease, color 0.2s ease !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          text-align: left !important;
+        }
+
+        .m-resource-sublink:active {
+          background-color: rgba(40, 113, 240, 0.05) !important;
+          color: #2871f0 !important;
+        }
+
+        .m-resource-item.has-submenu.open-submenu .m-resource-header {
+          background-color: rgba(40, 113, 240, 0.05) !important;
+          color: #2871f0 !important;
+        }
+
+        .m-resource-item.has-submenu.open-submenu .m-resource-header .chevron-arrow {
+          transform: rotate(180deg) !important;
+          color: #2871f0 !important;
+        }
+
+        .m-resource-item.has-submenu.open-submenu .m-resource-submenu {
+          max-height: 250px !important;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        /* Desktop specific premium Products tab/sub-panel connection */
+        .products-tab-bar {
+          padding: 20px 0 0 0 !important; /* Remove bottom padding to let tabs go flush with bottom border */
+        }
+
+        .product-tab-item {
+          padding: 16px 12px 36px 12px !important; /* Transfer the 20px bottom padding to inside the tabs to maintain vertical centering exactly */
+          align-items: center !important; /* Center the icon and text block horizontally inside the tab card */
+        }
+
+        .product-name {
+          text-align: left !important; /* Keep multi-line text left-justified relative to each other */
+          width: fit-content !important; /* Shrink to content to allow flex alignment to center the block */
+        }
+
+        .products-sub-panel {
+          position: absolute !important;
+          background-color: #ffffff !important;
+          border: 1px solid #2871f0 !important;
+          border-radius: 0 20px 20px 20px !important;
+          box-shadow: 0 12px 30px rgba(40, 113, 240, 0.08) !important;
+          z-index: 10 !important;
+          box-sizing: border-box !important;
+          padding: 24px !important;
+          width: 540px !important; /* Perfect width from Figma specifications */
+          margin-top: 0 !important;
+        }
+
+        .products-sub-panel-inner {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 10px 16px !important; /* Row gap 10px, Column gap 16px from Figma auto-layout specs */
+          width: 100% !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        .sub-feature-chip {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          height: 54px !important; /* Precise chip height from Figma specs */
+          padding: 0 16px !important; /* Figma horizontal padding 16px */
+          background-color: rgba(0, 0, 0, 0.08) !important; /* Figma 000000 at 8% opacity fill */
+          border: 1.5px solid transparent !important;
+          border-radius: 10px !important; /* Figma Corner radius 10px */
+          font-family: "Satoshi", var(--font-family), sans-serif !important; /* Satoshi font from Figma typography */
+          font-size: 16px !important; /* Figma Typography Size 16px */
+          font-weight: 500 !important; /* Figma Typography Weight Medium */
+          letter-spacing: 0.04em !important; /* Figma Typography Letter Spacing 4% */
+          color: #000000 !important; /* Figma Typography Fill color 100% solid black */
+          transition: all 0.2s ease !important;
+          white-space: nowrap !important;
+          box-sizing: border-box !important;
+        }
+
+        .sub-feature-chip:hover {
+          background-color: #1A5CC8 !important;
+          border-color: #1A5CC8 !important;
+          color: #ffffff !important;
+        }
+
+        .sub-feature-chip.chip-active {
+          background-color: #2871f0 !important;
+          border-color: #2871f0 !important;
+          color: #ffffff !important;
+        }
+
+        .sub-feature-chip.chip-active:hover {
+          background-color: #1A5CC8 !important;
+          border-color: #1A5CC8 !important;
+          color: #ffffff !important;
+        }
+
+        /* Active product tab merging with sub-panel */
+        .product-tab-item.active-tab {
+          position: relative !important;
+          bottom: -1px !important; /* Shifts the tab down by 1px to perfectly overlap and mask the sub-panel top border */
+          border: 1px solid #2871f0 !important;
+          border-bottom: 1px solid #ffffff !important; /* Overlaps and masks the sub-panel top border */
+          background-color: #ffffff !important;
+          border-radius: 20px 20px 0 0 !important;
+          z-index: 12 !important;
+        }
+
+        .product-tab-item.active-tab .product-name {
+          color: #2871f0 !important;
+          text-decoration: underline !important;
+          text-underline-offset: 4px !important;
+        }
+
+        .product-tab-item.active-tab .product-icon-box {
+          background-color: transparent !important;
+        }
+
+        .product-tab-item.active-tab .product-icon-box img {
+          filter: none !important;
+        }
+
+        /* Concave rounded corner to merge active tab to sub-panel */
+        .product-tab-item.active-tab::after {
+          content: "" !important;
+          position: absolute !important;
+          bottom: -1px !important;
+          left: auto !important; /* Reset the original left: 50% override */
+          right: -20px !important;
+          width: 20px !important;
+          height: 20px !important;
+          background-color: transparent !important;
+          background: radial-gradient(circle at 100% 0%, transparent 20px, #2871f0 20px, #2871f0 21px, #ffffff 21px) !important;
+          border-left: none !important;
+          border-top: none !important;
+          border-radius: 0 !important;
+          transform: none !important;
+          z-index: 11 !important;
+          pointer-events: none !important;
+        }
+
+        /* Right-aligned active tab concave corner on the left */
+        .product-tab-item.active-tab.tab-align-right::after {
+          left: -20px !important;
+          right: auto !important;
+          background: radial-gradient(circle at 0% 0%, transparent 20px, #2871f0 20px, #2871f0 21px, #ffffff 21px) !important;
+        }
+
+        .products-sub-panel.panel-align-right {
+          border-radius: 20px 0 20px 20px !important;
+        }
+
+        .product-tab-item.active-tab::before {
+          display: none !important;
+        }
+      }
+
+      /* Medium Desktop styling (992px - 1200px) to prevent products tab-bar overflow */
+      @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        .products-tab-bar {
+          padding: 14px 0 0 0 !important;
+        }
+        .products-tab-bar-inner {
+          grid-template-columns: repeat(8, 1fr) !important;
+          gap: 6px !important;
+          padding: 0 10px !important;
+        }
+        .product-tab-item {
+          width: 100% !important;
+          max-width: 120px !important;
+          padding: 10px 4px 24px 4px !important;
+          gap: 6px !important;
+          border-radius: 10px !important;
+        }
+        .product-icon-box {
+          width: 58px !important;
+          height: 58px !important;
+          border-radius: 10px !important;
+        }
+        .product-icon-box img {
+          width: 24px !important;
+          height: 24px !important;
+        }
+        .product-icon-box img[src*="rms.svg"],
+        .product-icon-box img[src*="jms.svg"],
+        .product-icon-box img[src*="shipaxis"],
+        .product-icon-box img[src*="crm-animation"],
+        .product-icon-box img[src*="return-animation"],
+        .product-icon-box img[src*="checkout-animation"],
+        .product-icon-box img[src*="rtosuite-animation"],
+        .product-icon-box img[src*="genie-animation"],
+        .product-icon-box img[src*="whatsapp-animation"],
+        .product-icon-box img[src*="jms-animation"],
+        .product-icon-box img[src*="whatsapp_business_suite.svg"] {
+          width: 32px !important;
+          height: 32px !important;
+        }
+        .product-name {
+          font-size: 13px !important;
+        }
+        /* Concave corner adjustments for smaller active tabs */
+        .product-tab-item.active-tab::after {
+          right: -16px !important;
+          width: 16px !important;
+          height: 16px !important;
+          background: radial-gradient(circle at 100% 0%, transparent 16px, #2871f0 16px, #2871f0 17px, #ffffff 17px) !important;
+        }
+        .product-tab-item.active-tab.tab-align-right::after {
+          left: -16px !important;
+          background: radial-gradient(circle at 0% 0%, transparent 16px, #2871f0 16px, #2871f0 17px, #ffffff 17px) !important;
+        }
+      }
+
+      /* Tablet Desktop-style styling (768px - 991px) */
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        /* Header spacing optimization */
+        #headerCntr .logo {
+          width: 80px;
+        }
+        .menuBox ul {
+          margin-right: 8px;
+        }
+        .menuBox ul > li {
+          margin-right: 4px;
+        }
+        .menuBox ul > li > a {
+          padding: 12px 10px;
+          font-size: 13px;
+        }
+        #headerCntr .sign-in {
+          margin-right: 12px;
+          font-size: 13px;
+        }
+        #headerCntr .button {
+          padding: 5px 14px;
+          font-size: 13px;
+        }
+
+        /* Products Tab-Bar */
+        .products-tab-bar {
+          padding: 10px 0 0 0 !important;
+        }
+        .products-tab-bar-inner {
+          grid-template-columns: repeat(8, 1fr) !important;
+          gap: 4px !important;
+          padding: 0 6px !important;
+        }
+        .product-tab-item {
+          width: 100% !important;
+          max-width: 90px !important;
+          padding: 8px 2px 20px 2px !important;
+          gap: 4px !important;
+          border-radius: 8px !important;
+        }
+        .product-icon-box {
+          width: 44px !important;
+          height: 44px !important;
+          border-radius: 8px !important;
+        }
+        .product-icon-box img {
+          width: 20px !important;
+          height: 20px !important;
+        }
+        .product-icon-box img[src*="rms.svg"],
+        .product-icon-box img[src*="jms.svg"],
+        .product-icon-box img[src*="shipaxis"],
+        .product-icon-box img[src*="crm-animation"],
+        .product-icon-box img[src*="return-animation"],
+        .product-icon-box img[src*="checkout-animation"],
+        .product-icon-box img[src*="rtosuite-animation"],
+        .product-icon-box img[src*="genie-animation"],
+        .product-icon-box img[src*="whatsapp-animation"],
+        .product-icon-box img[src*="jms-animation"],
+        .product-icon-box img[src*="whatsapp_business_suite.svg"] {
+          width: 26px !important;
+          height: 26px !important;
+        }
+        .product-name {
+          font-size: 11px !important;
+        }
+
+        /* Products sub-panel width and items spacing */
+        .products-sub-panel {
+          width: 440px !important; /* Narrower to fit beautifully on tablet view */
+          padding: 16px !important;
+        }
+        .products-sub-panel-inner {
+          gap: 8px 10px !important;
+        }
+        .sub-feature-chip {
+          height: 42px !important;
+          font-size: 13px !important;
+          padding: 0 10px !important;
+          border-radius: 8px !important;
+        }
+
+        /* Active tab indicator and mask alignment */
+        .product-tab-item.active-tab {
+          border-radius: 12px 12px 0 0 !important;
+        }
+        .product-tab-item.active-tab::after {
+          right: -12px !important;
+          width: 12px !important;
+          height: 12px !important;
+          background: radial-gradient(circle at 100% 0%, transparent 12px, #2871f0 12px, #2871f0 13px, #ffffff 13px) !important;
+        }
+        .product-tab-item.active-tab.tab-align-right::after {
+          left: -12px !important;
+          background: radial-gradient(circle at 0% 0%, transparent 12px, #2871f0 12px, #2871f0 13px, #ffffff 13px) !important;
+        }
+      }
+    </style>
+
+    <!-- =========================================================================
+         HTML LAYOUT STRUCTURE INDEX
+         =========================================================================
+         [A] OUTER WRAPPER & CONTAINER (Line 1454)
+             - #wrapper -> #mainCntr
+         
+         [B] NAVIGATION HEADER BAR (Line 1458)
+             - Logo section & Brand Identity Link (Line 1460)
+             - Core Navigation Container (Line 1465)
+         
+         [C] PRODUCTS DROPDOWN MEGA-MENU (Line 1467)
+             - Products Trigger Tab (Line 1468)
+             - Wide Dropdown Menu Container (Line 1472)
+             - Tab Bar Navigation (8 items: Genie, Omnichannel CRM, RTO, RMS, Checkout, ShipAxis, JMS, WhatsApp) (Line 1475)
+             - Sub-Feature Panels (8 sub-panels with custom feature chips) (Line 1546)
+         
+         [D] RESOURCES DROPDOWN MENU (Line 1647)
+             - Resources Trigger Tab (Line 1648)
+             - Dynamic Rotating Case Study Card (Line 1654)
+             - Side-panel Hover Flyouts (Comparisons & Newsletter) (Line 1668)
+             - General Resource Links (Blogs, Product Decks, Ebooks, About Us) (Line 1694)
+         
+         [E] ACTION BUTTONS & MOBILE MENU (Line 1704)
+             - Sign In & Book A Demo (Line 1705)
+             - Mobile Hamburger Menu Button (Line 1712)
+         ========================================================================= -->
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / header container \ -->
+        <header id="headerCntr">
+          <div class="headerBox centered">
+            <a class="logo" href="#">
+              <img src="assets/images/logo.png" alt="" />
+            </a>
+
+            <div class="holder">
+              <nav class="menuBox">
+                <ul class="nav-items">
+                  <li class="has-dropdown products-dropdown-item">
+                    <a href="#" class="dropdown-trigger">
+                      Products
+                    </a>
+                    <!-- Products Wide Dropdown -->
+                    <div class="dropdown-menu products-dropdown-menu" id="productsDropdownMenu">
+
+                      <!-- TOP: Tab Bar Row -->
+                      <div class="products-tab-bar" id="productsTabBar">
+                        <div class="products-tab-bar-inner">
+
+                          <!-- Genie (AI Copilot) - Tab with sub-panel -->
+                          <div class="product-tab-item" data-tab="genie" id="tab-genie">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/genie.svg" alt="Genie" />
+                            </div>
+                            <div class="product-name">Genie<br/>(AI Copilot)</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- Omnichannel CRM -->
+                          <div class="product-tab-item" data-tab="omnichannel" id="tab-omnichannel">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/omnichannel_crm.svg" alt="Omnichannel CRM" />
+                            </div>
+                            <div class="product-name">Omnichannel<br/>CRM</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- RTO Suite -->
+                          <div class="product-tab-item" data-tab="rto" id="tab-rto">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/rto_suite.svg" alt="RTO Suite" />
+                            </div>
+                            <div class="product-name">RTO Suite</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- Return Management System -->
+                          <div class="product-tab-item" data-tab="rms" id="tab-rms">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/rms.svg" alt="Return Management System" />
+                            </div>
+                            <div class="product-name">Return<br/>Management<br/>System</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- 1Checkout -->
+                          <div class="product-tab-item tab-align-right" data-tab="checkout" id="tab-checkout">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/checkout_1.svg" alt="1Checkout" />
+                            </div>
+                            <div class="product-name">1Checkout</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- ShipAxis -->
+                          <div class="product-tab-item tab-align-right" data-tab="shipaxis" id="tab-shipaxis">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/ship_axis.svg" alt="ShipAxis" />
+                            </div>
+                            <div class="product-name">ShipAxis</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- Journey Management System -->
+                          <div class="product-tab-item tab-align-right" data-tab="jms" id="tab-jms">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/jms.svg" alt="Journey Management System" />
+                            </div>
+                            <div class="product-name">Journey<br/>Management<br/>System</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <!-- WhatsApp Business Suite -->
+                          <div class="product-tab-item tab-align-right" data-tab="whatsapp" id="tab-whatsapp">
+                            <div class="product-icon-box">
+                              <img src="assets/images/navbar/whatsapp_business_suite.svg" alt="WhatsApp Business Suite" />
+                            </div>
+                            <div class="product-name">WhatsApp<br/>Business<br/>Suite</div>
+                            <div class="tab-arrow-btn">
+                              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1L5 9M5 9L1 5M5 9L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <!-- END Tab Bar Row -->
+
+                      <!-- BOTTOM: Sub-Feature Panels (one per product tab) -->
+
+                      <!-- Genie Sub-Panel -->
+                      <div class="products-sub-panel" id="sub-panel-genie">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">AI Agent Assistance</a>
+                          <a href="#" class="sub-feature-chip">Operations Intelligence</a>
+                          <a href="#" class="sub-feature-chip">Quality Intelligence</a>
+                          <a href="#" class="sub-feature-chip">WhatsApp AI Chatbot</a>
+                          <a href="#" class="sub-feature-chip">AI Governance</a>
+                        </div>
+                      </div>
+
+                      <!-- Omnichannel CRM Sub-Panel -->
+                      <div class="products-sub-panel" id="sub-panel-omnichannel">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Unified Profiles</a>
+                          <a href="#" class="sub-feature-chip">Agent AI Copilot</a>
+                          <a href="#" class="sub-feature-chip">Conversational Commerce</a>
+                          <a href="#" class="sub-feature-chip">Real-Time Triggers</a>
+                          <a href="#" class="sub-feature-chip">Revenue Intelligence</a>
+                          <a href="#" class="sub-feature-chip">AI-enabled Chatbots</a>
+                          <a href="#" class="sub-feature-chip">Workforce Intelligence</a>
+                          <a href="#" class="sub-feature-chip">Support Analytics</a>
+                        </div>
+                      </div>
+
+                      <!-- RTO Suite Sub-Panel -->
+                      <div class="products-sub-panel" id="sub-panel-rto">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Risk Scoring</a>
+                          <a href="#" class="sub-feature-chip">Fraud Detection</a>
+                          <a href="#" class="sub-feature-chip">Order Verification</a>
+                          <a href="#" class="sub-feature-chip">RTO Analytics</a>
+                        </div>
+                      </div>
+
+                      <!-- RMS Sub-Panel -->
+                      <div class="products-sub-panel" id="sub-panel-rms">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Refund Automation</a>
+                          <a href="#" class="sub-feature-chip">Exchange Management</a>
+                          <a href="#" class="sub-feature-chip">Reverse Logistics</a>
+                          <a href="#" class="sub-feature-chip">Return Intelligence</a>
+                          <a href="#" class="sub-feature-chip">Abuse Prevention</a>
+                        </div>
+                      </div>
+
+                      <!-- 1Checkout Sub-Panel -->
+                      <div class="products-sub-panel panel-align-right" id="sub-panel-checkout">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Checkout Speed</a>
+                          <a href="#" class="sub-feature-chip">Prepaid Conversion</a>
+                          <a href="#" class="sub-feature-chip">COD Control</a>
+                          <a href="#" class="sub-feature-chip">Upselling & Cross-selling</a>
+                          <a href="#" class="sub-feature-chip">Payment Orchestration</a>
+                          <a href="#" class="sub-feature-chip">Checkout Analytics</a>
+                        </div>
+                      </div>
+
+                      <!-- ShipAxis Sub-Panel -->
+                      <div class="products-sub-panel panel-align-right" id="sub-panel-shipaxis">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Courier Intelligence</a>
+                          <a href="#" class="sub-feature-chip">SLA Intelligence</a>
+                          <a href="#" class="sub-feature-chip">RTO Suppression</a>
+                          <a href="#" class="sub-feature-chip">NDR Intelligence</a>
+                          <a href="#" class="sub-feature-chip">Warehouse Routing</a>
+                          <a href="#" class="sub-feature-chip">Cost Analytics</a>
+                        </div>
+                      </div>
+
+                      <!-- JMS Sub-Panel -->
+                      <div class="products-sub-panel panel-align-right" id="sub-panel-jms">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">Instagram Automation</a>
+                          <a href="#" class="sub-feature-chip">Abandoned Cart Recovery</a>
+                          <a href="#" class="sub-feature-chip">Revenue Journeys</a>
+                          <a href="#" class="sub-feature-chip">Real-Time Triggers</a>
+                          <a href="#" class="sub-feature-chip">Lifecycle Intelligence</a>
+                          <a href="#" class="sub-feature-chip">Revenue Attribution</a>
+                          <a href="#" class="sub-feature-chip">Journey Experiments</a>
+                        </div>
+                      </div>
+
+                      <!-- WhatsApp Business Suite Sub-Panel -->
+                      <div class="products-sub-panel panel-align-right" id="sub-panel-whatsapp">
+                        <div class="products-sub-panel-inner">
+                          <a href="#" class="sub-feature-chip">WhatsApp Campaigns</a>
+                          <a href="#" class="sub-feature-chip">CTWA Campaigns</a>
+                          <a href="#" class="sub-feature-chip">Abandoned Cart Recovery</a>
+                          <a href="#" class="sub-feature-chip">WhatsApp AI Chatbot</a>
+                          <a href="#" class="sub-feature-chip">Commerce Flows</a>
+                          <a href="#" class="sub-feature-chip">Prepaid Conversion</a>
+                          <a href="#" class="sub-feature-chip">Operations Messaging</a>
+                          <a href="#" class="sub-feature-chip">Support Automation</a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </li>
+                  <li class="has-dropdown">
+                    <a href="#" class="dropdown-trigger">
+                      Resources
+                    </a>
+                    <div class="dropdown-menu">
+                      <div class="dropdown-section case-studies-section">
+                        <a href="case-studies-top.html" class="dropdown-heading">Case Studies</a>
+                        <a href="case-studies-top.html" class="case-study-card">
+                          <div class="case-study-inner cs-dynamic-container" id="csDynamicContainer">
+                            <div class="cs-logo">
+                              <img id="csDynamicLogo" class="cs-dynamic-logo" src="assets/images/navbar/emami.svg" alt="Emami" />
+                            </div>
+                            <div class="cs-divider"></div>
+                            <div id="csDynamicText" class="cs-text cs-dynamic-text">
+                              Case Study Title of almost 2-3 lines can fit in this space right here
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      
+                      <ul class="dropdown-list">
+                        <li class="has-side-panel comparisons-item">
+                          <a href="#">Comparisons</a>
+                          <div class="side-panel comparisons-popup">
+                            <div class="comparisons-scroll-container">
+                              <ul class="comparisons-list">
+                                <li><a href="#">Pragma vs Limechat</a></li>
+                                <li><a href="#">Pragma vs Limechat</a></li>
+                                <li><a href="#">Pragma vs Limechat</a></li>
+                                <li><a href="#">Pragma vs Limechat</a></li>
+                                <li><a href="#">Pragma vs Gokwik</a></li>
+                                <li><a href="#">Pragma vs Gokwik</a></li>
+                                <li><a href="#">Pragma vs Gokwik</a></li> <!-- 7th item triggers scrollbar beautifully -->
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="has-side-panel newsletter-item">
+                          <a href="#">Newsletter</a>
+                          <div class="side-panel newsletter-popup">
+                            <div class="subscribers-badge">6K+ Subscribers</div>
+                            <div class="newsletter-popup-body">
+                              <img src="assets/images/navbar/newsletterImage.svg" alt="D2C Caffeine" />
+                            </div>
+                            <a href="#" class="btn-subscribe">Subscribe</a>
+                          </div>
+                        </li>
+                        <li><a href="#">Blogs</a></li>
+                        <li><a href="#">Product Decks</a></li>
+                        <li><a href="#">Ebooks</a></li>
+                        <li><a href="#">About Us</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+
+                <!-- Mobile Products Grid Drawer (Visible on Mobile only) -->
+                <div class="mobile-drawer-content">
+                  <div class="drawer-header">
+                    <span class="drawer-title">Products</span>
+                    <button class="drawer-close-btn" aria-label="Close menu">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <div class="drawer-grid">
+                    <!-- Return Management System -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/rms.svg" alt="Return Management System" />
+                      </div>
+                      <span class="drawer-card-title">Return<br>Management System</span>
+                    </a>
+
+                    <!-- RTO Suite -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/rto_suite.svg" alt="RTO Suite" />
+                      </div>
+                      <span class="drawer-card-title">RTO<br>Suite</span>
+                    </a>
+
+                    <!-- ShipAxis -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/ship_axis.svg" alt="ShipAxis" />
+                      </div>
+                      <span class="drawer-card-title">ShipAxis</span>
+                    </a>
+
+                    <!-- 1Checkout -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/checkout_1.svg" alt="1Checkout" />
+                      </div>
+                      <span class="drawer-card-title">1Checkout</span>
+                    </a>
+
+                    <!-- Omnichannel CRM -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/omnichannel_crm.svg" alt="Omnichannel CRM" />
+                      </div>
+                      <span class="drawer-card-title">Omnichannel<br>CRM</span>
+                    </a>
+
+                    <!-- WhatsApp Business Suite -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/whatsapp_business_suite.svg" alt="WhatsApp Business Suite" />
+                      </div>
+                      <span class="drawer-card-title">WhatsApp<br>Business Suite</span>
+                    </a>
+
+                    <!-- Journey Management System -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/jms.svg" alt="Journey Management System" />
+                      </div>
+                      <span class="drawer-card-title">Journey<br>Management System</span>
+                    </a>
+
+                    <!-- Genie (AI Copilot) -->
+                    <a href="#" class="drawer-card">
+                      <div class="drawer-card-icon-box">
+                        <img src="assets/images/navbar/genie.svg" alt="Genie" />
+                      </div>
+                      <span class="drawer-card-title">Genie<br>(AI Copilot)</span>
+                    </a>
+                  </div>
+
+                  <!-- Resources Heading (Heading only for now) -->
+                  <div class="drawer-section-heading">Resources</div>
+
+                  <!-- Mobile Case Study Card (Visible on Mobile only) -->
+                  <a href="case-studies-top.html" class="mobile-case-study-card">
+                    <div class="case-study-inner cs-dynamic-container">
+                      <div class="cs-logo">
+                        <img class="cs-dynamic-logo" src="assets/images/navbar/emami.svg" alt="Emami" />
+                      </div>
+                      <div class="cs-divider"></div>
+                      <div class="cs-text cs-dynamic-text">
+                        Case Study Title of almost 2-3 lines can fit in this space right here
+                      </div>
+                    </div>
+                  </a>
+
+                  <!-- Mobile Resources Accordion List -->
+                  <div class="mobile-resources-container">
+                    <div class="mobile-resources-accordion">
+                      <!-- Comparisons Accordion Item -->
+                      <div class="m-resource-item has-submenu" id="m-comparisons-item">
+                        <div class="m-resource-header" id="m-comparisons-trigger">
+                          <span>Comparisons</span>
+                          <svg class="chevron-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </div>
+                        <div class="m-resource-submenu" id="m-comparisons-submenu">
+                          <a href="#" class="m-resource-sublink">Pragma vs Limechat</a>
+                          <a href="#" class="m-resource-sublink">Pragma vs Limechat</a>
+                          <a href="#" class="m-resource-sublink">Pragma x Gokwik</a>
+                          <a href="#" class="m-resource-sublink">Pragma vs Limechat</a>
+                        </div>
+                      </div>
+
+                      <!-- Newsletter -->
+                      <div class="m-resource-item">
+                        <a href="#" class="m-resource-header-link">Newsletter</a>
+                      </div>
+
+                      <!-- Blogs -->
+                      <div class="m-resource-item">
+                        <a href="#" class="m-resource-header-link">Blogs</a>
+                      </div>
+
+                      <!-- Product Decks -->
+                      <div class="m-resource-item">
+                        <a href="#" class="m-resource-header-link">Product Decks</a>
+                      </div>
+
+                      <!-- Ebooks -->
+                      <div class="m-resource-item">
+                        <a href="#" class="m-resource-header-link">Ebooks</a>
+                      </div>
+
+                      <!-- About Us -->
+                      <div class="m-resource-item">
+                        <a href="#" class="m-resource-header-link">About Us</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+
+              <div class="request">
+                <a href="#" class="sign-in">Sign In</a>
+
+                <a href="#" class="button">Book A Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <a class="mobileMenu js-toggle-mobile" href="#"><span></span></a>
+        </header>
+        <!--  \ header container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+
+        <!-- =========================================================================
+         JAVASCRIPT LOGIC INDEX
+         =========================================================================
+         [I]   MOBILE MENU ACCORDION TRIGGER (Line 1721)
+               - Toggle 'active' state on hamburger elements, menuBox, and headerCntr.
+         
+         [II]  MOBILE SUB-MENU TOGGLE ACCORDION (Line 1730)
+               - Toggles the nested mobile accordion dropdowns inside the menu items.
+         
+         [III] PRODUCTS MEGA-MENU TAB SYSTEM (Line 1741)
+               - Tab positioning & alignment logic for left/right sub-panels (Line 1749)
+               - Active tab visual updates & separation border control (Line 1785)
+               - Mouseenter (Desktop) and Click (Mobile) triggers for tabs (Line 1813)
+               - Window resize alignment recalculation & page load alignment triggers (Line 1830)
+         
+         [IV]  DYNAMIC ROTATING CASE STUDY SLIDER (Line 1854)
+               - Featured case studies metadata (Emami, Neemans, House of Gulab, Baidyanath, Bevdaas, XYXX) (Line 1856)
+               - Slider auto-transition with smooth vertical slide effect (Line 1895)
+         
+         [V]   MOBILE SIDE-PANEL CLICK ACCORDION (Line 1921)
+               - Accordion controls for nested comparisons/newsletter side-panels on mobile views.
+         ========================================================================= -->
+
+    <script>
+      document.querySelectorAll(".js-toggle-mobile").forEach((element) => {
+        // Header
+        element.addEventListener("click", function () {
+          this.classList.toggle("active");
+          document.querySelector(".menuBox").classList.toggle("active");
+          document.getElementById("headerCntr").classList.toggle("active");
+        });
+      });
+
+      // Mobile Drawer Close Button click logic
+      document.querySelectorAll(".drawer-close-btn").forEach((element) => {
+        element.addEventListener("click", function () {
+          document.querySelectorAll(".js-toggle-mobile").forEach(hamburger => hamburger.classList.remove("active"));
+          document.querySelector(".menuBox").classList.remove("active");
+          document.getElementById("headerCntr").classList.remove("active");
+        });
+      });
+
+      // Mobile sub-menu toggle accordion functionality
+      document.querySelectorAll(".menuBox ul > li.has-dropdown > a").forEach((trigger) => {
+        trigger.addEventListener("click", function (e) {
+          if (window.innerWidth <= 767) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle("open");
+          }
+        });
+      });
+
+      // === Products Tab Switching Logic ===
+      (function () {
+        const tabBar = document.getElementById("productsTabBar");
+        if (!tabBar) return;
+
+        const allTabs = tabBar.querySelectorAll(".product-tab-item");
+        const allSubPanels = document.querySelectorAll(".products-sub-panel");
+
+        function positionSubPanel(tabId) {
+          if (window.innerWidth <= 767) {
+            const activePanel = document.getElementById("sub-panel-" + tabId);
+            if (activePanel) {
+              activePanel.style.left = "";
+              activePanel.style.top = "";
+            }
+            return;
+          }
+
+          const activeTab = document.getElementById("tab-" + tabId);
+          const activePanel = document.getElementById("sub-panel-" + tabId);
+          const menu = document.getElementById("productsDropdownMenu");
+          const tabBarEl = document.getElementById("productsTabBar");
+
+          if (activeTab && activePanel && menu && tabBarEl) {
+             const tabRect = activeTab.getBoundingClientRect();
+             const menuRect = menu.getBoundingClientRect();
+             const tabBarRect = tabBarEl.getBoundingClientRect();
+
+             const panelWidth = activePanel.offsetWidth || 540;
+             if (activeTab.classList.contains("tab-align-right")) {
+               // Align sub-panel right edge with active tab right edge (subtracting dynamic panelWidth)
+               const rightOffset = tabRect.right - menuRect.left - panelWidth;
+               activePanel.style.left = rightOffset + "px";
+             } else {
+               // Align sub-panel left edge with active tab left edge
+               const leftOffset = tabRect.left - menuRect.left;
+               activePanel.style.left = leftOffset + "px";
+             }
+
+             // Align sub-panel top with tab bar bottom (minus border overlap)
+             const topOffset = tabBarRect.bottom - menuRect.top;
+             activePanel.style.top = (topOffset - 1) + "px";
+          }
+        }
+
+        let shipAxisAnimationTimer = null;
+        function playShipAxisAnimation() {
+          const shipAxisImg = document.querySelector("#tab-shipaxis .product-icon-box img");
+          if (!shipAxisImg) return;
+          
+          if (shipAxisAnimationTimer) {
+            clearTimeout(shipAxisAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/shipaxis-animation/shipaxis1.svg",
+            "assets/images/navbar/shipaxis-animation/shipaxis2.svg",
+            "assets/images/navbar/shipaxis-animation/shipaxis3.svg",
+            "assets/images/navbar/shipaxis-animation/shipaxis4.svg",
+            "assets/images/navbar/shipaxis-animation/shipaxis5.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              shipAxisImg.src = frames[currentFrame];
+              currentFrame++;
+              shipAxisAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetShipAxisImage() {
+          if (shipAxisAnimationTimer) {
+            clearTimeout(shipAxisAnimationTimer);
+            shipAxisAnimationTimer = null;
+          }
+          const shipAxisImg = document.querySelector("#tab-shipaxis .product-icon-box img");
+          if (shipAxisImg) {
+            shipAxisImg.src = "assets/images/navbar/ship_axis.svg";
+          }
+        }
+
+        let crmAnimationTimer = null;
+        function playCrmAnimation() {
+          const crmImg = document.querySelector("#tab-omnichannel .product-icon-box img");
+          if (!crmImg) return;
+          
+          if (crmAnimationTimer) {
+            clearTimeout(crmAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/crm-animation/crm1.svg",
+            "assets/images/navbar/crm-animation/crm2.svg",
+            "assets/images/navbar/crm-animation/crm3.svg",
+            "assets/images/navbar/crm-animation/crm4.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              crmImg.src = frames[currentFrame];
+              currentFrame++;
+              crmAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetCrmImage() {
+          if (crmAnimationTimer) {
+            clearTimeout(crmAnimationTimer);
+            crmAnimationTimer = null;
+          }
+          const crmImg = document.querySelector("#tab-omnichannel .product-icon-box img");
+          if (crmImg) {
+            crmImg.src = "assets/images/navbar/omnichannel_crm.svg";
+          }
+        }
+
+        let rmsAnimationTimer = null;
+        function playRmsAnimation() {
+          const rmsImg = document.querySelector("#tab-rms .product-icon-box img");
+          if (!rmsImg) return;
+          
+          if (rmsAnimationTimer) {
+            clearTimeout(rmsAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/return-animation/return1.svg",
+            "assets/images/navbar/return-animation/return2.svg",
+            "assets/images/navbar/return-animation/return3.svg",
+            "assets/images/navbar/return-animation/return4.svg",
+            "assets/images/navbar/return-animation/return5.svg",
+            "assets/images/navbar/return-animation/return6.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              rmsImg.src = frames[currentFrame];
+              currentFrame++;
+              rmsAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetRmsImage() {
+          if (rmsAnimationTimer) {
+            clearTimeout(rmsAnimationTimer);
+            rmsAnimationTimer = null;
+          }
+          const rmsImg = document.querySelector("#tab-rms .product-icon-box img");
+          if (rmsImg) {
+            rmsImg.src = "assets/images/navbar/rms.svg";
+          }
+        }
+
+        let checkoutAnimationTimer = null;
+        function playCheckoutAnimation() {
+          const checkoutImg = document.querySelector("#tab-checkout .product-icon-box img");
+          if (!checkoutImg) return;
+          
+          if (checkoutAnimationTimer) {
+            clearTimeout(checkoutAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/1checkout-animation/1checkout1.svg",
+            "assets/images/navbar/1checkout-animation/1checkout2.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              checkoutImg.src = frames[currentFrame];
+              currentFrame++;
+              checkoutAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetCheckoutImage() {
+          if (checkoutAnimationTimer) {
+            clearTimeout(checkoutAnimationTimer);
+            checkoutAnimationTimer = null;
+          }
+          const checkoutImg = document.querySelector("#tab-checkout .product-icon-box img");
+          if (checkoutImg) {
+            checkoutImg.src = "assets/images/navbar/checkout_1.svg";
+          }
+        }
+
+        let rtoAnimationTimer = null;
+        function playRtoAnimation() {
+          const rtoImg = document.querySelector("#tab-rto .product-icon-box img");
+          if (!rtoImg) return;
+          
+          if (rtoAnimationTimer) {
+            clearTimeout(rtoAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/rtosuite-animation/rto-suite1.svg",
+            "assets/images/navbar/rtosuite-animation/rto-suite2.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              rtoImg.src = frames[currentFrame];
+              currentFrame++;
+              rtoAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetRtoImage() {
+          if (rtoAnimationTimer) {
+            clearTimeout(rtoAnimationTimer);
+            rtoAnimationTimer = null;
+          }
+          const rtoImg = document.querySelector("#tab-rto .product-icon-box img");
+          if (rtoImg) {
+            rtoImg.src = "assets/images/navbar/rto_suite.svg";
+          }
+        }
+
+        let genieAnimationTimer = null;
+        function playGenieAnimation() {
+          const genieImg = document.querySelector("#tab-genie .product-icon-box img");
+          if (!genieImg) return;
+          
+          if (genieAnimationTimer) {
+            clearTimeout(genieAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/genie-animation/genie1.svg",
+            "assets/images/navbar/genie-animation/genie2.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              genieImg.src = frames[currentFrame];
+              currentFrame++;
+              genieAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetGenieImage() {
+          if (genieAnimationTimer) {
+            clearTimeout(genieAnimationTimer);
+            genieAnimationTimer = null;
+          }
+          const genieImg = document.querySelector("#tab-genie .product-icon-box img");
+          if (genieImg) {
+            genieImg.src = "assets/images/navbar/genie.svg";
+          }
+        }
+
+        let whatsappAnimationTimer = null;
+        function playWhatsappAnimation() {
+          const whatsappImg = document.querySelector("#tab-whatsapp .product-icon-box img");
+          if (!whatsappImg) return;
+          
+          if (whatsappAnimationTimer) {
+            clearTimeout(whatsappAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/whatsapp-animation/wa1.svg",
+            "assets/images/navbar/whatsapp-animation/wa2.svg",
+            "assets/images/navbar/whatsapp-animation/wa3.svg",
+            "assets/images/navbar/whatsapp-animation/wa4.svg",
+            "assets/images/navbar/whatsapp-animation/wa5.svg",
+            "assets/images/navbar/whatsapp-animation/wa6.svg",
+            "assets/images/navbar/whatsapp-animation/wa7.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              whatsappImg.src = frames[currentFrame];
+              currentFrame++;
+              whatsappAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetWhatsappImage() {
+          if (whatsappAnimationTimer) {
+            clearTimeout(whatsappAnimationTimer);
+            whatsappAnimationTimer = null;
+          }
+          const whatsappImg = document.querySelector("#tab-whatsapp .product-icon-box img");
+          if (whatsappImg) {
+            whatsappImg.src = "assets/images/navbar/whatsapp_business_suite.svg";
+          }
+        }
+
+        let jmsAnimationTimer = null;
+        function playJmsAnimation() {
+          const jmsImg = document.querySelector("#tab-jms .product-icon-box img");
+          if (!jmsImg) return;
+          
+          if (jmsAnimationTimer) {
+            clearTimeout(jmsAnimationTimer);
+          }
+          
+          const frames = [
+            "assets/images/navbar/jms-animation/jms1.svg",
+            "assets/images/navbar/jms-animation/jms2.svg",
+            "assets/images/navbar/jms-animation/jms3.svg",
+            "assets/images/navbar/jms-animation/jms4.svg",
+            "assets/images/navbar/jms-animation/jms5.svg",
+            "assets/images/navbar/jms-animation/jms6.svg",
+            "assets/images/navbar/jms-animation/jms7.svg",
+            "assets/images/navbar/jms-animation/jms8.svg"
+          ];
+          
+          let currentFrame = 0;
+          
+          function nextFrame() {
+            if (currentFrame < frames.length) {
+              jmsImg.src = frames[currentFrame];
+              currentFrame++;
+              jmsAnimationTimer = setTimeout(nextFrame, 100);
+            }
+          }
+          
+          nextFrame();
+        }
+
+        function resetJmsImage() {
+          if (jmsAnimationTimer) {
+            clearTimeout(jmsAnimationTimer);
+            jmsAnimationTimer = null;
+          }
+          const jmsImg = document.querySelector("#tab-jms .product-icon-box img");
+          if (jmsImg) {
+            jmsImg.src = "assets/images/navbar/jms.svg";
+          }
+        }
+
+        function activateTab(tabId) {
+          // Deactivate all tabs
+          allTabs.forEach(function (t) { t.classList.remove("active-tab"); });
+          // Hide all sub-panels
+          allSubPanels.forEach(function (p) { p.classList.remove("is-visible"); });
+
+          // Reset animated images to default when switching away
+          if (tabId !== "shipaxis") {
+            resetShipAxisImage();
+          }
+          if (tabId !== "omnichannel") {
+            resetCrmImage();
+          }
+          if (tabId !== "rms") {
+            resetRmsImage();
+          }
+          if (tabId !== "checkout") {
+            resetCheckoutImage();
+          }
+          if (tabId !== "rto") {
+            resetRtoImage();
+          }
+          if (tabId !== "genie") {
+            resetGenieImage();
+          }
+          if (tabId !== "whatsapp") {
+            resetWhatsappImage();
+          }
+          if (tabId !== "jms") {
+            resetJmsImage();
+          }
+
+          // Activate the clicked tab
+          const activeTab = document.getElementById("tab-" + tabId);
+          if (activeTab) activeTab.classList.add("active-tab");
+
+          // Show the corresponding sub-panel
+          const activePanel = document.getElementById("sub-panel-" + tabId);
+          if (activePanel) {
+            activePanel.classList.add("is-visible");
+            positionSubPanel(tabId);
+          }
+
+          // Play frame-by-frame animations
+          if (tabId === "shipaxis") {
+            playShipAxisAnimation();
+          }
+          if (tabId === "omnichannel") {
+            playCrmAnimation();
+          }
+          if (tabId === "rms") {
+            playRmsAnimation();
+          }
+          if (tabId === "checkout") {
+            playCheckoutAnimation();
+          }
+          if (tabId === "rto") {
+            playRtoAnimation();
+          }
+          if (tabId === "genie") {
+            playGenieAnimation();
+          }
+          if (tabId === "whatsapp") {
+            playWhatsappAnimation();
+          }
+          if (tabId === "jms") {
+            playJmsAnimation();
+          }
+
+          // Show/hide the tab bar border based on sub-panel content
+          const productsTabBarEl = document.getElementById("productsTabBar");
+          if (productsTabBarEl) {
+            if (activePanel && activePanel.children.length > 0) {
+              productsTabBarEl.classList.add("has-active-sub");
+            } else {
+              productsTabBarEl.classList.remove("has-active-sub");
+            }
+          }
+        }
+
+        allTabs.forEach(function (tab) {
+          // Collapse active sub-panel on hovering over a different tab to prevent border clashing
+          tab.addEventListener("mouseenter", function () {
+            if (window.innerWidth > 767 && !this.classList.contains("active-tab")) {
+              allTabs.forEach(function (t) { t.classList.remove("active-tab"); });
+              allSubPanels.forEach(function (p) { p.classList.remove("is-visible"); });
+              resetShipAxisImage();
+              resetCrmImage();
+              resetRmsImage();
+              resetCheckoutImage();
+              resetRtoImage();
+              resetGenieImage();
+              resetWhatsappImage();
+              resetJmsImage();
+              const productsTabBarEl = document.getElementById("productsTabBar");
+              if (productsTabBarEl) {
+                productsTabBarEl.classList.remove("has-active-sub");
+              }
+            }
+          });
+
+          tab.addEventListener("click", function () {
+            const tabId = this.getAttribute("data-tab");
+            if (this.classList.contains("active-tab")) {
+              // Toggle off: return to initial state (no sub-panel showing)
+              allTabs.forEach(function (t) { t.classList.remove("active-tab"); });
+              allSubPanels.forEach(function (p) { p.classList.remove("is-visible"); });
+              resetShipAxisImage();
+              resetCrmImage();
+              resetRmsImage();
+              resetCheckoutImage();
+              resetRtoImage();
+              resetGenieImage();
+              resetWhatsappImage();
+              resetJmsImage();
+              const productsTabBarEl = document.getElementById("productsTabBar");
+              if (productsTabBarEl) {
+                productsTabBarEl.classList.remove("has-active-sub");
+              }
+            } else {
+              // Activate the clicked tab
+              activateTab(tabId);
+            }
+          });
+        });
+
+        // Do not activate any tab by default initially to keep initial state clean as per user mockup
+
+        // Reposition on window resize
+        window.addEventListener("resize", function () {
+          const activeTabEl = tabBar.querySelector(".product-tab-item.active-tab");
+          if (activeTabEl) {
+            const tabId = activeTabEl.getAttribute("data-tab");
+            positionSubPanel(tabId);
+          }
+        });
+
+        // Reposition on page load / dropdown show
+        const dropdownItem = document.querySelector(".products-dropdown-item");
+        if (dropdownItem) {
+          dropdownItem.addEventListener("mouseenter", function () {
+            const activeTabEl = tabBar.querySelector(".product-tab-item.active-tab");
+            if (activeTabEl) {
+              const tabId = activeTabEl.getAttribute("data-tab");
+              // Delay slightly to ensure dropdown has rendered and has geometry
+              setTimeout(() => {
+                positionSubPanel(tabId);
+              }, 50);
+            }
+          });
+        }
+      })();
+
+      // Dynamic Rotating Case Studies Slider in Resources Dropdown
+      document.addEventListener("DOMContentLoaded", function () {
+        const featuredCaseStudies = [
+          {
+            logo: "assets/images/navbar/emami.svg",
+            alt: "Emami",
+            text: "Case Study Title of almost 2-3 lines can fit in this space right here"
+          },
+          {
+            logo: "assets/images/navbar/neeman's logo.svg",
+            logoMobile: "assets/images/navbar/neemans_mobile.svg",
+            alt: "Neemans",
+            text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
+          },
+          {
+            logo: "assets/images/navbar/house_of_gulab.svg",
+            alt: "House of Gulab",
+            text: "House of Gulab reducing RTOs by 68% in 90days"
+          },
+          {
+            logo: "assets/images/navbar/baidyanath.svg",
+            alt: "Baidyanath",
+            text: "Baidyanath saw decrease in repeat enquiries by 40% in 45days"
+          },
+          {
+            logo: "assets/images/navbar/bevdaas.svg",
+            alt: "Bevdaas",
+            text: "Case Study Title of almost 2-3 lines can fit in this space right here"
+          },
+          {
+            logo: "assets/images/navbar/xyxx.svg",
+            alt: "XYXX",
+            text: "XYXX brand saw decrease in repeat enquiries by 40% in 45days"
+          }
+        ];
+
+        let currentIndex = 0;
+        const containers = document.querySelectorAll(".cs-dynamic-container");
+        const logos = document.querySelectorAll(".cs-dynamic-logo");
+        const texts = document.querySelectorAll(".cs-dynamic-text");
+
+        if (containers.length > 0) {
+          setInterval(() => {
+            // 1. Slide active contents out upwards
+            containers.forEach(container => container.classList.add("slide-out-up"));
+
+            setTimeout(() => {
+              // 2. Increment index & update data
+              currentIndex = (currentIndex + 1) % featuredCaseStudies.length;
+              const nextStudy = featuredCaseStudies[currentIndex];
+
+              logos.forEach(logo => {
+                if (logo.closest(".mobile-case-study-card") && nextStudy.logoMobile) {
+                  logo.src = nextStudy.logoMobile;
+                } else {
+                  logo.src = nextStudy.logo;
+                }
+                logo.alt = nextStudy.alt;
+              });
+              texts.forEach(text => {
+                text.textContent = nextStudy.text;
+              });
+
+              // 3. Put new content at starting position below (transition disabled temporarily)
+              containers.forEach(container => {
+                container.classList.remove("slide-out-up");
+                container.classList.add("slide-in-down");
+              });
+
+              // Force reflow
+              containers.forEach(container => {
+                container.offsetHeight;
+              });
+
+              // 4. Slide in up to original centered position
+              containers.forEach(container => {
+                container.classList.remove("slide-in-down");
+              });
+            }, 350); // Matches transition duration
+          }, 4000); // 4 seconds duration per item
+        }
+
+        // Mobile side-panel click logic (accordion toggles for nested menus)
+        document.querySelectorAll(".dropdown-list li.has-side-panel > a").forEach((trigger) => {
+          trigger.addEventListener("click", function (e) {
+            if (window.innerWidth <= 767) {
+              e.preventDefault();
+              e.stopPropagation(); // Prevent trigger from closing parent dropdown
+              const parent = this.parentElement;
+              
+              // Close any other open sibling panels first
+              parent.parentElement.querySelectorAll("li.has-side-panel").forEach((sibling) => {
+                if (sibling !== parent) {
+                  sibling.classList.remove("open-panel");
+                }
+              });
+
+              parent.classList.toggle("open-panel");
+            }
+          });
+        });
+
+        // Mobile Resources Accordion Toggle
+        const comparisonsTrigger = document.getElementById("m-comparisons-trigger");
+        const comparisonsItem = document.getElementById("m-comparisons-item");
+        if (comparisonsTrigger && comparisonsItem) {
+          comparisonsTrigger.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            comparisonsItem.classList.toggle("open-submenu");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

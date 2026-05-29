@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      .text-center {
+        text-align: center;
+      }
+
+      .openPositions .top-text {
+        margin: 0 auto 32px;
+        max-width: 627px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .openPositions .top-text h2 {
+        font-size: 36px;
+        line-height: 120%;
+        letter-spacing: 0%;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 0px;
+      }
+
+      .openPositions .top-text p {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        letter-spacing: 0%;
+        color: #000000;
+        margin-bottom: 0;
+      }
+
+      .openPositions .pos-box {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        padding: 32px;
+        max-width: 840px;
+        margin: 0 auto 40px;
+      }
+
+      .openPositions .pos-box h3 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 135%;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .openPositions .pos-list {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .openPositions .pos-item {
+        background-color: var(--white);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .openPositions .pos-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .openPositions .pos-info h4 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        line-height: 150%;
+        letter-spacing: 0%;
+        color: #000000;
+      }
+
+      .openPositions .pos-info p {
+        font-size: 16px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.7);
+        margin-bottom: 4px;
+        line-height: 150%;
+        letter-spacing: 0%;
+      }
+
+      .openPositions .pos-info p:last-child {
+        margin-bottom: 0;
+      }
+
+      .openPositions .button-outline {
+        background-color: transparent;
+        border: 1px solid #2871f0;
+        color: #2871f0;
+        padding: 8px 20px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 135%;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .openPositions .button-outline:hover {
+        background-color: #2871f0;
+        color: #ffffff;
+      }
+
+      .openPositions .button-outline:hover .ext-link-icon {
+        filter: brightness(0) invert(1);
+      }
+
+      .follow-sec {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .follow-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #4b5563;
+        line-height: 150%;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #d9e8ff;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.2s ease;
+      }
+
+      .openPositions .social-link:hover {
+        background-color: #dbe7ff;
+      }
+
+      .openPositions .social-link img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+
+      .openPositions .ext-link-icon {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+      }
+
+      .openPositions .no-pos-box {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        padding: 32px;
+        max-width: 840px;
+        margin: 0 auto 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .openPositions .no-pos-box h3 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 135%;
+        text-align: center;
+        margin-bottom: 0px;
+      }
+
+      .openPositions .no-pos-img {
+        width: 100%;
+        max-width: 450px;
+      }
+
+      .openPositions .no-pos-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .openPositions .top-text.text-center {
+          text-align: left;
+          align-items: flex-start;
+          margin: 32px 0;
+        }
+        .openPositions .pos-item {
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+        }
+        .openPositions .pos-info {
+          width: 100%;
+          text-align: left;
+        }
+        .openPositions .button-outline {
+          width: fit-content;
+          padding: 10px 32px;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!--Hero-Heading-Start -->
+          <section class="openPositions">
+            <div class="centered">
+              <div class="top-text text-center">
+                <h2>Build systems that power<br />Indian D2C Brands</h2>
+                <p>
+                  We care about building things that work — reliably, at
+                  scale.<br />If you enjoy solving real problems with clarity
+                  and ownership, you'll feel at home here.
+                </p>
+              </div>
+
+              <div class="no-pos-box">
+                <h3>No open positions for now</h3>
+                <div class="no-pos-img">
+                  <img
+                    src="assets/images/careers/no position.png"
+                    alt="No open positions"
+                  />
+                </div>
+              </div>
+
+              <div class="follow-sec">
+                <span class="follow-text">Follow us on</span>
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                    ><img src="assets/images/careers/insta.png" alt="Instagram"
+                  /></a>
+                  <a href="#" class="social-link"
+                    ><img
+                      src="assets/images/careers/linkedin.png"
+                      alt="LinkedIn"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Open Positions-end -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+  </body>
+</html>

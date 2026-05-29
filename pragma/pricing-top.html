@@ -1,0 +1,730 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### pricingHero ### */
+      .pricingHero {
+        padding: 0; /* Set top padding to 0 */
+        margin-top: -20px; /* Pull the section up closer to the header */
+        text-align: center;
+      }
+
+      .mobile-only-break {
+        display: none;
+      }
+
+      .pricingHero h1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 120%;
+        margin-bottom: 8px;
+        color: #000000;
+      }
+
+      .pricingHero p {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 150%;
+        color: #000000;
+        max-width: 584px;
+        margin: 0 auto;
+      }
+
+      .pricingPlans {
+        padding: 48px 0 100px;
+      }
+
+      .pricingTable {
+        display: flex;
+        gap: 24px;
+        max-width: 1134px;
+        margin: 0 auto;
+        align-items: flex-start; /* Allows cards to have different heights */
+      }
+
+      .pricingCard {
+        width: 33.33%;
+        background-color: #ffffff !important;
+        border: 0.4px solid #000000;
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .card-header {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+      }
+
+      .card-header h2 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 135%;
+        margin: 0 0 16px 0; /* Added gap between title and description */
+        color: #000000;
+        display: block;
+      }
+
+      .card-header p {
+        font-size: 14px;
+        font-weight: 500; /* Added Medium weight to match Satoshi Medium */
+        line-height: 150%;
+        color: rgba(0, 0, 0, 0.7); /* Confirming 70% black fill */
+        max-width: none; /* Changed from 280px to none to allow full flow */
+        margin: 0 auto;
+        display: block;
+      }
+
+      .card-btn-area {
+        display: flex;
+        justify-content: center;
+        margin: 0 0 24px 0; /* 24px gap between description and button area */
+        width: 100%;
+      }
+
+      .pricingCard .button-blue,
+      .pricingCard .button-black {
+        width: 100%; /* Force full width within inner padding */
+        box-sizing: border-box;
+        display: block;
+        text-align: center;
+        padding: 14px 24px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 135%;
+        transition: opacity 0.2s;
+      }
+
+      .pricingCard .button-blue {
+        background-color: #2871f0;
+        color: #ffffff;
+      }
+
+      .pricingCard .button-black {
+        background-color: #000000;
+        color: #ffffff;
+      }
+
+      .card-divider {
+        border: none;
+        border-top: 1px solid #000000; /* Updated to 100% solid black */
+        margin: 0 0 24px 0;
+        width: 100%;
+      }
+
+      .pricing-mobile-toggle {
+        display: none;
+      }
+
+      .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        background: transparent !important;
+        text-align: left; /* Overriding center alignment */
+        width: 100%; /* Ensure it spans the card */
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px 0;
+        background: transparent !important;
+      }
+
+      .feature-list li {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        padding-left: 32px;
+        position: relative;
+        margin-bottom: 8px; /* Changed gap between checkmark points to 8px */
+        color: #000000;
+        background: transparent !important;
+      }
+
+      /* Figma Circular Checkmark */
+      .feature-list.pricing-tick li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 20px;
+        height: 20px;
+        background-color: #d9d9d9;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      /* Figma Dot */
+      .feature-list.pricing-dot li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 4px; /* Adjusted dot top margin to align with centered text */
+        width: 20px;
+        height: 20px;
+        background-color: #d9d9d9;
+        border-radius: 50%;
+      }
+
+      .choose-from h3 {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 150%;
+        margin-bottom: 16px;
+        color: #000000;
+      }
+
+      .best-suited {
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .best-suited h3 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 135%;
+        margin-bottom: 8px; /* Changed gap below 'Best suited for:' pointing to list items */
+        color: #000000;
+      }
+
+      .best-suited ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .best-suited li {
+        font-size: 14px; /* Updated from 13px */
+        font-weight: 500; /* Added Medium weight to match Satoshi Medium */
+        line-height: 150%;
+        color: rgba(0, 0, 0, 0.7); /* Match 70% black fill */
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 12px;
+        background: transparent !important;
+      }
+
+      .best-suited li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 0; /* Align bullet closer to the top of text */
+        color: rgba(0, 0, 0, 0.7); /* Match text color opacity */
+      }
+
+      /* Custom Checkbox Fix */
+      .pricing-checkbox li {
+        padding-left: 0;
+        margin-bottom: 16px; /* Specific 16px gap for checkboxes */
+      }
+
+      .custom-checkbox {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        padding-left: 32px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+      }
+
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        background-color: #ffffff;
+      }
+
+      .custom-checkbox input:checked ~ .checkmark {
+        background-color: #2563eb;
+        border-color: #2563eb;
+      }
+
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .custom-checkbox .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .pricing-footer-cta {
+        max-width: 532px; /* Updated width from 450px to 532px */
+        margin: 24px auto 16px; /* 24px top gap from cards, 16px bottom gap to note */
+        border: 1px solid #2871f0; /* Updated to 100% #2871F0 */
+        border-radius: 20px; /* Updated corner radius to 20px */
+        padding: 24px; /* Updated padding from 12px 24px to 24px all around */
+        display: flex;
+        justify-content: center; /* Changed from space-between to center content */
+        align-items: center;
+        gap: 24px; /* Exactly 24px between text and button */
+      }
+
+      .pricing-footer-cta p {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 150%;
+        margin: 0;
+      }
+
+      .pricing-footer-cta .button-black {
+        background: #000000;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 135%;
+        text-decoration: none;
+      }
+
+      .cta-note {
+        text-align: left; /* Updated to left alignment */
+        font-size: 14px; /* Updated from 13px */
+        font-weight: 500; /* Medium weight */
+        line-height: 150%;
+        color: #000000; /* 100% Black */
+        max-width: 532px; /* Matching width of CTA box above */
+        margin: 0 auto;
+      }
+
+      @media only screen and (max-width: 767px) {
+        #wrapper {
+          padding-top: 40px;
+        }
+
+        .mobile-only-break {
+          display: block;
+        }
+
+        .pricingHero {
+          padding: 0 24px 24px;
+          text-align: left;
+          margin-top: -10px; /* Pull the section up slightly */
+        }
+
+        .pricingHero h1 {
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 110%;
+          margin-bottom: 8px;
+        }
+
+        .pricingHero p {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 150%;
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .pricingTable {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .pricingPlans {
+          padding: 0 0 100px; /* Removed top padding to rely on hero's bottom padding for the 24px gap */
+        }
+
+        .pricingCard {
+          padding: 30px 20px;
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .pricing-mobile-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          background: transparent;
+          border: none;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 135%;
+          color: #000000;
+          margin-top: 16px;
+          cursor: pointer;
+        }
+
+        .pricingCard .card-divider,
+        .pricingCard .card-body {
+          display: none;
+        }
+
+        .pricingCard.is-expanded .card-divider {
+          display: block;
+        }
+
+        .pricingCard.is-expanded .card-body {
+          display: flex;
+        }
+
+        .card-header p {
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 150%;
+          max-width: 100%;
+        }
+
+        .pricing-footer-cta {
+          display: flex; /* Added flex context */
+          flex-direction: column;
+          text-align: center;
+          padding: 24px;
+          max-width: 100%;
+          margin: 40px 20px 16px;
+        }
+
+        .pricing-footer-cta p {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 135%;
+          margin-bottom: 16px; /* Space between text and button */
+        }
+
+        .pricing-footer-cta .button-black {
+          width: 100%;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 135%;
+        }
+      }
+
+      /* Added mobile rule for cta-note as Body Text 3 */
+      @media only screen and (max-width: 767px) {
+        .cta-note {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 150%;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!-- Hero-Heading-start -->
+          <section class="pricingHero">
+            <div class="centered">
+              <div class="top-text">
+                <h1>
+                  Built for scale. <br class="mobile-only-break" />Priced for
+                  reality.
+                </h1>
+                <p>
+                  Pragma pricing adapts to your order volume, AOV, operational
+                  complexity, and product mix. You don't pay for what you don't
+                  use — and you don't outgrow what you choose. Structured like
+                  an end-to-end operating system for D2C India.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- Hero-Heading-end -->
+          <!-- Pricing section-start  -->
+          <section class="pricingPlans">
+            <div class="centered">
+              <div class="pricingTable">
+                <!-- Card 1 -->
+                <div class="pricingCard">
+                  <div class="card-header">
+                    <h2>For Startups & <br />Early-Stage D2C Brands</h2>
+                    <p>
+                      For growing brands building their <br />
+                      first structured + scalable stack
+                    </p>
+                  </div>
+
+                  <div class="card-btn-area">
+                    <a href="#" class="button-blue">Get Started</a>
+                  </div>
+
+                  <hr class="card-divider" />
+
+                  <div class="card-body">
+                    <ul class="feature-list pricing-tick">
+                      <li>Access to core optimisation layers</li>
+                      <li>Exclusive early-stage pricing</li>
+                      <li>Modular product selection</li>
+                      <li>Faster onboarding</li>
+                      <li>Designed for brands scaling from chaos to control</li>
+                    </ul>
+                    <div class="best-suited">
+                      <h3>Best suited for:</h3>
+                      <ul>
+                        <li>Early traction brands</li>
+                        <li>Low-to-mid order volume</li>
+                        <li>Rapid experimentation cycles</li>
+                        <li>
+                          Founders who want structure without enterprise
+                          overhead - lean teams managing multiple workflows
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <button class="pricing-mobile-toggle js-pricing-toggle">
+                    Show More
+                    <span class="toggle-icon"
+                      ><img
+                        src="assets/images/pricing/arrow-down.png"
+                        alt="Show More"
+                    /></span>
+                  </button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pricingCard">
+                  <div class="card-header">
+                    <h2>Product-Based Plans</h2>
+                    <p>
+                      Pick the products you need,<br />
+                      based on your current priorities.<br />
+                      Add more as you grow.
+                    </p>
+                  </div>
+
+                  <div class="card-btn-area">
+                    <a href="#" class="button-blue">Get Started</a>
+                  </div>
+
+                  <hr class="card-divider" />
+
+                  <div class="card-body">
+                    <div class="choose-from">
+                      <h3>Choose from:</h3>
+                      <ul class="feature-list pricing-checkbox">
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            1Checkout - Checkout optimisation
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            RTO Suite - RTO and risk control
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            ShipAxis - Shipping intelligence
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Return Management System - Returns
+                            automation/monitoring
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Omnichannel CRM - CRM & automation for socials
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Journey Management System - Marketing journey
+                            orchestration
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            WhatsApp Business Suite - Marketing & Automations
+                            for WhatsApp
+                          </label>
+                        </li>
+                        <li>
+                          <label class="custom-checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Pragma Genie - AI copilot layer across the board
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="best-suited">
+                      <h3>Best suited for:</h3>
+                      <ul>
+                        <li>Early traction brands</li>
+                        <li>Low-to-mid order volume</li>
+                        <li>Rapid experimentation cycles</li>
+                        <li>
+                          Founders who want structure without enterprise
+                          overhead - lean teams managing multiple workflows
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <button class="pricing-mobile-toggle js-pricing-toggle">
+                    Show More
+                    <span class="toggle-icon"
+                      ><img
+                        src="assets/images/pricing/arrow-down.png"
+                        alt="Show More"
+                    /></span>
+                  </button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pricingCard">
+                  <div class="card-header">
+                    <h2>Enterprise & <br />High-Scale Brands</h2>
+                    <p>
+                      For brands with high AOV, high order<br />
+                      velocity, and complex operations.
+                    </p>
+                  </div>
+
+                  <div class="card-btn-area">
+                    <a href="#" class="button-black">Get Started</a>
+                  </div>
+
+                  <hr class="card-divider" />
+
+                  <div class="card-body">
+                    <ul class="feature-list pricing-tick">
+                      <li>Advanced risk and fraud controls (customisable)</li>
+                      <li>Deep fulfilment intelligence</li>
+                      <li>Cross-team automation</li>
+                      <li>Full-stack automation across CX, Ops, and Growth</li>
+                      <li>Dedicated onboarding & support</li>
+                      <li>Deeper integration and workflow customisation</li>
+                    </ul>
+                    <div class="best-suited">
+                      <h3>Best suited for:</h3>
+                      <ul>
+                        <li>Complex logistics operations</li>
+                        <li>Multi-brand or multi-warehouse setups</li>
+                        <li>
+                          Optimising margin, cost control, and operational
+                          predictability at scale
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <button class="pricing-mobile-toggle js-pricing-toggle">
+                    Show More
+                    <span class="toggle-icon"
+                      ><img
+                        src="assets/images/pricing/arrow-down.png"
+                        alt="Show More"
+                    /></span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Footer CTA -->
+              <div class="pricing-footer-cta">
+                <p>Not sure what fits your stack?</p>
+                <a href="#" class="button-black">Get in touch &rarr;</a>
+              </div>
+              <p class="cta-note">
+                We’ll recommend a structure aligned to your volume, profile, and
+                growth necessities.
+              </p>
+            </div>
+          </section>
+          <!-- Pricing section-end  -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+    <script>
+      document.querySelectorAll(".js-pricing-toggle").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const card = this.closest(".pricingCard");
+
+          // Toggle the expanded class on the card
+          card.classList.toggle("is-expanded");
+
+          // Update button text and icon based on state
+          if (card.classList.contains("is-expanded")) {
+            this.innerHTML =
+              'Show Less <span class="toggle-icon"><img src="assets/images/pricing/arrow-up.png" alt="Show Less" /></span>';
+          } else {
+            this.innerHTML =
+              'Show More <span class="toggle-icon"><img src="assets/images/pricing/arrow-down.png" alt="Show More" /></span>';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

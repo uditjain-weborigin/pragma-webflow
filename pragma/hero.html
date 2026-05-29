@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      /* ### Herobox ### */
+      .heroBox {
+        margin: 24px 24px 65px;
+        padding-top: 44px;
+        padding-bottom: 175px;
+        position: relative;
+        text-align: center;
+      }
+      .heroBox .text {
+        margin-bottom: 44px;
+        position: relative;
+        z-index: 1;
+      }
+      .heroBox h1 {
+        margin-bottom: 16px;
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .heroBox h1 strong {
+        margin-bottom: 21px;
+        font-size: 28px;
+        font-weight: 700;
+        display: block;
+        color: var(--primary);
+      }
+      .heroBox p {
+        margin: 0 auto;
+        max-width: 510px;
+      }
+      .heroBox p a {
+        color: var(--black);
+        text-decoration: underline;
+        transition: var(--base-duration);
+      }
+      .heroBox p a:focus,
+      .heroBox p a:hover {
+        color: var(--primary);
+      }
+      .heroBox .image {
+        margin: 0 auto;
+        max-width: 918px;
+        position: relative;
+        z-index: 1;
+      }
+      .heroBox .image img {
+        width: var(--w-100);
+      }
+      .heroBox .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--w-100);
+        height: var(--h-100);
+        overflow: hidden;
+        border-radius: 20px;
+      }
+      .heroBox .bg img {
+        width: var(--w-100);
+        height: var(--h-100);
+        object-fit: cover;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .heroBox {
+          margin: 25px 0 45px;
+          padding-top: 0;
+          padding-bottom: 0;
+          text-align: left;
+        }
+        .heroBox .holder {
+          padding: 12px 15px 63px;
+          position: relative;
+        }
+        .heroBox .text {
+          margin-bottom: 18px;
+        }
+        .heroBox h1 {
+          font-size: 28px;
+          font-weight: 300;
+        }
+        .heroBox h1 strong {
+          margin-bottom: 10px;
+          font-size: 16px;
+        }
+        .heroBox p {
+          display: none;
+        }
+        .heroBox .bg {
+          border-radius: 8px;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <!--  / start heroBox \ -->
+          <div class="heroBox centered">
+            <div class="holder">
+              <div class="text">
+                <div class="breadcrumb">
+                  <ul>
+                    <li>Products</li>
+                    <li><a href="#">Omnichannel CRM</a></li>
+                  </ul>
+                </div>
+
+                <h1>
+                  <strong>Pragma Omnichannel CRM</strong>
+                  One inbox for every customer, across every channel.
+                </h1>
+
+                <p>
+                  Powering <a href="#">1500+ D2C brands</a> with unified
+                  profiles, context-rich support,and intelligent automation that
+                  drives conversions and retention.
+                </p>
+              </div>
+              <div class="image">
+                <img src="assets/images/hero-img.png" alt="" />
+              </div>
+              <div class="bg js-parallax">
+                <img src="assets/images/hero-bg.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <!--  \ end heroBox / -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+
+    <script>
+      document.querySelectorAll(".js-toggle-mobile").forEach((element) => {
+        // parallax
+        parallax(".js-parallax");
+        function parallax(selector, speed = 1, dir = false) {
+          let els = document.querySelectorAll(selector);
+
+          for (const el of els) {
+            let img = el.querySelector("img");
+            let w = img.offsetWidth;
+            let h = img.offsetHeight;
+
+            el.style.overflow = "hidden";
+            img.style.scale = 1 + speed / 10;
+          }
+
+          window.addEventListener("scroll", function (e) {
+            for (const el of els) {
+              let img = el.querySelector("img");
+              let elBox = el.getBoundingClientRect();
+              let dirc = dir || el.hasAttribute("data-par-reverse");
+              let y =
+                ((window.innerHeight / 2 - elBox.top) / window.innerHeight) *
+                  100 *
+                  speed -
+                50;
+
+              img.style.transform = `translateY(${dirc ? -1 * y : y}px)`;
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

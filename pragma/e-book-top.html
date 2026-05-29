@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pragma</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="Website description" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- change into index, follow -->
+    <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+    <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+    <link rel="stylesheet" href="assets/styles/global.css" />
+  </head>
+
+  <body>
+    <style>
+      .product-nav-bar .centered,
+      .cs-featured-section .centered,
+      .cs-cards-section .centered,
+      .newsletter-matrix-section.centered,
+      .newsletter-search-section.centered {
+        padding-right: calc((100% - 1410px) / 2);
+        padding-left: calc((100% - 1410px) / 2);
+      }
+
+      @media (min-width: 769px) and (max-width: 1260px) {
+        /* Wide-container overrides for pages that use 1410px max-width */
+        .product-nav-bar .centered,
+        .cs-featured-section .centered,
+        .cs-cards-section .centered,
+        .newsletter-matrix-section.centered,
+        .newsletter-search-section.centered {
+          padding-left: 40px !important;
+          padding-right: 40px !important;
+        }
+      }
+
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 24px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      /* ### Blog Heading Section ### */
+      .blog-heading-section {
+        padding-top: 32px; /* 64px navbar height + 32px breathing room */
+        padding-bottom: 0;
+      }
+
+      .blog-heading-section .breadcrumb-nav a,
+      .blog-heading-section .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .blog-heading-section .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* Title Row */
+      .blog-heading-section .title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+      .blog-heading-section .title-row h1 {
+        margin-bottom: 0;
+        font-size: 48px;
+      }
+      .blog-heading-section .social-follow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .blog-heading-section .social-follow span {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--black);
+      }
+      .blog-heading-section .social-follow .social-icons {
+        display: flex;
+        gap: 4px;
+      }
+      .blog-heading-section .social-follow a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: var(--base-duration);
+      }
+      .blog-heading-section .social-follow a img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+      }
+      .blog-heading-section .social-follow a:hover {
+        background-color: transparent;
+      }
+
+      @media (max-width: 768px) {
+        .blog-heading-section .title-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .blog-heading-section .breadcrumb-nav {
+          font-size: 14px;
+          padding-left: 4px; /* Indent breadcrumb to make heading appear wider */
+          margin-bottom: 8px;
+        }
+        .blog-heading-section .title-row h1 {
+          font-size: 36px;
+          margin-left: -2px; /* Outdent slightly to appear wider than breadcrumb */
+          width: calc(100% + 4px); /* Increase width relative to container */
+        }
+        .blog-heading-section .social-follow {
+          display: none;
+        }
+      }
+
+      /* ### ebooks-section (E-Books Page) ### */
+      .ebooks-section {
+        background-color: #f3f3f3;
+        padding: 40px 0 60px;
+      }
+
+      /* -- ebooks top row: 3 columns -- */
+      .ebooks-grid-top {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      /* -- ebooks bottom row: 2 columns centered -- */
+      .ebooks-grid-bottom {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        max-width: 66.66%;
+        margin: 0 auto;
+      }
+
+      /* -- ebook card -- */
+      .ebook-card {
+        display: block;
+        border-radius: 0;
+        overflow: hidden;
+        text-decoration: none;
+        background: #fff;
+      }
+      .ebook-card:hover,
+      .ebook-card:focus {
+        transform: none;
+        box-shadow: none;
+      }
+      .ebook-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* -- ebooks mobile responsive -- */
+      @media (max-width: 768px) {
+        .ebooks-section {
+          padding: 24px 0 40px;
+        }
+        .ebooks-section .centered {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+        .ebooks-grid-top,
+        .ebooks-grid-bottom {
+          display: contents;
+        }
+      }
+    </style>
+
+    <!--  / wrapper \ -->
+    <div id="wrapper">
+      <!--  / main container \ -->
+      <div id="mainCntr">
+        <!--  / content container \ -->
+        <main id="contentCntr">
+          <section class="blog-heading-section">
+            <div class="centered">
+              <!-- Breadcrumb: inline with > separators -->
+              <nav class="breadcrumb-nav">
+                <a href="#">Resources</a>
+                <span class="breadcrumb-sep">&gt;</span>
+
+                <span class="breadcrumb-current">E-books</span>
+              </nav>
+
+              <div class="title-row">
+                <h1>E-books</h1>
+                <div class="social-follow hide-on-mobile">
+                  <span>Follow us on</span>
+                  <div class="social-icons">
+                    <a href="#"
+                      ><img
+                        src="assets/images/blogs assets/email_brand.png"
+                        alt="Email"
+                    /></a>
+                    <a href="#"
+                      ><img
+                        src="assets/images/blogs assets/linkedin_branding.png"
+                        alt="LinkedIn"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Heading-end -->
+
+          <!-- E-books start -->
+          <section class="ebooks-section">
+            <div class="centered">
+              <!-- Top row: 3 large cards -->
+              <div class="ebooks-grid-top">
+                <a href="#" class="ebook-card">
+                  <img
+                    src="assets/images/e-books/cheatsheet.png"
+                    alt="Pragma's Festive Cheat Sheet"
+                  />
+                </a>
+                <a href="#" class="ebook-card">
+                  <img src="assets/images/e-books/human.png" alt="E-Book" />
+                </a>
+                <a href="#" class="ebook-card">
+                  <img src="assets/images/e-books/headphone.png" alt="E-Book" />
+                </a>
+              </div>
+
+              <!-- Bottom row: 1 centered card -->
+              <div class="ebooks-grid-bottom">
+                <a href="#" class="ebook-card">
+                  <img
+                    src="assets/images/e-books/cheatsheet.png"
+                    alt="Pragma's Festive Cheat Sheet"
+                  />
+                </a>
+                <a href="#" class="ebook-card hide-on-mobile">
+                  <img
+                    src="assets/images/e-books/cheatsheet.png"
+                    alt="Pragma's Festive Cheat Sheet"
+                  />
+                </a>
+              </div>
+            </div>
+          </section>
+          <!-- E-books end -->
+        </main>
+        <!--  \ content container / -->
+      </div>
+      <!--  \ main container / -->
+    </div>
+    <!--  \ wrapper / -->
+  </body>
+</html>
