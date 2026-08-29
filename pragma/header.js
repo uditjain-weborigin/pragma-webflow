@@ -599,7 +599,6 @@ function initHeader() {
       })();
 
       // Dynamic Rotating Case Studies Slider in Resources Dropdown
-      document.addEventListener("DOMContentLoaded", function () {
         const featuredCaseStudies = [
           {
             logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
@@ -684,7 +683,6 @@ function initHeader() {
               });
             }, 350); // Matches transition duration
           }, 4000); // 4 seconds duration per item
-        }
 
         // Mobile side-panel click logic (accordion toggles for nested menus)
         document.querySelectorAll(".dropdown-list li.has-side-panel > a").forEach((trigger) => {
