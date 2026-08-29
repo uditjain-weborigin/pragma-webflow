@@ -47,17 +47,6 @@ function _getAiUrl(ai, prompt) {
 // Main init — runs after HTML has been injected into the page
 // =============================================================================
 function initHeader() {
-
-  // ── AI Summarise buttons ────────────────────────────────────────────────────
-  (function () {
-    var pageUrl = window.location.href;
-    var prompt  = _buildAiPrompt(pageUrl);
-    document.querySelectorAll(".js-ai-summarise").forEach(function (btn) {
-      var ai  = btn.getAttribute("data-ai");
-      btn.setAttribute("href", _getAiUrl(ai, prompt));
-    });
-  })();
-
   document.querySelectorAll(".js-toggle-mobile").forEach((element) => {
         // Header
         element.addEventListener("click", function () {
@@ -613,33 +602,39 @@ function initHeader() {
       document.addEventListener("DOMContentLoaded", function () {
         const featuredCaseStudies = [
           {
-            logo: "assets/images/navbar/emami.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/emami.svg",
             alt: "Emami",
             text: "Case Study Title of almost 2-3 lines can fit in this space right here"
           },
           {
-            logo: "assets/images/navbar/neeman's logo.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/neeman's logo.svg",
             logoMobile: "assets/images/navbar/neemans_mobile.svg",
             alt: "Neemans",
             text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "assets/images/navbar/house_of_gulab.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/house_of_gulab.svg",
             alt: "House of Gulab",
             text: "House of Gulab reducing RTOs by 68% in 90days"
           },
           {
-            logo: "assets/images/navbar/baidyanath.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/baidyanath.svg",
             alt: "Baidyanath",
             text: "Baidyanath saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "assets/images/navbar/bevdaas.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/bevdaas.svg",
             alt: "Bevdaas",
             text: "Case Study Title of almost 2-3 lines can fit in this space right here"
           },
           {
-            logo: "assets/images/navbar/xyxx.svg",
+            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
+            // logo: "assets/images/navbar/xyxx.svg",
             alt: "XYXX",
             text: "XYXX brand saw decrease in repeat enquiries by 40% in 45days"
           }
