@@ -625,7 +625,8 @@ function initHeader() {
             text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "assets/images/navbar/house_of_gulab.svg",
+            logo: "https://picsum.photos/120/80?random=1",
+            // logo: "assets/images/navbar/house_of_gulab.svg",
             alt: "House of Gulab",
             text: "House of Gulab reducing RTOs by 68% in 90days"
           },
