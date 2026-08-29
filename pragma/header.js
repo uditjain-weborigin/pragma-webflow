@@ -47,6 +47,17 @@ function _getAiUrl(ai, prompt) {
 // Main init — runs after HTML has been injected into the page
 // =============================================================================
 function initHeader() {
+
+  // ── AI Summarise buttons ────────────────────────────────────────────────────
+  (function () {
+    var pageUrl = window.location.href;
+    var prompt  = _buildAiPrompt(pageUrl);
+    document.querySelectorAll(".js-ai-summarise").forEach(function (btn) {
+      var ai  = btn.getAttribute("data-ai");
+      btn.setAttribute("href", _getAiUrl(ai, prompt));
+    });
+  })();
+
   document.querySelectorAll(".js-toggle-mobile").forEach((element) => {
         // Header
         element.addEventListener("click", function () {
@@ -599,41 +610,36 @@ function initHeader() {
       })();
 
       // Dynamic Rotating Case Studies Slider in Resources Dropdown
+      document.addEventListener("DOMContentLoaded", function () {
         const featuredCaseStudies = [
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/emami.svg",
+            logo: "assets/images/navbar/emami.svg",
             alt: "Emami",
             text: "Case Study Title of almost 2-3 lines can fit in this space right here"
           },
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/neeman's logo.svg",
+            logo: "assets/images/navbar/neeman's logo.svg",
             logoMobile: "assets/images/navbar/neemans_mobile.svg",
             alt: "Neemans",
             text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/house_of_gulab.svg",
+            logo: "assets/images/navbar/house_of_gulab.svg",
             alt: "House of Gulab",
             text: "House of Gulab reducing RTOs by 68% in 90days"
           },
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/baidyanath.svg",
+            logo: "assets/images/navbar/baidyanath.svg",
             alt: "Baidyanath",
             text: "Baidyanath saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/bevdaas.svg",
+            logo: "assets/images/navbar/bevdaas.svg",
             alt: "Bevdaas",
             text: "Case Study Title of almost 2-3 lines can fit in this space right here"
           },
           {
-            logo: "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a07767f89402cc9d908c78d_mono.png",
-            // logo: "assets/images/navbar/xyxx.svg",
+            logo: "assets/images/navbar/xyxx.svg",
             alt: "XYXX",
             text: "XYXX brand saw decrease in repeat enquiries by 40% in 45days"
           }
@@ -643,7 +649,7 @@ function initHeader() {
         const containers = document.querySelectorAll(".cs-dynamic-container");
         const logos = document.querySelectorAll(".cs-dynamic-logo");
         const texts = document.querySelectorAll(".cs-dynamic-text");
-        console.log(containers)
+
         if (containers.length > 0) {
           setInterval(() => {
             // 1. Slide active contents out upwards
@@ -683,6 +689,7 @@ function initHeader() {
               });
             }, 350); // Matches transition duration
           }, 4000); // 4 seconds duration per item
+        }
 
         // Mobile side-panel click logic (accordion toggles for nested menus)
         document.querySelectorAll(".dropdown-list li.has-side-panel > a").forEach((trigger) => {
@@ -724,7 +731,7 @@ function initHeader() {
 // window._blogArticleReady will be true and we init immediately.
 // =============================================================================
 if (window._headerReady) {
-  // Fetch already completed before this script loaded — run immediately
+  // Fetch already completed before this script loaded — run immediately v2
   initHeader();
 } else {
   // Wait for fetch to complete and fire the custom event
