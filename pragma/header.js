@@ -643,7 +643,7 @@ function initHeader() {
         const containers = document.querySelectorAll(".cs-dynamic-container");
         const logos = document.querySelectorAll(".cs-dynamic-logo");
         const texts = document.querySelectorAll(".cs-dynamic-text");
-
+        console.log(containers)
         if (containers.length > 0) {
           setInterval(() => {
             // 1. Slide active contents out upwards
