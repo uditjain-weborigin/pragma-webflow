@@ -610,7 +610,6 @@ function initHeader() {
       })();
 
       // Dynamic Rotating Case Studies Slider in Resources Dropdown
-      document.addEventListener("DOMContentLoaded", function () {
         const featuredCaseStudies = [
           {
             logo: "assets/images/navbar/emami.svg",
@@ -721,7 +720,7 @@ function initHeader() {
             comparisonsItem.classList.toggle("open-submenu");
           });
         }
-      });
+     
 } // end initBlogArticle
 
 
