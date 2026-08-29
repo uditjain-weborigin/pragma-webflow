@@ -732,7 +732,7 @@ function initHeader() {
 // =============================================================================
 if (window._headerReady) {
   // Fetch already completed before this script loaded — run immediately
-  initHeder();
+  initHeader();
 } else {
   // Wait for fetch to complete and fire the custom event
   document.addEventListener("header:ready", initHeader);
