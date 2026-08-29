@@ -612,12 +612,14 @@ function initHeader() {
       // Dynamic Rotating Case Studies Slider in Resources Dropdown
         const featuredCaseStudies = [
           {
-            logo: "assets/images/navbar/emami.svg",
+            logo: "https://picsum.photos/120/80?random=1",
+            // logo: "assets/images/navbar/emami.svg",
             alt: "Emami",
             text: "Case Study Title of almost 2-3 lines can fit in this space right here"
           },
           {
-            logo: "assets/images/navbar/neeman's logo.svg",
+            logo: "https://picsum.photos/120/80?random=1",
+            // logo: "assets/images/navbar/neeman's logo.svg",
             logoMobile: "assets/images/navbar/neemans_mobile.svg",
             alt: "Neemans",
             text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
