@@ -142,11 +142,11 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/shipaxis-animation/shipaxis1.svg",
-            "assets/images/navbar/shipaxis-animation/shipaxis2.svg",
-            "assets/images/navbar/shipaxis-animation/shipaxis3.svg",
-            "assets/images/navbar/shipaxis-animation/shipaxis4.svg",
-            "assets/images/navbar/shipaxis-animation/shipaxis5.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg"
           ];
           
           let currentFrame = 0;
@@ -169,7 +169,7 @@ function initHeader() {
           }
           const shipAxisImg = document.querySelector("#tab-shipaxis .product-icon-box img");
           if (shipAxisImg) {
-            shipAxisImg.src = "assets/images/navbar/ship_axis.svg";
+            shipAxisImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg";
           }
         }
 
@@ -183,10 +183,10 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/crm-animation/crm1.svg",
-            "assets/images/navbar/crm-animation/crm2.svg",
-            "assets/images/navbar/crm-animation/crm3.svg",
-            "assets/images/navbar/crm-animation/crm4.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg"
           ];
           
           let currentFrame = 0;
@@ -209,7 +209,7 @@ function initHeader() {
           }
           const crmImg = document.querySelector("#tab-omnichannel .product-icon-box img");
           if (crmImg) {
-            crmImg.src = "assets/images/navbar/omnichannel_crm.svg";
+            crmImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg";
           }
         }
 
@@ -223,12 +223,12 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/return-animation/return1.svg",
-            "assets/images/navbar/return-animation/return2.svg",
-            "assets/images/navbar/return-animation/return3.svg",
-            "assets/images/navbar/return-animation/return4.svg",
-            "assets/images/navbar/return-animation/return5.svg",
-            "assets/images/navbar/return-animation/return6.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg"
           ];
           
           let currentFrame = 0;
@@ -251,7 +251,7 @@ function initHeader() {
           }
           const rmsImg = document.querySelector("#tab-rms .product-icon-box img");
           if (rmsImg) {
-            rmsImg.src = "assets/images/navbar/rms.svg";
+            rmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg";
           }
         }
 
@@ -265,8 +265,8 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/1checkout-animation/1checkout1.svg",
-            "assets/images/navbar/1checkout-animation/1checkout2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg"
           ];
           
           let currentFrame = 0;
@@ -289,7 +289,7 @@ function initHeader() {
           }
           const checkoutImg = document.querySelector("#tab-checkout .product-icon-box img");
           if (checkoutImg) {
-            checkoutImg.src = "assets/images/navbar/checkout_1.svg";
+            checkoutImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg";
           }
         }
 
@@ -303,8 +303,8 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/rtosuite-animation/rto-suite1.svg",
-            "assets/images/navbar/rtosuite-animation/rto-suite2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg"
           ];
           
           let currentFrame = 0;
@@ -327,7 +327,7 @@ function initHeader() {
           }
           const rtoImg = document.querySelector("#tab-rto .product-icon-box img");
           if (rtoImg) {
-            rtoImg.src = "assets/images/navbar/rto_suite.svg";
+            rtoImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg";
           }
         }
 
@@ -379,13 +379,13 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/whatsapp-animation/wa1.svg",
-            "assets/images/navbar/whatsapp-animation/wa2.svg",
-            "assets/images/navbar/whatsapp-animation/wa3.svg",
-            "assets/images/navbar/whatsapp-animation/wa4.svg",
-            "assets/images/navbar/whatsapp-animation/wa5.svg",
-            "assets/images/navbar/whatsapp-animation/wa6.svg",
-            "assets/images/navbar/whatsapp-animation/wa7.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg"
           ];
           
           let currentFrame = 0;
@@ -408,7 +408,7 @@ function initHeader() {
           }
           const whatsappImg = document.querySelector("#tab-whatsapp .product-icon-box img");
           if (whatsappImg) {
-            whatsappImg.src = "assets/images/navbar/whatsapp_business_suite.svg";
+            whatsappImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg";
           }
         }
 
@@ -422,14 +422,14 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/jms-animation/jms1.svg",
-            "assets/images/navbar/jms-animation/jms2.svg",
-            "assets/images/navbar/jms-animation/jms3.svg",
-            "assets/images/navbar/jms-animation/jms4.svg",
-            "assets/images/navbar/jms-animation/jms5.svg",
-            "assets/images/navbar/jms-animation/jms6.svg",
-            "assets/images/navbar/jms-animation/jms7.svg",
-            "assets/images/navbar/jms-animation/jms8.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg"
           ];
           
           let currentFrame = 0;
@@ -452,7 +452,7 @@ function initHeader() {
           }
           const jmsImg = document.querySelector("#tab-jms .product-icon-box img");
           if (jmsImg) {
-            jmsImg.src = "assets/images/navbar/jms.svg";
+            jmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg";
           }
         }
 
