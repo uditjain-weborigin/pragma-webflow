@@ -341,8 +341,8 @@ function initHeader() {
           }
           
           const frames = [
-            "assets/images/navbar/genie-animation/genie1.svg",
-            "assets/images/navbar/genie-animation/genie2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg"
           ];
           
           let currentFrame = 0;
@@ -365,7 +365,7 @@ function initHeader() {
           }
           const genieImg = document.querySelector("#tab-genie .product-icon-box img");
           if (genieImg) {
-            genieImg.src = "assets/images/navbar/genie.svg";
+            genieImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg";
           }
         }
 
