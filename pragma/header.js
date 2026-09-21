@@ -614,36 +614,46 @@ function initHeader() {
           {
             logo: "https://picsum.photos/120/80?random=1",
             // logo: "assets/images/navbar/emami.svg",
-            alt: "Emami",
-            text: "Case Study Title of almost 2-3 lines can fit in this space right here"
+            alt: "Gargi",
+            text: "27% More Anonymous Visitors Converted"
           },
           {
             logo: "https://picsum.photos/120/80?random=1",
             // logo: "assets/images/navbar/neeman's logo.svg",
             logoMobile: "assets/images/navbar/neemans_mobile.svg",
-            alt: "Neemans",
-            text: "Neemans saw decrease in repeat enquiries by 40% in 45days"
+            alt: "Theater.xyz",
+            text: "50% Faster Support Resolution with Context-Aware AI"
           },
           {
             logo: "https://picsum.photos/120/80?random=1",
             // logo: "assets/images/navbar/house_of_gulab.svg",
-            alt: "House of Gulab",
-            text: "House of Gulab reducing RTOs by 68% in 90days"
+            alt: "XYXX",
+            text: "27% Fewer Payment Drop-Offs with Payment Intelligence"
           },
           {
-            logo: "assets/images/navbar/baidyanath.svg",
+            logo: "https://picsum.photos/120/80?random=1",
             alt: "Baidyanath",
             text: "Baidyanath saw decrease in repeat enquiries by 40% in 45days"
           },
           {
-            logo: "assets/images/navbar/bevdaas.svg",
-            alt: "Bevdaas",
-            text: "Case Study Title of almost 2-3 lines can fit in this space right here"
+            logo: "https://picsum.photos/120/80?random=1",
+            alt: "The House of Rare",
+            text: "₹2.9Cr Revenue Retained Through Smarter Returns"
           },
           {
-            logo: "assets/images/navbar/xyxx.svg",
-            alt: "XYXX",
-            text: "XYXX brand saw decrease in repeat enquiries by 40% in 45days"
+            logo: "https://picsum.photos/120/80?random=1",
+            alt: "Emami",
+            text: "₹1.5Cr+ COD Losses Prevented with AI-Driven RTO Intelligence"
+          },
+          {
+            logo: "https://picsum.photos/120/80?random=1",
+            alt: "Theater.xyz",
+            text: "93% Faster First Responses Across 6 Customer Channels"
+          },
+          {
+            logo: "https://picsum.photos/120/80?random=1",
+            alt: "Sesa",
+            text: "15–21X WhatsApp ROAS Through Personalised Automation"
           }
         ];
 
