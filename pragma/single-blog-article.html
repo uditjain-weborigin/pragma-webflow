@@ -373,9 +373,32 @@
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 24px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Added shadow */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         cursor: pointer;
+        width: 100%;
       }
+
+      .kb-person-cta .cta-button {
+        font-size: 14px;
+        padding: 15px 20px;
+        margin-top: -2px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .cta-button {
+        color: #fff;
+        text-align: center;
+        background-color: #4273eb;
+        border: 2px solid #4273eb;
+        border-radius: 5px;
+        margin-top: 10px;
+        padding: 18px 40px;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.4;
+        transition: all .3s;
+       }
 
       .kb-person-image-wrapper {
         width: 100%;
@@ -2283,14 +2306,13 @@
         <!-- Right Sidebar -->
         <aside class="kb-sidebar-right">
           <!-- Person Card CTA -->
-          <div class="kb-person-cta">
+          <a href="#" class="kb-person-cta">
             <div class="kb-person-image-wrapper">
-              <img
-                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f602f81976e2f759822d31_person%20image.png"
-                alt="Custom CTA Video"
-              />
+              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a856ac3796820f3bb2a27d1_youtube-cta.png" alt="Custom CTA Video">
             </div>
-          </div>
+
+            <div class="cta-button">Custom CTA</div>
+          </a>
 
           <h3 class="kb-sidebar-similar-title">Similar Articles</h3>
           <div class="kb-sidebar-sep"></div>
