@@ -487,20 +487,21 @@
       .kb-highlight-box {
         background-color: #bfd6ff;
         border-radius: 12px;
-        padding: 48px;
+        padding: 20px 30px;
         margin: 48px 0;
         position: relative;
       }
 
       .kb-highlight-box::before {
-        content: "";
+        content: '';
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: -8px;
+        right: -8px;
         width: 28px;
         height: 28px;
         background-color: var(--primary);
         border-radius: 50%;
+        border: 10px solid white;
       }
 
       .kb-highlight-title {
@@ -520,26 +521,29 @@
 
       .kb-highlight-footer {
         display: flex;
-        justify-content: space-between;
+        justify-content: end;
         gap: 16px;
         align-items: center;
       }
 
       .btn-light-blue {
         background-color: #c5daff;
-        color: var(--primary);
         padding: 10px 24px;
-        border-radius: 8px;
         font-weight: 700;
         font-size: 14px;
-        border: none;
         cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 12px solid white;
+        border-right: 12px solid white;
+        border-top-right-radius: 8px;
       }
 
       .btn-outline-blue {
         background: #ffffff;
         color: var(--primary);
-        padding: 10px 24px;
+        padding: 8px 15px;
         border-radius: 8px;
         font-weight: 700;
         font-size: 14px;
@@ -680,6 +684,39 @@
 
         .kb-main-image-wrapper {
           margin-bottom: 24px !important;
+        }
+
+
+
+        .kb-highlight-box {
+          border-radius: 5px;
+          padding: 20px;
+          margin: 25px 0;
+          position: relative;
+        }
+
+        .kb-highlight-box::before {
+          width: 15px;
+          height: 15px;
+          border: 7px solid #fff;
+        }
+
+        .kb-highlight-box h2 {
+          margin-top: 0 !important;
+          font-size: 12px !important;
+        }
+
+        .kb-highlight-box p {
+          font-size: 10px !important;
+        }
+
+        .btn-light-blue {
+          font-size: 10px;
+          padding: 8px 14px;
+        }
+
+        .btn-outline-blue {
+          font-size: 12px;
         }
       }
 
@@ -2029,32 +2066,13 @@
               they no longer anchor confidence the way they once did.
             </p>
 
-            <div class="kb-highlight-box" id="item-2">
-              <h2 class="kb-highlight-title">
-                Some major text that needs to be highlighted will be shown big
-                like this
-              </h2>
-              <p class="kb-highlight-text">
-                Another study by LocalCircles found that 48% of online shoppers
-                hesitate with new or niche D2C brands due to uncertainty around
-                returns, authenticity, and issue resolution. Discounts and speed
-                help, but they no longer anchor confidence the way they once
-                did. Another study by LocalCircles found that 48% of online
-                shoppers hesitate with new or niche D2C brands due to
-                uncertainty around returns, authenticity, and issue resolution.
-                Discounts and speed help, but they no longer anchor confidence
-                the way they once did. Another study by LocalCircles found that
-                48% of online shoppers hesitate with new or niche D2C brands due
-                to uncertainty around returns, authenticity, and issue
-                resolution. Discounts and speed help, but they no longer anchor
-                confidence the way they once did.
-              </p>
+             <div class="kb-highlight-box" id="item-2">
+              <h2 id="item-5" class="kb-highlight-title">Some major text that needs to be highlighted will be shown big like this</h2>
+              <p id="item-6" class="kb-highlight-text">Another study by LocalCircles found that 48% of online shoppers hesitate with new or niche D2C brands due to uncertainty around returns, authenticity, and issue resolution. Discounts and speed help, but they no longer anchor confidence the way they once did. Another study by LocalCircles found that 48% of online shoppers hesitate with new or niche D2C brands due to uncertainty around returns, authenticity, and issue resolution. Discounts and speed help, but they no longer anchor confidence the way they once did. Another study by LocalCircles found that 48% of online shoppers hesitate with new or niche D2C brands due to uncertainty around returns, authenticity, and issue resolution. Discounts and speed help, but they no longer anchor confidence the way they once did.</p>
 
               <div class="kb-highlight-footer">
                 <button class="btn-light-blue">98% Automation</button>
-                <button class="btn-outline-blue">
-                  Explore Product <i class="icon-arrow-right"></i>
-                </button>
+                <button class="btn-outline-blue">Explore Product <i class="icon-arrow-right"><img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f602f8fd28a83f381ab12f_arrow-right.png" alt=""></i></button>
               </div>
             </div>
             <h2 id="item-3">The micro-breakpoints where trust collapses</h2>
