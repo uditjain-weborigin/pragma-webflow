@@ -940,22 +940,6 @@
         object-fit: contain !important;
       }
 
-      /* Boost size of specific SVGs that have larger internal empty paddings inside their asset drawings */
-      .product-icon-box img[src*="rms.svg"],
-      .product-icon-box img[src*="jms.svg"],
-      .product-icon-box img[src*="shipaxis"],
-      .product-icon-box img[src*="crm-animation"],
-      .product-icon-box img[src*="return-animation"],
-      .product-icon-box img[src*="checkout-animation"],
-      .product-icon-box img[src*="rtosuite-animation"],
-      .product-icon-box img[src*="genie-animation"],
-      .product-icon-box img[src*="whatsapp-animation"],
-      .product-icon-box img[src*="jms-animation"],
-      .product-icon-box img[src*="whatsapp_business_suite.svg"] {
-        width: 44px !important;
-        height: 44px !important;
-      }
-
       .product-name {
         font-family: Satoshi, sans-serif !important; /* Exact Figma Satoshi typography */
         font-size: 18px !important; /* Exact Figma Font Size */
@@ -1049,7 +1033,6 @@
       .dropdown-list {
         display: flex !important;
         flex-direction: column;
-        justify-content: space-between;
         flex-grow: 1;
         margin: 0 !important;
         padding: 0 !important;
@@ -1795,8 +1778,8 @@
         }
 
         .sub-feature-chip:hover {
-          background-color: #1A5CC8 !important;
-          border-color: #1A5CC8 !important;
+          background-color: var(--primary) !important;
+          border-color: var(--primary) !important;
           color: #ffffff !important;
         }
 
@@ -1807,8 +1790,8 @@
         }
 
         .sub-feature-chip.chip-active:hover {
-          background-color: #1A5CC8 !important;
-          border-color: #1A5CC8 !important;
+          background-color: var(--primary) !important;
+          border-color: var(--primary) !important;
           color: #ffffff !important;
         }
 
