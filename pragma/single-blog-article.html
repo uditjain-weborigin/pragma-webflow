@@ -282,6 +282,7 @@
 
       .kb-article-body ul {
         margin-bottom: 28px; /* More space between paragraphs */
+        padding-left: 0;
       }
 
       .kb-article-body li {
@@ -289,6 +290,18 @@
         color: #000000;
         line-height: 1.4; /* Improved readability */
         font-size: 16px;
+        position: relative;
+        padding-left: 10px;
+      }
+
+      .kb-article-body li::before {
+        position: absolute;
+        content: "";
+        top: 4px;
+        left: 5px;
+        display: inline-block;
+        background-color: #000;
+        border-radius: 50%;
       }
 
       .kb-case-study-tag {
