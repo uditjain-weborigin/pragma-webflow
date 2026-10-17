@@ -12,7 +12,7 @@
  *      AFTER the fetch has already completed and the event already fired.
  */
 
-
+console.log(123456789)
 // =============================================================================
 // AI Summarise — helper functions (no DOM needed, safe to define immediately)
 // =============================================================================
@@ -58,7 +58,6 @@ function initBlogArticle() {
     });
   })();
 
-console.log(123456789)
   // ── 25% Scroll — Subscriber Popup ──────────────────────────────────────────
   (function () {
     var STORAGE_KEY      = "pragma_subscriber_popup_dismissed";
