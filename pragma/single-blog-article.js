@@ -12,6 +12,7 @@
  *      AFTER the fetch has already completed and the event already fired.
  */
 
+
 // =============================================================================
 // AI Summarise — helper functions (no DOM needed, safe to define immediately)
 // =============================================================================
