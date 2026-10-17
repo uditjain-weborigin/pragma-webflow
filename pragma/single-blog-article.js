@@ -350,11 +350,8 @@ if (window._blogArticleReady) {
 } else {
   // Wait for fetch to complete and fire the custom event
   document.addEventListener("blog:ready", initBlogArticle);
-  starting()
 }
 
-function starting(){
-  setIntervel({
-    console.log(1111111111)
-  }, 2000)
-}
+setInterval(function () {
+    console.log(1111111111);
+  }, 2000);
