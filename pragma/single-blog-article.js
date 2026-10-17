@@ -346,10 +346,11 @@ function initBlogArticle() {
 if (window._blogArticleReady) {
   // Fetch already completed before this script loaded — run immediately
   initBlogArticle();
-  starting()
+  
 } else {
   // Wait for fetch to complete and fire the custom event
   document.addEventListener("blog:ready", initBlogArticle);
+  starting()
 }
 
 function starting(){
