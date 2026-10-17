@@ -12,7 +12,6 @@
  *      AFTER the fetch has already completed and the event already fired.
  */
 
-console.log(123456789)
 // =============================================================================
 // AI Summarise — helper functions (no DOM needed, safe to define immediately)
 // =============================================================================
