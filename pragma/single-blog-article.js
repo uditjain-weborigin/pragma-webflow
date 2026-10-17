@@ -58,7 +58,7 @@ function initBlogArticle() {
     });
   })();
 
-
+console.log(123456789)
   // ── 25% Scroll — Subscriber Popup ──────────────────────────────────────────
   (function () {
     var STORAGE_KEY      = "pragma_subscriber_popup_dismissed";
