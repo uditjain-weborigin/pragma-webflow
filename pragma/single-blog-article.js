@@ -46,9 +46,7 @@ function _getAiUrl(ai, prompt) {
 // Main init — runs after HTML has been injected into the page
 // =============================================================================
 function initBlogArticle() {
-setInterval(function () {
-  console.log("000000000");
-}, 2000);
+  console.log("initBlog");
   // ── AI Summarise buttons ────────────────────────────────────────────────────
   (function () {
     var pageUrl = window.location.href;
@@ -353,7 +351,3 @@ if (window._blogArticleReady) {
   // Wait for fetch to complete and fire the custom event
   document.addEventListener("blog:ready", initBlogArticle);
 }
-
-setInterval(function () {
-  console.log("1111111111");
-}, 2000);
