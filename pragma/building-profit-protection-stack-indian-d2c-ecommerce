@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Building a Profit Protection Stack for Indian D2C E-commerce | Pragma</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<meta content="Learn how Indian D2C brands can protect profit margins with six connected layers across checkout, RTO, shipping, returns, CRM, and incentives." name="description"/>
+<meta content="index, follow" name="robots"/>
+<!-- change into index, follow -->
+<link href="assets/fonts/satoshi/stylesheet.css" rel="stylesheet"/>
+<link href="assets/fonts/icons/style.css" rel="stylesheet"/>
+<link href="assets/styles/global.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a profit protection stack in D2C operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A profit protection stack is a set of connected systems that prevents margin leakage after an order is placed. It covers checkout, RTO prevention, fulfilment, returns, CRM, and incentive management."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is ecommerce margin protection different from cost reduction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cost reduction lowers individual expenses, while ecommerce margin protection prevents earned revenue from leaking across operations. It focuses on better risk decisions, fulfilment, return recovery, and customer communication."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do D2C brands lose margin even when gross margins look healthy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gross margin does not include marketing, shipping, RTO, returns, payment failures, support costs, and COD leakage. These expenses accumulate after an order is placed and can reduce a healthy gross margin to a very small contribution margin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What operational risk areas should D2C brands prioritise first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brands should typically prioritise COD and RTO control, payment failure recovery, and return-to-exchange conversion. The right starting point is the stage currently consuming the most margin per order."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a small D2C brand justify building a profit protection stack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A growing brand processing a few hundred daily orders, managing COD traffic, or handling meaningful return volumes can already face substantial leakage. Recovered margin can often justify the operational investment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a profit protection stack handle the trade-off between conversion and risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It applies controls selectively according to the order's risk level. Low-risk orders remain frictionless, while medium- and high-risk orders receive additional verification, COD restrictions, or safer fulfilment options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is operations-aware suppression and why does it matter for margin protection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Operations-aware suppression pauses marketing messages for customers with active returns, failed deliveries, or open disputes. This prevents mistimed communication from damaging customer trust and future lifetime value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do return management and profit protection relate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Returns create both margin loss and recovery opportunities. Exchange options, store credits, and partial settlements can preserve revenue, while return data can improve checkout rules, courier selection, and risk scoring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the stack need to share signals across layers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shared signals allow each layer to make better decisions using context from the others. Checkout risk scores can guide courier selection, return reasons can refine checkout rules, and dispute states can prevent inappropriate marketing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see results from a profit protection stack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Initial improvements may become visible within 30 to 60 days of proper integration. Meaningful margin recovery often appears within 60 to 90 days, while the compounding benefits develop over subsequent quarters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should D2C brands look for when evaluating profit protection capabilities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Brands should assess coverage across the operational lifecycle, signal sharing between layers, and configuration depth. The system should adapt to the brand's category, pincode mix, customer profile, and operational risks."
+      }
+    }
+  ]
+}</script></head>
+<body>
+<style>
+      /* =========================================
+   Separator
+   ========================================= */
+      .kb-separator {
+        border: 0;
+        border-top: 1px solid #e5e7eb; /* Light grey */
+        margin: 0;
+        width: 100%;
+      }
+
+      /* =========================================
+   KB Article Layout
+   ========================================= */
+      .kb-article-container {
+        padding: 100px 0 80px; /* Reduced top padding slightly */
+        background-color: var(--white);
+      }
+
+      .kb-article-top {
+        margin-bottom: 24px;
+      }
+
+      .kb-article-top .breadcrumb-nav {
+        justify-content: center;
+      }
+
+      .kb-article-top .breadcrumb-nav a,
+      .kb-article-top .breadcrumb-nav .breadcrumb-sep {
+        color: #000000 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav a:hover {
+        color: #2871f0 !important;
+      }
+
+      .kb-article-top .breadcrumb-nav .breadcrumb-current {
+        color: #2871f0 !important;
+      }
+
+      /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+      .breadcrumb-nav,
+      .breadcrumb {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: inherit;
+        margin-bottom: 24px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
+      }
+
+      /* Links */
+      .breadcrumb-nav a,
+      .breadcrumb a,
+      .breadcrumb li a {
+        color: #2871f0 !important;
+        text-decoration: none !important;
+        display: inline !important; /* Reset from global inline-block */
+        transition: color 0.2s;
+      }
+
+      .breadcrumb-nav a:hover,
+      .breadcrumb a:hover,
+      .breadcrumb li a:hover {
+        text-decoration: underline !important;
+        color: #2871f0 !important;
+      }
+
+      /* Separators */
+      .breadcrumb-sep,
+      .breadcrumb li + li::before {
+        margin: 0 6px !important;
+        color: #9ca3af !important;
+        font-size: 11px !important;
+        content: ">"; /* Support for list-style breadcrumbs */
+      }
+
+      /* Current / Active Item */
+      .breadcrumb-current,
+      .breadcrumb .active,
+      .breadcrumb li:last-child,
+      .breadcrumb li:last-child a {
+        color: #2871f0 !important;
+        font-weight: 500 !important;
+      }
+
+      /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+      .breadcrumb ul {
+        display: flex;
+        align-items: center;
+      }
+      .breadcrumb li {
+        display: flex;
+        align-items: center;
+      }
+
+      .kb-article-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr 240px; /* Slightly wider sidebars */
+        gap: 64px; /* Increased gap for better spacing */
+        max-width: 1320px; /* More standard max-width */
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      /* Left Sidebar */
+      .kb-sidebar-left {
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 350px);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kb-contents-title {
+        font-size: 18px; /* More professional size */
+        font-weight: 700;
+        color: var(--black);
+        margin-bottom: 20px;
+      }
+
+      .kb-contents-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        padding-right: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+      }
+
+      /* Custom Scrollbar for TOC List */
+      .kb-contents-list::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb {
+        background: #e5e7eb;
+        border-radius: 10px;
+      }
+
+      .kb-contents-list::-webkit-scrollbar-thumb:hover {
+        background: #d1d5db;
+      }
+
+      .kb-contents-list > li {
+        margin-bottom: 4px; /* Tighter spacing */
+      }
+
+      .kb-contents-list > li > a {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #111827;
+        padding: 10px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition:
+          background-color 0.1s ease,
+          color 0.1s ease;
+        border: none !important;
+      }
+
+      .kb-contents-list > li > a:hover {
+        background-color: #f3f4f6;
+      }
+
+      /* Active indicator */
+      .kb-contents-list .kb-active-item > a,
+      .kb-contents-list li a.active {
+        color: #000 !important;
+        background-color: #bfd6ff !important;
+        border-radius: 6px;
+        border: none !important;
+      }
+
+      .kb-sub-list {
+        list-style: none !important;
+        padding-left: 0 !important;
+        margin-top: 8px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .kb-sub-list li {
+        position: relative !important;
+        padding-left: 20px !important;
+        margin-bottom: 2px !important;
+        display: block !important;
+      }
+
+      .kb-sub-list li::before {
+        content: "•" !important;
+        position: absolute !important;
+        left: 8px !important;
+        top: 8px !important;
+        color: #111827 !important;
+        font-weight: bold !important;
+        z-index: 1; /* Stay above the link background */
+      }
+
+      .kb-sub-list li a {
+        display: block !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        color: #111827 !important;
+        text-decoration: none !important;
+        padding: 6px 10px !important;
+        border-radius: 4px !important;
+        transition: all 0.2s !important;
+      }
+
+      .kb-sub-list li a:hover {
+        background-color: #f9fafb !important;
+      }
+
+      .kb-sub-list li a.active {
+        background-color: #bfd6ff !important;
+        font-weight: 700 !important;
+      }
+
+      /* Main Content */
+      .kb-main-content {
+        max-width: 100%;
+      }
+
+      .kb-main-image-wrapper {
+        margin-bottom: 32px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .kb-article-body h2 {
+        scroll-margin-top: 100px;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        font-size: 32px; /* Larger headings */
+        font-weight: 700;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body h3 {
+        scroll-margin-top: 100px;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--black-bg);
+      }
+
+      .kb-article-body p {
+        margin-bottom: 28px; /* More space between paragraphs */
+        color: #000000;
+        line-height: 1.7; /* Improved readability */
+        font-size: 16px;
+      }
+
+      .kb-article-body ul {
+        margin-bottom: 28px; /* More space between paragraphs */
+        padding-left: 0;
+      }
+
+      .kb-article-body li {
+        margin-bottom: 10px; /* More space between paragraphs */
+        color: #000000;
+        line-height: 1.4; /* Improved readability */
+        font-size: 16px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .kb-article-body li::before {
+        position: absolute;
+        content: "";
+        top: 7px;
+        left: 5px;
+        display: inline-block;
+        background-color: #000;
+        border-radius: 100%;
+        width: 5px;
+        height: 5px;
+      }
+
+      .kb-case-study-tag {
+        display: none;
+      }
+
+      @media (min-width: 769px) {
+        .kb-text-highlight {
+          background-color: #d9d9d9;
+          padding: 2px 4px;
+          border-radius: 2px;
+        }
+
+        .kb-case-study-tag {
+          display: inline-flex;
+          align-items: center;
+          border: 1px solid #2871f0;
+          color: #2871f0;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+          margin-left: 10px;
+          margin-right: 5px;
+          position: relative;
+          background: #fff;
+          line-height: 1;
+          vertical-align: middle;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover {
+          background-color: #2871f0;
+          color: #fff;
+        }
+
+        .kb-case-study-tag::before {
+          content: "";
+          position: absolute;
+          left: -5px;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-left: 1px solid #2871f0;
+          border-bottom: 1px solid #2871f0;
+          transition: all 0.2s ease;
+        }
+
+        .kb-case-study-tag:hover::before {
+          background: #2871f0;
+        }
+      }
+
+      .kb-main-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      .kb-instruction-steps {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--black);
+      }
+
+      .kb-instruction-steps p {
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .kb-instruction-steps ol {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .kb-instruction-steps ol li {
+        margin-bottom: 8px;
+      }
+
+      /* Right Sidebar */
+      .kb-sidebar-right {
+        position: sticky;
+        top: 100px;
+      }
+
+      .kb-person-cta {
+        background: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .kb-person-cta .cta-button {
+        font-size: 14px;
+        padding: 15px 20px;
+        margin-top: -2px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      .cta-button {
+        color: #fff;
+        text-align: center;
+        background-color: #4273eb;
+        border: 2px solid #4273eb;
+        border-radius: 5px;
+        margin-top: 10px;
+        padding: 18px 40px;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.4;
+        transition: all .3s;
+       }
+
+      .kb-person-image-wrapper {
+        width: 100%;
+        position: relative;
+      }
+
+      .kb-person-image-wrapper:hover {
+        opacity: 0.9;
+      }
+
+      .kb-person-image-wrapper > img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Tags */
+      .kb-tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .kb-tag {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #fff7ed; /* Light orange/beige background */
+        border: 1px solid #ffedd5;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #9a3412; /* Dark orange/brown text */
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .kb-tag:hover {
+        background: #ffedd5;
+        transform: translateY(-1px);
+      }
+
+      .kb-tag.tag-green {
+        background: #f0fdf4; /* Light green */
+        color: #166534; /* Dark green */
+        border-color: #dcfce7;
+      }
+
+      .kb-tag.tag-green:hover {
+        background: #dcfce7;
+      }
+
+      /* Media Queries */
+      @media only screen and (max-width: 1024px) {
+        .kb-article-layout {
+          grid-template-columns: 220px 1fr 220px;
+          gap: 32px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-article-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .kb-sidebar-left,
+        .kb-sidebar-right {
+          position: static;
+        }
+
+        .kb-sidebar-left {
+          order: 2; /* Move contents below main image on mobile */
+        }
+
+        .kb-main-content {
+          order: 1;
+        }
+
+        .kb-sidebar-right {
+          order: 3;
+        }
+      }
+      /* Case Study Specific Styles */
+      .kb-highlight-box {
+        background-color: #bfd6ff;
+        border-radius: 12px;
+        padding: 20px 30px;
+        margin: 48px 0;
+        position: relative;
+      }
+
+      .kb-highlight-box::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        border: 10px solid white;
+      }
+
+      .kb-highlight-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 32px;
+        line-height: 1.25;
+      }
+
+      .kb-highlight-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #000;
+        margin-bottom: 40px;
+      }
+
+      .kb-highlight-footer {
+        display: flex;
+        justify-content: end;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn-light-blue {
+        background-color: #c5daff;
+        padding: 10px 24px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 12px solid white;
+        border-right: 12px solid white;
+        border-top-right-radius: 8px;
+      }
+
+      .btn-outline-blue {
+        background: #ffffff;
+        color: var(--primary);
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .diag-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--black-bg);
+      }
+
+      /* Mobile KB Article Styles */
+      @media only screen and (max-width: 1024px) {
+        .kb-mobile-toc {
+          display: block !important;
+          margin-bottom: 24px;
+          background: var(--white);
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+        }
+
+        .kb-mobile-toc.is-sticky {
+          position: fixed;
+          top: 70px;
+          left: 20px;
+          right: 20px;
+          z-index: 1001;
+          margin-bottom: 0;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          animation: kbSlideDown 0.3s ease-out;
+        }
+
+        @keyframes kbSlideDown {
+          from {
+            transform: translateY(-10px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .kb-mobile-toc-header {
+          width: 100%;
+          padding: 16px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: none;
+          border: none;
+          font-size: 16px;
+          font-weight: 600;
+          color: #4b5563;
+          cursor: pointer;
+        }
+
+        .kb-mobile-toc-header i {
+          font-size: 12px;
+          transition: transform 0.3s;
+          color: #9ca3af;
+        }
+
+        .kb-mobile-toc-header.active i {
+          transform: rotate(180deg);
+        }
+
+        .kb-mobile-toc-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+          padding: 0 20px;
+        }
+
+        .kb-mobile-toc-header.active + .kb-mobile-toc-content {
+          max-height: 500px;
+          padding-bottom: 20px;
+        }
+
+        .kb-mobile-toc .kb-contents-list {
+          margin-top: 10px;
+        }
+
+        .kb-mobile-toc .kb-contents-list > li > a {
+          padding: 6px 0;
+          background: none !important;
+          font-size: 14px;
+        }
+      }
+
+      @media only screen and (min-width: 1025px) {
+        .kb-mobile-toc {
+          display: none;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-sidebar-left,
+        .kb-sidebar-right,
+        .kb-article-top .breadcrumb-nav {
+          display: none !important;
+        }
+
+        .kb-article-container {
+          padding: 60px 20px 40px !important; /* Increase horizontal padding */
+        }
+
+        .kb-article-body h2 {
+          font-size: 20px !important;
+          margin-top: 32px !important;
+          margin-bottom: 16px !important;
+          line-height: 1.3 !important;
+        }
+
+        .kb-article-body h3 {
+          font-size: 18px !important;
+          margin-top: 28px !important;
+          margin-bottom: 12px !important;
+        }
+
+        .kb-article-body p {
+          margin-bottom: 20px !important;
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+          color: #000000 !important;
+        }
+
+        .kb-main-image-wrapper {
+          margin-bottom: 24px !important;
+        }
+
+
+
+        .kb-highlight-box {
+          border-radius: 5px;
+          padding: 20px;
+          margin: 25px 0;
+          position: relative;
+        }
+
+        .kb-highlight-box::before {
+          width: 15px;
+          height: 15px;
+          border: 7px solid #fff;
+        }
+
+        .kb-highlight-box h2 {
+          margin-top: 0 !important;
+          font-size: 12px !important;
+        }
+
+        .kb-highlight-box p {
+          font-size: 10px !important;
+        }
+
+        .btn-light-blue {
+          font-size: 10px;
+          padding: 8px 14px;
+        }
+
+        .btn-outline-blue {
+          font-size: 12px;
+        }
+      }
+
+      .kb-person-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.4);
+        color: var(--white);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .kb-person-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: var(--primary);
+        color: var(--white);
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 12px;
+        margin-bottom: 20px;
+      }
+      /* Sidebar Similar Articles */
+      .kb-sidebar-similar-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--black);
+        margin-top: 32px;
+        margin-bottom: 12px;
+      }
+
+      .kb-sidebar-sep {
+        height: 1px;
+        background-color: #e5e7eb;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .kb-sidebar-article-list {
+        margin-bottom: 16px;
+      }
+
+      .kb-sidebar-article-item {
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+
+      .kb-sidebar-article-link {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .kb-sidebar-article-link:hover {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      /* Article Metadata Bar */
+      .kb-article-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-top: 1px solid #e5e7eb;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+
+      .kb-meta-author {
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .kb-meta-author strong {
+        color: var(--black);
+        font-weight: 700;
+      }
+
+      .kb-meta-info {
+        color: #000000;
+      }
+
+      /* AI Summary Section */
+      .kb-summary-box {
+        background-color: #000;
+        border-radius: 12px;
+        padding: 24px 32px;
+        margin-top: 24px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .kb-summary-text {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .kb-summary-text span {
+        color: #c5daff; /* Light blue color for "Summarise" */
+      }
+
+      .kb-ai-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .kb-ai-btn {
+        background-color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        text-decoration: none;
+      }
+
+      .kb-ai-btn:hover {
+        opacity: 0.9;
+      }
+
+      .kb-ai-btn img {
+        height: 20px;
+        width: auto;
+      }
+
+      /* TLDR Section */
+      .kb-tldr-box {
+        border: 2px dashed #fbbf24; /* Yellow-orange dashed border */
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-tldr-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .kb-tldr-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .kb-tldr-icon img {
+        width: 32px;
+        height: auto;
+      }
+
+      .kb-tldr-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #000;
+      }
+
+      .kb-tldr-summary {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #000000;
+        margin-bottom: 24px;
+      }
+
+      .kb-takeaways-block {
+        background-color: #fffbeb; /* Light yellow background */
+        padding: 20px;
+        margin: 0 -24px -24px -24px; /* Expand to edges of parent padding */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .kb-takeaways-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 16px;
+      }
+
+      .kb-takeaways-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .kb-takeaways-list li {
+        position: relative;
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #1f2937;
+        margin-bottom: 10px;
+      }
+
+      .kb-takeaways-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* =========================================
+         Blog Author Section
+         ========================================= */
+      .kb-author-box {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 24px;
+        border-radius: 20px;
+        border: 0.5px solid #000000;
+        background: #ffffff;
+        margin-top: 48px;
+        margin-bottom: 48px;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 754.57px;
+      }
+
+      .kb-author-label {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #000000;
+        font-family: Satoshi, sans-serif;
+        width: 81px;
+        height: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .kb-author-image-wrapper {
+        width: 110.56px;
+        height: 140.4px;
+        border-radius: 7.02px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .kb-author-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .kb-author-info {
+        width: 467px;
+        height: 128px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .kb-author-header {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .kb-author-name {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #2871f0;
+        text-decoration: underline;
+        font-family: Satoshi, sans-serif;
+        width: fit-content;
+      }
+
+      .kb-author-name:hover {
+        text-decoration: none;
+      }
+
+      .kb-author-link-icon {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .kb-author-role {
+        font-size: 12px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      .kb-author-bio {
+        font-size: 13px;
+        line-height: 1.4;
+        color: #000000;
+        margin: 0 !important;
+      }
+
+      .kb-author-note {
+        font-size: 11px;
+        color: #000000;
+        opacity: 0.8;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .kb-author-box {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 16px;
+          padding: 20px;
+          margin-top: 32px;
+          margin-bottom: 32px;
+          max-width: 100%;
+          height: auto;
+        }
+
+        .kb-author-label {
+          white-space: normal;
+          width: auto;
+          height: auto;
+          text-align: center;
+          display: block;
+        }
+
+        .kb-author-info {
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .kb-author-header {
+          align-items: center;
+        }
+
+        .kb-author-name {
+          justify-content: center;
+        }
+      }
+
+      /* FAQ Section */
+      .kb-faq-section {
+        border: 2px dashed #3b82f6; /* Blue dashed border */
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 60px;
+        margin-bottom: 40px;
+        background-color: var(--white);
+      }
+
+      .kb-faq-header {
+        background-color: #c5daff; /* Light blue-ish background from mockup */
+        padding: 32px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .kb-faq-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #000;
+        margin-bottom: 12px;
+      }
+
+      .kb-faq-subtitle {
+        font-size: 13px;
+        font-weight: 500;
+        color: #000000;
+        line-height: 1.4;
+      }
+
+      .kb-faq-body {
+        padding: 0;
+      }
+
+      .kb-faq-item {
+        padding: 32px;
+        margin-bottom: 0;
+        background-color: var(--white);
+      }
+
+      .kb-faq-item:nth-child(even) {
+        background-color: #f3f4f6; /* Light gray background for alternating items */
+      }
+
+      .kb-faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .kb-faq-question {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .kb-faq-answer {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #4b5563;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      /* Floating Mobile Summary Sidebar */
+      .mobile-float-summary {
+        position: fixed;
+        left: 0;
+        top: 30%; /* Fixed top position to prevent vertical shift on height change */
+        z-index: 1000;
+        display: none !important;
+      }
+
+      .float-summary-trigger {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 6px;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .vertical-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .float-summary-expanded {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: transparent;
+      }
+
+      .mobile-float-summary.is-open .float-summary-expanded {
+        display: block;
+      }
+
+      .mobile-float-summary.is-open .float-summary-trigger {
+        display: none !important;
+      }
+
+      .float-summary-close {
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -30px;
+        left: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .float-summary-close img {
+        width: 10px;
+      }
+
+      .float-summary-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .float-summary-label {
+        background-color: #000;
+        color: #fff;
+        padding: 12px 10px;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .float-summary-options {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .float-ai-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: #111827;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .float-ai-btn img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      .float-ai-btn:hover {
+        background-color: #f3f4f6;
+      }
+
+      .mobile-only-section {
+        display: none !important;
+      }
+
+      .view-more-mobile {
+        display: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .related-blogs-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .related-blogs-header .view-more-link {
+          display: none !important;
+        }
+
+        .view-more-mobile {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          margin: 32px auto 0;
+          padding: 10px 24px;
+          border: 1px solid #2871f0;
+          border-radius: 6px;
+          color: #2871f0 !important;
+          font-size: 14px;
+          font-weight: 500;
+          background-color: var(--white);
+          transition: all 0.3s;
+        }
+
+        .view-more-mobile:hover {
+          background-color: #2871f0;
+          color: var(--white) !important;
+        }
+
+        .related-blogs-grid {
+          flex-direction: column;
+          gap: 24px;
+        }
+      }
+
+      .kb-top-fade {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(
+          to bottom,
+          #fff 30%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        z-index: 1000;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .kb-top-fade.is-visible {
+        opacity: 1;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .mobile-float-summary.is-visible {
+          display: block !important;
+        }
+
+        .mobile-only-section {
+          display: block !important;
+          margin-top: 40px;
+          margin-bottom: 20px;
+        }
+
+        /* Client fixes for mobile summary */
+        .float-summary-close {
+          width: 48px !important;
+          height: 48px !important;
+          top: -60px !important;
+        }
+
+        .float-summary-close img {
+          width: 26px !important;
+        }
+
+        .float-summary-options {
+          padding-right: 24px !important;
+        }
+
+        /* Author meta bar one-line fix for smaller mobiles */
+        @media only screen and (max-width: 500px) {
+          .kb-article-meta {
+            font-size: 13px !important;
+            justify-content: space-between !important;
+            gap: 10px !important;
+            padding: 12px 0 !important;
+            flex-wrap: nowrap !important;
+          }
+          .kb-meta-author,
+          .kb-meta-info {
+            white-space: nowrap !important;
+          }
+        }
+
+        /* AI Summary Section Mobile Fixes */
+        .kb-summary-box {
+          padding: 16px 12px !important;
+          align-items: flex-start !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+        }
+        .kb-summary-text {
+          font-size: 13px !important;
+          margin-bottom: 8px !important;
+          width: 100% !important;
+        }
+        .kb-ai-buttons {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          overflow-x: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          justify-content: flex-start !important;
+          width: 100% !important;
+          padding-bottom: 10px !important;
+          gap: 8px !important;
+        }
+        .kb-ai-buttons::-webkit-scrollbar {
+          height: 4px;
+        }
+        .kb-ai-buttons::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+        }
+        @media only screen and (max-width: 480px) {
+          .kb-summary-box {
+            padding: 16px 8px !important;
+          }
+          .kb-ai-buttons {
+            gap: 6px !important;
+          }
+          .kb-ai-btn {
+            padding: 5px 6px !important;
+            font-size: 11px !important;
+            gap: 4px !important;
+          }
+          .kb-ai-btn img {
+            height: 12px !important;
+          }
+        }
+        .kb-ai-btn {
+          flex-shrink: 0 !important;
+          background-color: transparent !important;
+          border: 1px solid rgba(255, 255, 255, 0.4) !important;
+          color: #fff !important;
+          padding: 6px 10px !important;
+          font-size: 12px !important;
+          border-radius: 6px !important;
+        }
+        .kb-ai-btn img {
+          height: 14px !important;
+          filter: brightness(0) invert(1) !important; /* Make logos white for visibility on black bg */
+        }
+        .kb-ai-btn img[alt="Google AI"] {
+          filter: none !important; /* Keep Google AI logo colorful */
+        }
+      }
+      /* =========================================
+   25% Scroll Subscriber Popup
+   ========================================= */
+      /* Backdrop overlay */
+      .scroll-popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease;
+      }
+
+      .scroll-popup-overlay.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Modal card */
+      .scroll-popup-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        z-index: 9999;
+        width: 100%;
+        max-width: 420px;
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+          visibility 0.35s ease;
+      }
+
+      .scroll-popup-modal.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Illustration header */
+      .scroll-popup-hero {
+        position: relative;
+        width: 100%;
+        background-color: #a8d4f5;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .scroll-popup-hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      /* Close button */
+      .scroll-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 2;
+      }
+
+      .scroll-popup-close:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .scroll-popup-close svg {
+        width: 14px;
+        height: 14px;
+        stroke: #374151;
+        stroke-width: 2.5;
+      }
+
+      /* Body */
+      .scroll-popup-body {
+        padding: 24px 24px 28px;
+        text-align: center;
+      }
+
+      .scroll-popup-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.45;
+        margin-bottom: 20px;
+      }
+
+      /* Email input */
+      .scroll-popup-input-wrap {
+        position: relative;
+        margin-bottom: 12px;
+      }
+
+      .scroll-popup-input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1.5px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #111827;
+        background: #f9fafb;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+
+      .scroll-popup-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .scroll-popup-input:focus {
+        border-color: #2871f0;
+        box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+        background: #fff;
+      }
+
+      /* CTA button */
+      .scroll-popup-btn {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        background: #2871f0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+        font-family: inherit;
+        letter-spacing: 0.01em;
+      }
+
+      .scroll-popup-btn:hover {
+        background: #1a5fd4;
+        transform: translateY(-1px);
+      }
+
+      .scroll-popup-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Mobile adjustments */
+      @media only screen and (max-width: 480px) {
+        .scroll-popup-modal {
+          max-width: calc(100% - 32px);
+          border-radius: 12px;
+        }
+
+        .scroll-popup-body {
+          padding: 20px 20px 24px;
+        }
+
+        .scroll-popup-title {
+          font-size: 15px;
+        }
+      }
+
+      /* =========================================
+   50% Scroll — Get a Demo Popup
+   ========================================= */
+      /* Uses the same .scroll-popup-overlay backdrop */
+
+      /* Modal card */
+      .demo-popup-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.92);
+        z-index: 9999;
+        width: 400px;
+        height: 388px;
+        max-width: 400px;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: visible; /* so close btn can overflow */
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+          visibility 0.35s ease;
+        box-sizing: border-box;
+      }
+
+      .demo-popup-modal.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Inner clipping wrapper */
+      .demo-popup-inner {
+        border-radius: 20px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Hero section — light-blue wave background */
+      .demo-popup-hero {
+        background: #b6d3e8;
+        height: 88px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        flex-shrink: 0;
+      }
+
+      .demo-popup-hero-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #000000;
+        margin: 0;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+        white-space: nowrap;
+      }
+
+      /* Close button — top-right corner of modal */
+      .demo-popup-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, background 0.2s ease;
+        z-index: 10;
+      }
+
+      .demo-popup-close:hover {
+        transform: scale(1.1);
+        background: #ffffff;
+      }
+
+      .demo-popup-close svg {
+        width: 14px;
+        height: 14px;
+        stroke: #111827;
+        stroke-width: 2.5;
+      }
+
+      /* Body */
+      .demo-popup-body {
+        padding: 24px 58px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 300px;
+        box-sizing: border-box;
+      }
+
+      /* Input fields */
+      .demo-popup-input {
+        width: 100%;
+        height: 50px;
+        padding: 0 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #111827;
+        background: #ffffff;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+
+      .demo-popup-input::placeholder {
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 14px;
+      }
+
+      .demo-popup-input:focus {
+        border-color: #2871f0;
+        box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+        background: #fff;
+      }
+
+      /* CTA button */
+      .demo-popup-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 135px;
+        height: 54px;
+        margin: 12px auto 0;
+        padding: 0;
+        background: #2871f0;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        font-family: inherit;
+        letter-spacing: 0.01em;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+        box-sizing: border-box;
+      }
+
+      .demo-popup-btn:hover {
+        background: #1a5fd4;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(40, 113, 240, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .demo-popup-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Mobile */
+      @media only screen and (max-width: 480px) {
+        .demo-popup-modal {
+          width: calc(100% - 32px);
+          max-width: calc(100% - 32px);
+          height: auto;
+          border-radius: 16px;
+        }
+
+        .demo-popup-inner {
+          border-radius: 16px;
+        }
+
+        .demo-popup-hero {
+          height: 72px;
+        }
+
+        .demo-popup-hero-title {
+          font-size: 16px;
+          white-space: normal;
+        }
+
+        .demo-popup-body {
+          padding: 20px 20px 24px;
+          height: auto;
+        }
+      }
+    </style>
+<!-- Top Fade Overlay -->
+<div class="kb-top-fade js-kb-top-fade"></div>
+<!-- Content-start -->
+<div class="kb-article-container centered">
+<!-- Breadcrumb & Header part moved above the 3 columns -->
+<div class="kb-article-top">
+<nav class="breadcrumb-nav">
+<a href="#">Resources</a>
+<span class="breadcrumb-sep">&gt;</span>
+<a href="#">Blogs</a>
+<span class="breadcrumb-sep">&gt;</span>
+<span class="breadcrumb-current">Whatsapp</span>
+</nav>
+</div>
+<!-- 3-Column Layout -->
+<div class="kb-article-layout">
+<!-- Left Sidebar: Contents -->
+<aside class="kb-sidebar-left">
+<h3 class="kb-contents-title">Contents</h3>
+<ul class="kb-contents-list"><li><a href="#what-a-profit-protection-stack-actually-means">What a Profit Protection Stack Actually Means</a></li><li><a href="#how-the-profit-protection-stack-is-structured">How the Profit Protection Stack Is Structured</a></li><li><a href="#what-this-looks-like-in-practice">What This Looks Like in Practice</a></li><li><a href="#to-wrap-it-up">To Wrap It Up</a></li><li><a href="#faqs">Frequently Asked Questions</a></li></ul>
+</aside>
+<!-- Main Content -->
+<main class="kb-main-content">
+<div class="kb-main-image-wrapper">
+<img alt="Building a Profit Protection Stack for Indian D2C E-commerce" src="FEATURED_IMAGE_URL"/>
+</div>
+<div class="kb-article-meta">
+<div class="kb-meta-author">AUTHOR_NAME — AUTHOR_ROLE</div>
+<div class="kb-meta-info">PUBLISH_DATE | READ_TIME</div>
+</div>
+<div class="kb-summary-box">
+<div class="kb-summary-text">
+<span>Summarise</span> this article with
+            </div>
+<div class="kb-ai-buttons">
+<a class="kb-ai-btn js-ai-summarise" data-ai="chatgpt" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="ChatGPT" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"/>
+                ChatGpt
+              </a>
+<a class="kb-ai-btn js-ai-summarise" data-ai="perplexity" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Perplexity" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"/>
+                Perplexity
+              </a>
+<a class="kb-ai-btn js-ai-summarise" data-ai="gemini" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Google AI" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"/>
+                Google AI
+              </a>
+<a class="kb-ai-btn js-ai-summarise" data-ai="grok" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Grok" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"/>
+                Grok
+              </a>
+</div>
+</div>
+<!-- Mobile TOC (Accordion) -->
+<div class="kb-mobile-toc">
+<button class="kb-mobile-toc-header js-kb-toc-toggle">
+<span>Table of Contents</span>
+<i class="icon-chevron-down"></i>
+</button>
+<div class="kb-mobile-toc-content">
+<ul class="kb-contents-list"><li><a href="#what-a-profit-protection-stack-actually-means">What a Profit Protection Stack Actually Means</a></li><li><a href="#how-the-profit-protection-stack-is-structured">How the Profit Protection Stack Is Structured</a></li><li><a href="#what-this-looks-like-in-practice">What This Looks Like in Practice</a></li><li><a href="#to-wrap-it-up">To Wrap It Up</a></li><li><a href="#faqs">Frequently Asked Questions</a></li></ul>
+</div>
+</div>
+<div class="kb-tldr-box">
+<div class="kb-tldr-header">
+<div class="kb-tldr-icon">
+<img alt="Sparkle" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6f9478d1fc3ca3853_ai.png"/>
+</div>
+<span class="kb-tldr-title">TLDR</span>
+</div>
+<p class="kb-tldr-summary">A D2C profit protection stack connects checkout risk checks, RTO prevention, courier allocation, returns recovery, CRM suppression, and incentive controls to reduce margin leakage across the order lifecycle.</p>
+<div class="kb-takeaways-block">
+<h4 class="kb-takeaways-title">Key Takeaways:</h4>
+<ul class="kb-takeaways-list"><li>Assess order risk and payment routing at checkout.</li><li>Apply selective pre-dispatch controls to risky COD orders.</li><li>Choose couriers using lane-level delivery performance and cost.</li><li>Recover value through exchanges and feed return insights upstream.</li><li>Suppress promotions during disputes and target incentives selectively.</li></ul>
+</div>
+</div>
+<div class="kb-article-body"><section aria-label="TL;DR" class="kb-tldr"><h2>TL;DR</h2><p>A profit protection stack combines checkout, fulfilment, returns, and CRM into a connected system that reduces margin leakage and improves profitability across the customer lifecycle.</p><h3>Key Takeaways</h3><ul><li>Profit protection requires integrated systems, not isolated tools.</li><li>Checkout decisions have a major impact on profitability.</li><li>Returns data helps improve future operational decisions.</li><li>Shared data across systems compounds long-term margin gains.</li></ul></section><p>A skincare D2C brand crosses ₹4 crore in monthly GMV, and the founder finally has a moment to look at unit economics seriously. Gross margins look healthy on paper at 62%. After Meta spend, the contribution margin drops to 28%. After shipping, it sits at 19%. After RTO and reverse logistics, it lands at 11%. After returns, refunds, payment failures, COD remittance leakage, and CX overheads, the brand is operating at 4% margin on a good month and losing money on bad ones.</p><p>The marketing spend is not the problem. The product is not the problem. What is killing this brand's profitability is the operational stack underneath the brand, where money leaks at a dozen different points and nobody is watching most of them.</p><p>This is what a profit protection stack is built to fix. Not a single tool. Not a single dashboard. A layered system across checkout, fulfilment, returns, CRM, and decisioning that catches margin leakage before it compounds into a profitability problem nobody can untangle.</p><h2 id="what-a-profit-protection-stack-actually-means">What a Profit Protection Stack Actually Means</h2><p>The phrase gets used loosely, and most of the time it gets reduced to either "use better ad targeting" or "watch your costs more carefully." Neither captures what the operational reality demands.</p><p>A profit protection stack is the set of interconnected systems that together prevent revenue from leaking after the order is placed. It is not about acquisition; it is about the operational gap between the order and the eventual contribution margin that lands in the brand's bank account. Every D2C brand has this gap. The size of the gap determines whether the brand is profitable or not.</p><p>The reason this requires a stack rather than a single tool is that the leakage points are structurally distributed across the operational lifecycle. A risky COD order leaks margin at fulfilment. A failed payment leaks at checkout. A high-RTO pincode leaks at delivery. A return that should have been an exchange leaks at the customer-service layer. A promotional message sent during an active dispute leaks at the brand-trust layer. No single product fixes all of these because the problems do not live in a single place.</p><p>The brands that are getting smart operations right are the ones who have stopped looking for a silver bullet and started building the stack deliberately, layer by layer, with each layer addressing a specific class of operational risk.</p><h2 id="how-the-profit-protection-stack-is-structured">How the Profit Protection Stack Is Structured</h2><p>The stack has six interconnected layers. Each handles a specific class of operational risk. Each feeds signals into the others. The protection compounds when these layers share context; it fragments when they operate in isolation.</p><p>The hierarchy follows the order journey itself: the checkout makes the first risk decision, pre-dispatch controls act on that risk, fulfilment selects the right courier, returns recover value, CRM protects the customer relationship, and incentive discipline prevents unnecessary margin loss.</p><h3 id="layer-1-checkout-as-the-first-margin-decision">Layer 1: Checkout as the First Margin Decision</h3><p>The first place margin gets decided is not in fulfilment. It is at the checkout, in the milliseconds between an order being placed and an order being confirmed. Most brands treat the checkout as a form. In reality, it is the first margin protection layer in the stack.</p><p>Three decisions get made here that determine whether the order is profitable.</p><p>These decisions work together before the order is confirmed. They determine the order's risk, the most suitable payment path, and whether COD should be available under the circumstances.</p><h3 id="risk-evaluation">Risk Evaluation</h3><p>The first is risk evaluation: scoring the order against signals like device fingerprint, address quality, pincode history, customer behaviour, and order value. An order with a high risk score is structurally less likely to result in successful delivery, and forwarding it without intervention guarantees margin loss.</p><h3 id="payment-method-routing">Payment Method Routing</h3><p>The second is payment method routing: deciding which gateway and method to surface, in what priority, with what fallback logic. Static routing absorbs payment failures that dynamic routing would have avoided. Each failed payment is either lost revenue (if the customer abandons) or compressed margin (if the customer switches to COD).</p><h3 id="cod-eligibility">COD Eligibility</h3><p>The third is COD eligibility: deciding whether to offer COD at all for this order, with what limits, and with what verification requirements. A blanket COD offer extended to high-risk pincodes is one of the most expensive defaults in Indian D2C.</p><h3 id="where-1checkout-sits-in-the-stack">Where 1Checkout Sits in the Stack</h3><p>This is where Pragma's 1Checkout sits in the stack. It is not a checkout designed for speed alone; it is a checkout that scores risk, orchestrates payment routing, and applies dynamic COD controls before the order is confirmed. The output is not just a faster transaction — it is an order that has already been filtered for the most predictable failure modes before fulfilment begins.</p><p>The handoff matters. Once 1Checkout has evaluated the order and assigned it a risk profile, that profile needs to flow into the next layer of the stack. If the risk score sits in isolation, the protection it provides ends at the checkout door.</p><h3 id="layer-2-rto-risk-and-fraud-prevention-before-dispatch">Layer 2: RTO Risk and Fraud Prevention Before Dispatch</h3><p>The second layer is what happens between order confirmation and dispatch. This is the highest-leverage window in the stack because the cost of preventing a failed delivery is structurally lower than the cost of recovering from one.</p><p>Risk signals flagged at checkout flow into Pragma's RTO Suite, which acts on them in three ways.</p><h3 id="controls-based-on-the-order-s-risk-level">Controls Based on the Order's Risk Level:</h3><p>The RTO Suite does not apply the same friction to every customer. It adjusts the intervention according to the level of risk already identified at checkout.</p><h3 id="high-risk-orders">High-Risk Orders</h3><p>For high-risk orders, verification is triggered before fulfilment proceeds. This might be a WhatsApp confirmation, an OTP-less check, or an address re-verification. The customer experiences this as a normal part of the flow; operationally, it filters out fake orders, mistyped addresses, and impulse COD selections that would have failed at delivery.</p><h3 id="medium-risk-orders">Medium-Risk Orders</h3><p>For medium-risk orders, COD might be restricted, value caps might be applied, or a safer courier might be assigned. The order proceeds, but with controls that reduce exposure to the failure modes the risk score indicated.</p><h3 id="low-risk-orders">Low-Risk Orders</h3><p>For low-risk orders, the flow is frictionless. The protection here is not about adding steps; it is about adding steps only where the data justifies them.</p><h3 id="the-compound-benefit-of-pre-dispatch-controls">The Compound Benefit of Pre-Dispatch Controls</h3><p>The compound benefit is what matters. Brands operating without this layer ship every order through the same fulfilment pipeline regardless of risk profile. A risky COD order in a high-RTO pincode gets the same courier, the same packing, and the same dispatch logic as a low-risk prepaid order in a metro. The losses compound silently.</p><h3 id="layer-3-intelligent-fulfilment-and-courier-selection">Layer 3: Intelligent Fulfilment and Courier Selection</h3><p>Once the order has passed risk evaluation and is ready for fulfilment, the next margin decision is which courier carries it. This is where most brands operate on autopilot, defaulting to whichever courier the warehouse manager prefers or whichever partner the contracted rate card favours. The margin cost of this default is significant.</p><p>Pragma's ShipAxis layer adds intelligence to courier selection that operates on the risk and order context already established by 1Checkout and the RTO Suite. A COD order in a historically difficult pincode gets routed to the courier with the best delivery success rate for that specific combination of payment mode, SKU type, and zone. A prepaid order in a metro gets routed to the cost-optimal courier with adequate SLA performance.</p><p>The handoff is what makes this work. ShipAxis is not reading risk signals from scratch; it is consuming them from upstream layers and using them to adjust courier allocation in real time.</p><p>Two specific decisions matter here.</p><p>Courier intelligence depends on choosing the right delivery partner for the lane and responding quickly when live performance changes. These two decisions prevent a low rate card from masking a higher end-to-end delivery cost.</p><h3 id="pincode-level-courier-scoring">Pincode-Level Courier Scoring</h3><p>Identifies which couriers perform best for which lanes. Brands without this insight treat all couriers as equivalent across all geographies, which they are not. A courier that performs well in Bangalore might be unreliable in Patna. Without lane-level intelligence, the brand absorbs the cost of this variance.</p><h3 id="dynamic-re-routing-during-disruptions">Dynamic Re-routing During Disruptions</h3><p>Matters most during sale events. If a primary courier starts failing in a particular zone on a Saturday night, the system reroutes automatically rather than waiting for a Monday morning review.</p><h3 id="why-shipping-cost-and-rto-rate-must-be-read-together">Why Shipping Cost and RTO Rate Must Be Read Together</h3><p>The margin impact compounds because shipping cost and RTO rate are linked. A cheaper courier with higher RTO rates is not actually cheaper once reverse logistics, reattempt costs, and lost inventory are counted. ShipAxis-level intelligence captures this trade-off and acts on it order by order.</p><h3 id="layer-4-returns-as-a-margin-recovery-system">Layer 4: Returns as a Margin Recovery System</h3><p>Returns are where most brands give up on margin protection. The default assumption is that a return is a lost order, so the goal becomes processing it as quickly as possible to clear the operational queue. This is the wrong framing.</p><p>A return is the second-best margin opportunity in the stack, after preventing the failed delivery in the first place. The right framing is: how much of the original order value can be preserved through an exchange, a store credit, or a partial refund — rather than a full cash refund that permanently loses the revenue?</p><p>Pragma's RMS sits at this layer with two specific mechanics.</p><p>RMS protects margin both at the moment a return is requested and after the return has been completed. One mechanic preserves the immediate order value, while the other turns the outcome into data for future decisions.</p><h3 id="exchange-first-nudges">Exchange-First Nudges</h3><p>Present the customer with structured exchange options when a return is initiated. Size swaps, style alternatives, store credit upgrades. Not forced — offered. The conversion from refund to exchange is typically meaningful for brands that implement this well, because a large share of returns are not "I do not want this product" but "I want a different variant of this product."</p><h3 id="multi-layer-return-tagging">Multi-Layer Return Tagging</h3><p>Captures why each return happened: product issue, customer reason, courier issue, separately. This data feeds back into the earlier layers of the stack. A high return rate for a specific SKU triggers tighter rules at checkout. A pattern of returns linked to a specific courier triggers suppression in ShipAxis. A pattern of returns from a specific pincode tightens COD limits in the RTO Suite.</p><h3 id="returns-as-an-upstream-feedback-loop">Returns as an Upstream Feedback Loop</h3><p>This is the feedback loop that makes the stack compounding rather than static. Returns are not just a recovery layer; they are the data source that improves every upstream decision.</p><h3 id="layer-5-crm-as-the-customer-state-protection-layer">Layer 5: CRM as the Customer State Protection Layer</h3><p>The least visible layer in the profit protection stack, and one of the most consequential, is the CRM. This is where brand trust gets protected or eroded based on whether customer-facing communications are aligned with operational reality.</p><p>The specific failure mode here is well-understood but rarely fixed. A customer initiates a return. The same day, a promotional WhatsApp campaign goes out with a discount on the same product they are returning. The customer sees this as a sign that the brand is disorganised, which it is. The cumulative effect on retention is significant, and it does not show up in any single dashboard.</p><h3 id="operations-aware-suppression">Operations-Aware Suppression</h3><p>Pragma's Omnichannel CRM solves this through operations-aware suppression. A customer with an active return, a failed delivery, or an open dispute is excluded from marketing journeys automatically. The signal comes from the upstream layers — RMS knows about the return, ShipAxis knows about the failed delivery, the CRM consumes both and adjusts the messaging surface accordingly.</p><h3 id="protecting-future-customer-value">Protecting Future Customer Value</h3><p>The margin protection here is indirect but real. A customer who churns due to misaligned communications represents a loss of all future LTV, which is structurally far more expensive than any one transaction. The brands that protect this layer well retain more customers, which is what makes profit protection sustainable rather than transactional.</p><h3 id="layer-6-discount-and-incentive-discipline">Layer 6: Discount and Incentive Discipline</h3><p>The final layer, which deserves its own consideration because it is where margin most often gets given away unintentionally, is incentive and discount design.</p><p>Discounts are useful tools when applied with discipline. They become margin leaks when applied broadly. A blanket "10% off your next order" coupon sent to every customer absorbs margin from shoppers who would have bought without it.</p><h3 id="applying-incentives-where-they-change-behaviour">Applying Incentives Where They Change Behaviour</h3><p>Smart discounting for Indian D2C means applying incentives where they change behaviour, not where they reward existing behaviour. The mechanics here connect back to the rest of the stack. A discount triggered by a payment failure should only fire if the failure pattern suggests abandonment, not infrastructure issues. A prepaid incentive should be sized to the risk profile of the order, not flat across all customers. A win-back coupon should respect whether the customer is currently in a dispute state.</p><h3 id="when-the-stack-becomes-a-system">When the Stack Becomes a System</h3><p>This is where the stack stops being a collection of products and becomes a system. Each decision draws on context from upstream layers. Each layer feeds context back into the others. The profit protection emerges from the integration, not from any single component.</p><h2 id="what-this-looks-like-in-practice">What This Looks Like in Practice</h2><p>The way an integrated profit protection stack actually shows up in a brand's operations is rarely dramatic. It is a series of small decisions that compound over time.</p><p>A risky COD order in a high-RTO pincode gets routed to a verification flow before dispatch, and the order either confirms or drops without consuming a forward shipping leg. A failed UPI payment gets an in-session fallback to an alternate gateway, and the transaction completes in the same session. A return request gets offered an exchange option that matches the customer's intent, and 30% of returns become exchanges instead of refunds. A repeat customer in an active dispute is excluded from this week's promotional campaign, and the brand avoids a small but cumulative trust erosion.</p><p>None of these are big wins on their own. Together, they are the difference between a 4% margin and a 12% margin, which is the difference between a sustainable D2C brand and one that is constantly fighting for survival. The Venn diagram of D2C profits makes this point clearly: the overlap between acquisition, operations, and retention is where profitability sits, and the profit protection stack is what keeps the operations circle from shrinking.</p><h2 id="to-wrap-it-up">To Wrap It Up</h2><p>A profit protection stack is what separates D2C brands that scale profitably from brands that scale into unsustainable economics. It is not glamorous, and it does not show up in pitch decks the way product launches and growth campaigns do, but it is what determines whether the contribution margin ever lands in the brand's bank account. The brands that take operational risk seriously, and build the layers to address it deliberately, are the ones that will look profitable a year from now while their faster-growing competitors are quietly burning through reserves.</p><p>This week, map your own margin leakage by stage — checkout failures, RTO costs, return refunds, payment failures, CX overhead — and identify which single stage is consuming the most margin per order, because that is where the highest-leverage protection layer needs to go first.</p><p>Over time, the value of a well-built profit protection stack compounds. Each layer makes the next layer more effective. Each signal that flows between layers makes the system more precise. The brands that build this carefully end up with operational economics that look nothing like what their competitors are absorbing, and the gap widens with every quarter the stack continues to learn.</p><p>For D2C brands seeking integrated profit protection across the operational stack, Pragma's full platform — 1Checkout, RTO Suite, ShipAxis, RMS, and Omnichannel CRM — provides layered risk scoring, dynamic courier intelligence, return-to-exchange conversion, and operations-aware CRM suppression, with capabilities that help brands convert 25 to 35% of COD into prepaid, cut shipping costs by 18 to 25%, and reduce payment failures by 23 to 34%.</p><section class="kb-faq-section" id="faqs"><h2>Frequently Asked Questions</h2><div class="kb-faq-item"><h3>What is a profit protection stack in D2C operations?</h3><p>A profit protection stack is a set of connected systems that prevents margin leakage after an order is placed. It covers checkout, RTO prevention, fulfilment, returns, CRM, and incentive management.</p></div><div class="kb-faq-item"><h3>How is ecommerce margin protection different from cost reduction?</h3><p>Cost reduction lowers individual expenses, while ecommerce margin protection prevents earned revenue from leaking across operations. It focuses on better risk decisions, fulfilment, return recovery, and customer communication.</p></div><div class="kb-faq-item"><h3>Why do D2C brands lose margin even when gross margins look healthy?</h3><p>Gross margin does not include marketing, shipping, RTO, returns, payment failures, support costs, and COD leakage. These expenses accumulate after an order is placed and can reduce a healthy gross margin to a very small contribution margin.</p></div><div class="kb-faq-item"><h3>What operational risk areas should D2C brands prioritise first?</h3><p>Brands should typically prioritise COD and RTO control, payment failure recovery, and return-to-exchange conversion. The right starting point is the stage currently consuming the most margin per order.</p></div><div class="kb-faq-item"><h3>Can a small D2C brand justify building a profit protection stack?</h3><p>Yes. A growing brand processing a few hundred daily orders, managing COD traffic, or handling meaningful return volumes can already face substantial leakage. Recovered margin can often justify the operational investment.</p></div><div class="kb-faq-item"><h3>How does a profit protection stack handle the trade-off between conversion and risk?</h3><p>It applies controls selectively according to the order's risk level. Low-risk orders remain frictionless, while medium- and high-risk orders receive additional verification, COD restrictions, or safer fulfilment options.</p></div><div class="kb-faq-item"><h3>What is operations-aware suppression and why does it matter for margin protection?</h3><p>Operations-aware suppression pauses marketing messages for customers with active returns, failed deliveries, or open disputes. This prevents mistimed communication from damaging customer trust and future lifetime value.</p></div><div class="kb-faq-item"><h3>How do return management and profit protection relate?</h3><p>Returns create both margin loss and recovery opportunities. Exchange options, store credits, and partial settlements can preserve revenue, while return data can improve checkout rules, courier selection, and risk scoring.</p></div><div class="kb-faq-item"><h3>Why does the stack need to share signals across layers?</h3><p>Shared signals allow each layer to make better decisions using context from the others. Checkout risk scores can guide courier selection, return reasons can refine checkout rules, and dispute states can prevent inappropriate marketing.</p></div><div class="kb-faq-item"><h3>How long does it take to see results from a profit protection stack?</h3><p>Initial improvements may become visible within 30 to 60 days of proper integration. Meaningful margin recovery often appears within 60 to 90 days, while the compounding benefits develop over subsequent quarters.</p></div><div class="kb-faq-item"><h3>What should D2C brands look for when evaluating profit protection capabilities?</h3><p>Brands should assess coverage across the operational lifecycle, signal sharing between layers, and configuration depth. The system should adapt to the brand's category, pincode mix, customer profile, and operational risks.</p></div></section><section class="kb-pragma-cta"><h2>How Pragma Builds Your Profit Protection Stack:</h2><p>Pragma RTO Suite helps D2C brands control RTO, NDR, and SLA risks through order-risk scoring, address validation, dynamic COD controls, automated verification, and re-delivery workflows.</p><p>It can identify risky COD orders and use context-aware WhatsApp, SMS, or email nudges to encourage prepaid conversion.</p><p>25–35% COD Conversion</p><a href="https://www.bepragma.ai/">Explore RTO Suite</a></section></div>
+</main>
+<!-- Right Sidebar -->
+</div>
+</div>
+<!-- Content-end  -->
+<!-- Separator -->
+<hr class="kb-separator"/>
+<!-- Separator -->
+<!-- =============================================
+         25% Scroll Subscriber Popup
+         ============================================= -->
+<!-- Backdrop -->
+<div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation"></div>
+<!-- Modal -->
+<div aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" role="dialog">
+<!-- Illustration Hero -->
+<div class="scroll-popup-hero">
+<img alt="Subscribe to continue reading" loading="lazy" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a19944ac9a204dd3a3226f0_25%25scroll.png"/>
+<!-- Close button -->
+<button aria-label="Close subscribe popup" class="scroll-popup-close js-scroll-popup-close" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Body -->
+<div class="scroll-popup-body">
+<p class="scroll-popup-title" id="scroll-popup-heading">
+          This section is reserved for subscribers.<br/>
+          Join with your email to continue reading.
+        </p>
+<form class="js-scroll-popup-form" novalidate="">
+<div class="scroll-popup-input-wrap">
+<input autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" placeholder="Email address" required="" type="email"/>
+</div>
+<button class="scroll-popup-btn" type="submit">
+            Become a Subscriber
+          </button>
+</form>
+</div>
+</div>
+<!-- /25% Scroll Subscriber Popup -->
+<!-- =============================================
+         50% Scroll — Get a Demo Popup
+         ============================================= -->
+<!-- Uses the same .scroll-popup-overlay backdrop -->
+<div aria-labelledby="demo-popup-heading" aria-modal="true" class="demo-popup-modal js-demo-popup-modal" role="dialog">
+<!-- Inner clip wrapper -->
+<div class="demo-popup-inner">
+<!-- Hero -->
+<div class="demo-popup-hero">
+<!-- Close button inside hero for correct absolute positioning -->
+<button aria-label="Close demo popup" class="demo-popup-close js-demo-popup-close" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h2 class="demo-popup-hero-title" id="demo-popup-heading">See Pragma in Action</h2>
+</div>
+<!-- Body -->
+<div class="demo-popup-body">
+<form class="js-demo-popup-form" novalidate="" style="display:flex;flex-direction:column;gap:16px;width:100%;">
+<input autocomplete="tel" class="demo-popup-input" id="demo-popup-phone" placeholder="Phone Number" type="tel"/>
+<input autocomplete="email" class="demo-popup-input" id="demo-popup-email" placeholder="Email address" required="" type="email"/>
+<input autocomplete="url" class="demo-popup-input" id="demo-popup-website" placeholder="Business Website Link" type="url"/>
+<button class="demo-popup-btn" type="submit">Get a demo</button>
+</form>
+</div>
+</div>
+</div>
+<!-- /50% Scroll Get a Demo Popup -->
+<!-- Floating Mobile Summary Sidebar -->
+<div class="mobile-float-summary js-mobile-float-summary">
+<div class="float-summary-trigger js-toggle-float-summary">
+<span class="vertical-text">Summarise this article with</span>
+</div>
+<div class="float-summary-expanded">
+<button class="float-summary-close js-toggle-float-summary">
+<img alt="Close" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f65b4da835b1306246_x-circle.png"/>
+</button>
+<div class="float-summary-content">
+<div class="float-summary-label">
+<span class="vertical-text">Summarise this article with</span>
+</div>
+<div class="float-summary-options">
+<a class="float-ai-btn js-ai-summarise" data-ai="chatgpt" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="ChatGPT" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"/>
+<span>ChatGpt</span>
+</a>
+<a class="float-ai-btn js-ai-summarise" data-ai="perplexity" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Perplexity" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"/>
+<span>Perplexity</span>
+</a>
+<a class="float-ai-btn js-ai-summarise" data-ai="gemini" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Google AI" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"/>
+<span>Google AI</span>
+</a>
+<a class="float-ai-btn js-ai-summarise" data-ai="grok" href="#" rel="noopener noreferrer" target="_blank">
+<img alt="Grok" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"/>
+<span>Grok</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Mobile Summary Sidebar -->
+<!-- =============================================
+         25% Scroll Popup Script
+         ============================================= -->
+<script>
+      (function () {
+        var STORAGE_KEY = "pragma_subscriber_popup_dismissed";
+        var SCROLL_THRESHOLD = 0.25; // 25%
+        var hasTriggered = false;
+
+        function getArticleScrollPercent() {
+          var scrollTop = window.scrollY || document.documentElement.scrollTop;
+          var docHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          if (docHeight <= 0) return 0;
+          return scrollTop / docHeight;
+        }
+
+        function openPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-scroll-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.add("is-active");
+          modal.classList.add("is-active");
+          document.body.style.overflow = "hidden";
+          var emailInput = modal.querySelector(".scroll-popup-input");
+          if (emailInput) {
+            setTimeout(function () { emailInput.focus(); }, 350);
+          }
+        }
+
+        function closePopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-scroll-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.remove("is-active");
+          modal.classList.remove("is-active");
+          document.body.style.overflow = "";
+          try { sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+        }
+
+        function onScroll() {
+          if (hasTriggered) return;
+          try {
+            if (sessionStorage.getItem(STORAGE_KEY)) return;
+          } catch (e) {}
+          var percent = getArticleScrollPercent();
+          if (percent >= SCROLL_THRESHOLD) {
+            hasTriggered = true;
+            window.removeEventListener("scroll", onScroll);
+            openPopup();
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Close button
+          var closeBtns = document.querySelectorAll(".js-scroll-popup-close");
+          closeBtns.forEach(function (btn) {
+            btn.addEventListener("click", closePopup);
+          });
+
+          // Backdrop click
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          if (overlay) {
+            overlay.addEventListener("click", closePopup);
+          }
+
+          // Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closePopup();
+          });
+
+          // Form submit — wire to your email service
+          var form = document.querySelector(".js-scroll-popup-form");
+          if (form) {
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+              var emailInput = form.querySelector(".scroll-popup-input");
+              var email = emailInput ? emailInput.value.trim() : "";
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                if (emailInput) {
+                  emailInput.style.borderColor = "#ef4444";
+                  emailInput.focus();
+                  setTimeout(function () {
+                    emailInput.style.borderColor = "";
+                  }, 2000);
+                }
+                return;
+              }
+              // TODO: Replace with your email service API call
+              console.log("Subscriber email:", email);
+              closePopup();
+            });
+          }
+
+          // Attach scroll listener
+          window.addEventListener("scroll", onScroll, { passive: true });
+        });
+      })();
+    </script>
+<!-- =============================================
+         50% Scroll — Get a Demo Popup Script
+         ============================================= -->
+<script>
+      (function () {
+        var DEMO_STORAGE_KEY = "pragma_demo_popup_dismissed";
+        var DEMO_THRESHOLD = 0.50; // 50%
+        var demoTriggered = false;
+
+        function getScrollPercent() {
+          var scrollTop = window.scrollY || document.documentElement.scrollTop;
+          var docHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          if (docHeight <= 0) return 0;
+          return scrollTop / docHeight;
+        }
+
+        function openDemoPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-demo-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.add("is-active");
+          modal.classList.add("is-active");
+          document.body.style.overflow = "hidden";
+          var firstInput = modal.querySelector(".demo-popup-input");
+          if (firstInput) {
+            setTimeout(function () { firstInput.focus(); }, 350);
+          }
+        }
+
+        function closeDemoPopup() {
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          var modal = document.querySelector(".js-demo-popup-modal");
+          if (!overlay || !modal) return;
+          overlay.classList.remove("is-active");
+          modal.classList.remove("is-active");
+          document.body.style.overflow = "";
+          try { sessionStorage.setItem(DEMO_STORAGE_KEY, "1"); } catch (e) {}
+        }
+
+        function onDemoScroll() {
+          if (demoTriggered) return;
+          try {
+            if (sessionStorage.getItem(DEMO_STORAGE_KEY)) return;
+          } catch (e) {}
+          if (getScrollPercent() >= DEMO_THRESHOLD) {
+            demoTriggered = true;
+            window.removeEventListener("scroll", onDemoScroll);
+            openDemoPopup();
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Close button
+          var closeBtns = document.querySelectorAll(".js-demo-popup-close");
+          closeBtns.forEach(function (btn) {
+            btn.addEventListener("click", closeDemoPopup);
+          });
+
+          // Shared backdrop — also closes demo popup
+          var overlay = document.querySelector(".js-scroll-popup-overlay");
+          if (overlay) {
+            overlay.addEventListener("click", function () {
+              var demoModal = document.querySelector(".js-demo-popup-modal");
+              if (demoModal && demoModal.classList.contains("is-active")) {
+                closeDemoPopup();
+              }
+            });
+          }
+
+          // Escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeDemoPopup();
+          });
+
+          // Form submit — wire to your CRM / demo booking service
+          var form = document.querySelector(".js-demo-popup-form");
+          if (form) {
+            form.addEventListener("submit", function (e) {
+              e.preventDefault();
+              var emailInput = document.getElementById("demo-popup-email");
+              var email = emailInput ? emailInput.value.trim() : "";
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                if (emailInput) {
+                  emailInput.style.borderColor = "#ef4444";
+                  emailInput.focus();
+                  setTimeout(function () {
+                    emailInput.style.borderColor = "";
+                  }, 2000);
+                }
+                return;
+              }
+              // TODO: Replace with your demo booking / CRM API call
+              console.log("Demo request:", {
+                phone: document.getElementById("demo-popup-phone") ? document.getElementById("demo-popup-phone").value : "",
+                email: email,
+                website: document.getElementById("demo-popup-website") ? document.getElementById("demo-popup-website").value : ""
+              });
+              closeDemoPopup();
+            });
+          }
+
+          // Attach scroll listener
+          window.addEventListener("scroll", onDemoScroll, { passive: true });
+        });
+      })();
+    </script>
+<!-- AI Summarise Script -->
+<script>
+      /**
+       * AI Summarise with Prompt
+       * Builds a pre-filled prompt with the current page URL and opens the
+       * selected AI tool in a new tab with the prompt pre-loaded.
+       */
+      (function () {
+        // ── Prompt Template ────────────────────────────────────────────────
+        function buildPrompt(pageUrl) {
+          return (
+            "Summarise this blog for Indian D2C eCommerce teams.\n" +
+            "URL: " + pageUrl + "\n\n" +
+            "Requirements:\n" +
+            "• Prioritise the most important insights first.\n" +
+            "• Clearly mention the Pragma product(s), workflow(s), or capability layer(s) covered in a technical/niche manner.\n" +
+            "• Collate all key numbers, benchmarks, percentages, and operational stats from the blog.\n" +
+            "• Keep the output concise, technical, and insight-dense.\n" +
+            "• Avoid fluff, generic explanations, and marketing language.\n" +
+            "• Use short paragraphs or bullets for readability.\n" +
+            "• End with: Author: [Name] — [brief expertise]"
+          );
+        }
+
+        // ── AI deep-link builders ──────────────────────────────────────────
+        function getAiUrl(ai, prompt) {
+          var encoded = encodeURIComponent(prompt);
+          switch (ai) {
+            case "chatgpt":
+              return "https://chatgpt.com/?q=" + encoded;
+            case "perplexity":
+              return "https://www.perplexity.ai/?q=" + encoded;
+            case "gemini":
+              return "https://www.google.com/search?udm=50&q=" + encoded;
+            case "grok":
+              return "https://grok.com/?q=" + encoded;
+            default:
+              return "#";
+          }
+        }
+
+        // ── Wire up all .js-ai-summarise buttons ──────────────────────────
+        document.addEventListener("DOMContentLoaded", function () {
+          var pageUrl = window.location.href;
+          var prompt  = buildPrompt(pageUrl);
+
+          var buttons = document.querySelectorAll(".js-ai-summarise");
+          buttons.forEach(function (btn) {
+            var ai = btn.getAttribute("data-ai");
+            var url = getAiUrl(ai, prompt);
+            btn.setAttribute("href", url);
+          });
+        });
+      })();
+    </script>
+<script>
+      /**
+       * Single Blog Article Page Scripts
+       * Handles TOC toggles, Floating Summary, and Scroll Interactions
+       */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. KB Mobile TOC Toggle
+        // Toggles the visibility of the Table of Contents on mobile devices
+        const tocToggles = document.querySelectorAll(".js-kb-toc-toggle");
+        tocToggles.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (
+              content &&
+              content.classList.contains("kb-mobile-toc-content")
+            ) {
+              content.classList.toggle("is-visible");
+            }
+          });
+        });
+
+        // 2. Mobile Floating Summary Sidebar
+        // Shows/hides the floating summary button based on scroll position
+        // and handles the expansion/collapse of the summary panel
+        const floatSummary = document.querySelector(".js-mobile-float-summary");
+        const summaryBox = document.querySelector(".kb-summary-box");
+
+        if (floatSummary && summaryBox) {
+          const handleScroll = () => {
+            const summaryBoxRect = summaryBox.getBoundingClientRect();
+            // Show floating sidebar only when user scrolls past the top summarize section
+            if (summaryBoxRect.bottom < 0) {
+              floatSummary.classList.add("is-visible");
+            } else {
+              floatSummary.classList.remove("is-visible");
+              floatSummary.classList.remove("is-open"); // Close if user scrolls back up
+            }
+
+            // Top Fade Effect & Mobile TOC Sticky Logic
+            const topFade = document.querySelector(".js-kb-top-fade");
+            const tldrBox = document.querySelector(".kb-tldr-box");
+            const mobileToc = document.querySelector(".kb-mobile-toc");
+
+            if (tldrBox) {
+              const tldrRect = tldrBox.getBoundingClientRect();
+              const isScrolledPastTLDR = tldrRect.bottom < 50;
+
+              // Toggle Top Fade
+              if (topFade) {
+                if (isScrolledPastTLDR) {
+                  topFade.classList.add("is-visible");
+                } else {
+                  topFade.classList.remove("is-visible");
+                }
+              }
+
+              // Toggle Mobile TOC Sticky
+              if (mobileToc) {
+                if (isScrolledPastTLDR) {
+                  mobileToc.classList.add("is-sticky");
+                } else {
+                  mobileToc.classList.remove("is-sticky");
+                }
+              }
+            }
+          };
+
+          window.addEventListener("scroll", handleScroll);
+
+          // Toggle Expansion
+          const toggleBtns = document.querySelectorAll(
+            ".js-toggle-float-summary",
+          );
+          toggleBtns.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              floatSummary.classList.toggle("is-open");
+            });
+          });
+        }
+
+        // 3. Scroll Spy for Table of Contents
+        // Highlights the active section in the sidebar as the user scrolls
+        const sections = document.querySelectorAll(
+          "main h2[id], main h3[id], main div[id], main p[id]",
+        );
+        const navLinks = document.querySelectorAll(
+          ".kb-sidebar-left .kb-contents-list a",
+        );
+
+        if (sections.length > 0 && navLinks.length > 0) {
+          const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -70% 0px",
+            threshold: 0,
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                updateActiveLink(id);
+              }
+            });
+          }, observerOptions);
+
+          sections.forEach((section) => observer.observe(section));
+
+          function updateActiveLink(id) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              link.parentElement.classList.remove("kb-active-item");
+
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
+                link.parentElement.classList.add("kb-active-item");
+
+                // Scroll the active link into view within the sidebar
+                const sidebar = document.querySelector(".kb-contents-list");
+                if (sidebar) {
+                  const linkRect = link.getBoundingClientRect();
+                  const sidebarRect = sidebar.getBoundingClientRect();
+
+                  if (
+                    linkRect.top < sidebarRect.top ||
+                    linkRect.bottom > sidebarRect.bottom
+                  ) {
+                    link.scrollIntoView({
+                      behavior: "smooth",
+                      block: "nearest",
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+
+        // 4. Smooth Scroll for TOC Links
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href.startsWith("#")) {
+              e.preventDefault();
+              const targetId = href.substring(1);
+              const targetElement = document.getElementById(targetId);
+
+              if (targetElement) {
+                // Immediate visual feedback
+                updateActiveLink(targetId);
+
+                window.scrollTo({
+                  top: targetElement.offsetTop - 100, // Offset for sticky header
+                  behavior: "smooth",
+                });
+
+                // Close mobile TOC if open
+                const mobileToc = document.querySelector(
+                  ".kb-mobile-toc-header.active",
+                );
+                if (mobileToc) mobileToc.click();
+              }
+            }
+          });
+        });
+      });
+    </script>
+</body>
+</html>
