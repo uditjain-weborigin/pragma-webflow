@@ -1850,6 +1850,87 @@
           height: auto;
         }
       }
+
+       .channel-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .channel-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #171717;
+    background: #fff;
+  }
+
+  .channel-table th,
+  .channel-table td {
+    border: 1px solid #888;
+    padding: 9px 13px;
+    text-align: left;
+    vertical-align: middle;
+    overflow-wrap: break-word;
+  }
+
+  .channel-table th {
+    background: #dedede;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Column widths */
+  .channel-table th:nth-child(1),
+  .channel-table td:nth-child(1) {
+    width: 21%;
+  }
+
+  .channel-table th:nth-child(2),
+  .channel-table td:nth-child(2) {
+    width: 34%;
+  }
+
+  .channel-table th:nth-child(3),
+  .channel-table td:nth-child(3) {
+    width: 17%;
+    text-align: center;
+  }
+
+  .channel-table th:nth-child(4),
+  .channel-table td:nth-child(4) {
+    width: 28%;
+  }
+
+  /* Tablet */
+  @media (max-width: 768px) {
+    .channel-table {
+      font-size: 14px;
+    }
+
+    .channel-table th,
+    .channel-table td {
+      padding: 10px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .channel-table {
+      min-width: 600px;
+      font-size: 13px;
+    }
+
+    .channel-table th,
+    .channel-table td {
+      padding: 9px 10px;
+    }
+  }
     </style>
 
     <!-- Top Fade Overlay -->
@@ -2183,6 +2264,49 @@
               The next wave of e-commerce growth in India will be driven by
               trust and community-led brands.
             </p>
+
+            <div class="channel-table-wrapper">
+  <table class="channel-table">
+    <thead>
+      <tr>
+        <th scope="col">Channel</th>
+        <th scope="col">Best Use Case</th>
+        <th scope="col">Open Rate</th>
+        <th scope="col">Personalisation</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>SMS</td>
+        <td>Order confirmation, OTP,<br class="desktop-break"> fallback alerts</td>
+        <td>90%+</td>
+        <td>Basic (name, order ID)</td>
+      </tr>
+
+      <tr>
+        <td>WhatsApp Business</td>
+        <td>Post-purchase flows, support,<br class="desktop-break"> re-engagement</td>
+        <td>95%+</td>
+        <td>Rich (dynamic variables,<br class="desktop-break"> media)</td>
+      </tr>
+
+      <tr>
+        <td>iPhone Auto-Reply</td>
+        <td>Personal missed call<br class="desktop-break"> response only</td>
+        <td>N/A</td>
+        <td>None</td>
+      </tr>
+
+      <tr>
+        <td>Push Notification</td>
+        <td>App-first brands, time-sensitive<br class="desktop-break"> alerts</td>
+        <td>50-60%</td>
+        <td>Moderate</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
             <h2 id="item-13">Final Thoughts & Conclusion</h2>
             <p>
