@@ -1,5 +1,4 @@
 
-<script>
 /**
  * single-blog-article.js
  * Handles blog article interactions after Webflow injects the HTML.
@@ -488,4 +487,4 @@ if (window._blogArticleReady) {
 } else {
   document.addEventListener("blog:ready", initBlogArticle);
 }
-</script>
+
