@@ -1,4 +1,5 @@
 
+<script>
 /**
  * single-blog-article.js
  * Handles blog article interactions after Webflow injects the HTML.
@@ -46,7 +47,8 @@ function _getAiUrl(ai, prompt) {
 // =============================================================================
 
 function initBlogArticle() {
-  // AI Summarise buttons
+
+  // AI Summarise Buttons
   (function () {
     var pageUrl = window.location.href;
     var prompt = _buildAiPrompt(pageUrl);
@@ -316,9 +318,11 @@ function initBlogArticle() {
   var summaryBox = document.querySelector(".kb-summary-box");
 
   if (floatSummary && summaryBox) {
+
     var handleScroll = function () {
       var summaryBoxRect = summaryBox.getBoundingClientRect();
 
+      // Existing floating summary visibility
       if (summaryBoxRect.bottom < 0) {
         floatSummary.classList.add("is-visible");
       } else {
@@ -326,13 +330,17 @@ function initBlogArticle() {
         floatSummary.classList.remove("is-open");
       }
 
-      // NEW: Hide the floating summary after kb-main-content is scrolled past.
+      // Hide floating summary and unstick mobile TOC
+      // after kb-main-content has scrolled completely above the viewport.
       var mainContent = document.querySelector(".kb-main-content");
+      var isMainContentScrolledOff = false;
 
       if (mainContent) {
         var mainContentRect = mainContent.getBoundingClientRect();
 
-        if (mainContentRect.bottom <= 0) {
+        isMainContentScrolledOff = mainContentRect.bottom <= 0;
+
+        if (isMainContentScrolledOff) {
           floatSummary.classList.remove("is-visible");
           floatSummary.classList.remove("is-open");
         }
@@ -346,23 +354,30 @@ function initBlogArticle() {
         var tldrRect = tldrBox.getBoundingClientRect();
         var isScrolledPastTLDR = tldrRect.bottom < 50;
 
+        // Existing top fade behavior
         if (topFade) {
           topFade.classList[
             isScrolledPastTLDR ? "add" : "remove"
           ]("is-visible");
         }
 
+        // Existing sticky TOC behavior, with the new boundary condition
         if (mobileToc) {
-          mobileToc.classList[
-            isScrolledPastTLDR ? "add" : "remove"
-          ]("is-sticky");
+          if (isScrolledPastTLDR && !isMainContentScrolledOff) {
+            mobileToc.classList.add("is-sticky");
+          } else {
+            mobileToc.classList.remove("is-sticky");
+          }
         }
+      } else if (mobileToc && isMainContentScrolledOff) {
+        // Also remove sticky if the TLDR element is unavailable.
+        mobileToc.classList.remove("is-sticky");
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Set the correct initial state on page load.
+    // Set the correct state on initial page load.
     handleScroll();
 
     document.querySelectorAll(".js-toggle-float-summary").forEach(function (btn) {
@@ -451,11 +466,11 @@ function initBlogArticle() {
             behavior: "smooth"
           });
 
-          var mobileToc = document.querySelector(
+          var mobileTocHeader = document.querySelector(
             ".kb-mobile-toc-header.active"
           );
 
-          if (mobileToc) mobileToc.click();
+          if (mobileTocHeader) mobileTocHeader.click();
         }
       }
     });
@@ -473,4 +488,4 @@ if (window._blogArticleReady) {
 } else {
   document.addEventListener("blog:ready", initBlogArticle);
 }
-
+</script>
