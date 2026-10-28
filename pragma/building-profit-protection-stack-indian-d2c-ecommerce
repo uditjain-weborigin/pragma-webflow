@@ -144,7 +144,78 @@
 .kb-article-body .kb-author-bio{font-family:Arial,sans-serif;font-size:19px!important;line-height:1.55!important;margin:0!important;color:#000!important}
 .kb-article-body .kb-faq-section h3.kb-faq-question{font-size:16px!important;line-height:1.4!important;margin:0 0 12px!important;scroll-margin-top:100px}
 @media(max-width:767px){.kb-author-box{flex-direction:column;gap:15px;text-align:center;padding:22px}.kb-author-label{flex:auto}.kb-author-image-wrapper{flex:0 0 auto;width:135px;height:170px}.kb-author-name{font-size:21px}.kb-author-role{font-size:15px}.kb-article-body .kb-author-bio{font-size:15px!important}}
-</style></head>
+</style>
+<style id="kishore-author-layout-fix">
+/* Responsive author card: overrides fixed dimensions from master CSS */
+.kb-article-body .kb-author-box {
+  display:grid !important;
+  grid-template-columns: 95px 125px minmax(0,1fr) !important;
+  align-items:center !important;
+  gap:20px !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:24px !important;
+  margin:40px 0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+.kb-article-body .kb-author-label {
+  width:auto !important;height:auto !important;min-width:0 !important;
+  font-size:23px !important;line-height:1.2 !important;
+}
+.kb-article-body .kb-author-image-wrapper {
+  width:125px !important;height:158px !important;
+  min-width:0 !important;max-width:100% !important;
+  border-radius:9px !important;overflow:hidden !important;
+}
+.kb-article-body .kb-author-image-wrapper img {
+  display:block !important;width:100% !important;height:100% !important;
+  object-fit:cover !important;
+}
+.kb-article-body .kb-author-info {
+  display:flex !important;flex-direction:column !important;
+  justify-content:center !important;gap:8px !important;
+  width:auto !important;height:auto !important;
+  min-width:0 !important;max-width:100% !important;
+  flex-shrink:1 !important;overflow-wrap:anywhere !important;
+}
+.kb-article-body .kb-author-name {
+  font-size:18px !important;line-height:1.35 !important;
+  max-width:100% !important;
+}
+.kb-article-body .kb-author-role {
+  font-size:13px !important;line-height:1.45 !important;
+}
+.kb-article-body .kb-author-bio {
+  font-family:inherit !important;font-size:15px !important;
+  line-height:1.55 !important;font-weight:400 !important;
+  margin:0 !important;max-width:100% !important;
+  overflow-wrap:break-word !important;
+}
+@media(max-width:700px) {
+ .kb-article-body .kb-author-box {
+   grid-template-columns:75px 100px minmax(0,1fr) !important;
+   gap:12px !important;padding:15px !important;
+ }
+ .kb-article-body .kb-author-label {font-size:17px !important}
+ .kb-article-body .kb-author-image-wrapper {width:100px !important;height:128px !important}
+ .kb-article-body .kb-author-name {font-size:15px !important}
+ .kb-article-body .kb-author-role {font-size:12px !important}
+ .kb-article-body .kb-author-bio {font-size:13px !important;line-height:1.4 !important}
+}
+@media(max-width:480px) {
+ .kb-article-body .kb-author-box {
+   grid-template-columns:80px minmax(0,1fr) !important;
+   gap:12px !important;
+ }
+ .kb-article-body .kb-author-label {grid-column:1 / -1 !important}
+ .kb-article-body .kb-author-image-wrapper {width:80px !important;height:104px !important}
+ .kb-article-body .kb-author-info {grid-column:2 !important}
+}
+</style>
+</head>
 <body>
 <style>
       /* =========================================
