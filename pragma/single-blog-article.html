@@ -320,6 +320,31 @@
         display: none;
       }
 
+
+      .follow-sec {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #d9e8ff;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
       @media (min-width: 769px) {
         .kb-text-highlight {
           background-color: #d9d9d9;
@@ -517,6 +542,10 @@
 
         .kb-sidebar-right {
           order: 3;
+        }
+
+        .follow-sec {
+           margin-top: 24px;
         }
       }
       /* Case Study Specific Styles */
@@ -1005,6 +1034,10 @@
         box-sizing: border-box;
         width: 100%;
         max-width: 754.57px;
+      }
+
+      .kb-author-box p {
+        font-size: 12px;
       }
 
       .kb-author-label {
@@ -2517,6 +2550,21 @@
             <span class="kb-tag tag-green">WhatsApp</span>
             <span class="kb-tag">something else</span>
           </div>
+
+          <div class="follow-sec">
+                <span class="follow-text">Follow us on</span>
+                <div class="social-links">
+                  <a href="https://www.linkedin.com/company/bepragmadotai/" class="social-link"
+                    ><img
+                      src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f3436b8b7a9756657e2dc4_linkedin.png"
+                      alt="LinkedIn"
+                  /></a>
+
+                   <a href="https://www.instagram.com/bepragma.ai?igsh=MXRwMnk0bXQ0Nm1hdA==" class="social-link"
+                    ><img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f3436b188f68d75c499a17_insta.png" alt="Instagram"
+                  /></a>
+                </div>
+            </div>
         </aside>
       </div>
     </div>
