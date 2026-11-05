@@ -6,6 +6,8 @@
         "https://script.google.com/macros/s/AKfycbxLpo3VoUntBFwjieCNYPKeZQnWTVP8tT5IqHaLKacPBSlgYDpiKy_Z_3E0JyuDa1GGzg/exec";
     var SUBSCRIBER_STORAGE_KEY = "pragma_subscriber_popup_dismissed";
     var DEMO_STORAGE_KEY = "pragma_demo_popup_dismissed";
+    var SUBSCRIBER_SUBMITTED_STORAGE_KEY = "pragma_subscriber_form_submitted";
+    var DEMO_SUBMITTED_STORAGE_KEY = "pragma_demo_form_submitted";
     var scrollRestorationKey = "pragma_scroll_position:" + window.location.pathname + window.location.search;
     var restoringAfterReload = isReload();
     var initialized = false;
@@ -137,7 +139,24 @@
         }
     }
 
-    function submitFormToSheets(form, payload, modalSelector, storageKey) {
+    function hasSubmittedForm(storageKey) {
+        try {
+            return localStorage.getItem(storageKey) === "1";
+        } catch (error) {
+            console.error("Unable to read form submission state:", error);
+            return false;
+        }
+    }
+
+    function saveFormSubmission(storageKey) {
+        try {
+            localStorage.setItem(storageKey, "1");
+        } catch (error) {
+            console.error("Unable to save form submission state:", error);
+        }
+    }
+
+    function submitFormToSheets(form, payload, modalSelector, storageKey, submittedStorageKey) {
         if (!WEB_APP_URL || WEB_APP_URL.indexOf("PASTE_YOUR_") === 0) {
             showFormMessage(form, "Google Sheets is not configured. Update the Web App URL in single-blog-article.js.", true);
             console.error("Google Sheets submission stopped: Web App URL is not configured.");
@@ -156,6 +175,7 @@
             body: JSON.stringify(payload),
         })
             .then(function () {
+                saveFormSubmission(submittedStorageKey);
                 showFormMessage(form, "Request sent. Check the corresponding sheet tab to confirm it was added.");
                 closePopup(modalSelector, storageKey);
             })
@@ -193,6 +213,7 @@
         var modal = document.querySelector(".js-scroll-popup-modal");
         if (!modal) return;
         sessionStorage.removeItem(SUBSCRIBER_STORAGE_KEY);
+        if (hasSubmittedForm(SUBSCRIBER_SUBMITTED_STORAGE_KEY)) return;
 
         var hasTriggered = false;
         function onScroll() {
@@ -232,7 +253,8 @@
                         email: email,
                     },
                     ".js-scroll-popup-modal",
-                    SUBSCRIBER_STORAGE_KEY
+                    SUBSCRIBER_STORAGE_KEY,
+                    SUBSCRIBER_SUBMITTED_STORAGE_KEY
                 );
             }, true);
         }
@@ -242,6 +264,7 @@
         var modal = document.querySelector(".js-demo-popup-modal");
         if (!modal) return;
         sessionStorage.removeItem(DEMO_STORAGE_KEY);
+        if (hasSubmittedForm(DEMO_SUBMITTED_STORAGE_KEY)) return;
 
         var hasTriggered = false;
         function onScroll() {
@@ -315,7 +338,8 @@
                         website: website,
                     },
                     ".js-demo-popup-modal",
-                    DEMO_STORAGE_KEY
+                    DEMO_STORAGE_KEY,
+                    DEMO_SUBMITTED_STORAGE_KEY
                 );
             }, true);
         }
