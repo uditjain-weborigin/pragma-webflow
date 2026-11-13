@@ -798,11 +798,9 @@
         background-color: transparent !important;
       }
       .product-tab-item:hover .product-icon-box {
-        background-color: #2871f0 !important;
+        background-color: #fff !important;
       }
-      .product-tab-item:hover .product-icon-box img {
-        filter: brightness(0) invert(1) !important;
-      }
+
       .product-tab-item:hover .product-name {
         color: #2871f0 !important;
         text-decoration: underline !important;
@@ -812,6 +810,18 @@
       .product-tab-item.active-tab {
         border-color: var(--primary) !important;
         background-color: #ffffff !important;
+      }
+
+      .product-tab-item .animated {
+        display: none;
+      }
+
+      .product-tab-item:hover .animated {
+        display: block;
+      }
+
+      .product-tab-item:hover .static {
+        display: none;
       }
 
       /* Active tab indicator dot/underline at bottom */
@@ -928,6 +938,7 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        transition: all 0.2s ease !important;
       }
 
       .product-icon-box img {
@@ -2062,7 +2073,9 @@
                           <!-- Genie (AI Copilot) - Tab with sub-panel -->
                           <div class="product-tab-item" data-tab="genie" id="tab-genie">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg" alt="Genie" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb547fa0589ef6dfe7_genie-static.svg" alt="Genie" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd3_genie.svg" alt="Genie" />
                             </div>
                             <div class="product-name">Halo<br/>(AI Copilot)</div>
                             <div class="tab-arrow-btn">
@@ -2075,7 +2088,9 @@
                           <!-- Omnichannel CRM -->
                           <div class="product-tab-item" data-tab="omnichannel" id="tab-omnichannel">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ae3a804c20618a0f075_crm2.svg" alt="Omnichannel CRM" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg" alt="Omnichannel CRM" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb62b99e582d143748_crm.svg" alt="Omnichannel CRM" />
                             </div>
                             <div class="product-name">Omnichannel<br/>CRM</div>
                             <div class="tab-arrow-btn">
@@ -2088,7 +2103,9 @@
                           <!-- RTO Suite -->
                           <div class="product-tab-item" data-tab="rto" id="tab-rto">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg" alt="RTO Suite" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb9c1a9d8a7955263c_rto-static.svg" alt="RTO Suite" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed2dd431f4a8fb8849_rto.svg" alt="RTO Suite" />
                             </div>
                             <div class="product-name">RTO Suite</div>
                             <div class="tab-arrow-btn">
@@ -2101,7 +2118,9 @@
                           <!-- Return Management System -->
                           <div class="product-tab-item" data-tab="rms" id="tab-rms">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg" alt="Return Management System" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg" alt="Return Management System" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfe3_return.svg" alt="Return Management System" />
                             </div>
                             <div class="product-name">Return<br/>Management<br/>System</div>
                             <div class="tab-arrow-btn">
@@ -2114,7 +2133,9 @@
                           <!-- 1Checkout -->
                           <div class="product-tab-item tab-align-right" data-tab="checkout" id="tab-checkout">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c5ac1ac7dfe676242_checkout_1.svg" alt="1Checkout" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ebc23b42744ba3756a_checkout-static.svg" alt="1Checkout" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ebd480d46b67a50498_checkout.svg" alt="1Checkout" />
                             </div>
                             <div class="product-name">1Checkout</div>
                             <div class="tab-arrow-btn">
@@ -2127,7 +2148,9 @@
                           <!-- ShipAxis -->
                           <div class="product-tab-item tab-align-right" data-tab="shipaxis" id="tab-shipaxis">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg" alt="ShipAxis" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg" alt="ShipAxis" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ee1b67b78910fbc407_shipaxia.svg" alt="ShipAxis" />
                             </div>
                             <div class="product-name">ShipAxis</div>
                             <div class="tab-arrow-btn">
@@ -2140,7 +2163,9 @@
                           <!-- Journey Management System -->
                           <div class="product-tab-item tab-align-right" data-tab="jms" id="tab-jms">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7af54559dd1ee256ae39_jms8.svg" alt="Journey Management System" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg" alt="JMS" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473a_jms.svg" alt="JMS" />
                             </div>
                             <div class="product-name">Journey<br/>Management<br/>System</div>
                             <div class="tab-arrow-btn">
@@ -2153,7 +2178,9 @@
                           <!-- WhatsApp Business Suite -->
                           <div class="product-tab-item tab-align-right" data-tab="whatsapp" id="tab-whatsapp">
                             <div class="product-icon-box">
-                              <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg" alt="WhatsApp Business Suite" />
+                              <img class="static" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg" alt="whatsapp" />
+
+                              <img class="animated" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ee03de3d689a8ade63_wapp.svg" alt="whatsapp" />
                             </div>
                             <div class="product-name">WhatsApp<br/>Business<br/>Suite</div>
                             <div class="tab-arrow-btn">
