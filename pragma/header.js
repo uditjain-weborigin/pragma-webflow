@@ -142,11 +142,11 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg"
           ];
           
           let currentFrame = 0;
@@ -155,21 +155,21 @@ function initHeader() {
             if (currentFrame < frames.length) {
               shipAxisImg.src = frames[currentFrame];
               currentFrame++;
-              shipAxisAnimationTimer = setTimeout(nextFrame, 100);
+              AnimationTimer = setTimeout(nextFrame, 100);
             }
           }
           
           nextFrame();
         }
 
-        function resetShipAxisImage() {
-          if (shipAxisAnimationTimer) {
-            clearTimeout(shipAxisAnimationTimer);
-            shipAxisAnimationTimer = null;
+        function resetImage() {
+          if (AnimationTimer) {
+            clearTimeout(AnimationTimer);
+            AnimationTimer = null;
           }
-          const shipAxisImg = document.querySelector("#tab-shipaxis .product-icon-box img");
+          const Img = document.querySelector("#tab-shipaxis .product-icon-box img");
           if (shipAxisImg) {
-            shipAxisImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b133681650ff542f831_shipaxis1.svg";
+            shipAxisImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed85fcdc91c6bd4790_shipaxia-static.svg";
           }
         }
 
@@ -183,10 +183,10 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg"
           ];
           
           let currentFrame = 0;
@@ -209,7 +209,7 @@ function initHeader() {
           }
           const crmImg = document.querySelector("#tab-omnichannel .product-icon-box img");
           if (crmImg) {
-            crmImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2d933865d5de99f65a_omnichannel_crm.svg";
+            crmImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eba5cbba3ec54adfd0_crm-static.svg";
           }
         }
 
@@ -223,12 +223,12 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg"
           ];
           
           let currentFrame = 0;
@@ -251,7 +251,7 @@ function initHeader() {
           }
           const rmsImg = document.querySelector("#tab-rms .product-icon-box img");
           if (rmsImg) {
-            rmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c4d1df3ab8c81828a_rms.svg";
+            rmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ec85fcdc91c6bd473d_return-static.svg";
           }
         }
 
@@ -265,8 +265,8 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ebc23b42744ba3756a_checkout-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ebc23b42744ba3756a_checkout-static.svg"
           ];
           
           let currentFrame = 0;
@@ -289,7 +289,7 @@ function initHeader() {
           }
           const checkoutImg = document.querySelector("#tab-checkout .product-icon-box img");
           if (checkoutImg) {
-            checkoutImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7ad9fd2b3ac9b5bc20bd_1checkout2.svg";
+            checkoutImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ebc23b42744ba3756a_checkout-static.svg";
           }
         }
 
@@ -303,8 +303,8 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb9c1a9d8a7955263c_rto-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb9c1a9d8a7955263c_rto-static.svg"
           ];
           
           let currentFrame = 0;
@@ -327,7 +327,7 @@ function initHeader() {
           }
           const rtoImg = document.querySelector("#tab-rto .product-icon-box img");
           if (rtoImg) {
-            rtoImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b09396d0f27df4b04cf_rto-suite2.svg";
+            rtoImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb9c1a9d8a7955263c_rto-static.svg";
           }
         }
 
@@ -379,13 +379,13 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg"
           ];
           
           let currentFrame = 0;
@@ -408,7 +408,7 @@ function initHeader() {
           }
           const whatsappImg = document.querySelector("#tab-whatsapp .product-icon-box img");
           if (whatsappImg) {
-            whatsappImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2dfd2b3ac9b5bc4893_whatsapp_business_suite.svg";
+            whatsappImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed4a78dbda329506b4_wapp-static.svg";
           }
         }
 
@@ -422,14 +422,14 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg"
           ];
           
           let currentFrame = 0;
@@ -452,7 +452,7 @@ function initHeader() {
           }
           const jmsImg = document.querySelector("#tab-jms .product-icon-box img");
           if (jmsImg) {
-            jmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7b2c9b0d07c1c1427804_jms.svg";
+            jmsImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0ed7f9c9bb24648e6a4_jms-static.svg";
           }
         }
 
