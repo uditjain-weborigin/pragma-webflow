@@ -341,8 +341,8 @@ function initHeader() {
           }
           
           const frames = [
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg",
-            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg"
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb547fa0589ef6dfe7_genie-static.svg",
+            "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb547fa0589ef6dfe7_genie-static.svg"
           ];
           
           let currentFrame = 0;
@@ -365,7 +365,7 @@ function initHeader() {
           }
           const genieImg = document.querySelector("#tab-genie .product-icon-box img");
           if (genieImg) {
-            genieImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a1e7aebd4ba43c9a67b1f2d_genie2.svg";
+            genieImg.src = "https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6af6c0eb547fa0589ef6dfe7_genie-static.svg";
           }
         }
 
