@@ -1,0 +1,2675 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>From Checkout to Refund: Mapping the D2C Profit Journey | Pragma</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="description" content="Discover how D2C profitability depends on optimising the entire post-order journey from checkout to refund, connecting logistics, returns, and support data to eliminate hidden margin leaks." />
+        <meta name="robots" content="index, follow" />
+        <link rel="stylesheet" href="assets/fonts/satoshi/stylesheet.css" />
+        <link rel="stylesheet" href="assets/fonts/icons/style.css" />
+        <link rel="stylesheet" href="assets/styles/global.css" />
+        <link rel="canonical" href="https://www.bepragma.ai/blogs/from-checkout-to-refund-mapping-d2c-profit-journey" />
+    </head>
+    <body>
+        <style>
+            /* =========================================
+   Separator
+   ========================================= */
+            .kb-separator {
+                border: 0;
+                border-top: 1px solid #e5e7eb; /* Light grey */
+                margin: 0;
+                width: 100%;
+            }
+            /* =========================================
+   KB Article Layout
+   ========================================= */
+            .kb-article-container {
+                padding: 100px 0 80px; /* Reduced top padding slightly */
+                background-color: var(--white);
+            }
+            .kb-article-top {
+                margin-bottom: 24px;
+            }
+            .kb-article-top .breadcrumb-nav {
+                justify-content: center;
+            }
+            .kb-article-top .breadcrumb-nav a,
+            .kb-article-top .breadcrumb-nav .breadcrumb-sep {
+                color: #000000 !important;
+            }
+            .kb-article-top .breadcrumb-nav a:hover {
+                color: #2871f0 !important;
+            }
+            .kb-article-top .breadcrumb-nav .breadcrumb-current {
+                color: #2871f0 !important;
+            }
+            /* =========================================
+   Breadcrumb Global Styles (Robust)
+   ========================================= */
+            .breadcrumb-nav,
+            .breadcrumb {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: inherit;
+                margin-bottom: 24px !important;
+                font-size: 14px !important;
+                font-weight: 500 !important;
+                color: #4b5563 !important;
+            }
+            /* Links */
+            .breadcrumb-nav a,
+            .breadcrumb a,
+            .breadcrumb li a {
+                color: #2871f0 !important;
+                text-decoration: none !important;
+                display: inline !important; /* Reset from global inline-block */
+                transition: color 0.2s;
+            }
+            .breadcrumb-nav a:hover,
+            .breadcrumb a:hover,
+            .breadcrumb li a:hover {
+                text-decoration: underline !important;
+                color: #2871f0 !important;
+            }
+            /* Separators */
+            .breadcrumb-sep,
+            .breadcrumb li + li::before {
+                margin: 0 6px !important;
+                color: #9ca3af !important;
+                font-size: 11px !important;
+                content: ">"; /* Support for list-style breadcrumbs */
+            }
+            /* Current / Active Item */
+            .breadcrumb-current,
+            .breadcrumb .active,
+            .breadcrumb li:last-child,
+            .breadcrumb li:last-child a {
+                color: #2871f0 !important;
+                font-weight: 500 !important;
+            }
+            /* Hide breadcrumb-sep if using list-style breadcrumb with ::before */
+            .breadcrumb ul {
+                display: flex;
+                align-items: center;
+            }
+            .breadcrumb li {
+                display: flex;
+                align-items: center;
+            }
+            .kb-article-layout {
+                display: grid;
+                grid-template-columns: 260px 1fr 240px; /* Slightly wider sidebars */
+                gap: 64px; /* Increased gap for better spacing */
+                max-width: 1320px; /* More standard max-width */
+                margin: 0 auto;
+                align-items: start;
+            }
+            /* Left Sidebar */
+            .kb-sidebar-left {
+                position: sticky;
+                top: 100px;
+                max-height: calc(100vh - 350px);
+                display: flex;
+                flex-direction: column;
+            }
+            .kb-contents-title {
+                font-size: 18px; /* More professional size */
+                font-weight: 700;
+                color: var(--black);
+                margin-bottom: 20px;
+            }
+            .kb-contents-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                overflow-y: auto;
+                padding-right: 8px;
+                scrollbar-width: thin;
+                scrollbar-color: #d1d5db transparent;
+            }
+            /* Custom Scrollbar for TOC List */
+            .kb-contents-list::-webkit-scrollbar {
+                width: 5px;
+            }
+            .kb-contents-list::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .kb-contents-list::-webkit-scrollbar-thumb {
+                background: #e5e7eb;
+                border-radius: 10px;
+            }
+            .kb-contents-list::-webkit-scrollbar-thumb:hover {
+                background: #d1d5db;
+            }
+            .kb-contents-list > li {
+                margin-bottom: 4px; /* Tighter spacing */
+            }
+            .kb-contents-list > li > a {
+                display: block;
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1.4;
+                color: #111827;
+                padding: 10px 12px;
+                border-radius: 6px;
+                text-decoration: none;
+                transition:
+                    background-color 0.1s ease,
+                    color 0.1s ease;
+                border: none !important;
+            }
+            .kb-contents-list > li > a:hover {
+                background-color: #f3f4f6;
+            }
+            /* Active indicator */
+            .kb-contents-list .kb-active-item > a,
+            .kb-contents-list li a.active {
+                color: #000 !important;
+                background-color: #bfd6ff !important;
+                border-radius: 6px;
+                border: none !important;
+            }
+            .kb-sub-list {
+                list-style: none !important;
+                padding-left: 0 !important;
+                margin-top: 8px !important;
+                margin-bottom: 12px !important;
+            }
+            .kb-sub-list li {
+                position: relative !important;
+                padding-left: 20px !important;
+                margin-bottom: 2px !important;
+                display: block !important;
+            }
+            .kb-sub-list li::before {
+                content: "•" !important;
+                position: absolute !important;
+                left: 8px !important;
+                top: 8px !important;
+                color: #111827 !important;
+                font-weight: bold !important;
+                z-index: 1; /* Stay above the link background */
+            }
+            .kb-sub-list li a {
+                display: block !important;
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+                color: #111827 !important;
+                text-decoration: none !important;
+                padding: 6px 10px !important;
+                border-radius: 4px !important;
+                transition: all 0.2s !important;
+            }
+            .kb-sub-list li a:hover {
+                background-color: #f9fafb !important;
+            }
+            .kb-sub-list li a.active {
+                background-color: #bfd6ff !important;
+                font-weight: 700 !important;
+            }
+            /* Main Content */
+            .kb-main-content {
+                max-width: 100%;
+                overflow: hidden;
+            }
+            .kb-main-image-wrapper {
+                margin-bottom: 32px;
+                border-radius: 16px;
+                overflow: hidden;
+            }
+            .kb-article-body h2 {
+                scroll-margin-top: 100px;
+                margin-top: 48px;
+                margin-bottom: 20px;
+                font-size: 32px; /* Larger headings */
+                font-weight: 700;
+                color: var(--black-bg);
+            }
+            .kb-article-body h3 {
+                scroll-margin-top: 100px;
+                margin-top: 36px;
+                margin-bottom: 16px;
+                font-size: 24px;
+                font-weight: 600;
+                color: var(--black-bg);
+            }
+            .kb-article-body p {
+                margin-bottom: 28px; /* More space between paragraphs */
+                color: #000000;
+                line-height: 1.7; /* Improved readability */
+                font-size: 16px;
+            }
+            .kb-body-link {
+                text-decoration: underline;
+                color: #2871f0;
+            }
+            .kb-body-link:focus,
+            .kb-body-link:hover {
+                text-decoration: none;
+            }
+            .kb-article-body ul {
+                margin-bottom: 28px; /* More space between paragraphs */
+                padding-left: 0;
+            }
+            .kb-article-body li {
+                margin-bottom: 10px; /* More space between paragraphs */
+                color: #000000;
+                line-height: 1.4; /* Improved readability */
+                font-size: 16px;
+                position: relative;
+                padding-left: 20px;
+            }
+            .kb-article-body li::before {
+                position: absolute;
+                content: "";
+                top: 7px;
+                left: 5px;
+                display: inline-block;
+                background-color: #000;
+                border-radius: 100%;
+                width: 5px;
+                height: 5px;
+            }
+            .kb-case-study-tag {
+                display: none;
+            }
+            .follow-sec {
+                text-align: center;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-top: 32px;
+            }
+            .social-links {
+                display: flex;
+                gap: 12px;
+            }
+            .social-link {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #d9e8ff;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.2s ease;
+            }
+            @media (min-width: 769px) {
+                .kb-text-highlight {
+                    background-color: #d9d9d9;
+                    padding: 2px 4px;
+                    border-radius: 2px;
+                }
+                .kb-case-study-tag {
+                    display: inline-flex;
+                    align-items: center;
+                    border: 1px solid #2871f0;
+                    color: #2871f0;
+                    padding: 4px 10px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-decoration: none;
+                    margin-left: 10px;
+                    margin-right: 5px;
+                    position: relative;
+                    background: #fff;
+                    line-height: 1;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    transition: all 0.2s ease;
+                }
+                .kb-case-study-tag:hover {
+                    background-color: #2871f0;
+                    color: #fff;
+                }
+                .kb-case-study-tag::before {
+                    content: "";
+                    position: absolute;
+                    left: -5px;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(45deg);
+                    width: 8px;
+                    height: 8px;
+                    background: #fff;
+                    border-left: 1px solid #2871f0;
+                    border-bottom: 1px solid #2871f0;
+                    transition: all 0.2s ease;
+                }
+                .kb-case-study-tag:hover::before {
+                    background: #2871f0;
+                }
+            }
+            .kb-main-image-wrapper img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+            .kb-instruction-steps {
+                font-size: 14px;
+                line-height: 1.6;
+                color: var(--black);
+            }
+            .kb-instruction-steps p {
+                margin-bottom: 16px;
+                font-weight: 500;
+            }
+            .kb-instruction-steps ol {
+                padding-left: 16px;
+                margin: 0;
+            }
+            .kb-instruction-steps ol li {
+                margin-bottom: 8px;
+            }
+            /* Right Sidebar */
+            .kb-sidebar-right {
+                position: sticky;
+                top: 100px;
+            }
+            .kb-person-cta {
+                background: var(--white);
+                border-radius: 12px;
+                overflow: hidden;
+                margin-bottom: 24px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                cursor: pointer;
+                width: 100%;
+            }
+            .kb-person-cta .cta-button {
+                font-size: 14px;
+                padding: 15px 20px;
+                margin-top: -2px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .cta-button {
+                color: #fff;
+                text-align: center;
+                background-color: #4273eb;
+                border: 2px solid #4273eb;
+                border-radius: 5px;
+                margin-top: 10px;
+                padding: 18px 40px;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 1.4;
+                transition: all 0.3s;
+            }
+            .kb-person-image-wrapper {
+                width: 100%;
+                position: relative;
+            }
+            .kb-person-image-wrapper:hover {
+                opacity: 0.9;
+            }
+            .kb-person-image-wrapper > img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+            /* Tags */
+            .kb-tags-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .kb-tag {
+                display: inline-block;
+                padding: 8px 16px;
+                background: #fff7ed; /* Light orange/beige background */
+                border: 1px solid #ffedd5;
+                border-radius: 20px;
+                font-size: 12px;
+                color: #9a3412; /* Dark orange/brown text */
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            .kb-tag:hover {
+                background: #ffedd5;
+                transform: translateY(-1px);
+            }
+            .kb-tag.tag-green {
+                background: #f0fdf4; /* Light green */
+                color: #166534; /* Dark green */
+                border-color: #dcfce7;
+            }
+            .kb-tag.tag-green:hover {
+                background: #dcfce7;
+            }
+            /* Media Queries */
+            @media only screen and (max-width: 1024px) {
+                .kb-article-layout {
+                    grid-template-columns: 220px 1fr 220px;
+                    gap: 32px;
+                }
+            }
+            @media only screen and (max-width: 768px) {
+                .kb-article-layout {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                }
+                .kb-sidebar-left,
+                .kb-sidebar-right {
+                    position: static;
+                }
+                .kb-sidebar-left {
+                    order: 2; /* Move contents below main image on mobile */
+                }
+                .kb-main-content {
+                    order: 1;
+                }
+                .kb-sidebar-right {
+                    order: 3;
+                }
+                .follow-sec {
+                    margin-top: 24px;
+                }
+            }
+            /* Case Study Specific Styles */
+            .kb-highlight-box {
+                background-color: #bfd6ff;
+                border-radius: 12px;
+                padding: 20px 30px;
+                margin: 48px 0;
+                position: relative;
+            }
+            .kb-highlight-box::before {
+                content: "";
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                width: 28px;
+                height: 28px;
+                background-color: var(--primary);
+                border-radius: 50%;
+                border: 10px solid white;
+            }
+            .kb-highlight-title {
+                font-size: 32px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 32px;
+                line-height: 1.25;
+            }
+            .kb-highlight-text {
+                font-size: 15px;
+                line-height: 1.6;
+                color: #000;
+                margin-bottom: 40px;
+            }
+            .kb-highlight-footer {
+                display: flex;
+                justify-content: end;
+                gap: 16px;
+                align-items: center;
+            }
+            .btn-light-blue {
+                background-color: #c5daff;
+                padding: 10px 24px;
+                font-weight: 700;
+                font-size: 14px;
+                cursor: pointer;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                border-top: 12px solid white;
+                border-right: 12px solid white;
+                border-top-right-radius: 8px;
+            }
+            .btn-outline-blue {
+                background: #ffffff;
+                color: var(--primary);
+                padding: 8px 15px;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 14px;
+                border: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .diag-title {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--black-bg);
+            }
+            /* Mobile KB Article Styles */
+            @media only screen and (max-width: 1024px) {
+                .kb-mobile-toc {
+                    display: block !important;
+                    margin-bottom: 24px;
+                    background: var(--white);
+                    border: 1px solid #e5e7eb;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                    transition: all 0.3s ease;
+                }
+                .kb-mobile-toc.is-sticky {
+                    position: fixed;
+                    top: 70px;
+                    left: 20px;
+                    right: 20px;
+                    z-index: 1001;
+                    margin-bottom: 0;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                    animation: kbSlideDown 0.3s ease-out;
+                }
+                @keyframes kbSlideDown {
+                    from {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+                .kb-mobile-toc-header {
+                    width: 100%;
+                    padding: 16px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: none;
+                    border: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #4b5563;
+                    cursor: pointer;
+                }
+                .kb-mobile-toc-header i {
+                    font-size: 12px;
+                    transition: transform 0.3s;
+                    color: #9ca3af;
+                }
+                .kb-mobile-toc-header.active i {
+                    transform: rotate(180deg);
+                }
+                .kb-mobile-toc-content {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.3s ease-out;
+                    padding: 0 20px;
+                }
+                .kb-mobile-toc-header.active + .kb-mobile-toc-content {
+                    max-height: 500px;
+                    padding-bottom: 20px;
+                }
+                .kb-mobile-toc .kb-contents-list {
+                    margin-top: 10px;
+                }
+                .kb-mobile-toc .kb-contents-list > li > a {
+                    padding: 6px 0;
+                    background: none !important;
+                    font-size: 14px;
+                }
+            }
+            @media only screen and (min-width: 1025px) {
+                .kb-mobile-toc {
+                    display: none;
+                }
+            }
+            @media only screen and (max-width: 768px) {
+                .kb-sidebar-left,
+                .kb-sidebar-right,
+                .kb-article-top .breadcrumb-nav {
+                    display: none !important;
+                }
+                .kb-article-container {
+                    padding: 60px 20px 40px !important; /* Increase horizontal padding */
+                }
+                .kb-article-body h2 {
+                    font-size: 20px !important;
+                    margin-top: 32px !important;
+                    margin-bottom: 16px !important;
+                    line-height: 1.3 !important;
+                }
+                .kb-article-body h3 {
+                    font-size: 18px !important;
+                    margin-top: 28px !important;
+                    margin-bottom: 12px !important;
+                }
+                .kb-article-body p {
+                    margin-bottom: 20px !important;
+                    font-size: 14px !important;
+                    line-height: 1.6 !important;
+                    color: #000000 !important;
+                }
+                .kb-main-image-wrapper {
+                    margin-bottom: 24px !important;
+                }
+                .kb-highlight-box {
+                    border-radius: 5px;
+                    padding: 20px;
+                    margin: 25px 0;
+                    position: relative;
+                }
+                .kb-highlight-box::before {
+                    width: 15px;
+                    height: 15px;
+                    border: 7px solid #fff;
+                }
+                .kb-highlight-box h2 {
+                    margin-top: 0 !important;
+                    font-size: 12px !important;
+                }
+                .kb-highlight-box p {
+                    font-size: 10px !important;
+                }
+                .btn-light-blue {
+                    font-size: 10px;
+                    padding: 8px 14px;
+                }
+                .btn-outline-blue {
+                    font-size: 12px;
+                }
+            }
+            .kb-person-info {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.4);
+                color: var(--white);
+                font-size: 12px;
+                font-weight: 600;
+            }
+            .kb-person-cta-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                background: var(--primary);
+                color: var(--white);
+                padding: 10px;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 700;
+                margin-top: 12px;
+                margin-bottom: 20px;
+            }
+            /* Sidebar Similar Articles */
+            .kb-sidebar-similar-title {
+                font-size: 22px;
+                font-weight: 800;
+                color: var(--black);
+                margin-top: 32px;
+                margin-bottom: 12px;
+            }
+            .kb-sidebar-sep {
+                height: 1px;
+                background-color: #e5e7eb;
+                width: 100%;
+                margin: 10px 0;
+            }
+            .kb-sidebar-article-list {
+                margin-bottom: 16px;
+            }
+            .kb-sidebar-article-item {
+                margin-bottom: 0;
+                cursor: pointer;
+            }
+            .kb-sidebar-article-link {
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.5;
+                color: #4b5563;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            .kb-sidebar-article-link:hover {
+                color: var(--primary);
+                text-decoration: underline;
+            }
+            /* Article Metadata Bar */
+            .kb-article-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 0;
+                border-top: 1px solid #e5e7eb;
+                margin-bottom: 32px;
+                font-size: 14px;
+            }
+            .kb-meta-author {
+                font-weight: 500;
+                color: #000000;
+            }
+            .kb-meta-author strong {
+                color: var(--black);
+                font-weight: 700;
+            }
+            .kb-meta-author a {
+                color: var(--black);
+            }
+            .kb-meta-author a:hover {
+                color: var(--black);
+                text-decoration: underline;
+            }
+            .kb-meta-info {
+                color: #000000;
+            }
+            /* AI Summary Section */
+            .kb-summary-box {
+                background-color: #000;
+                border-radius: 12px;
+                padding: 24px 32px;
+                margin-top: 24px;
+                margin-bottom: 40px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .kb-summary-text {
+                color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .kb-summary-text span {
+                color: #c5daff; /* Light blue color for "Summarise" */
+            }
+            .kb-ai-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+            .kb-ai-btn {
+                background-color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 16px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                font-weight: 700;
+                color: #000;
+                cursor: pointer;
+                transition: opacity 0.2s;
+                text-decoration: none;
+            }
+            .kb-ai-btn:hover {
+                opacity: 0.9;
+            }
+            .kb-ai-btn img {
+                height: 20px;
+                width: auto;
+            }
+            /* TLDR Section */
+            .kb-tldr-box {
+                border: 2px dashed #fbbf24; /* Yellow-orange dashed border */
+                border-radius: 12px;
+                padding: 24px;
+                margin-bottom: 40px;
+                background-color: var(--white);
+            }
+            .kb-tldr-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .kb-tldr-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .kb-tldr-icon img {
+                width: 32px;
+                height: auto;
+            }
+            .kb-tldr-title {
+                font-size: 18px;
+                font-weight: 800;
+                color: #000;
+            }
+            .kb-tldr-summary {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #000000;
+                margin-bottom: 24px;
+            }
+            .kb-takeaways-block {
+                background-color: #fffbeb; /* Light yellow background */
+                padding: 20px;
+                margin: 0 -24px -24px -24px; /* Expand to edges of parent padding */
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+            .kb-takeaways-title {
+                font-size: 16px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 16px;
+            }
+            .kb-takeaways-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .kb-takeaways-list li {
+                position: relative;
+                padding-left: 20px;
+                font-size: 14px;
+                line-height: 1.5;
+                color: #1f2937;
+                margin-bottom: 10px;
+            }
+            .kb-takeaways-list li::before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #000;
+                font-weight: bold;
+            }
+            /* =========================================
+         Blog Author Section
+         ========================================= */
+            .kb-author-box {
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                padding: 24px;
+                border-radius: 20px;
+                border: 0.5px solid #000000;
+                background: #ffffff;
+                margin-top: 48px;
+                margin-bottom: 48px;
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 754.57px;
+            }
+            .kb-author-box p {
+                font-size: 12px;
+            }
+            .kb-author-label {
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 1.2;
+                color: #000000;
+                font-family: Satoshi, sans-serif;
+                width: 81px;
+                height: 64px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            .kb-author-image-wrapper {
+                width: 110.56px;
+                height: 140.4px;
+                border-radius: 7.02px;
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+            .kb-author-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .kb-author-info {
+                width: 467px;
+                height: 128px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-shrink: 0;
+            }
+            .kb-author-header {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .kb-author-name {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 16px;
+                font-weight: 700;
+                color: #2871f0;
+                text-decoration: underline;
+                font-family: Satoshi, sans-serif;
+                width: fit-content;
+            }
+            .kb-author-name:hover {
+                text-decoration: none;
+            }
+            .kb-author-link-icon {
+                width: 14px;
+                height: 14px;
+                display: inline-block;
+                flex-shrink: 0;
+            }
+            .kb-author-role {
+                font-size: 12px;
+                font-weight: 500;
+                color: #000000;
+            }
+            .kb-author-bio {
+                font-size: 13px;
+                line-height: 1.4;
+                color: #000000;
+                margin: 0 !important;
+            }
+            .kb-author-note {
+                font-size: 11px;
+                color: #000000;
+                opacity: 0.8;
+            }
+            @media only screen and (max-width: 768px) {
+                .kb-author-box {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 16px;
+                    padding: 20px;
+                    margin-top: 32px;
+                    margin-bottom: 32px;
+                    max-width: 100%;
+                    height: auto;
+                }
+                .kb-author-label {
+                    white-space: normal;
+                    width: auto;
+                    height: auto;
+                    text-align: center;
+                    display: block;
+                }
+                .kb-author-info {
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .kb-author-header {
+                    align-items: center;
+                }
+                .kb-author-name {
+                    justify-content: center;
+                }
+            }
+            /* FAQ Section */
+            .kb-faq-section {
+                border: 2px dashed #3b82f6; /* Blue dashed border */
+                border-radius: 12px;
+                overflow: hidden;
+                margin-top: 60px;
+                margin-bottom: 40px;
+                background-color: var(--white);
+            }
+            .kb-faq-header {
+                background-color: #c5daff; /* Light blue-ish background from mockup */
+                padding: 32px;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            .kb-faq-title {
+                font-size: 24px;
+                font-weight: 800;
+                color: #000;
+                margin-bottom: 12px;
+            }
+            .kb-faq-subtitle {
+                font-size: 13px;
+                font-weight: 500;
+                color: #000000;
+                line-height: 1.4;
+            }
+            .kb-faq-body {
+                padding: 0;
+            }
+            .kb-faq-item {
+                padding: 32px;
+                margin-bottom: 0;
+                background-color: var(--white);
+            }
+            .kb-faq-item:nth-child(even) {
+                background-color: #f3f4f6; /* Light gray background for alternating items */
+            }
+            .kb-faq-item:last-child {
+                border-bottom: none;
+            }
+            .kb-faq-question {
+                font-size: 16px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+            .kb-faq-answer {
+                font-size: 14px;
+                line-height: 1.6;
+                color: #4b5563;
+            }
+            .mobile-only-section {
+                display: none !important;
+            }
+            /* Floating Mobile Summary Sidebar */
+            .mobile-float-summary {
+                position: fixed;
+                left: 0;
+                top: 30%; /* Fixed top position to prevent vertical shift on height change */
+                z-index: 1000;
+                display: none !important;
+            }
+            .float-summary-trigger {
+                background-color: #000;
+                color: #fff;
+                padding: 12px 6px;
+                border-radius: 0 8px 8px 0;
+                cursor: pointer;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+            }
+            .vertical-text {
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                transform: rotate(180deg);
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+            .float-summary-expanded {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-color: transparent;
+            }
+            .mobile-float-summary.is-open .float-summary-expanded {
+                display: block;
+            }
+            .mobile-float-summary.is-open .float-summary-trigger {
+                display: none !important;
+            }
+            .float-summary-close {
+                background-color: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: -30px;
+                left: 10px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .float-summary-close img {
+                width: 10px;
+            }
+            .float-summary-content {
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .float-summary-label {
+                background-color: #000;
+                color: #fff;
+                padding: 12px 10px;
+                border-radius: 0 8px 8px 0;
+            }
+            .float-summary-options {
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                padding: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .float-ai-btn {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 16px;
+                text-decoration: none;
+                color: #111827;
+                font-size: 13px;
+                font-weight: 600;
+                border-radius: 6px;
+                transition: all 0.2s;
+                white-space: nowrap;
+            }
+            .float-ai-btn img {
+                width: 18px;
+                height: 18px;
+                object-fit: contain;
+            }
+            .float-ai-btn:hover {
+                background-color: #f3f4f6;
+            }
+            .mobile-only-section {
+                display: none !important;
+            }
+            .view-more-mobile {
+                display: none !important;
+            }
+            @media only screen and (max-width: 767px) {
+                .related-blogs-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 16px;
+                }
+                .related-blogs-header .view-more-link {
+                    display: none !important;
+                }
+                .view-more-mobile {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    width: fit-content;
+                    margin: 32px auto 0;
+                    padding: 10px 24px;
+                    border: 1px solid #2871f0;
+                    border-radius: 6px;
+                    color: #2871f0 !important;
+                    font-size: 14px;
+                    font-weight: 500;
+                    background-color: var(--white);
+                    transition: all 0.3s;
+                }
+                .view-more-mobile:hover {
+                    background-color: #2871f0;
+                    color: var(--white) !important;
+                }
+                .related-blogs-grid {
+                    flex-direction: column;
+                    gap: 24px;
+                }
+            }
+            .kb-top-fade {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 120px;
+                background: linear-gradient(to bottom, #fff 30%, rgba(255, 255, 255, 0) 100%);
+                z-index: 1000;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+            .kb-top-fade.is-visible {
+                opacity: 1;
+            }
+            @media only screen and (max-width: 768px) {
+                .mobile-float-summary.is-visible {
+                    display: block !important;
+                }
+                .mobile-only-section {
+                    display: block !important;
+                    margin-top: 40px;
+                    margin-bottom: 20px;
+                }
+                /* Client fixes for mobile summary */
+                .float-summary-close {
+                    width: 48px !important;
+                    height: 48px !important;
+                    top: -60px !important;
+                }
+                .float-summary-close img {
+                    width: 26px !important;
+                }
+                .float-summary-options {
+                    padding-right: 24px !important;
+                }
+                /* Author meta bar one-line fix for smaller mobiles */
+                @media only screen and (max-width: 500px) {
+                    .kb-article-meta {
+                        font-size: 13px !important;
+                        justify-content: space-between !important;
+                        gap: 10px !important;
+                        padding: 12px 0 !important;
+                        flex-wrap: nowrap !important;
+                    }
+                    .kb-meta-author,
+                    .kb-meta-info {
+                        white-space: nowrap !important;
+                    }
+                }
+                /* AI Summary Section Mobile Fixes */
+                .kb-summary-box {
+                    padding: 16px 12px !important;
+                    align-items: flex-start !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                    overflow: hidden !important;
+                }
+                .kb-summary-text {
+                    font-size: 13px !important;
+                    margin-bottom: 8px !important;
+                    width: 100% !important;
+                }
+                .kb-ai-buttons {
+                    display: flex !important;
+                    flex-wrap: nowrap !important;
+                    overflow-x: auto !important;
+                    -webkit-overflow-scrolling: touch !important;
+                    justify-content: flex-start !important;
+                    width: 100% !important;
+                    padding-bottom: 10px !important;
+                    gap: 8px !important;
+                }
+                .kb-ai-buttons::-webkit-scrollbar {
+                    height: 4px;
+                }
+                .kb-ai-buttons::-webkit-scrollbar-thumb {
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 10px;
+                }
+                @media only screen and (max-width: 480px) {
+                    .kb-summary-box {
+                        padding: 16px 8px !important;
+                    }
+                    .kb-ai-buttons {
+                        gap: 6px !important;
+                    }
+                    .kb-ai-btn {
+                        padding: 5px 6px !important;
+                        font-size: 11px !important;
+                        gap: 4px !important;
+                    }
+                    .kb-ai-btn img {
+                        height: 12px !important;
+                    }
+                }
+                .kb-ai-btn {
+                    flex-shrink: 0 !important;
+                    background-color: transparent !important;
+                    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+                    color: #fff !important;
+                    padding: 6px 10px !important;
+                    font-size: 12px !important;
+                    border-radius: 6px !important;
+                }
+                .kb-ai-btn img {
+                    height: 14px !important;
+                    filter: brightness(0) invert(1) !important; /* Make logos white for visibility on black bg */
+                }
+                .kb-ai-btn img[alt="Google AI"] {
+                    filter: none !important; /* Keep Google AI logo colorful */
+                }
+            }
+            /* =========================================
+   25% Scroll Subscriber Popup
+   ========================================= */
+            /* Backdrop overlay */
+            .scroll-popup-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.45);
+                z-index: 9998;
+                opacity: 0;
+                visibility: hidden;
+                transition:
+                    opacity 0.35s ease,
+                    visibility 0.35s ease;
+            }
+            .scroll-popup-overlay.is-active {
+                opacity: 1;
+                visibility: visible;
+            }
+            /* Modal card */
+            .scroll-popup-modal {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.92);
+                z-index: 9999;
+                width: 100%;
+                max-width: 420px;
+                background: #ffffff;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+                opacity: 0;
+                visibility: hidden;
+                transition:
+                    opacity 0.35s ease,
+                    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    visibility 0.35s ease;
+            }
+            .scroll-popup-modal.is-active {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            /* Illustration header */
+            .scroll-popup-hero {
+                position: relative;
+                width: 100%;
+                background-color: #a8d4f5;
+                overflow: hidden;
+                line-height: 0;
+            }
+            .scroll-popup-hero img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+            /* Close button */
+            .scroll-popup-close {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #ffffff;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+                z-index: 2;
+            }
+            .scroll-popup-close:hover {
+                transform: scale(1.1);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            }
+            .scroll-popup-close svg {
+                width: 14px;
+                height: 14px;
+                stroke: #374151;
+                stroke-width: 2.5;
+            }
+            /* Body */
+            .scroll-popup-body {
+                padding: 24px 24px 28px;
+                text-align: center;
+            }
+            .scroll-popup-title {
+                font-size: 17px;
+                font-weight: 700;
+                color: #111827;
+                line-height: 1.45;
+                margin-bottom: 20px;
+            }
+            /* Email input */
+            .scroll-popup-input-wrap {
+                position: relative;
+                margin-bottom: 12px;
+            }
+            .scroll-popup-input {
+                width: 100%;
+                padding: 13px 16px;
+                border: 1.5px solid #e5e7eb;
+                border-radius: 10px;
+                font-size: 14px;
+                color: #111827;
+                background: #f9fafb;
+                outline: none;
+                transition:
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease;
+                box-sizing: border-box;
+                font-family: inherit;
+            }
+            .scroll-popup-input::placeholder {
+                color: #9ca3af;
+            }
+            .scroll-popup-input:focus {
+                border-color: #2871f0;
+                box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+                background: #fff;
+            }
+            /* CTA button */
+            .scroll-popup-btn {
+                display: block;
+                width: 100%;
+                padding: 14px 16px;
+                background: #2871f0;
+                color: #ffffff;
+                font-size: 15px;
+                font-weight: 700;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition:
+                    background 0.2s ease,
+                    transform 0.15s ease;
+                font-family: inherit;
+                letter-spacing: 0.01em;
+            }
+            .scroll-popup-btn:hover {
+                background: #1a5fd4;
+                transform: translateY(-1px);
+            }
+            .scroll-popup-btn:active {
+                transform: translateY(0);
+            }
+            /* Mobile adjustments */
+            @media only screen and (max-width: 480px) {
+                .scroll-popup-modal {
+                    max-width: calc(100% - 32px);
+                    border-radius: 12px;
+                }
+                .scroll-popup-body {
+                    padding: 20px 20px 24px;
+                }
+                .scroll-popup-title {
+                    font-size: 15px;
+                }
+            }
+            /* =========================================
+   50% Scroll — Get a Demo Popup
+   ========================================= */
+            /* Uses the same .scroll-popup-overlay backdrop */
+            /* Modal card */
+            .demo-popup-modal {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.92);
+                z-index: 9999;
+                width: 400px;
+                height: 388px;
+                max-width: 400px;
+                background: #ffffff;
+                border-radius: 20px;
+                overflow: visible; /* so close btn can overflow */
+                box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+                opacity: 0;
+                visibility: hidden;
+                transition:
+                    opacity 0.35s ease,
+                    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    visibility 0.35s ease;
+                box-sizing: border-box;
+            }
+            .demo-popup-modal.is-active {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            /* Inner clipping wrapper */
+            .demo-popup-inner {
+                border-radius: 20px;
+                overflow: hidden;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            /* Hero section — light-blue wave background */
+            .demo-popup-hero {
+                background: #b6d3e8;
+                height: 88px;
+                text-align: center;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                flex-shrink: 0;
+            }
+            .demo-popup-hero-title {
+                font-size: 20px;
+                font-weight: 800;
+                color: #000000;
+                margin: 0;
+                line-height: 1.2;
+                position: relative;
+                z-index: 1;
+                white-space: nowrap;
+            }
+            /* Close button — top-right corner of modal */
+            .demo-popup-close {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                transition:
+                    transform 0.2s ease,
+                    background 0.2s ease;
+                z-index: 10;
+            }
+            .demo-popup-close:hover {
+                transform: scale(1.1);
+                background: #ffffff;
+            }
+            .demo-popup-close svg {
+                width: 14px;
+                height: 14px;
+                stroke: #111827;
+                stroke-width: 2.5;
+            }
+            /* Body */
+            .demo-popup-body {
+                padding: 24px 58px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 300px;
+                box-sizing: border-box;
+            }
+            /* Input fields */
+            .demo-popup-input {
+                width: 100%;
+                height: 50px;
+                padding: 0 16px;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #111827;
+                background: #ffffff;
+                outline: none;
+                transition:
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease,
+                    background 0.2s ease;
+                box-sizing: border-box;
+                font-family: inherit;
+            }
+            .demo-popup-input::placeholder {
+                color: rgba(0, 0, 0, 0.35);
+                font-size: 14px;
+            }
+            .demo-popup-input:focus {
+                border-color: #2871f0;
+                box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
+                background: #fff;
+            }
+            /* CTA button */
+            .demo-popup-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 135px;
+                height: 54px;
+                margin: 12px auto 0;
+                padding: 0;
+                background: #2871f0;
+                color: #ffffff;
+                font-size: 15px;
+                font-weight: 700;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                border-radius: 8px;
+                cursor: pointer;
+                transition:
+                    background 0.2s ease,
+                    transform 0.15s ease,
+                    box-shadow 0.2s ease;
+                font-family: inherit;
+                letter-spacing: 0.01em;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+                box-sizing: border-box;
+            }
+            .demo-popup-btn:hover {
+                background: #1a5fd4;
+                transform: translateY(-1px);
+                box-shadow:
+                    0 6px 20px rgba(40, 113, 240, 0.35),
+                    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            }
+            .demo-popup-btn:active {
+                transform: translateY(0);
+            }
+            /* Mobile */
+            @media only screen and (max-width: 480px) {
+                .demo-popup-modal {
+                    width: calc(100% - 32px);
+                    max-width: calc(100% - 32px);
+                    height: auto;
+                    border-radius: 16px;
+                }
+                .demo-popup-inner {
+                    border-radius: 16px;
+                }
+                .demo-popup-hero {
+                    height: 72px;
+                }
+                .demo-popup-hero-title {
+                    font-size: 16px;
+                    white-space: normal;
+                }
+                .demo-popup-body {
+                    padding: 20px 20px 24px;
+                    height: auto;
+                }
+            }
+            .channel-table-wrapper {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .channel-table {
+                width: 100%;
+                min-width: 650px;
+                border-collapse: collapse;
+                table-layout: fixed;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 15px;
+                line-height: 1.3;
+                color: #171717;
+                background: #fff;
+            }
+            .channel-table th,
+            .channel-table td {
+                border: 1px solid #888;
+                padding: 9px 13px;
+                text-align: left;
+                vertical-align: middle;
+                overflow-wrap: break-word;
+            }
+            .channel-table th {
+                background: #dedede;
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            /* Column widths */
+            .channel-table th:nth-child(1),
+            .channel-table td:nth-child(1) {
+                width: 21%;
+            }
+            .channel-table th:nth-child(2),
+            .channel-table td:nth-child(2) {
+                width: 34%;
+            }
+            .channel-table th:nth-child(3),
+            .channel-table td:nth-child(3) {
+                width: 17%;
+                text-align: center;
+            }
+            .channel-table th:nth-child(4),
+            .channel-table td:nth-child(4) {
+                width: 28%;
+            }
+            /* Tablet */
+            @media (max-width: 768px) {
+                .channel-table {
+                    font-size: 14px;
+                }
+                .channel-table th,
+                .channel-table td {
+                    padding: 10px;
+                }
+            }
+            /* Mobile */
+            @media (max-width: 480px) {
+                .channel-table {
+                    min-width: 600px;
+                    font-size: 13px;
+                }
+                .channel-table th,
+                .channel-table td {
+                    padding: 9px 10px;
+                }
+            }
+        </style>
+        <!-- Top Fade Overlay -->
+        <div class="kb-top-fade js-kb-top-fade"></div>
+
+        <!-- Content-start -->
+        <div class="kb-article-container centered">
+            <!-- Breadcrumb Navigation -->
+            <div class="kb-article-top">
+                <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                    <a href="https://www.bepragma.ai">Home</a>
+                    <span class="breadcrumb-sep">&gt;</span>
+                    <a href="https://www.bepragma.ai/resources">Resources</a>
+                    <span class="breadcrumb-sep">&gt;</span>
+                    <a href="https://www.bepragma.ai/blogs">Blogs</a>
+                    <span class="breadcrumb-sep">&gt;</span>
+                    <span class="breadcrumb-current">D2C Profit Journey</span>
+                </nav>
+            </div>
+
+            <!-- 3-Column Layout -->
+            <div class="kb-article-layout">
+                <!-- Left Sidebar: Table of Contents -->
+                <aside class="kb-sidebar-left">
+                    <h3 class="kb-contents-title">Contents</h3>
+                    <ul class="kb-contents-list">
+                        <li class="kb-active-item">
+                            <a href="#item-1" class="active">Why the Order Is the Wrong Unit and the Journey Is the Right One</a>
+                        </li>
+                        <li class="kb-has-submenu">
+                            <a href="#item-2" class="kb-submenu-title">Where Profit Actually Leaks in the Delivery Lifecycle</a>
+                            <ul class="kb-sub-list">
+                                <li>
+                                    <a href="#item-2-1">The Compounding Cost of Delivery Friction</a>
+                                </li>
+                                <li>
+                                    <a href="#item-2-2">Why Courier NDR Codes Make the Loss Invisible</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="kb-has-submenu">
+                            <a href="#item-3" class="kb-submenu-title">Reading the Journey Backwards: What Refunds Reveal About Checkout</a>
+                            <ul class="kb-sub-list">
+                                <li>
+                                    <a href="#item-3-1">Reason Codes as Upstream Diagnostics</a>
+                                </li>
+                                <li>
+                                    <a href="#item-3-2">Why One Reason Code Is Not Enough</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="kb-has-submenu">
+                            <a href="#item-4" class="kb-submenu-title">Mapping the Handoffs: Where Each Product Enters the Journey</a>
+                            <ul class="kb-sub-list">
+                                <li>
+                                    <a href="#item-4-1">1Checkout to ShipAxis: The Risk Score Should Not Stop at COD</a>
+                                </li>
+                                <li>
+                                    <a href="#item-4-2">RMS to ShipAxis: Return Tags Belong in Allocation</a>
+                                </li>
+                                <li>
+                                    <a href="#item-4-3">RMS to RTO Suite to 1Checkout: Abuse at Checkout</a>
+                                </li>
+                                <li>
+                                    <a href="#item-4-4">Omnichannel CRM to Everything: Support as Warning</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#item-5" class="kb-submenu-title">What the Ecosystem Data Indicates—and Where It Stops</a>
+                        </li>
+                        <li class="kb-has-submenu">
+                            <a href="#item-6" class="kb-submenu-title">Building the Map for Your Own Operation</a>
+                            <ul class="kb-sub-list">
+                                <li>
+                                    <a href="#item-6-1">What the Reconstruction Requires</a>
+                                </li>
+                                <li>
+                                    <a href="#item-6-2">What Usually Emerges</a>
+                                </li>
+                                <li>
+                                    <a href="#item-6-3">Where This Leaves the Operator</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#item-7" class="kb-submenu-title">To Wrap-up</a>
+                        </li>
+                        <li>
+                            <a href="#item-8" class="kb-submenu-title">Frequently Asked Questions</a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="kb-main-content">
+                    <!-- Hero Featured Image -->
+                    <div class="kb-main-image-wrapper">
+                        <img
+                            src="images/image5.png"
+                            alt="From Checkout to Refund: Mapping the D2C Profit Journey"
+                            loading="eager"
+                        />
+                    </div>
+
+                    <!-- Article Metadata -->
+                    <div class="kb-article-meta">
+                        <div class="kb-meta-author">
+                            <a href="https://www.bepragma.ai"><strong>Eshan Das</strong> · Co-Founder & Lead Data Engineer, Pragma</a>
+                        </div>
+                        <div class="kb-meta-info">19 October 2026 | 9 min read</div>
+                    </div>
+
+                    <!-- AI Summary Box -->
+                    <div class="kb-summary-box">
+                        <div class="kb-summary-text"><span>Summarise</span> this article with</div>
+                        <div class="kb-ai-buttons">
+                            <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="chatgpt" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"
+                                    alt="ChatGPT"
+                                />
+                                ChatGPT
+                            </a>
+                            <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="perplexity" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"
+                                    alt="Perplexity"
+                                />
+                                Perplexity
+                            </a>
+                            <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="gemini" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"
+                                    alt="Google AI"
+                                />
+                                Google AI
+                            </a>
+                            <a href="#" class="kb-ai-btn js-ai-summarise" data-ai="grok" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"
+                                    alt="Grok"
+                                />
+                                Grok
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Table of Contents (Accordion) -->
+                    <div class="kb-mobile-toc">
+                        <button class="kb-mobile-toc-header js-kb-toc-toggle" type="button" aria-expanded="false">
+                            <span>Table of Contents</span>
+                            <i class="icon-chevron-down"></i>
+                        </button>
+                        <div class="kb-mobile-toc-content">
+                            <ul class="kb-contents-list">
+                                <li class="kb-active-item">
+                                    <a href="#item-1" class="active">Why the Order Is the Wrong Unit and the Journey Is the Right One</a>
+                                </li>
+                                <li>
+                                    <a href="#item-2">Where Profit Actually Leaks in the Delivery Lifecycle</a>
+                                </li>
+                                <li>
+                                    <a href="#item-3">Reading the Journey Backwards: What Refunds Reveal About Checkout</a>
+                                </li>
+                                <li>
+                                    <a href="#item-4">Mapping the Handoffs: Where Each Product Enters the Journey</a>
+                                </li>
+                                <li>
+                                    <a href="#item-5">What the Ecosystem Data Indicates—and Where It Stops</a>
+                                </li>
+                                <li>
+                                    <a href="#item-6">Building the Map for Your Own Operation</a>
+                                </li>
+                                <li>
+                                    <a href="#item-7">To Wrap-up</a>
+                                </li>
+                                <li>
+                                    <a href="#item-8">Frequently Asked Questions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- TLDR Box -->
+                    <div class="kb-tldr-box">
+                        <div class="kb-tldr-header">
+                            <div class="kb-tldr-icon">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6f9478d1fc3ca3853_ai.png"
+                                    alt="Sparkle"
+                                />
+                            </div>
+                            <span class="kb-tldr-title">TL;DR</span>
+                        </div>
+                        <p class="kb-tldr-summary">
+                            D2C profitability depends on optimising the entire post-order journey, not individual stages. Connecting checkout, logistics, returns, and support data helps brands identify and eliminate hidden margin leaks.
+                        </p>
+                        <div class="kb-takeaways-block">
+                            <h4 class="kb-takeaways-title">Key Takeaways:</h4>
+                            <ul class="kb-takeaways-list">
+                                <li>Profitability comes from end-to-end optimisation rather than stage-by-stage local targets.</li>
+                                <li>Hidden post-order costs often exceed visible RTO fees alone.</li>
+                                <li>Returns and refund reason codes reveal upstream operational, catalog, and checkout issues.</li>
+                                <li>Prepaid conversion and address accuracy are among the highest-impact profit levers in Indian D2C.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Article Body Content -->
+                    <div class="kb-article-body">
+                        <h1>From Checkout to Refund: Mapping the D2C Profit Journey</h1>
+                        <p>
+                            A footwear brand in Bengaluru reconstructed one order last quarter. Value ₹2,400. Prepaid. Delivered on time. No complaints logged.
+                        </p>
+                        <p>
+                            The customer exchanged it once for a half-size up. The reverse pickup failed twice. The replacement shipped from a warehouse 900km away because the source warehouse was out of that size. Support touched the ticket four times. By the time the order closed, contribution margin was <strong>negative ₹180</strong>.
+                        </p>
+                        <p>
+                            Nobody saw it. The checkout dashboard recorded a conversion. The logistics dashboard recorded a delivery. The returns tool recorded an exchange. Three systems, three green lights, one loss.
+                        </p>
+                        <p>
+                            That is what a <strong>checkout to refund journey</strong> looks like when you stop measuring it in stages and start measuring it as one financial event. Profit mapping across the post-order funnel is not a reporting exercise. It is the only way to know which orders you should be running more of, and which ones you are quietly subsidising.
+                        </p>
+
+                        <!-- Section 1 -->
+                        <h2 id="item-1">Why the Order Is the Wrong Unit and the Journey Is the Right One</h2>
+                        <p>
+                            Most Indian D2C brands measure profitability at SKU or campaign level. Both are reasonable. Neither explains why two identical orders for the same SKU, from the same ad set, end up with wildly different economics.
+                        </p>
+                        <p>
+                            The divergence happens after checkout—in payment method, pincode, courier assignment, delivery attempt count, and whether the customer initiates a return, an exchange, or nothing at all. The order is where money enters. The journey is where it leaves.
+                        </p>
+
+                        <h3>The 5 Decisions That Determine an Order’s Economics</h3>
+                        <p>
+                            Each decision is measured somewhere in your stack. Almost none is measured against the others. A profit map connects all five so an early choice remains visible later.
+                        </p>
+
+                        <h4><strong>Payment Mode and Courier Assignment</strong></h4>
+                        <p>
+                            Payment mode sets the first risk profile, while courier assignment determines how that risk is handled in fulfilment. Treating them as separate decisions hides their combined effect.
+                        </p>
+                        <ul>
+                            <li><strong>COD Risk Begins at Checkout:</strong> COD carries an RTO probability several times higher than prepaid. That probability is a cost, whether or not it appears on an invoice.</li>
+                            <li><strong>Courier Choice Shapes the Outcome:</strong> The cheapest partner for a Tier 3 pincode is frequently the one with the worst first-attempt success rate on that lane.</li>
+                        </ul>
+
+                        <h4><strong>Warehouse, Delivery, and Return Decisions</strong></h4>
+                        <p>
+                            Warehouse selection determines whether a split shipment or distant source adds forward cost. Delivery outcome determines whether the order succeeds in one attempt or three. Return type determines whether revenue disappears through a refund or survives through an exchange that brings additional logistics cost. The right outcome depends on the SKU, lane, and margin—not on a universal rule.
+                        </p>
+
+                        <!-- Section 2 -->
+                        <h2 id="item-2">Where Profit Actually Leaks in the Delivery Lifecycle</h2>
+                        <p>
+                            There is a comfortable assumption in Indian D2C that RTO is the primary post-order cost. It is not. RTO is the most visible post-order cost, which is a different thing.
+                        </p>
+                        <p>
+                            An RTO is a discrete, unmissable event with a number attached. Brands optimise against it while ignoring costs distributed across too many line items to trigger an alarm.
+                        </p>
+
+                        <!-- Diagram 1 -->
+                        <div class="diag-container">
+                            <div class="kb-main-image-wrapper">
+                                <img
+                                    src="images/image6.png"
+                                    alt="Visible and hidden costs across the order lifecycle"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p class="diag-title">Visible and hidden costs across the order lifecycle</p>
+                        </div>
+
+                        <p>
+                            In apparel and footwear, the hidden column frequently exceeds the visible one. Most brands have a return-attribution problem: they know the aggregate spend but not which orders, lanes, or SKUs generated it.
+                        </p>
+                        <p>
+                            A failed first delivery attempt in India rarely costs one reattempt fee. Its financial effect compounds across logistics, customer support, time, and downstream customer behaviour.
+                        </p>
+
+                        <h3 id="item-2-1">The Compounding Cost of Delivery Friction</h3>
+                        <p>
+                            The true cost includes the reattempt fee, a support interaction, the chance that the second attempt fails, and the elevated chance that a customer who waited four extra days returns the order on arrival. That last item rarely enters a spreadsheet. Treating NDR and returns as separate cost centres understates both.
+                        </p>
+
+                        <h3 id="item-2-2">Why Courier NDR Codes Make the Loss Invisible</h3>
+                        <p>
+                            When one partner logs “customer unavailable” and another logs “premises closed” for the same underlying failure, you cannot correlate delivery friction with downstream return rates. The data exists, but it is not comparable.
+                        </p>
+                        <p>
+                            Pragma’s <a href="https://www.bepragma.ai/product/rto" target="_blank" rel="noopener noreferrer" class="kb-body-link">RTO Suite</a> normalises NDR reasons across couriers for precisely this reason. Normalisation is not cosmetic; it is the precondition for connecting two stages that currently cannot see each other.
+                        </p>
+
+                        <!-- Diagram 2 -->
+                        <div class="diag-container">
+                            <div class="kb-main-image-wrapper">
+                                <img
+                                    src="images/image3.png"
+                                    alt="Hidden costs across the D2C order journey"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p class="diag-title">Hidden costs across the D2C order journey</p>
+                        </div>
+
+                        <!-- Section 3 -->
+                        <h2 id="item-3">Reading the Journey Backwards: What Refunds Reveal About Checkout</h2>
+                        <p>
+                            Most operators map the funnel forwards: acquisition, checkout, dispatch, delivery, return. It is the natural order of events, but analytically it is backwards.
+                        </p>
+                        <p>
+                            Refunds carry the highest information density in the post-order funnel. A refund is the system telling you, with money attached, that something upstream was wrong. Reading that signal backwards turns an outcome into a diagnosis.
+                        </p>
+
+                        <h3 id="item-3-1">Reason Codes as Upstream Diagnostics</h3>
+                        <p>
+                            Work backwards from the return tag. Each reason points toward a different intervention, owner, and stage of the journey.
+                        </p>
+                        <p><strong>What the Common Tags Actually Indicate:</strong></p>
+                        <ul>
+                            <li><strong>Size or fit:</strong> points to a product-page problem, not a returns problem.</li>
+                            <li><strong>Damaged in transit:</strong> points to a courier or packaging problem, probably on a specific lane.</li>
+                            <li><strong>Item not as described:</strong> points to catalogue accuracy.</li>
+                            <li><strong>Changed mind after a late arrival:</strong> points to a delivery promise set wrongly at checkout.</li>
+                            <li><strong>A COD order refused at the door:</strong> was never a refund at all; it was a checkout that should not have completed.</li>
+                        </ul>
+                        <p>
+                            That final distinction matters. A meaningful portion of what Indian D2C brands log as returns comes from orders that never carried genuine purchase intent. Treating them as post-purchase experience failures sends teams to optimise the wrong stage.
+                        </p>
+
+                        <h3 id="item-3-2">Why One Reason Code Is Not Enough</h3>
+                        <p>
+                            A single tag names the symptom without revealing whether its cause belongs to the customer, product, courier, or policy. Diagnosis needs comparable dimensions.
+                        </p>
+                        <p>
+                            Pragma’s <a href="https://www.bepragma.ai/product/rms" target="_blank" rel="noopener noreferrer" class="kb-body-link">Return Management System (RMS)</a> applies multi-layer tagging: customer reason, product issue, and courier issue are captured as independent fields rather than collapsed into one.
+                        </p>
+                        <p>
+                            A return tagged “damaged” that clusters against one courier in one pincode band is a logistics negotiation. The same tag distributed evenly across couriers is a packaging specification. One field cannot distinguish them; three can.
+                        </p>
+                        <p>
+                            <strong>Policy Clarity Improves the Signal:</strong> The transparency of your returns and refunds policy determines whether these signals arrive clean or noisy. Vague policies produce vague reason codes, while a clear <a href="https://www.bepragma.ai/blogs/workflow-for-return-management-process" target="_blank" rel="noopener noreferrer" class="kb-body-link">return-management workflow</a> makes outcomes easier to classify and act on.
+                        </p>
+
+                        <!-- Section 4 -->
+                        <h2 id="item-4">Mapping the Handoffs: Where Each Product Enters the Journey</h2>
+                        <p>
+                            Profit mapping is a decision architecture in which information from one stage changes behaviour at another. Products matter where a signal becomes an operational decision.
+                        </p>
+
+                        <h3 id="item-4-1">1Checkout to ShipAxis: The Risk Score Should Not Stop at COD</h3>
+                        <p>
+                            A risk score generated at checkout typically does one job: it decides whether COD is available. That score is also one of the most useful inputs for courier assignment, yet it rarely travels there.
+                        </p>
+                        <p>
+                            A high-risk COD order to a failure-prone pincode should not go to whichever partner is cheapest. It should go to the partner with the highest first-attempt success rate for that risk profile. <a href="https://www.bepragma.ai/blogs/delivery-intelligence-software-platform" target="_blank" rel="noopener noreferrer" class="kb-body-link">ShipAxis delivery intelligence</a> applies courier-allocation logic and fulfilment routing across logistics partners, enabling decisions below the level of overall averages.
+                        </p>
+                        <p>
+                            <strong>Compare the Incremental Cost with the Avoided Loss:</strong> Paying ₹18 more to avoid a ₹190 RTO becomes obvious when both numbers appear in the same system.
+                        </p>
+
+                        <!-- Highlight Callout Box -->
+                        <div class="kb-highlight-box">
+                            <h2 class="kb-highlight-title">How Pragma’s Checkout Intelligence Protects Revenue Across the Order Journey</h2>
+                            <p class="kb-highlight-text">
+                                Pragma 1Checkout helps prevent margin leakage before fulfilment begins. Its checkout intelligence uses device and behavioural signals from <strong>2,600+ brands</strong> to identify risky profiles and dynamically control COD availability.
+                                <br><br>
+                                It instantly autofills addresses for 8 in 10 shoppers, corrects invalid details, validates PIN codes, and promotes prepaid payments—reducing address errors, low-intent COD orders, and payment failures that can become NDRs or RTOs. Pragma also reports 15%+ more conversions and <strong>30% fewer checkout abandonments</strong>.
+                            </p>
+                            <div class="kb-highlight-footer">
+                                <button class="btn-light-blue" type="button">15%+ More Conversions</button>
+                                <a href="https://www.1checkout.ai/" target="_blank" rel="noopener noreferrer" class="btn-outline-blue">
+                                    Explore 1Checkout
+                                    <i class="icon-arrow-right">
+                                        <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f602f8fd28a83f381ab12f_arrow-right.png" alt="" />
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <h3 id="item-4-2">RMS to ShipAxis: Return Tags Belong in the Allocation Engine</h3>
+                        <p>
+                            Return-reason data has little value sitting inside the returns tool. It has enormous value inside courier scoring.
+                        </p>
+                        <p>
+                            A lane producing systematic damage returns should be suppressed for fragile SKUs. This works only if RMS return tags flow into ShipAxis courier scoring instead of a separate reporting layer that the logistics team reads monthly.
+                        </p>
+
+                        <h3 id="item-4-3">RMS to RTO Suite to 1Checkout: Abuse Belongs at Checkout</h3>
+                        <p>
+                            Abuse patterns detected in the return flow are detected too late. Restricting a serial returner at the point of return means you have already paid for forward shipping, delivery, and reverse pickup. Restricting COD for that profile at checkout means you paid nothing.
+                        </p>
+                        <p>
+                            RMS Abuse Prevention draws cross-brand risk signals from 1,700+ Indian D2C brands. RTO Suite consumes those signals to adjust COD exposure. <a href="https://www.1checkout.ai/" target="_blank" rel="noopener noreferrer" class="kb-body-link">1Checkout</a> enforces the restriction before the order exists. The detection is useful because it moves three stages upstream.
+                        </p>
+
+                        <h3 id="item-4-4">Omnichannel CRM to Everything: Support Is a Leading Indicator</h3>
+                        <p>
+                            Support tickets are the highest-fidelity signal in the post-order funnel and among the least connected. A cluster of “where is my order” tickets against a courier-and-pincode combination is an SLA breach forming in real time, often three days before it appears in a logistics report.
+                        </p>
+                        <p>
+                            An <a href="https://www.bepragma.ai/landing/crm" target="_blank" rel="noopener noreferrer" class="kb-body-link">Omnichannel CRM</a> can unify conversations, order context, and logistics data so that this pattern is visible before a human notices it. That makes support an operational warning system rather than a record of problems already experienced.
+                        </p>
+                        <p>
+                            <strong>The Verification Step Most Integration Stories Omit:</strong> Tightening COD exposure reduces RTO. It also reduces orders. Whether the net effect is positive depends on the margin structure of the SKU and lane. Sometimes it is not. Checkout analytics must confirm whether the tightened rule cost more in conversion than it saved in prevented RTOs. Any system that suggests risk suppression is free is not measuring the right things.
+                        </p>
+
+                        <!-- Diagram 3 -->
+                        <div class="diag-container">
+                            <div class="kb-main-image-wrapper">
+                                <img
+                                    src="images/image2.png"
+                                    alt="Post-order signals guiding upstream decisions"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p class="diag-title">Post-order signals guiding upstream decisions</p>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <h2 id="item-5">What the Ecosystem Data Indicates—and Where It Stops</h2>
+                        <p>
+                            Pragma’s ecosystem covers 1,500+ Indian D2C brands and 75+ logistics partners. Several patterns hold consistently enough to plan around, but benchmarks are starting points rather than operating rules.
+                        </p>
+
+                        <h3>The Highest-Leverage Patterns</h3>
+                        <p>
+                            The strongest interventions act on more than one cost at once. They change not only a stage-level metric but the economics of the complete journey.
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Prepaid Conversion and Checkout Accuracy:</strong> Prepaid conversion is the highest-leverage single intervention in the journey. Brands running COD-to-prepaid nudges convert 25% to 35% of COD orders into prepaid. Each conversion removes RTO exposure, reattempt probability, and cash-cycle delay simultaneously. WhatsApp recovery flows contribute a further 10% to 20% prepaid-mix improvement. Checkout speed also compounds into fulfilment quality: auto-filled addresses for 8 out of 10 shoppers look like a conversion feature, but operationally, address accuracy is where many NDRs begin.
+                            </li>
+                            <li>
+                                <strong>Cost Recovery and Targeted Exchanges:</strong> Shipping-cost recovery averages 18% to 25%. A meaningful share comes not from renegotiating rates but from weight-discrepancy audits and invoice reconciliation—recovering money already being overcharged. Exchange beats refund only when targeted. An exchange preserves revenue that a refund permanently loses, but it also costs more in logistics. The trade is favourable when exchange-first nudges are behaviourally targeted and unfavourable when applied universally.
+                            </li>
+                        </ul>
+                        <p>
+                            <strong>Where The Benchmarks Stop:</strong> None of these ranges is a rule. Apparel does not behave like electronics, and Tier 3 does not behave like a metro. Your category will sit somewhere inside these ranges, or occasionally outside them. Benchmarks can tell you what to investigate; they cannot identify which of your orders are profitable.
+                        </p>
+
+                        <!-- Section 6 -->
+                        <h2 id="item-6">Building the Map for Your Own Operation</h2>
+                        <p>
+                            Start narrow. Take your top five SKUs by volume and reconstruct the complete financial journey of every order across one month. Do not model it from averages. Reconstruct it from actual line items.
+                        </p>
+
+                        <h3 id="item-6-1">What the Reconstruction Requires</h3>
+                        <p>
+                            The goal is a per-order contribution view following one identifier from checkout through final inventory and refund outcome. Most brands need days to assemble it because four systems do not share primary keys.
+                        </p>
+                        <ul>
+                            <li><strong>Fulfilment and Delivery Inputs:</strong> Capture forward shipping cost per order, not per shipment, along with reattempt count and cost. Include the effect of split shipments and distant warehouse allocation.</li>
+                            <li><strong>Return, Inventory, and Service Inputs:</strong> Capture reverse-pickup cost, including failed pickups; support interactions priced at loaded agent cost; refund transaction fees; and the restocking outcome, including whether the item returned to saleable inventory or a markdown bin.</li>
+                        </ul>
+                        <p>
+                            That difficulty is itself the finding. If you cannot reconstruct the journey for five SKUs over one month, you certainly cannot see it happening in real time across the full catalogue.
+                        </p>
+
+                        <h3 id="item-6-2">What Usually Emerges</h3>
+                        <p>
+                            A subset of orders—typically COD, to specific pincode clusters, and in return-prone categories—will be running at negative contribution. Those orders were counted as revenue, but they operated as a subsidy.
+                        </p>
+                        <p>
+                            The work of reducing returns and improving the post-purchase experience becomes far more targeted once you know precisely which orders you are trying to prevent.
+                        </p>
+
+                        <h3 id="item-6-3">Where This Leaves the Operator</h3>
+                        <p>
+                            The checkout-to-refund journey is not a funnel you optimise stage by stage. Independent optimisation produces a local maximum at each step and a global loss at the end.
+                        </p>
+                        <p>
+                            The checkout team hits conversion targets by enabling COD. The logistics team hits cost targets by selecting the cheapest courier. The returns team hits TAT targets by approving refunds quickly. Every team wins. The business loses ₹180 an order.
+                        </p>
+                        <p>
+                            Profit mapping means accepting that some conversions are not worth having, some couriers are worth paying more for, and some returns should never have been orders. These conclusions do not come from any single tool. They come from connecting the stages and acting on what the connection shows.
+                        </p>
+
+                        <!-- Section 7 -->
+                        <h2 id="item-7">To Wrap-up</h2>
+                        <p>
+                            The insight is not that post-order costs exist. Every operator knows they do. The insight is that these costs are caused by decisions made at stages where the cost is invisible, and reported at stages where the cause is invisible. That gap is where margin disappears, and no amount of stage-level optimisation will close it.
+                        </p>
+                        <p>
+                            <strong>This week, reconstruct the complete financial journey of every order for your top five SKUs over the last thirty days, and find the negative-margin tail.</strong>
+                        </p>
+                        <p>
+                            Longer term, the capability worth building is not better reporting. It is a system in which a risk score generated at checkout changes courier allocation at dispatch, a return tag changes lane suppression, and a support ticket cluster surfaces an SLA breach before the logistics report catches it. That requires shared identifiers across systems, which is an infrastructure decision rather than an analytics one. Brands that make it early stop guessing which orders are worth having, and start knowing.
+                        </p>
+                        <p>
+                            <em>For D2C brands seeking end-to-end post-order profit visibility, <a href="https://www.bepragma.ai/blogs/returns-management-" target="_blank" rel="noopener noreferrer" class="kb-body-link">Pragma's RMS and ShipAxis platforms</a> provide multi-layer return tagging, shipment-level cost attribution, and two-way OMS sync that help brands identify loss-making lanes and reduce shipping costs by 18 to 25%.</em>
+                        </p>
+
+                        <!-- Promotional GIF Banner -->
+                        <div class="gif">
+                            <a href="https://www.bepragma.ai/#wf-form-bepragma_form" target="_blank" rel="noopener noreferrer">
+                                <img
+                                    src="images/image4.gif"
+                                    alt="Pragma D2C Operating System for Ecommerce India"
+                                    loading="lazy"
+                                />
+                            </a>
+                        </div>
+
+                        <!-- Mobile Only Section: Related Case Studies -->
+                        <div class="mobile-only-section">
+                            <h3 class="kb-sidebar-similar-title">Related Case Studies</h3>
+                            <div class="kb-sidebar-sep"></div>
+                            <div class="kb-sidebar-article-list">
+                                <div class="kb-sidebar-article-item">
+                                    <a href="#" class="kb-sidebar-article-link">Personalisation in Post-Order Communication: What Actually Works</a>
+                                </div>
+                                <div class="kb-sidebar-sep"></div>
+                                <div class="kb-sidebar-article-item">
+                                    <a href="#" class="kb-sidebar-article-link">RTO Prediction Models: What Data Indian D2C Brands Should Actually Use</a>
+                                </div>
+                                <div class="kb-sidebar-sep"></div>
+                                <div class="kb-sidebar-article-item">
+                                    <a href="#" class="kb-sidebar-article-link">Automated Text Message Response: Setup & Examples</a>
+                                </div>
+                                <div class="kb-sidebar-sep"></div>
+                            </div>
+                        </div>
+
+                        <!-- Blog Author Section -->
+                        <div class="kb-author-box">
+                            <div class="kb-author-label">Blog<br />Author:</div>
+                            <div class="kb-author-image-wrapper">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a19944a09bbdf4db75b9c59_author.png"
+                                    alt="Eshan Das"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="kb-author-info">
+                                <div class="kb-author-header">
+                                    <a href="https://www.bepragma.ai" target="_blank" rel="noopener noreferrer" class="kb-author-name">
+                                        Eshan Das
+                                        <svg class="kb-author-link-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </a>
+                                    <span class="kb-author-role">Co-Founder & Lead Data Engineer, Pragma</span>
+                                </div>
+                                <p class="kb-author-bio">
+                                    Building data systems and intelligence architectures that help 1,700+ Indian D2C brands reduce RTO, pinpoint post-order margin leaks, and optimize full-funnel unit economics.
+                                </p>
+                                <span class="kb-author-note">(This article is based on insights from his data engineering work with Indian D2C brands)</span>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <div class="kb-faq-section" id="item-8">
+                            <div class="kb-faq-header">
+                                <h3 class="kb-faq-title">FAQs</h3>
+                                <p class="kb-faq-subtitle">
+                                    (Frequently Asked Questions On From Checkout to Refund: Mapping the D2C Profit Journey)
+                                </p>
+                            </div>
+                            <div class="kb-faq-body">
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">1. What is a checkout to refund journey and why does it matter more than tracking individual stages?</h4>
+                                    <div class="kb-faq-answer">
+                                        A checkout-to-refund journey tracks the complete financial lifecycle of an order. It reveals how decisions made at checkout, dispatch, and delivery create costs that stage-level dashboards often miss.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">2. How do I calculate the true contribution margin of an order rather than the gross margin?</h4>
+                                    <div class="kb-faq-answer">
+                                        Start with the order value after discounts and payment fees. Subtract actual forward and reverse logistics, reattempts, support interactions, refund fees, and any loss from markdown or unsaleable inventory.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">3. Is RTO really not the biggest post-order cost for most brands?</h4>
+                                    <div class="kb-faq-answer">
+                                        It depends on the category and payment mix. RTO often dominates in COD-heavy businesses, while reverse logistics, failed pickups, support, and inventory losses can cost more in prepaid, return-heavy categories.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">4. What does profit mapping require that standard analytics dashboards do not provide?</h4>
+                                    <div class="kb-faq-answer">
+                                        Profit mapping requires one shared identifier that connects checkout, courier assignment, delivery outcomes, returns, and refunds. Standard dashboards usually report only the stage managed by their own system.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">5. Why should return reason codes influence courier selection?</h4>
+                                    <div class="kb-faq-answer">
+                                        Return reasons can reveal lane-specific damage and delivery-quality problems that ordinary logistics metrics miss. Feeding these signals into courier scoring helps brands avoid unsuitable partners for particular pincodes or SKUs.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">6. Does restricting COD to reduce RTO always improve profitability?</h4>
+                                    <div class="kb-faq-answer">
+                                        No. Restricting COD can reduce both RTO and conversion, so the net result depends on SKU margin, customer risk, pincode performance, and payment preferences.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">7. How much of return volume is genuine post-purchase dissatisfaction versus checkout-stage failure?</h4>
+                                    <div class="kb-faq-answer">
+                                        The split varies by category and payment mix. COD refusals and orders without genuine purchase intent are checkout-stage failures, while product, fit, or quality issues represent post-purchase dissatisfaction.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">8. Can exchange-first nudges hurt profitability?</h4>
+                                    <div class="kb-faq-answer">
+                                        Yes. Exchanges preserve revenue but introduce reverse pickup, quality checks, inventory reservation, and replacement-shipping costs, so they should be targeted using order value, lane cost, and customer behaviour.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">9. What is the smallest useful version of profit mapping a brand can start with?</h4>
+                                    <div class="kb-faq-answer">
+                                        Reconstruct every order journey for the five highest-volume SKUs across one month. Include actual shipping, reattempt, reverse-pickup, support, refund, and inventory-outcome costs.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">10. How do delivery delays affect return rates, and is this measurable?</h4>
+                                    <div class="kb-faq-answer">
+                                        Delivery delays and failed attempts can increase the likelihood of a return after arrival. The effect is measurable when delivery-attempt and elapsed-time data are connected to return outcomes at order level.
+                                    </div>
+                                </div>
+                                <div class="kb-faq-item">
+                                    <h4 class="kb-faq-question">11. Which stage of the post-order funnel offers the highest leverage for margin improvement?</h4>
+                                    <div class="kb-faq-answer">
+                                        Prepaid conversion usually offers strong leverage because it reduces RTO exposure, reattempt risk, and cash-cycle delays together. In prepaid-heavy categories, however, return intelligence and targeted exchange logic may offer more value.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Schema (JSON-LD) for SEO -->
+                        <script type="application/ld+json">
+                        {
+                          "@context": "https://schema.org",
+                          "@type": "FAQPage",
+                          "mainEntity": [
+                            {
+                              "@type": "Question",
+                              "name": "1. What is a checkout to refund journey and why does it matter more than tracking individual stages?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "A checkout-to-refund journey tracks the complete financial lifecycle of an order. It reveals how decisions made at checkout, dispatch, and delivery create costs that stage-level dashboards often miss."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "2. How do I calculate the true contribution margin of an order rather than the gross margin?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Start with the order value after discounts and payment fees. Subtract actual forward and reverse logistics, reattempts, support interactions, refund fees, and any loss from markdown or unsaleable inventory."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "3. Is RTO really not the biggest post-order cost for most brands?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "It depends on the category and payment mix. RTO often dominates in COD-heavy businesses, while reverse logistics, failed pickups, support, and inventory losses can cost more in prepaid, return-heavy categories."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "4. What does profit mapping require that standard analytics dashboards do not provide?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Profit mapping requires one shared identifier that connects checkout, courier assignment, delivery outcomes, returns, and refunds. Standard dashboards usually report only the stage managed by their own system."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "5. Why should return reason codes influence courier selection?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Return reasons can reveal lane-specific damage and delivery-quality problems that ordinary logistics metrics miss. Feeding these signals into courier scoring helps brands avoid unsuitable partners for particular pincodes or SKUs."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "6. Does restricting COD to reduce RTO always improve profitability?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "No. Restricting COD can reduce both RTO and conversion, so the net result depends on SKU margin, customer risk, pincode performance, and payment preferences."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "7. How much of return volume is genuine post-purchase dissatisfaction versus checkout-stage failure?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "The split varies by category and payment mix. COD refusals and orders without genuine purchase intent are checkout-stage failures, while product, fit, or quality issues represent post-purchase dissatisfaction."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "8. Can exchange-first nudges hurt profitability?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes. Exchanges preserve revenue but introduce reverse pickup, quality checks, inventory reservation, and replacement-shipping costs, so they should be targeted using order value, lane cost, and customer behaviour."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "9. What is the smallest useful version of profit mapping a brand can start with?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Reconstruct every order journey for the five highest-volume SKUs across one month. Include actual shipping, reattempt, reverse-pickup, support, refund, and inventory-outcome costs."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "10. How do delivery delays affect return rates, and is this measurable?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Delivery delays and failed attempts can increase the likelihood of a return after arrival. The effect is measurable when delivery-attempt and elapsed-time data are connected to return outcomes at order level."
+                              }
+                            },
+                            {
+                              "@type": "Question",
+                              "name": "11. Which stage of the post-order funnel offers the highest leverage for margin improvement?",
+                              "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Prepaid conversion usually offers strong leverage because it reduces RTO exposure, reattempt risk, and cash-cycle delays together. In prepaid-heavy categories, however, return intelligence and targeted exchange logic may offer more value."
+                              }
+                            }
+                          ]
+                        }
+                        </script>
+
+                        <!-- Related Tags -->
+                        <h3>Related Tags</h3>
+                        <div class="kb-tags-container">
+                            <a href="#" class="kb-tag">D2C Profitability</a>
+                            <a href="#" class="kb-tag tag-green">1Checkout</a>
+                            <a href="#" class="kb-tag">RTO Reduction</a>
+                            <a href="#" class="kb-tag tag-green">ShipAxis</a>
+                            <a href="#" class="kb-tag">COD to Prepaid</a>
+                            <a href="#" class="kb-tag tag-green">RMS</a>
+                            <a href="#" class="kb-tag">NDR Management</a>
+                            <a href="#" class="kb-tag">Reverse Logistics</a>
+                            <a href="#" class="kb-tag tag-green">Unit Economics</a>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Right Sidebar -->
+                <aside class="kb-sidebar-right">
+                    <!-- Person Card CTA -->
+                    <a href="https://www.bepragma.ai/#wf-form-bepragma_form" class="kb-person-cta" target="_blank" rel="noopener noreferrer">
+                        <div class="kb-person-image-wrapper">
+                            <img
+                                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a856ac3796820f3bb2a27d1_youtube-cta.png"
+                                alt="Watch Pragma in Action"
+                            />
+                        </div>
+                        <div class="cta-button">See Pragma in Action</div>
+                    </a>
+
+                    <h3 class="kb-sidebar-similar-title">Similar Articles</h3>
+                    <div class="kb-sidebar-sep"></div>
+                    <div class="kb-sidebar-article-list">
+                        <div class="kb-sidebar-article-item">
+                            <a href="#" class="kb-sidebar-article-link">Personalisation in Post-Order Communication: What Actually Works</a>
+                        </div>
+                        <div class="kb-sidebar-sep"></div>
+                        <div class="kb-sidebar-article-item">
+                            <a href="#" class="kb-sidebar-article-link">RTO Prediction Models: What Data Indian D2C Brands Should Actually Use</a>
+                        </div>
+                        <div class="kb-sidebar-sep"></div>
+                        <div class="kb-sidebar-article-item">
+                            <a href="#" class="kb-sidebar-article-link">Automated Text Message Response: Setup & Examples</a>
+                        </div>
+                        <div class="kb-sidebar-sep"></div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="kb-tags-container">
+                        <a href="#" class="kb-tag">COD to Prepaid</a>
+                        <a href="#" class="kb-tag tag-green">WhatsApp</a>
+                        <a href="#" class="kb-tag">RTO Prevention</a>
+                        <a href="#" class="kb-tag tag-green">E-commerce Margin</a>
+                    </div>
+
+                    <!-- Social Follow -->
+                    <div class="follow-sec">
+                        <span class="follow-text">Follow us on</span>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/company/bepragmadotai/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f3436b8b7a9756657e2dc4_linkedin.png"
+                                    alt="LinkedIn"
+                                />
+                            </a>
+                            <a href="https://www.instagram.com/bepragma.ai?igsh=MXRwMnk0bXQ0Nm1hdA==" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <img
+                                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f3436b188f68d75c499a17_insta.png"
+                                    alt="Instagram"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <!-- Content-end -->
+
+        <hr class="kb-separator" />
+
+        <!-- =============================================
+         25% Scroll Subscriber Popup
+         ============================================= -->
+        <div class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation" aria-hidden="true"></div>
+        <div class="scroll-popup-modal js-scroll-popup-modal" role="dialog" aria-modal="true" aria-labelledby="scroll-popup-heading">
+            <div class="scroll-popup-hero">
+                <img
+                    src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a19944ac9a204dd3a3226f0_25%25scroll.png"
+                    alt="Subscribe to continue reading"
+                    loading="lazy"
+                />
+                <button class="scroll-popup-close js-scroll-popup-close" aria-label="Close subscriber popup" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="scroll-popup-body">
+                <p class="scroll-popup-title" id="scroll-popup-heading">
+                    This section is reserved for subscribers.<br />
+                    Join with your email to continue reading.
+                </p>
+                <form class="js-scroll-popup-form" novalidate>
+                    <div class="scroll-popup-input-wrap">
+                        <input
+                            id="scroll-popup-email"
+                            class="scroll-popup-input"
+                            type="email"
+                            placeholder="Email address"
+                            autocomplete="email"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="scroll-popup-btn">Become a Subscriber</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =============================================
+         50% Scroll — Get a Demo Popup
+         ============================================= -->
+        <div class="demo-popup-modal js-demo-popup-modal" role="dialog" aria-modal="true" aria-labelledby="demo-popup-heading">
+            <div class="demo-popup-inner">
+                <div class="demo-popup-hero">
+                    <button class="demo-popup-close js-demo-popup-close" aria-label="Close demo popup" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <h2 class="demo-popup-hero-title" id="demo-popup-heading">See Pragma in Action</h2>
+                </div>
+                <div class="demo-popup-body">
+                    <form class="js-demo-popup-form" novalidate style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+                        <input id="demo-popup-phone" class="demo-popup-input" type="tel" placeholder="Phone Number" autocomplete="tel" required />
+                        <input
+                            id="demo-popup-email"
+                            class="demo-popup-input"
+                            type="email"
+                            placeholder="Email address"
+                            autocomplete="email"
+                            required
+                        />
+                        <input
+                            id="demo-popup-website"
+                            class="demo-popup-input"
+                            type="url"
+                            placeholder="Business Website Link"
+                            autocomplete="url"
+                            required
+                        />
+                        <button type="submit" class="demo-popup-btn">Get a demo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Mobile Summary Sidebar -->
+        <div class="mobile-float-summary js-mobile-float-summary">
+            <div class="float-summary-trigger js-toggle-float-summary">
+                <span class="vertical-text">Summarise this article with</span>
+            </div>
+            <div class="float-summary-expanded">
+                <button class="float-summary-close js-toggle-float-summary" type="button" aria-label="Close summary">
+                    <img src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f65b4da835b1306246_x-circle.png" alt="Close" />
+                </button>
+                <div class="float-summary-content">
+                    <div class="float-summary-label">
+                        <span class="vertical-text">Summarise this article with</span>
+                    </div>
+                    <div class="float-summary-options">
+                        <a href="#" class="float-ai-btn js-ai-summarise" data-ai="chatgpt" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6c7abdcabc4b8c594_ChatGPT-Logo%201.png"
+                                alt="ChatGPT"
+                            />
+                            <span>ChatGPT</span>
+                        </a>
+                        <a href="#" class="float-ai-btn js-ai-summarise" data-ai="perplexity" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f666330c2eadfffc9e_Perplexity_AI_Turquoise_on_White%201.png"
+                                alt="Perplexity"
+                            />
+                            <span>Perplexity</span>
+                        </a>
+                        <a href="#" class="float-ai-btn js-ai-summarise" data-ai="gemini" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f6aec28e36a1697cd9_google-gemini-icon.png"
+                                alt="Google AI"
+                            />
+                            <span>Google AI</span>
+                        </a>
+                        <a href="#" class="float-ai-btn js-ai-summarise" data-ai="grok" target="_blank" rel="noopener noreferrer">
+                            <img
+                                src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/69f600f68e5bb330abc6459b_grok-icon.png"
+                                alt="Grok"
+                            />
+                            <span>Grok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Script -->
+        <script src="single-blog-article.js"></script>
+    </body>
+</html>
