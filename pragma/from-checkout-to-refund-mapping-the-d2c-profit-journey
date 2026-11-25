@@ -2849,9 +2849,9 @@ document.addEventListener('DOMContentLoaded', function(){
   .kb-mobile-toc-header.active + .kb-mobile-toc-content { max-height: 65vh !important; overflow-y: auto !important; }
 }
 </style>
-<div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation"></div><div aria-hidden="true" aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" role="dialog">
+<div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation"></div><div aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" role="dialog" aria-hidden="true">
 <!-- Illustration Hero -->
-<div class="scroll-popup-hero"><button aria-label="Close subscriber popup" class="scroll-popup-close js-scroll-popup-close" type="button">×</button>
+<div class="scroll-popup-hero">
 <img alt="Subscribe to continue reading" loading="lazy" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a19944ac9a204dd3a3226f0_25%25scroll.png"/>
 </div>
 <!-- Body -->
@@ -2862,12 +2862,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 </p>
 <form class="js-scroll-popup-form" data-endpoint="" method="post">
 <div class="scroll-popup-input-wrap">
-<input aria-label="Email address" autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" name="email" placeholder="Email address" required="" type="email"/>
+<input autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" name="email" aria-label="Email address" placeholder="Email address" required="" type="email"/>
 </div>
 <button class="scroll-popup-btn" type="submit">Become a Subscriber</button>
 </form>
 </div>
-</div><div aria-hidden="true" aria-labelledby="demo-popup-heading" aria-modal="true" class="demo-popup-modal js-demo-popup-modal" role="dialog">
+</div>
+<div aria-hidden="true" aria-labelledby="demo-popup-heading" aria-modal="true" class="demo-popup-modal js-demo-popup-modal" role="dialog">
 <!-- Inner clip wrapper -->
 <div class="demo-popup-inner">
 <!-- Hero -->
@@ -2936,10 +2937,10 @@ let active=null,seenSub=false,seenDemo=false,previous=null;
 function status(el,message){el.querySelector('.kb-popup-status').textContent=message;}
 function close(){if(!active)return;active.classList.remove('is-active');active.setAttribute('aria-hidden','true');overlay.classList.remove('is-active');active=null;if(previous&&previous.isConnected)previous.focus({preventScroll:true});requestAnimationFrame(check);}
 function open(el){if(active)return;previous=document.activeElement;active=el;el.classList.add('is-active');el.setAttribute('aria-hidden','false');overlay.classList.add('is-active');el.focus({preventScroll:true});}
-function check(){if(active)return;const r=article.getBoundingClientRect(),total=r.height-window.innerHeight;if(total<=0)return;const progress=-r.top/total;if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
-function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub&&f.dataset.endpoint){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
-[sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close').addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please close this window to continue.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});window.addEventListener('resize',check);check();
+function check(){if(active)return;const r=article.getBoundingClientRect(),total=r.height-window.innerHeight;if(total<=0)return;const doc=document.scrollingElement;const docTotal=doc.scrollHeight-window.innerHeight;const progress=Math.max(-r.top/total,docTotal>0?doc.scrollTop/docTotal:0);if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
+function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
+[sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close')?.addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please try again later.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});document.addEventListener('scroll',check,{passive:true,capture:true});window.addEventListener('resize',check);check();
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>
 <style id="kb-mobile-popup-fix">
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {
@@ -2993,5 +2994,16 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDe
                     font-size: 12px !important;
                 }.kb-highlight-box p {
                     font-size: 10px !important;
-                }}</style></body>
+                }}</style>
+<style>
+/* Subscriber only: preserve master visual design and keep all fields accessible. */
+.scroll-popup-modal.js-scroll-popup-modal{width:420px!important;max-width:calc(100vw - 32px)!important;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto!important;box-sizing:border-box;z-index:2147483001!important}
+.scroll-popup-overlay.is-active{z-index:2147483000!important}
+.scroll-popup-modal.is-active{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+.scroll-popup-modal .js-scroll-popup-form{display:block!important;width:100%;height:auto!important;visibility:visible!important;opacity:1!important}
+.scroll-popup-modal .scroll-popup-input-wrap{display:block!important;height:auto!important}
+.scroll-popup-modal .scroll-popup-input,.scroll-popup-modal .scroll-popup-btn{display:block!important;width:100%;box-sizing:border-box;visibility:visible!important;opacity:1!important}
+.scroll-popup-modal .scroll-popup-hero img{width:100%;height:auto;object-fit:contain;display:block}
+@media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal{max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;max-height:calc(var(--kb-vv-h,100dvh) - 32px)!important}.scroll-popup-modal .scroll-popup-input{font-size:16px!important;min-height:44px}.scroll-popup-modal .scroll-popup-btn{min-height:44px}.scroll-popup-modal .scroll-popup-hero img{max-height: min(180px, 28dvh)!important}}
+</style></body>
 </html>
