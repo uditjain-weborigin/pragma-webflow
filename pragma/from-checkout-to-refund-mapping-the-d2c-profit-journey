@@ -9,13 +9,7 @@
 <meta content="index, follow" name="robots"/>
 <link href="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/css/pragma-0.webflow.shared.7a8316285.min.css" rel="stylesheet"/>
 <link href="https://www.bepragma.ai/blogs/from-checkout-to-refund-mapping-d2c-profit-journey" rel="canonical"/>
-<style> .preview-missing-image{padding:24px;background:#f3f6fa;border:1px dashed #b8c5d6;color:#46566b;text-align:center;border-radius:8px;font-size:14px;overflow-wrap:anywhere} .kb-main-content{min-width:0} .kb-author-info{min-width:0;flex:1;width:auto;height:auto;gap:8px} .kb-article-body img{max-width:100%;height:auto} .kb-article-body table{display:block;overflow-x:auto;max-width:100%} @media(max-width:1024px){.kb-article-layout{grid-template-columns:minmax(0,1fr)} .kb-sidebar-left,.kb-sidebar-right{display:none!important}} </style><style id="mobile-toc-fix">
-@media (max-width:1024px){
-.kb-mobile-toc.is-sticky{top:12px!important;z-index:1100!important;}
-.kb-mobile-toc.is-sticky .kb-mobile-toc-content{overscroll-behavior:contain;}
-.kb-article-body [id]{scroll-margin-top:90px;}
-}
-</style>
+
 </head>
 <body>
 <style>
@@ -1621,10 +1615,12 @@
                     opacity 0.35s ease,
                     visibility 0.35s ease;
             }
+
             .scroll-popup-overlay.is-active {
                 opacity: 1;
                 visibility: visible;
             }
+
             /* Modal card */
             .scroll-popup-modal {
                 position: fixed;
@@ -1645,11 +1641,13 @@
                     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
                     visibility 0.35s ease;
             }
+
             .scroll-popup-modal.is-active {
                 opacity: 1;
                 visibility: visible;
                 transform: translate(-50%, -50%) scale(1);
             }
+
             /* Illustration header */
             .scroll-popup-hero {
                 position: relative;
@@ -1658,12 +1656,14 @@
                 overflow: hidden;
                 line-height: 0;
             }
+
             .scroll-popup-hero img {
                 width: 100%;
                 height: auto;
                 display: block;
                 object-fit: cover;
             }
+
             /* Close button */
             .scroll-popup-close {
                 position: absolute;
@@ -1684,21 +1684,25 @@
                     box-shadow 0.2s ease;
                 z-index: 2;
             }
+
             .scroll-popup-close:hover {
                 transform: scale(1.1);
                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             }
+
             .scroll-popup-close svg {
                 width: 14px;
                 height: 14px;
                 stroke: #374151;
                 stroke-width: 2.5;
             }
+
             /* Body */
             .scroll-popup-body {
                 padding: 24px 24px 28px;
                 text-align: center;
             }
+
             .scroll-popup-title {
                 font-size: 17px;
                 font-weight: 700;
@@ -1706,11 +1710,13 @@
                 line-height: 1.45;
                 margin-bottom: 20px;
             }
+
             /* Email input */
             .scroll-popup-input-wrap {
                 position: relative;
                 margin-bottom: 12px;
             }
+
             .scroll-popup-input {
                 width: 100%;
                 padding: 13px 16px;
@@ -1726,14 +1732,17 @@
                 box-sizing: border-box;
                 font-family: inherit;
             }
+
             .scroll-popup-input::placeholder {
                 color: #9ca3af;
             }
+
             .scroll-popup-input:focus {
                 border-color: #2871f0;
                 box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
                 background: #fff;
             }
+
             /* CTA button */
             .scroll-popup-btn {
                 display: block;
@@ -1752,30 +1761,37 @@
                 font-family: inherit;
                 letter-spacing: 0.01em;
             }
+
             .scroll-popup-btn:hover {
                 background: #1a5fd4;
                 transform: translateY(-1px);
             }
+
             .scroll-popup-btn:active {
                 transform: translateY(0);
             }
+
             /* Mobile adjustments */
             @media only screen and (max-width: 480px) {
                 .scroll-popup-modal {
                     max-width: calc(100% - 32px);
                     border-radius: 12px;
                 }
+
                 .scroll-popup-body {
                     padding: 20px 20px 24px;
                 }
+
                 .scroll-popup-title {
                     font-size: 15px;
                 }
             }
+
             /* =========================================
    50% Scroll — Get a Demo Popup
    ========================================= */
             /* Uses the same .scroll-popup-overlay backdrop */
+
             /* Modal card */
             .demo-popup-modal {
                 position: fixed;
@@ -1798,11 +1814,13 @@
                     visibility 0.35s ease;
                 box-sizing: border-box;
             }
+
             .demo-popup-modal.is-active {
                 opacity: 1;
                 visibility: visible;
                 transform: translate(-50%, -50%) scale(1);
             }
+
             /* Inner clipping wrapper */
             .demo-popup-inner {
                 border-radius: 20px;
@@ -1811,6 +1829,7 @@
                 display: flex;
                 flex-direction: column;
             }
+
             /* Hero section — light-blue wave background */
             .demo-popup-hero {
                 background: #b6d3e8;
@@ -1824,6 +1843,7 @@
                 box-sizing: border-box;
                 flex-shrink: 0;
             }
+
             .demo-popup-hero-title {
                 font-size: 20px;
                 font-weight: 800;
@@ -1834,6 +1854,7 @@
                 z-index: 1;
                 white-space: nowrap;
             }
+
             /* Close button — top-right corner of modal */
             .demo-popup-close {
                 position: absolute;
@@ -1854,16 +1875,19 @@
                     background 0.2s ease;
                 z-index: 10;
             }
+
             .demo-popup-close:hover {
                 transform: scale(1.1);
                 background: #ffffff;
             }
+
             .demo-popup-close svg {
                 width: 14px;
                 height: 14px;
                 stroke: #111827;
                 stroke-width: 2.5;
             }
+
             /* Body */
             .demo-popup-body {
                 padding: 24px 58px;
@@ -1873,6 +1897,7 @@
                 height: 300px;
                 box-sizing: border-box;
             }
+
             /* Input fields */
             .demo-popup-input {
                 width: 100%;
@@ -1891,15 +1916,18 @@
                 box-sizing: border-box;
                 font-family: inherit;
             }
+
             .demo-popup-input::placeholder {
                 color: rgba(0, 0, 0, 0.35);
                 font-size: 14px;
             }
+
             .demo-popup-input:focus {
                 border-color: #2871f0;
                 box-shadow: 0 0 0 3px rgba(40, 113, 240, 0.12);
                 background: #fff;
             }
+
             /* CTA button */
             .demo-popup-btn {
                 display: flex;
@@ -1925,6 +1953,7 @@
                 box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
                 box-sizing: border-box;
             }
+
             .demo-popup-btn:hover {
                 background: #1a5fd4;
                 transform: translateY(-1px);
@@ -1932,9 +1961,11 @@
                     0 6px 20px rgba(40, 113, 240, 0.35),
                     inset 0 0 0 1px rgba(255, 255, 255, 0.25);
             }
+
             .demo-popup-btn:active {
                 transform: translateY(0);
             }
+
             /* Mobile */
             @media only screen and (max-width: 480px) {
                 .demo-popup-modal {
@@ -1943,22 +1974,28 @@
                     height: auto;
                     border-radius: 16px;
                 }
+
                 .demo-popup-inner {
                     border-radius: 16px;
                 }
+
                 .demo-popup-hero {
                     height: 72px;
                 }
+
                 .demo-popup-hero-title {
                     font-size: 16px;
                     white-space: normal;
                 }
+
                 .demo-popup-body {
                     padding: 20px 20px 24px;
                     height: auto;
                 }
             }
-            .channel-table-wrapper {
+
+            
+.channel-table-wrapper {
                 width: 100%;
                 max-width: 100%;
                 overflow-x: auto;
@@ -2028,6 +2065,30 @@
                 }
             }
         
+
+ .preview-missing-image{padding:24px;background:#f3f6fa;border:1px dashed #b8c5d6;color:#46566b;text-align:center;border-radius:8px;font-size:14px;overflow-wrap:anywhere} .kb-main-content{min-width:0} .kb-author-info{min-width:0;flex:1;width:auto;height:auto;gap:8px} .kb-article-body img{max-width:100%;height:auto} .kb-article-body table{display:block;overflow-x:auto;max-width:100%} @media(max-width:1024px){.kb-article-layout{grid-template-columns:minmax(0,1fr)} .kb-sidebar-left,.kb-sidebar-right{display:none!important}} 
+/* Keep the article in normal document flow. */
+.kb-article-container, .kb-article-layout, .kb-main-content, .kb-article-body {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  min-width: 0;
+}
+.kb-article-body img { max-width: 100%; }
+@media (max-width: 1024px) {
+  .kb-article-layout { grid-template-columns: minmax(0, 1fr); }
+  .kb-mobile-toc.is-sticky { max-height: 85vh; }
+  .kb-mobile-toc-header.active + .kb-mobile-toc-content { max-height: 65vh !important; overflow-y: auto !important; }
+}
+
+@media(max-width:1024px){.kb-mobile-toc.is-sticky{top:70px!important;z-index:1100;max-height:calc(100dvh - 86px)}.kb-mobile-toc-header.active+.kb-mobile-toc-content{max-height:min(500px,60vh)!important;overflow-y:auto!important;overscroll-behavior:contain}.kb-mobile-toc-header i{font-size:12px;transition:transform .3s;color:#9ca3af}.kb-mobile-toc-header.active i{transform:rotate(180deg)}.kb-article-body [id]{scroll-margin-top:120px}}
+@media(max-width:768px){.kb-highlight-box h2{margin-top:0!important;font-size:12px!important}.kb-highlight-box p{font-size:10px!important}}
+.scroll-popup-overlay{z-index:2147483000;pointer-events:none}.scroll-popup-overlay.is-active{pointer-events:auto}
+.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{z-index:2147483001;box-sizing:border-box;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;pointer-events:none}
+.scroll-popup-modal.js-scroll-popup-modal{width:420px}.demo-popup-modal.js-demo-popup-modal{width:400px;height:auto}.demo-popup-inner,.demo-popup-body{height:auto}.demo-popup-body{min-height:300px}
+.scroll-popup-modal.is-active,.demo-popup-modal.is-active{opacity:1!important;visibility:visible!important;pointer-events:auto}
+.scroll-popup-modal form,.demo-popup-modal form{visibility:visible!important;opacity:1!important;width:100%;height:auto!important}.scroll-popup-modal form{display:block!important}.demo-popup-modal form{display:flex!important}.scroll-popup-modal input,.demo-popup-modal input{display:block!important;visibility:visible!important;opacity:1!important}.kb-popup-status:empty{display:none}.kb-popup-status{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.kb-popup-unavailable{background:none;border:0;color:#2871f0;text-decoration:underline;font:inherit;cursor:pointer;padding:8px}
+@media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{left:var(--kb-vv-x,50%);top:var(--kb-vv-y,50%);max-width:calc(var(--kb-vv-w,100vw) - 32px);max-height:calc(var(--kb-vv-h,100dvh) - 32px)}.scroll-popup-modal input,.demo-popup-modal input{font-size:16px;min-height:44px}.scroll-popup-hero img{max-height:180px;object-fit:cover}.demo-popup-body{min-height:0}.demo-popup-close{width:44px;height:44px;top:8px;right:8px}}
 </style>
 <!-- Top Fade Overlay -->
 <div class="kb-top-fade js-kb-top-fade"></div>
@@ -2827,28 +2888,14 @@ document.addEventListener('DOMContentLoaded', function(){
  const marker=document.createElement('div'); marker.setAttribute('aria-hidden','true'); toc.before(marker);
  const mq=window.matchMedia('(max-width:1024px)');
  function update(){
-  const sticky=mq.matches && marker.getBoundingClientRect().top<=12;
+  const sticky=mq.matches && marker.getBoundingClientRect().top<=70;
   if(sticky && !toc.classList.contains('is-sticky')){marker.style.height=(toc.offsetHeight+parseFloat(getComputedStyle(toc).marginBottom||0))+'px';toc.classList.add('is-sticky');}
   else if(!sticky && toc.classList.contains('is-sticky')){toc.classList.remove('is-sticky');marker.style.height='0px';}
  }
  window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();
 });
 </script>
-<style id="blog-scroll-fix">
-/* Keep the article in normal document flow. */
-.kb-article-container, .kb-article-layout, .kb-main-content, .kb-article-body {
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  min-width: 0;
-}
-.kb-article-body img { max-width: 100%; }
-@media (max-width: 1024px) {
-  .kb-article-layout { grid-template-columns: minmax(0, 1fr); }
-  .kb-mobile-toc.is-sticky { max-height: 85vh; }
-  .kb-mobile-toc-header.active + .kb-mobile-toc-content { max-height: 65vh !important; overflow-y: auto !important; }
-}
-</style>
+
 <div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation"></div><div aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" role="dialog" aria-hidden="true">
 <!-- Illustration Hero -->
 <div class="scroll-popup-hero">
@@ -2891,124 +2938,26 @@ document.addEventListener('DOMContentLoaded', function(){
 </form>
 </div>
 </div>
-</div><style>
-.kb-article-container,.kb-article-layout,.kb-main-content,.kb-article-body{height:auto!important;max-height:none!important;overflow:visible!important;min-width:0}
-.scroll-popup-overlay,.scroll-popup-modal,.demo-popup-modal{pointer-events:none}
-.scroll-popup-overlay.is-active,.scroll-popup-modal.is-active,.demo-popup-modal.is-active{pointer-events:auto}
-.scroll-popup-modal,.demo-popup-modal{max-height:90vh;max-height:90dvh;overflow-y:auto}
-.demo-popup-modal{height:auto;width:400px}.demo-popup-body{height:auto;min-height:300px;padding:24px clamp(20px,8vw,58px)}
-.scroll-popup-close{font-size:24px;line-height:1;color:#374151}
-@media(max-width:1024px){.kb-mobile-toc-header.active+.kb-mobile-toc-content{max-height:60vh!important;overflow-y:auto!important}.kb-mobile-toc.is-sticky{max-height:80vh}.kb-article-layout{grid-template-columns:minmax(0,1fr)}}
-
-/* Form visibility and responsive sizing */
-.scroll-popup-modal.is-active .js-scroll-popup-form,.demo-popup-modal.is-active .js-demo-popup-form{display:flex!important;flex-direction:column;gap:12px;width:100%;visibility:visible!important;opacity:1!important;height:auto!important;max-height:none!important}
-.scroll-popup-modal.is-active input,.demo-popup-modal.is-active input{display:block!important;visibility:visible!important;opacity:1!important;min-height:44px;box-sizing:border-box}
-.scroll-popup-modal.is-active button,.demo-popup-modal.is-active button{visibility:visible!important;opacity:1!important}
-.demo-popup-inner{height:auto;overflow:visible}.demo-popup-body{height:auto;min-height:0}.kb-popup-status{font-size:13px;color:#374151;margin:0;line-height:1.4}
-
-/* Restore master popup dimensions; constrain only on narrow viewports. */
-.scroll-popup-modal.js-scroll-popup-modal {
-  box-sizing: border-box; width: 420px !important;
-  max-width: calc(100vw - 32px) !important;
-  height: auto !important; max-height: 90vh; max-height: 90dvh;
-}
-.demo-popup-modal.js-demo-popup-modal {
-  box-sizing: border-box; width: 400px !important;
-  max-width: calc(100vw - 32px) !important;
-  height: auto !important; max-height: 90vh; max-height: 90dvh;
-}
-.scroll-popup-modal .scroll-popup-hero img {
-  display: block; width: 100% !important; max-width: 100% !important;
-  height: auto !important; max-height: 35vh; max-height: 35dvh;
-  object-fit: contain;
-}
-.scroll-popup-modal .scroll-popup-body, .demo-popup-modal .demo-popup-body { box-sizing: border-box; }
-.demo-popup-modal .demo-popup-body { padding: 24px 58px; }
-@media (max-width: 480px) {
-  .scroll-popup-modal.js-scroll-popup-modal { border-radius: 12px; }
-  .demo-popup-modal.js-demo-popup-modal { border-radius: 16px; }
-  .demo-popup-modal .demo-popup-body { padding: 20px 20px 24px; }
-}
-</style><script>(function(){function init(){
+</div><script>(function(){function init(){
 const article=document.querySelector('.kb-article-container'), overlay=document.querySelector('.js-scroll-popup-overlay'), sub=document.querySelector('.js-scroll-popup-modal'), demo=document.querySelector('.js-demo-popup-modal');
 if(!article||!overlay||!sub||!demo||sub.dataset.kbInitialized)return;sub.dataset.kbInitialized='1';
 [overlay,sub,demo].forEach(el=>document.body.appendChild(el));
 let active=null,seenSub=false,seenDemo=false,previous=null;
+const preview=location.protocol==='file:' || (['localhost','127.0.0.1'].includes(location.hostname));
+
 function status(el,message){el.querySelector('.kb-popup-status').textContent=message;}
 function close(){if(!active)return;active.classList.remove('is-active');active.setAttribute('aria-hidden','true');overlay.classList.remove('is-active');active=null;if(previous&&previous.isConnected)previous.focus({preventScroll:true});requestAnimationFrame(check);}
 function open(el){if(active)return;previous=document.activeElement;active=el;el.classList.add('is-active');el.setAttribute('aria-hidden','false');overlay.classList.add('is-active');el.focus({preventScroll:true});}
 function check(){if(active)return;const r=article.getBoundingClientRect(),total=r.height-window.innerHeight;const doc=document.scrollingElement;const docTotal=doc.scrollHeight-window.innerHeight;let progress=Math.max(total>0?-r.top/total:0,docTotal>0?doc.scrollTop/docTotal:0); for(let node=article;node&&node!==document.body;node=node.parentElement){const range=node.scrollHeight-node.clientHeight;if(range>0&&node.scrollTop>0)progress=Math.max(progress,node.scrollTop/range);}if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
-function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
-[sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close')?.addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please try again later.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
+function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub&&f.dataset.endpoint){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
+[sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);if(el===sub&&!f.dataset.endpoint&&!preview){const skip=document.createElement('button');skip.type='button';skip.className='kb-popup-unavailable';skip.textContent='Continue reading (subscription unavailable)';skip.addEventListener('click',close);f.appendChild(skip);}el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close')?.addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){if(preview){status(el,'Preview only — no data sent.');if(active===el)close();return;}status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please try again later.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});document.addEventListener('scroll',check,{passive:true,capture:true});window.addEventListener('resize',check);check();
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>
-<style id="kb-mobile-popup-fix">
-@media (max-width: 767px), (hover: none) and (pointer: coarse) {
- .scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal {
- position:fixed!important; left:var(--kb-vv-x,50%)!important; top:var(--kb-vv-y,50%)!important;
- width:420px!important; max-width:calc(var(--kb-vv-w,100vw) - 24px)!important;
- max-height:calc(var(--kb-vv-h,100dvh) - 24px)!important; height:auto!important;
- overflow-y:auto!important; overflow-x:hidden!important; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
- }
- .demo-popup-modal.js-demo-popup-modal {width:400px!important;}
- .scroll-popup-modal .scroll-popup-hero img {max-height:min(180px,calc(var(--kb-vv-h,100dvh) * .28))!important;object-fit:contain;}
- .scroll-popup-modal .scroll-popup-body,.demo-popup-modal .demo-popup-body {padding:16px!important;height:auto!important;min-height:0!important;}
- .demo-popup-modal .demo-popup-inner {height:auto!important;overflow:visible!important;}
- .demo-popup-modal .demo-popup-hero {height:auto!important;min-height:64px;padding:12px 52px 12px 12px;}
- .demo-popup-modal .demo-popup-hero-title {white-space:normal!important;font-size:16px!important;}
- .scroll-popup-modal input,.demo-popup-modal input {font-size:16px!important;min-height:44px!important;width:100%!important;}
- .scroll-popup-modal .scroll-popup-input-wrap {margin-bottom:0;}
- .scroll-popup-modal .scroll-popup-title {margin-bottom:12px;}
- .demo-popup-modal .demo-popup-btn,.scroll-popup-modal .scroll-popup-btn {min-height:44px;flex-shrink:0;}
- .scroll-popup-modal .scroll-popup-close,.demo-popup-modal .demo-popup-close {width:44px;height:44px;top:6px;right:6px;}
-}
-</style>
+
 <script id="kb-mobile-popup-viewport">
 (function(){function init(){const v=window.visualViewport; if(!v)return;function sync(){const r=document.documentElement;r.style.setProperty('--kb-vv-x',(v.offsetLeft+v.width/2)+'px');r.style.setProperty('--kb-vv-y',(v.offsetTop+v.height/2)+'px');r.style.setProperty('--kb-vv-w',v.width+'px');r.style.setProperty('--kb-vv-h',v.height+'px');}v.addEventListener('resize',sync);v.addEventListener('scroll',sync);window.addEventListener('resize',sync);sync();document.addEventListener('focusin',function(e){if(e.target.matches('.scroll-popup-modal input,.demo-popup-modal input')){setTimeout(function(){if(document.activeElement!==e.target)return;const m=e.target.closest('[role=dialog]');if(!m)return;const a=e.target.getBoundingClientRect(),b=m.getBoundingClientRect();if(a.bottom>b.bottom-12)m.scrollTop+=a.bottom-b.bottom+12;else if(a.top<b.top+12)m.scrollTop-=b.top-a.top+12;},350);}});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();
 </script>
-<style id="kb-master-mobile-popup-alignment">
-@media (max-width:480px) {
- .scroll-popup-modal.js-scroll-popup-modal {width:420px!important;max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;border-radius:12px!important;}
- .demo-popup-modal.js-demo-popup-modal {width:400px!important;max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;border-radius:16px!important;}
- .scroll-popup-modal .scroll-popup-body,.demo-popup-modal .demo-popup-body {padding:20px 20px 24px!important;height:auto!important;}
- .scroll-popup-modal .scroll-popup-title {font-size:15px!important;}
- .demo-popup-modal .demo-popup-inner {border-radius:16px!important;}
- .demo-popup-modal .demo-popup-hero {height:72px!important;min-height:72px!important;}
- .demo-popup-modal .demo-popup-hero-title {font-size:16px!important;white-space:normal!important;}
-}
-</style>
-<style>
-/* Final master-compatible popup constraints */
-.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto!important;overscroll-behavior:contain;}
-.kb-popup-status:empty{display:none}.kb-popup-status{overflow-wrap:anywhere}
-@media(max-width:767px), (hover:none) and (pointer:coarse){.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;max-height:calc(var(--kb-vv-h,100dvh) - 32px)!important;}.demo-popup-modal .demo-popup-body{min-height:0!important;}}
-@media  only screen and (max-width: 1024px) {.kb-mobile-toc-header i {
-                    font-size: 12px;
-                    transition: transform 0.3s;
-                    color: #9ca3af;
-                }.kb-mobile-toc-header.active i {
-                    transform: rotate(180deg);
-                }}
-@media  only screen and (max-width: 768px) {.kb-highlight-box h2 {
-                    margin-top: 0 !important;
-                    font-size: 12px !important;
-                }.kb-highlight-box p {
-                    font-size: 10px !important;
-                }}</style>
-<style>
-/* Subscriber only: preserve master visual design and keep all fields accessible. */
-.scroll-popup-modal.js-scroll-popup-modal{width:420px!important;max-width:calc(100vw - 32px)!important;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto!important;box-sizing:border-box;z-index:2147483001!important}
-.scroll-popup-overlay.is-active{z-index:2147483000!important}
-.scroll-popup-modal.is-active{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
-.scroll-popup-modal .js-scroll-popup-form{display:block!important;width:100%;height:auto!important;visibility:visible!important;opacity:1!important}
-.scroll-popup-modal .scroll-popup-input-wrap{display:block!important;height:auto!important}
-.scroll-popup-modal .scroll-popup-input,.scroll-popup-modal .scroll-popup-btn{display:block!important;width:100%;box-sizing:border-box;visibility:visible!important;opacity:1!important}
-.scroll-popup-modal .scroll-popup-hero img{width:100%;height:auto;object-fit:contain;display:block}
-@media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal{max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;max-height:calc(var(--kb-vv-h,100dvh) - 32px)!important}.scroll-popup-modal .scroll-popup-input{font-size:16px!important;min-height:44px}.scroll-popup-modal .scroll-popup-btn{min-height:44px}.scroll-popup-modal .scroll-popup-hero img{max-height: min(180px, 28dvh)!important}}
 
-/* Both dialogs must sit above the shared overlay. */
-.scroll-popup-overlay.is-active{z-index:2147483000!important;}
-.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{z-index:2147483001!important;}
-.scroll-popup-modal.is-active,.demo-popup-modal.is-active{visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
-</style></body>
+
+</body>
 </html>
