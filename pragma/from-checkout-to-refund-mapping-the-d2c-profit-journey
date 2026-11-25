@@ -2105,6 +2105,14 @@
 }
 @media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal{width:420px;max-width:calc(var(--kb-vv-w,100vw) - 32px);max-height:calc(100vh - 32px);max-height:calc(var(--kb-vv-h,100dvh) - 32px);overflow-y:auto}.scroll-popup-modal .scroll-popup-input{font-size:16px!important}.scroll-popup-modal .scroll-popup-hero img{width:100%;height:auto;object-fit:cover}}
 
+
+/* Mobile-only correction: prevent metadata from widening the layout viewport. */
+@media (max-width: 768px) {
+ .kb-article-container .kb-article-meta {flex-wrap:wrap!important;min-width:0;max-width:100%;box-sizing:border-box;}
+ .kb-article-container .kb-meta-author,.kb-article-container .kb-meta-info {white-space:normal!important;min-width:0;max-width:100%;overflow-wrap:anywhere;}
+ .kb-article-container .kb-main-content {overflow-x:clip!important;}
+ .kb-mobile-toc.is-sticky {left:20px!important;right:20px!important;width:auto!important;}
+}
 </style>
 <!-- Top Fade Overlay -->
 <div class="kb-top-fade js-kb-top-fade"></div>
