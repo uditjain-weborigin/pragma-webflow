@@ -2089,6 +2089,22 @@
 .scroll-popup-modal.is-active,.demo-popup-modal.is-active{opacity:1!important;visibility:visible!important;pointer-events:auto}
 .scroll-popup-modal form,.demo-popup-modal form{visibility:visible!important;opacity:1!important;width:100%;height:auto!important}.scroll-popup-modal form{display:block!important}.demo-popup-modal form{display:flex!important}.scroll-popup-modal input,.demo-popup-modal input{display:block!important;visibility:visible!important;opacity:1!important}.kb-popup-status:empty{display:none}.kb-popup-status{font-size:13px;line-height:1.4;overflow-wrap:anywhere}.kb-popup-unavailable{background:none;border:0;color:#2871f0;text-decoration:underline;font:inherit;cursor:pointer;padding:8px}
 @media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{left:var(--kb-vv-x,50%);top:var(--kb-vv-y,50%);max-width:calc(var(--kb-vv-w,100vw) - 32px);max-height:calc(var(--kb-vv-h,100dvh) - 32px)}.scroll-popup-modal input,.demo-popup-modal input{font-size:16px;min-height:44px}.scroll-popup-hero img{max-height:180px;object-fit:cover}.demo-popup-body{min-height:0}.demo-popup-close{width:44px;height:44px;top:8px;right:8px}}
+
+/* Mobile-only: preserve master appearance, expose TOC and subscriber. */
+@media (max-width:1024px){
+.kb-mobile-toc{display:block!important;visibility:visible!important;opacity:1!important;width:100%;box-sizing:border-box;position:relative;z-index:1001}
+.kb-mobile-toc.is-sticky{position:fixed!important;top:70px!important;left:20px;right:20px;width:auto!important;z-index:1100}
+.kb-mobile-toc-header{display:flex!important;visibility:visible!important;align-items:center;justify-content:space-between}
+.kb-mobile-toc-header i:empty::after{content:'⌄';font-size:18px}
+.kb-mobile-toc-header.active+.kb-mobile-toc-content{display:block!important;max-height:min(500px,60vh)!important;overflow-y:auto!important}
+.kb-mobile-toc .kb-contents-list{max-height:none!important;overflow:visible!important}
+.scroll-popup-modal.js-scroll-popup-modal.is-active{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;position:fixed!important;z-index:2147483001!important}
+.scroll-popup-overlay.is-active{display:block!important;visibility:visible!important;opacity:1!important}
+.scroll-popup-modal .scroll-popup-body,.scroll-popup-modal .scroll-popup-input-wrap{display:block!important;visibility:visible!important}
+.scroll-popup-modal .scroll-popup-btn{display:block!important;visibility:visible!important;width:100%}
+}
+@media(max-width:767px){.scroll-popup-modal.js-scroll-popup-modal{width:420px;max-width:calc(var(--kb-vv-w,100vw) - 32px);max-height:calc(100vh - 32px);max-height:calc(var(--kb-vv-h,100dvh) - 32px);overflow-y:auto}.scroll-popup-modal .scroll-popup-input{font-size:16px!important}.scroll-popup-modal .scroll-popup-hero img{width:100%;height:auto;object-fit:cover}}
+
 </style>
 <!-- Top Fade Overlay -->
 <div class="kb-top-fade js-kb-top-fade"></div>
@@ -2882,8 +2898,8 @@
 </div>
 </div>
 <!-- Interactive Script -->
-<script>document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.js-kb-toc-toggle').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('active');b.setAttribute('aria-expanded',String(b.classList.contains('active')))}));document.querySelectorAll('.kb-mobile-toc a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const b=document.querySelector('.js-kb-toc-toggle');if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false')}}));document.querySelectorAll('.js-toggle-float-summary').forEach(b=>b.addEventListener('click',()=>document.querySelector('.js-mobile-float-summary')?.classList.toggle('is-open')));document.querySelectorAll('a[aria-disabled="true"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));const f=document.querySelector('.js-mobile-float-summary');const update=()=>f?.classList.toggle('is-visible',window.scrollY>500);window.addEventListener('scroll',update,{passive:true});update();});</script><script>
-document.addEventListener('DOMContentLoaded', function(){
+<script>(function(){function init(){document.querySelectorAll('.js-kb-toc-toggle').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('active');b.setAttribute('aria-expanded',String(b.classList.contains('active')))}));document.querySelectorAll('.kb-mobile-toc a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const b=document.querySelector('.js-kb-toc-toggle');if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false')}}));document.querySelectorAll('.js-toggle-float-summary').forEach(b=>b.addEventListener('click',()=>document.querySelector('.js-mobile-float-summary')?.classList.toggle('is-open')));document.querySelectorAll('a[aria-disabled="true"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));const f=document.querySelector('.js-mobile-float-summary');const update=()=>f?.classList.toggle('is-visible',window.scrollY>500);window.addEventListener('scroll',update,{passive:true});update();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script><script>
+(function(){function init(){
  const toc=document.querySelector('.kb-mobile-toc'); if(!toc)return;
  const marker=document.createElement('div'); marker.setAttribute('aria-hidden','true'); toc.before(marker);
  const mq=window.matchMedia('(max-width:1024px)');
@@ -2893,7 +2909,7 @@ document.addEventListener('DOMContentLoaded', function(){
   else if(!sticky && toc.classList.contains('is-sticky')){toc.classList.remove('is-sticky');marker.style.height='0px';}
  }
  window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();
-});
+}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();
 </script>
 
 <div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" role="presentation"></div><div aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" role="dialog" aria-hidden="true">
@@ -2951,7 +2967,7 @@ function open(el){if(active)return;previous=document.activeElement;active=el;el.
 function check(){if(active)return;const r=article.getBoundingClientRect(),total=r.height-window.innerHeight;const doc=document.scrollingElement;const docTotal=doc.scrollHeight-window.innerHeight;let progress=Math.max(total>0?-r.top/total:0,docTotal>0?doc.scrollTop/docTotal:0); for(let node=article;node&&node!==document.body;node=node.parentElement){const range=node.scrollHeight-node.clientHeight;if(range>0&&node.scrollTop>0)progress=Math.max(progress,node.scrollTop/range);}if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
 function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub&&f.dataset.endpoint){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
 [sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);if(el===sub&&!f.dataset.endpoint&&!preview){const skip=document.createElement('button');skip.type='button';skip.className='kb-popup-unavailable';skip.textContent='Continue reading (subscription unavailable)';skip.addEventListener('click',close);f.appendChild(skip);}el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close')?.addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){if(preview){status(el,'Preview only — no data sent.');if(active===el)close();return;}status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please try again later.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});document.addEventListener('scroll',check,{passive:true,capture:true});window.addEventListener('resize',check);check();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});document.addEventListener('scroll',check,{passive:true,capture:true});window.addEventListener('resize',check);if(window.matchMedia('(max-width:1024px)').matches){let queued=false;const schedule=()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;check();});};window.addEventListener('touchend',schedule,{passive:true});window.addEventListener('pageshow',schedule);window.addEventListener('load',schedule);window.visualViewport?.addEventListener('scroll',schedule,{passive:true});}check();
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>
 
 <script id="kb-mobile-popup-viewport">
