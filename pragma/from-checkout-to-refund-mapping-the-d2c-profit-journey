@@ -2790,55 +2790,6 @@
 </div>
 <!-- Content-end -->
 <hr class="kb-separator"/>
-<!-- =============================================
-         25% Scroll Subscriber Popup
-         ============================================= -->
-<div aria-hidden="true" class="scroll-popup-overlay js-scroll-popup-overlay" hidden="" role="presentation" style="display:none!important"></div>
-<div aria-labelledby="scroll-popup-heading" aria-modal="true" class="scroll-popup-modal js-scroll-popup-modal" hidden="" role="dialog" style="display:none!important">
-<div class="scroll-popup-hero">
-<img alt="Subscribe to continue reading" loading="lazy" src="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/6a19944ac9a204dd3a3226f0_25%25scroll.png"/>
-<button aria-label="Close subscriber popup" class="scroll-popup-close js-scroll-popup-close" type="button">
-<svg aria-hidden="true" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-</div>
-<div class="scroll-popup-body">
-<p class="scroll-popup-title" id="scroll-popup-heading">
-                    This section is reserved for subscribers.<br/>
-                    Join with your email to continue reading.
-                </p>
-<form class="js-scroll-popup-form" novalidate="">
-<div class="scroll-popup-input-wrap">
-<input autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" placeholder="Email address" required="" type="email"/>
-</div>
-<button class="scroll-popup-btn" type="submit">Become a Subscriber</button>
-</form>
-</div>
-</div>
-<!-- =============================================
-         50% Scroll — Get a Demo Popup
-         ============================================= -->
-<div aria-labelledby="demo-popup-heading" aria-modal="true" class="demo-popup-modal js-demo-popup-modal" hidden="" role="dialog" style="display:none!important">
-<div class="demo-popup-inner">
-<div class="demo-popup-hero">
-<button aria-label="Close demo popup" class="demo-popup-close js-demo-popup-close" type="button">
-<svg aria-hidden="true" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-<h2 class="demo-popup-hero-title" id="demo-popup-heading">See Pragma in Action</h2>
-</div>
-<div class="demo-popup-body">
-<form class="js-demo-popup-form" novalidate="" style="display: flex; flex-direction: column; gap: 16px; width: 100%">
-<input autocomplete="tel" class="demo-popup-input" id="demo-popup-phone" placeholder="Phone Number" required="" type="tel"/>
-<input autocomplete="email" class="demo-popup-input" id="demo-popup-email" placeholder="Email address" required="" type="email"/>
-<input autocomplete="url" class="demo-popup-input" id="demo-popup-website" placeholder="Business Website Link" required="" type="url"/>
-<button class="demo-popup-btn" type="submit">Get a demo</button>
-</form>
-</div>
-</div>
-</div>
 <!-- Floating Mobile Summary Sidebar -->
 <div class="mobile-float-summary js-mobile-float-summary">
 <div class="float-summary-trigger js-toggle-float-summary">
@@ -2888,5 +2839,22 @@ document.addEventListener('DOMContentLoaded', function(){
  window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();
 });
 </script>
+<style id="blog-scroll-fix">
+/* Keep the article in normal document flow. */
+.kb-article-container, .kb-article-layout, .kb-main-content, .kb-article-body {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  min-width: 0;
+}
+.kb-article-body img { max-width: 100%; }
+@media (max-width: 1024px) {
+  .kb-article-layout { grid-template-columns: minmax(0, 1fr); }
+  .kb-mobile-toc.is-sticky { max-height: 85vh; }
+  .kb-mobile-toc-header.active + .kb-mobile-toc-content { max-height: 65vh !important; overflow-y: auto !important; }
+}
+/* Preview popups are disabled; do not allow their overlays to intercept input. */
+.scroll-popup-overlay[hidden], .scroll-popup-modal[hidden], .demo-popup-modal[hidden] { display: none !important; pointer-events: none !important; }
+</style>
 </body>
 </html>
