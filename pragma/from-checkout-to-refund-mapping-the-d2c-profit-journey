@@ -2894,7 +2894,7 @@ document.addEventListener('DOMContentLoaded', function(){
 .kb-article-container,.kb-article-layout,.kb-main-content,.kb-article-body{height:auto!important;max-height:none!important;overflow:visible!important;min-width:0}
 .scroll-popup-overlay,.scroll-popup-modal,.demo-popup-modal{pointer-events:none}
 .scroll-popup-overlay.is-active,.scroll-popup-modal.is-active,.demo-popup-modal.is-active{pointer-events:auto}
-.scroll-popup-modal,.demo-popup-modal{max-height:90vh;max-height:90dvh;overflow-y:auto;max-width:calc(100% - 32px)}
+.scroll-popup-modal,.demo-popup-modal{max-height:90vh;max-height:90dvh;overflow-y:auto}
 .demo-popup-modal{height:auto;width:400px}.demo-popup-body{height:auto;min-height:300px;padding:24px clamp(20px,8vw,58px)}
 .scroll-popup-close{font-size:24px;line-height:1;color:#374151}
 @media(max-width:1024px){.kb-mobile-toc-header.active+.kb-mobile-toc-content{max-height:60vh!important;overflow-y:auto!important}.kb-mobile-toc.is-sticky{max-height:80vh}.kb-article-layout{grid-template-columns:minmax(0,1fr)}}
@@ -2904,6 +2904,30 @@ document.addEventListener('DOMContentLoaded', function(){
 .scroll-popup-modal.is-active input,.demo-popup-modal.is-active input{display:block!important;visibility:visible!important;opacity:1!important;min-height:44px;box-sizing:border-box}
 .scroll-popup-modal.is-active button,.demo-popup-modal.is-active button{visibility:visible!important;opacity:1!important}
 .demo-popup-inner{height:auto;overflow:visible}.demo-popup-body{height:auto;min-height:0}.kb-popup-status{font-size:13px;color:#374151;margin:0;line-height:1.4}
+
+/* Restore master popup dimensions; constrain only on narrow viewports. */
+.scroll-popup-modal.js-scroll-popup-modal {
+  box-sizing: border-box; width: 420px !important;
+  max-width: calc(100vw - 32px) !important;
+  height: auto !important; max-height: 90vh; max-height: 90dvh;
+}
+.demo-popup-modal.js-demo-popup-modal {
+  box-sizing: border-box; width: 400px !important;
+  max-width: calc(100vw - 32px) !important;
+  height: auto !important; max-height: 90vh; max-height: 90dvh;
+}
+.scroll-popup-modal .scroll-popup-hero img {
+  display: block; width: 100% !important; max-width: 100% !important;
+  height: auto !important; max-height: 35vh; max-height: 35dvh;
+  object-fit: contain;
+}
+.scroll-popup-modal .scroll-popup-body, .demo-popup-modal .demo-popup-body { box-sizing: border-box; }
+.demo-popup-modal .demo-popup-body { padding: 24px 58px; }
+@media (max-width: 480px) {
+  .scroll-popup-modal.js-scroll-popup-modal { border-radius: 12px; }
+  .demo-popup-modal.js-demo-popup-modal { border-radius: 16px; }
+  .demo-popup-modal .demo-popup-body { padding: 20px 20px 24px; }
+}
 </style><script>(function(){function init(){
 const article=document.querySelector('.kb-article-container'), overlay=document.querySelector('.js-scroll-popup-overlay'), sub=document.querySelector('.js-scroll-popup-modal'), demo=document.querySelector('.js-demo-popup-modal');
 if(!article||!overlay||!sub||!demo)return;
