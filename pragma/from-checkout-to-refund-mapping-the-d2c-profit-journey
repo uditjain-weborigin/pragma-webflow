@@ -4,7 +4,7 @@
 <head>
 <title>From Checkout to Refund: Mapping the D2C Profit Journey | Pragma</title>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport"/>
 <meta content="Discover how D2C profitability depends on optimising the entire post-order journey from checkout to refund, connecting logistics, returns, and support data to eliminate hidden margin leaks." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://cdn.prod.website-files.com/6288d1846d725b411f357c9c/css/pragma-0.webflow.shared.7a8316285.min.css" rel="stylesheet"/>
@@ -2860,9 +2860,9 @@ document.addEventListener('DOMContentLoaded', function(){
                     This section is reserved for subscribers.<br/>
                     Join with your email to continue reading.
                 </p>
-<form class="js-scroll-popup-form" >
+<form class="js-scroll-popup-form" data-endpoint="" method="post">
 <div class="scroll-popup-input-wrap">
-<input autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" placeholder="Email address" required="" type="email" name="email" aria-label="Email address" >
+<input aria-label="Email address" autocomplete="email" class="scroll-popup-input" id="scroll-popup-email" name="email" placeholder="Email address" required="" type="email"/>
 </div>
 <button class="scroll-popup-btn" type="submit">Become a Subscriber</button>
 </form>
@@ -2882,10 +2882,10 @@ document.addEventListener('DOMContentLoaded', function(){
 </div>
 <!-- Body -->
 <div class="demo-popup-body">
-<form class="js-demo-popup-form"  style="display: flex; flex-direction: column; gap: 16px; width: 100%">
-<input autocomplete="tel" class="demo-popup-input" id="demo-popup-phone" pattern="[+0-9() .\-]{7,20}" placeholder="Phone Number" required="" type="tel" name="phone" aria-label="Phone number" >
-<input autocomplete="email" class="demo-popup-input" id="demo-popup-email" placeholder="Email address" required="" type="email" name="email" aria-label="Email address" >
-<input autocomplete="url" class="demo-popup-input" id="demo-popup-website" placeholder="Business Website Link" required="" type="url" name="website" aria-label="Business website link" >
+<form class="js-demo-popup-form" data-endpoint="" method="post" style="display: flex; flex-direction: column; gap: 16px; width: 100%">
+<input aria-label="Phone number" autocomplete="tel" class="demo-popup-input" id="demo-popup-phone" name="phone" pattern="[+0-9\(\) .\-]{7,20}" placeholder="Phone Number" required="" type="tel"/>
+<input aria-label="Email address" autocomplete="email" class="demo-popup-input" id="demo-popup-email" name="email" placeholder="Email address" required="" type="email"/>
+<input aria-label="Business website link" autocomplete="url" class="demo-popup-input" id="demo-popup-website" name="website" placeholder="Business Website Link" required="" type="url"/>
 <button class="demo-popup-btn" type="submit">Get a demo</button>
 </form>
 </div>
@@ -2930,21 +2930,16 @@ document.addEventListener('DOMContentLoaded', function(){
 }
 </style><script>(function(){function init(){
 const article=document.querySelector('.kb-article-container'), overlay=document.querySelector('.js-scroll-popup-overlay'), sub=document.querySelector('.js-scroll-popup-modal'), demo=document.querySelector('.js-demo-popup-modal');
-if(!article||!overlay||!sub||!demo)return;
-// Move dialogs outside article wrappers to avoid clipping and stacking conflicts.
+if(!article||!overlay||!sub||!demo||sub.dataset.kbInitialized)return;sub.dataset.kbInitialized='1';
 [overlay,sub,demo].forEach(el=>document.body.appendChild(el));
 let active=null,seenSub=false,seenDemo=false,previous=null;
-function close(){if(!active)return;active.classList.remove('is-active');active.setAttribute('aria-hidden','true');overlay.classList.remove('is-active');active=null;if(previous&&previous.isConnected)previous.focus({preventScroll:true});}
-function open(el){if(active)return;previous=document.activeElement;active=el;el.classList.add('is-active');el.setAttribute('aria-hidden','false');overlay.classList.add('is-active');el.querySelector('button')?.focus({preventScroll:true});}
-function check(){if(active)return;const r=article.getBoundingClientRect();const total=r.height-window.innerHeight;if(total<=0)return;const progress=-r.top/total;if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
-function requestClose(){if(!active)return;const form=active.querySelector('form');if(!form.reportValidity())return;close();check();}
-sub.querySelector('.js-scroll-popup-close').addEventListener('click',requestClose);demo.querySelector('.js-demo-popup-close').addEventListener('click',requestClose);
-// Backdrop does not dismiss required forms.
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button,input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});
-// No body overflow lock: closing a popup never leaves document scrolling disabled.
-[sub,demo].forEach(el=>{const form=el.querySelector('form');form.removeAttribute('novalidate');form.addEventListener('submit',e=>{if(form.getAttribute('action'))return;e.preventDefault();let msg=form.querySelector('.kb-popup-status');if(!msg){msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');form.appendChild(msg);}msg.textContent='Form submission is not configured. No details have been sent.';});});
-window.addEventListener('scroll',check,{passive:true});check();
+function status(el,message){el.querySelector('.kb-popup-status').textContent=message;}
+function close(){if(!active)return;active.classList.remove('is-active');active.setAttribute('aria-hidden','true');overlay.classList.remove('is-active');active=null;if(previous&&previous.isConnected)previous.focus({preventScroll:true});requestAnimationFrame(check);}
+function open(el){if(active)return;previous=document.activeElement;active=el;el.classList.add('is-active');el.setAttribute('aria-hidden','false');overlay.classList.add('is-active');el.focus({preventScroll:true});}
+function check(){if(active)return;const r=article.getBoundingClientRect(),total=r.height-window.innerHeight;if(total<=0)return;const progress=-r.top/total;if(progress>=.25&&!seenSub){seenSub=true;open(sub);}else if(progress>=.5&&!seenDemo){seenDemo=true;open(demo);}}
+function requestClose(){if(!active)return;const f=active.querySelector('form');if(active===sub&&f.dataset.endpoint){status(active,'Please complete your subscription to continue.');f.reportValidity();return;}close();}
+[sub,demo].forEach(el=>{el.tabIndex=-1;const f=el.querySelector('form'),btn=f.querySelector('[type=submit]');const msg=document.createElement('p');msg.className='kb-popup-status';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');f.appendChild(msg);el.querySelector('button[aria-label^="Close"],.js-demo-popup-close,.js-scroll-popup-close').addEventListener('click',requestClose);f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const endpoint=f.dataset.endpoint;if(!endpoint){status(el,'Subscription or demo service is temporarily unavailable. No details were sent. Please close this window to continue.');return;}btn.disabled=true;status(el,'Submitting…');try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});const result=await response.json();if(!response.ok||result.success!==true)throw Error('Not confirmed');status(el,'Submission successful.');if(active===el)close();}catch(err){status(el,'Submission could not be confirmed. Please try again.');}finally{btn.disabled=false;}});});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();requestClose();}if(e.key==='Tab'&&active){const a=[...active.querySelectorAll('button:not(:disabled),input,a[href]')];if(!a.length)return;if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus();}}});window.addEventListener('scroll',check,{passive:true});window.addEventListener('resize',check);check();
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>
 <style id="kb-mobile-popup-fix">
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {
@@ -2968,9 +2963,8 @@ window.addEventListener('scroll',check,{passive:true});check();
 }
 </style>
 <script id="kb-mobile-popup-viewport">
-(function(){function init(){const v=window.visualViewport; if(!v)return;function sync(){const r=document.documentElement;r.style.setProperty('--kb-vv-x',(v.offsetLeft+v.width/2)+'px');r.style.setProperty('--kb-vv-y',(v.offsetTop+v.height/2)+'px');r.style.setProperty('--kb-vv-w',v.width+'px');r.style.setProperty('--kb-vv-h',v.height+'px');}v.addEventListener('resize',sync);v.addEventListener('scroll',sync);window.addEventListener('resize',sync);sync();document.addEventListener('focusin',function(e){if(e.target.matches('.scroll-popup-modal input,.demo-popup-modal input')){setTimeout(function(){if(document.activeElement!==e.target)return;const m=e.target.closest('[role=dialog]');const a=e.target.getBoundingClientRect(),b=m.getBoundingClientRect();if(a.bottom>b.bottom-12)m.scrollTop+=a.bottom-b.bottom+12;else if(a.top<b.top+12)m.scrollTop-=b.top-a.top+12;},350);}});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();
+(function(){function init(){const v=window.visualViewport; if(!v)return;function sync(){const r=document.documentElement;r.style.setProperty('--kb-vv-x',(v.offsetLeft+v.width/2)+'px');r.style.setProperty('--kb-vv-y',(v.offsetTop+v.height/2)+'px');r.style.setProperty('--kb-vv-w',v.width+'px');r.style.setProperty('--kb-vv-h',v.height+'px');}v.addEventListener('resize',sync);v.addEventListener('scroll',sync);window.addEventListener('resize',sync);sync();document.addEventListener('focusin',function(e){if(e.target.matches('.scroll-popup-modal input,.demo-popup-modal input')){setTimeout(function(){if(document.activeElement!==e.target)return;const m=e.target.closest('[role=dialog]');if(!m)return;const a=e.target.getBoundingClientRect(),b=m.getBoundingClientRect();if(a.bottom>b.bottom-12)m.scrollTop+=a.bottom-b.bottom+12;else if(a.top<b.top+12)m.scrollTop-=b.top-a.top+12;},350);}});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();
 </script>
-
 <style id="kb-master-mobile-popup-alignment">
 @media (max-width:480px) {
  .scroll-popup-modal.js-scroll-popup-modal {width:420px!important;max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;border-radius:12px!important;}
@@ -2982,5 +2976,22 @@ window.addEventListener('scroll',check,{passive:true});check();
  .demo-popup-modal .demo-popup-hero-title {font-size:16px!important;white-space:normal!important;}
 }
 </style>
-</body>
+<style>
+/* Final master-compatible popup constraints */
+.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto!important;overscroll-behavior:contain;}
+.kb-popup-status:empty{display:none}.kb-popup-status{overflow-wrap:anywhere}
+@media(max-width:767px), (hover:none) and (pointer:coarse){.scroll-popup-modal.js-scroll-popup-modal,.demo-popup-modal.js-demo-popup-modal{max-width:calc(var(--kb-vv-w,100vw) - 32px)!important;max-height:calc(var(--kb-vv-h,100dvh) - 32px)!important;}.demo-popup-modal .demo-popup-body{min-height:0!important;}}
+@media  only screen and (max-width: 1024px) {.kb-mobile-toc-header i {
+                    font-size: 12px;
+                    transition: transform 0.3s;
+                    color: #9ca3af;
+                }.kb-mobile-toc-header.active i {
+                    transform: rotate(180deg);
+                }}
+@media  only screen and (max-width: 768px) {.kb-highlight-box h2 {
+                    margin-top: 0 !important;
+                    font-size: 12px !important;
+                }.kb-highlight-box p {
+                    font-size: 10px !important;
+                }}</style></body>
 </html>
